@@ -4,8 +4,20 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Repository initialization is complete. Architecture planning and implementation
-will proceed in separately approved phases. No chatbot features are implemented.
+Repository initialization and Phase 0 architecture documentation are complete.
+The design is ready for review; implementation requires a separately approved phase.
+No chatbot features are implemented.
+
+## Design documentation
+
+- [Requirements and MVP scope](docs/REQUIREMENTS.md)
+- [Architecture and AI boundaries](docs/ARCHITECTURE.md)
+- [Database design](docs/DATABASE_DESIGN.md)
+- [API specification](docs/API_SPECIFICATION.md)
+- [Security and privacy](docs/SECURITY.md)
+- [Milestone roadmap](docs/ROADMAP.md)
+- [ADR 0001: modular monolith](docs/DECISIONS/0001-modular-monolith.md)
+- [Coursework review](docs/COURSEWORK_REVIEW.md)
 
 ## Development workflow
 
