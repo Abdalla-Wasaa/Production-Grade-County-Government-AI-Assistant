@@ -1,0 +1,3 @@
+# Repository validation tooling only; application dependencies are not defined yet.
+PyYAML==6.0.3
+ruff==0.14.0
