@@ -74,7 +74,7 @@ sequenceDiagram
     participant DB as PostgreSQL
     participant LLM as Provider adapter
     UI->>API: POST message + bearer + idempotency key
-    API->>DB: Check account, ownership, quota; reserve ordered pair and lease
+    API->>DB: Check account, ownership, quota and reserve ordered pair with lease
     DB-->>API: Committed user message + pending assistant
     API->>DB: Read bounded complete history
     API->>LLM: Approved context under hard deadline
