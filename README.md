@@ -25,6 +25,11 @@ Follow the engineering rules in [AGENTS.md](AGENTS.md). Work on feature branches
 use Conventional Commits, and submit changes through pull requests. User approval
 is required before merging or beginning another phase.
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for local checks and Definition of Done,
+and [development workflow](docs/DEVELOPMENT_WORKFLOW.md) for review, tools, CI scope,
+security and release gates. Current CI targets documentation/repository tooling;
+backend and frontend application checks begin with their implementation.
+
 ## Configuration
 
 `.env.example` documents configuration placeholders. Keep real credentials in

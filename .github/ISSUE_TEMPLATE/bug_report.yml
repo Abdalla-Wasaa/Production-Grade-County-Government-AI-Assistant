@@ -1,0 +1,48 @@
+name: Bug report
+description: Report a reproducible defect in documentation or implemented behavior.
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not include secrets, citizen data, raw production logs or sensitive
+        vulnerability details. Use synthetic examples. Report sensitive security
+        findings privately to the repository owner through a trusted channel.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Documentation or architecture
+        - Repository tooling or CI
+        - Backend (when implemented)
+        - Frontend (when implemented)
+        - AI or retrieval (when implemented)
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Include the file or endpoint, minimal synthetic input and exact steps.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: State both outcomes and which requirement or contract is violated.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and evidence
+      description: Include commit ID, tool versions and sanitized errors. Omit credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact and workaround
+      description: Describe affected users, language, frequency and any safe workaround.
