@@ -2,7 +2,7 @@
 
 Follow [AGENTS.md](AGENTS.md) and the detailed
 [development workflow](docs/DEVELOPMENT_WORKFLOW.md). This repository currently
-contains design documents and repository tooling, not an implemented application.
+contains design documents, repository tooling and the P1-01 backend foundation.
 Coursework outside this independent checkout is strictly read-only.
 
 ## Plan, branch and review
@@ -41,9 +41,10 @@ git diff --check
 git diff --cached --check
 ```
 
-These validate repository tooling/documents. Backend Pytest, frontend ESLint/Vitest,
-application builds, database migrations, and live AI tests are not configured yet.
-Add them with the corresponding implementation and meaningful fixtures; never use
+These commands validate repository tooling/documents. Backend Pytest/Ruff and uv
+locked-dependency checks are documented in [backend setup](backend/README.md).
+Frontend ESLint/Vitest, migrations, builds and live AI checks arrive in their own
+milestones. Add them with meaningful fixtures; never use
 empty test suites or skipped jobs as evidence of application readiness.
 
 ## Definition of Done

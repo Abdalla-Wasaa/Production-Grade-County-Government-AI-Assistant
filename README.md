@@ -4,9 +4,11 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Repository initialization and Phase 0 architecture documentation are complete.
-The design is ready for review; implementation requires a separately approved phase.
-No chatbot features are implemented.
+Phase 0 documentation is merged. P1-01 provides the local synthetic-development
+FastAPI backend foundation, pending PR review; no chatbot features are implemented.
+See [backend setup and checks](backend/README.md) and the
+[real county pre-pilot gate](docs/PRE_PILOT_GATE.md). Other Phase 1 issues require
+separate approval; no database, frontend, AI integration or deployment exists yet.
 
 ## Design documentation
 
@@ -27,8 +29,8 @@ is required before merging or beginning another phase.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for local checks and Definition of Done,
 and [development workflow](docs/DEVELOPMENT_WORKFLOW.md) for review, tools, CI scope,
-security and release gates. Current CI targets documentation/repository tooling;
-backend and frontend application checks begin with their implementation.
+security and release gates. CI covers documentation/repository tooling, secret scans
+and backend locked-dependency/lint/format/tests. Frontend checks begin with P1-03.
 
 ## Configuration
 

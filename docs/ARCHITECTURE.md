@@ -1,6 +1,8 @@
 # Architecture
 
-Status: Phase 0 target design, 2026-10-13; no application code exists.
+Status: Phase 0 target design, amended 2026-10-16. P1-01 implements only the backend
+factory/settings/lifecycle/liveness and safe HTTP/logging boundaries; remaining
+modules and infrastructure in this target design are not yet implemented.
 Scope and targets come from [requirements](REQUIREMENTS.md). Rationale is recorded
 in [ADR 0001](DECISIONS/0001-modular-monolith.md).
 
@@ -191,7 +193,8 @@ development; optional telemetry is a separate profile. Non-root images, locked
 dependencies, private DB network, volumes and health checks are required. GitHub
 Actions runs lint/types, unit/integration/contracts, frontend build, secret/dependency
 checks and budget-free evaluation. Live API tests are opt-in; deployments require
-approved protected environments. Phase 0 creates no Docker or workflow files.
+approved protected environments. Phase 0 established documentation/security CI;
+P1-01 adds backend tests/lint/locked-dependency checks. Docker/Compose remains P1-04.
 
 For AWS, evaluate static asset hosting/CDN, container compute, managed PostgreSQL,
 object storage, managed secrets, and telemetry. Region, service choices, pgvector
@@ -203,3 +206,8 @@ Use structured trace/request/attempt IDs, provider/model/prompt/catalogue versio
 duration, usage, and error categories. Never log message bodies, passwords, tokens,
 raw retrieved text, or unrestricted provider responses. See [SECURITY.md](SECURITY.md)
 and [ROADMAP.md](ROADMAP.md) for release checks and operational targets.
+
+Current implementation details and limitations: [backend guide](../backend/README.md).
+The approved runtime/tool versions and synthetic-only scope are recorded in
+[requirements](REQUIREMENTS.md); real-data decisions remain behind the
+[pre-pilot gate](PRE_PILOT_GATE.md). This does not change the modular-monolith design.
