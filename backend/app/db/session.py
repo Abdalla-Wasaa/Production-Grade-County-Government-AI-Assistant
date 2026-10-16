@@ -55,9 +55,13 @@ async def get_session(request: Request) -> AsyncIterator[AsyncSession]:
 
 def protect_engine_logging(engine: AsyncEngine, logger: logging.Logger | None = None) -> None:
     """Route engine/pool diagnostics through the safe app boundary, never root logs."""
-    if logger is None:
-        logger = logging.Logger("county_database")
-        logger.propagate = False
-        logger.addHandler(logging.NullHandler())
-    engine.sync_engine.logger = logger
-    engine.sync_engine.pool.logger = logger
+    diagnostics = logging.Logger("county_database", level=logging.WARNING)
+    diagnostics.propagate = False
+    diagnostics.addHandler(logging.NullHandler())
+    if logger is not None:
+        for handler in logger.handlers:
+            diagnostics.addHandler(handler)
+    # Preserve WARNING threshold even when the app uses INFO/DEBUG, so assigning
+    # the safe handler cannot accidentally enable SQL/parameter logging.
+    engine.sync_engine.logger = diagnostics
+    engine.sync_engine.pool.logger = diagnostics

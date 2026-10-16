@@ -1,6 +1,7 @@
 """Network-free configuration, readiness and resource ownership checks."""
 
 import asyncio
+import logging
 from unittest.mock import AsyncMock
 
 import pytest
@@ -126,6 +127,8 @@ def test_engine_pool_diagnostics_do_not_expose_secrets(capsys):
     )
     with TestClient(app):
         engine = app.state.database.engine
+        assert not engine.sync_engine.logger.isEnabledFor(logging.INFO)
+        assert not engine.sync_engine.pool.logger.isEnabledFor(logging.DEBUG)
         engine.sync_engine.logger.error("postgresql://private:password@internal-host/db")
         engine.sync_engine.pool.logger.error("connection password=private", exc_info=True)
     output = capsys.readouterr().err
