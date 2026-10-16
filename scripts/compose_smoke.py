@@ -16,6 +16,8 @@ from uuid import uuid4
 
 import dev
 
+BROWSER = False
+
 
 class Stack:
     def __init__(self, directory):
@@ -305,6 +307,17 @@ def exercise(stack):
     stack.run("--profile", "maintenance", "run", "--rm", "-T", "migrate", "check")
     verify_containers(stack)
     verify_runtime_privileges(stack)
+    if BROWSER:
+        environment = dev.docker_environment()
+        environment["COUNTY_BROWSER_BASE_URL"] = f"http://127.0.0.1:{stack.port}"
+        subprocess.run(
+            ["npm", "run", "test:compose"],
+            cwd=dev.ROOT / "frontend",
+            env=environment,
+            check=True,
+            timeout=90,
+        )
+        print("PASS: Chromium against actual Compose/Nginx application")
     verify_postgresql_suite(stack)
     backend_id = stack.inspect("backend")["Id"]
     restarts = stack.inspect("backend")["RestartCount"]
@@ -388,7 +401,17 @@ def main():
     parser.add_argument(
         "--cleanup", type=Path, help="Clean only a verified test manifest and exit"
     )
+    parser.add_argument(
+        "--browser",
+        action="store_true",
+        help="Run installed Chromium smoke against Nginx",
+    )
+    parser.add_argument(
+        "--diagnostics", type=Path, help="Write safe status-only diagnostics"
+    )
     arguments = parser.parse_args()
+    global BROWSER
+    BROWSER = arguments.browser
     if arguments.cleanup:
         cleanup_manifest(arguments.cleanup)
         return 0
@@ -403,15 +426,39 @@ def main():
                 arguments.report.write_text(
                     json.dumps(
                         {
+                            "image_ids": {
+                                role: stack.inspect(role)["Image"]
+                                for role in ("web", "backend", "db")
+                            },
                             "images": [
                                 stack.project + "-" + service + ":local"
                                 for service in ("web", "backend", "db")
-                            ]
+                            ],
                         }
                     )
                     + "\n"
                 )
         except Exception as error:
+            if arguments.diagnostics:
+                diagnostics = {"failure_type": type(error).__name__, "services": {}}
+                for service in ("web", "backend", "db"):
+                    try:
+                        item = stack.inspect(service)
+                        state = item["State"]
+                        diagnostics["services"][service] = {
+                            "status": state["Status"],
+                            "exit_code": state["ExitCode"],
+                            "health": state.get("Health", {}).get("Status", "unknown"),
+                            "restarts": item["RestartCount"],
+                        }
+                    except Exception:
+                        diagnostics["services"][service] = {
+                            "status": "inspection_unavailable"
+                        }
+                arguments.diagnostics.parent.mkdir(parents=True, exist_ok=True)
+                arguments.diagnostics.write_text(
+                    json.dumps(diagnostics, indent=2) + "\n"
+                )
             print("FAIL: disposable Compose acceptance (" + type(error).__name__ + ").")
             for frame in traceback.extract_tb(error.__traceback__):
                 print(f"  {Path(frame.filename).name}:{frame.lineno} in {frame.name}")
