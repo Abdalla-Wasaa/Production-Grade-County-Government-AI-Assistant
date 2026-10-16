@@ -4,12 +4,13 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Phase 0 and P1-01 are merged. P1-02 adds local PostgreSQL connectivity, an empty
-Alembic baseline and readiness, pending maintainer review. No chatbot functionality
-is implemented. See [backend setup](backend/README.md),
+Phase 0, P1-01 and P1-02 are merged. P1-03 adds an accessible bilingual React
+interface shell, pending maintainer review. The assistant is a placeholder without
+messaging or authentication. Kiswahili copy is a draft pending human review.
+See [frontend setup](frontend/README.md), [backend setup](backend/README.md),
 [database operations](docs/DATABASE_OPERATIONS.md) and the
-[real county pre-pilot gate](docs/PRE_PILOT_GATE.md). Frontend, Compose, AI and
-deployment remain separately approved milestones.
+[real county pre-pilot gate](docs/PRE_PILOT_GATE.md). Compose, AI and deployment
+remain separately approved milestones.
 
 ## Design documentation
 

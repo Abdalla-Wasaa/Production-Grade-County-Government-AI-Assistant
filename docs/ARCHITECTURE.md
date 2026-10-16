@@ -3,7 +3,8 @@
 Status: Phase 0 target design, amended 2026-10-16. P1-01/P1-02 implement the backend
 factory/settings/lifecycle/health and safe HTTP/logging boundaries, async database
 sessions and explicit baseline migrations; remaining
-modules and infrastructure in this target design are not yet implemented.
+modules and infrastructure in this target design are not yet implemented. P1-03
+adds the independent bilingual frontend shell; auth/chat remain deferred.
 Scope and targets come from [requirements](REQUIREMENTS.md). Rationale is recorded
 in [ADR 0001](DECISIONS/0001-modular-monolith.md).
 
@@ -227,3 +228,20 @@ and the single packaged head, without caching or running migrations. Bounded poo
 pre-ping and a complete readiness deadline limit dependency failure effects.
 Migration scripts ship in the backend wheel. See
 [database operations](DATABASE_OPERATIONS.md) for permissions, commands and limits.
+
+## P1-03 frontend foundation
+
+The standalone `frontend/` package uses React, strict TypeScript, Vite, Tailwind 4,
+and declarative React Router routes for home, assistant placeholder and a client
+404 page. It makes no API calls and works without the backend/database. React
+context owns language preference only; future modules keep the approved boundaries.
+Use native Fetch when a real API consumer is introduced, without a premature client
+abstraction. Public Vite configuration accepts a same-origin API path; all secrets
+remain backend-only. Future static hosting needs SPA fallback.
+
+Dictionaries are typed/centralized. Only `en`/`sw` preference is persisted; storage
+denial is nonfatal. Rendering is text-only, with fixed safe error boundaries,
+semantic navigation and route focus. Kiswahili is a development draft requiring
+human review under the pre-pilot gate. See [frontend guide](../frontend/README.md)
+and [verification](FRONTEND_VERIFICATION.md). No auth/chat/history or provider
+integration is implemented by this UI milestone.

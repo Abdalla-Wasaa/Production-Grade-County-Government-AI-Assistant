@@ -1,9 +1,9 @@
 # Development workflow
 
-Status: repository engineering setup, updated 2026-10-16 for P1-02 database foundation.
+Status: repository engineering setup, updated 2026-10-16 for P1-03 frontend foundation.
 This workflow supplements [AGENTS.md](../AGENTS.md),
 [CONTRIBUTING.md](../CONTRIBUTING.md), [roadmap](ROADMAP.md), and
-[security requirements](SECURITY.md). P1-02 is authorized; no merge or P1-03 work.
+[security requirements](SECURITY.md). P1-03 is authorized; no merge or P1-04 work.
 
 ## Repository boundary
 
@@ -158,8 +158,8 @@ Consider CODEOWNERS when real responsible reviewers are identified.
 
 No branch rules, collaborators, release settings, private reporting channel or
 deployment environments are configured by these local files. The user has authorized
-P1-02 implementation, feature-branch publication and a PR. Verify actual hosted
-checks for that PR; do not merge, release, deploy or begin P1-03. The setup record
+P1-03 implementation, feature-branch publication and a PR. Verify actual hosted
+checks for that PR; do not merge, release, deploy or begin P1-04. The setup record
 below describes the earlier Phase 0 validation, not this PR's CI status.
 
 ## Setup validation record (2026-10-15)
@@ -191,3 +191,14 @@ service and separate runtime/migration roles. Migrations/revision checks are tes
 against that service; unit tests stay network-blocked. Builds include migration
 resources. See [database operations](DATABASE_OPERATIONS.md). The Phase 0 evidence
 above is historical; actual hosted P1-02 results belong in the implementation PR.
+
+## P1-03 verification addition
+
+The Frontend workflow uses isolated pinned Node 24/npm, `npm ci`, exact pins,
+ESLint/Prettier, strict TypeScript, Vitest/Testing Library, production build and
+Playwright Chromium/Firefox/WebKit plus axe. Dependency audit and lock-drift checks
+run without API credentials. Existing backend/PostgreSQL/docs/secrets jobs remain.
+The frontend package has no external backend/translation requests. See
+[setup](../frontend/README.md) and [actual evidence](FRONTEND_VERIFICATION.md).
+Kiswahili draft copy requires human review before pilot. A successful build or
+screen scan is not public-release, translation or accessibility approval.
