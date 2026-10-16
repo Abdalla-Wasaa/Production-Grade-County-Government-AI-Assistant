@@ -111,6 +111,8 @@ jobs:
         for name in (
             ".env",
             ".env.production",
+            ".local/compose/secrets/runtime_password",
+            ".secrets/private",
             "venv/app.py",
             "a.pem",
             "module4-capstone/a.py",
