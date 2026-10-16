@@ -10,7 +10,7 @@ static assets and proxy configuration. No credentials are build arguments.
 
 | Input | Manifest SHA-256 | Purpose |
 | --- | --- | --- |
-| Python 3.12 slim Bookworm | `34386ef0cb081344d7ec1c103ba398e6e9f64e9ab3a1509accc92a4e24a07258` | backend build/runtime |
+| Python 3.12 slim Trixie | `a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1` | backend build/runtime |
 | uv 0.13.1 | `4a1f3666816dafadd20ceb71eac9a7d56d7ef30279f7d64048519ab901ada336` | build-only dependency tool |
 | Node 24.22.0 Bookworm slim | `a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5` | frontend build/test only |
 | Nginx unprivileged stable Alpine | `782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01` | non-root static/proxy runtime |
@@ -38,12 +38,14 @@ FastAPI's [release notes](https://fastapi.tiangolo.com/release-notes/) and packa
 metadata were checked before updating. TestClient currently emits an upstream
 HTTPX deprecation warning; tests still pass. No application API contract changes.
 
-The final local scan of Python 3.12.15 / Nginx 1.30.6 / PostgreSQL 17.11 found:
+The security-review update changes only the backend distro to Trixie, preserving
+Python 3.12.15 and all dependency locks. Nginx 1.30.6 and PostgreSQL 17.11 stay
+unchanged. Its final local scan found:
 
 | Final runtime | HIGH | CRITICAL | Findings with available fixes |
 | --- | --- | --- | --- |
 | web | 0 | 0 | 0 |
-| backend | 61 | 2 | 0 |
+| backend | 44 | 0 | 0 |
 | db | 71 | 3 | 0 |
 
 The Debian-based Python and PostgreSQL images still contain these OS findings
@@ -59,6 +61,13 @@ Compose secret mounts are runtime-only. Acceptance checks compare generated secr
 canaries against Compose configuration, Docker inspect output, logs and image
 history, and verify expected files/tools are absent from application runtimes.
 The existing repository/history Gitleaks checks and frontend npm audit remain.
+
+For the original merged-PR counts, exact CI/local image IDs, all package/CVE rows,
+source-vendor applicability, known-exploitation evidence, alternative-image results
+and dated review gates, see the [vulnerability register](VULNERABILITY_REGISTER.md).
+PR #11 is already merged; this backend remediation needs a separate review before
+entering main. The PostgreSQL distro remains unchanged because existing-volume
+collation compatibility has not been cleared.
 
 ## Refresh procedure
 
