@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "production_allowed": false,
+  "decisions": [
+    {
+      "scope": "synthetic-local-development",
+      "approved_by": "Abdalla-Wasaa (repository owner)",
+      "approval_reference": "Explicit user reply in P1-05 implementation session, 2026-10-16: Accept this scoped, expiring development risk",
+      "approved_at": "2026-10-16T18:30:58.783289+00:00",
+      "expires_at": "2026-10-23T20:59:00+00:00",
+      "baseline_sha256": "e7d504edc4fe777ba29df644328fbf029f09ef1d788319ce1bdd58fd78628149",
+      "reason": "Owner accepted only the exact 118 unfixable OS package/CVE occurrences (backend 44 HIGH, db 71 HIGH/3 CRITICAL), with daily CRITICAL review and immediate invalidation on a fix, new finding, severity increase, KEV listing or exposure change. Synthetic local development only; production remains blocked.",
+      "exposure_sha256": "190b8fd7f0f672432061ca888fd66d6ac7ae4c5ed8a14ec5c72089b5905d1d28"
+    }
+  ]
+}

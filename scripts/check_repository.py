@@ -106,7 +106,12 @@ def check_yaml(path, text):
     if path.parent.name == "workflows":
         if data.get("permissions") != {"contents": "read"}:
             raise ValueError("workflow must have read-only contents permission")
-        if set(data.get("on", {})) != {"push", "pull_request", "workflow_dispatch"}:
+        expected_events = (
+            {"schedule", "workflow_dispatch"}
+            if path.name == "security-monitor.yml"
+            else {"push", "pull_request", "workflow_dispatch"}
+        )
+        if set(data.get("on", {})) != expected_events:
             raise ValueError("require push, pull_request and manual triggers")
         for job in data.get("jobs", {}).values():
             if "permissions" in job or "timeout-minutes" not in job:
