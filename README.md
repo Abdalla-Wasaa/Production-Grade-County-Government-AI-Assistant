@@ -5,7 +5,7 @@ A production-grade County Government AI Assistant project.
 ## Project status
 
 Phase 0 and P1-01 through P1-04, including security follow-up PR #12, are merged.
-P1-05 strengthens CI quality/security gates and is pending maintainer review. The bilingual assistant is still a placeholder
+P1-05 CI gates are merged in PR #13; audit remediation is pending maintainer review. The bilingual assistant is still a placeholder
 without messaging or authentication. Kiswahili copy remains pending human review.
 Only fictional/synthetic information is authorized.
 

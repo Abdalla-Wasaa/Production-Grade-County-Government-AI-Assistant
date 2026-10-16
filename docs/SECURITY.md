@@ -252,3 +252,20 @@ The sole maintainer must approve any residual development risk. No secret/model/
 AWS credentials, publishing or deployment permissions are required. Production
 remains blocked even if every development check passes. GitHub ruleset changes
 remain a separately approved operation after actual contexts are verified.
+
+### P1-05 audit remediation controls
+
+The follow-up fixes missing hosted artifact uploads and makes required evidence
+absence fail. Reviewed hidden report directories are explicitly included; raw logs,
+environments, credentials and database volumes remain excluded. Workflow command
+and artifact contracts detect removal, no-op replacement and configuration bypass.
+Scanner identity, immutable image identity, full package inventories and exact
+HIGH/CRITICAL occurrence counts are checked against reviewed evidence. Duplicate
+or truncated evidence fails closed. Independent monitoring stages record failures
+and continue remaining safe checks; partial results never count as success.
+See [CI remediation details](CI.md#p1-05-audit-remediation).
+
+The original 118-occurrence baseline and explicit owner acceptance are unchanged.
+Expiry remains 23 October 2026 at 23:59 EAT; there is no new approval or renewal.
+Production/public/real-data use remains blocked. Daily automated monitoring provides
+evidence, while human CRITICAL review and investigation of failed runs remain required.
