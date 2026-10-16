@@ -1,0 +1,44 @@
+name: Feature request
+description: Propose a scoped improvement with measurable acceptance criteria.
+title: "feat: "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        A request does not authorize implementation or the next phase. Link the
+        roadmap and use synthetic examples; do not include private county records.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem and value
+      description: Identify the user, task, current limitation and desired outcome.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed scope and alternatives
+      description: State inclusions, exclusions, alternatives and relevant requirement or ADR links.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and tests
+      description: Give observable outcomes, negative cases and the validation approach.
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Security, privacy and language impact
+      description: Consider ownership, data handling, English/Kiswahili, accessibility and costs.
+    validations:
+      required: true
+  - type: input
+    id: phase
+    attributes:
+      label: Roadmap phase and approval status
+      placeholder: "Phase N; proposed, approval pending"
+    validations:
+      required: true

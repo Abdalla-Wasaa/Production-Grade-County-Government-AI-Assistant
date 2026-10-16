@@ -15,6 +15,8 @@
 
 ## Current scope
 
-Initialization includes only repository documentation and configuration scaffolding.
-Creating and switching to `docs/phase-0-architecture` does not authorize architecture
-work. Stop after initialization and wait for approval to begin the next phase.
+Phase 0 architecture documentation is complete. The current authorized follow-up
+adds repository workflow documentation, GitHub templates, and checks that run on
+this documentation/tooling-only repository. Remain on `docs/phase-0-architecture`.
+Do not implement application functionality, modify coursework, push, create a PR,
+merge, release, or begin another phase without the user's explicit authorization.
