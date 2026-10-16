@@ -1,8 +1,9 @@
 # Database design
 
-Status: Phase 0 logical schema, 2026-10-13. No models, DDL or migrations are executed.
+Status: Phase 0 logical domain schema with P1-02 infrastructure, updated 2026-10-16.
+Only the empty Alembic baseline is implemented; domain models/DDL remain planned.
 PostgreSQL is the authoritative store; SQLAlchemy maps application entities and
-Alembic will manage schema changes. See [API](API_SPECIFICATION.md) and
+Alembic manages explicit reviewed schema changes. See [API](API_SPECIFICATION.md) and
 [architecture](ARCHITECTURE.md). UUIDs are server-generated random identifiers;
 all timestamps are timezone-aware UTC (`timestamptz`). IDs are not authorization.
 
@@ -225,3 +226,11 @@ deletion through the verified rights process cascades conversations and sessions
 unless a documented applicable hold prevents it. No indefinite soft-delete archive
 of chat bodies. Encrypted backups are access-controlled and expire; deletion records
 are reapplied before any restored database is made available.
+
+## Implemented P1-02 infrastructure boundary
+
+The domain schema above is still future work. P1-02 adds empty SQLAlchemy metadata,
+a lazy async engine/session factory, and immutable `0001_baseline`, creating only
+`public.alembic_version`. No users, sessions, conversations or messages tables exist.
+Runtime cannot migrate or mutate revision state. See
+[database operations](DATABASE_OPERATIONS.md) for privileges and explicit commands.

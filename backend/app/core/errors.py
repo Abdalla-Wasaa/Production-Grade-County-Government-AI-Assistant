@@ -35,6 +35,7 @@ MESSAGES = {
         "validation_error": "Check the request fields.",
         "http_error": "The request could not be completed.",
         "internal_error": "An unexpected error occurred.",
+        "service_unavailable": "Service temporarily unavailable.",
         "cors_rejected": "Cross-origin request not allowed.",
     },
     "sw": {
@@ -43,6 +44,7 @@ MESSAGES = {
         "validation_error": "Kagua sehemu za ombi.",
         "http_error": "Ombi halikuweza kukamilishwa.",
         "internal_error": "Hitilafu isiyotarajiwa imetokea.",
+        "service_unavailable": "Huduma haipatikani kwa sasa.",
         "cors_rejected": "Ombi kutoka chanzo hiki haliruhusiwi.",
     },
 }
@@ -60,7 +62,11 @@ def error_response(request: Request, status: int, code: str) -> JSONResponse:
             details=[ErrorDetail(field="request")] if status == 422 else [],
         )
     )
-    headers = {"Allow": "GET"} if status == 405 and request.url.path == "/health/live" else {}
+    headers = (
+        {"Allow": "GET"}
+        if status == 405 and request.url.path in {"/health/live", "/health/ready"}
+        else {}
+    )
     return JSONResponse(body.model_dump(), status_code=status, headers=headers)
 
 

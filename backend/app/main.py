@@ -16,6 +16,7 @@ from app.core.middleware import (
     LocalCORSMiddleware,
     RequestContextMiddleware,
 )
+from app.db.session import Database
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -28,15 +29,22 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         handler = logging.StreamHandler()
         handler.setFormatter(SafeJSONFormatter())
         logger.addHandler(handler)
-        application.state.started = True
+        database: Database | None = None
         try:
+            database = Database(config, logger)
+            application.state.database = database
+            application.state.started = True
             logger.info("application_started")
             yield
         finally:
-            application.state.started = False
-            logger.info("application_stopped")
-            logger.removeHandler(handler)
-            handler.close()
+            try:
+                if database is not None:
+                    await database.dispose()
+            finally:
+                application.state.started = False
+                logger.info("application_stopped")
+                logger.removeHandler(handler)
+                handler.close()
 
     app = FastAPI(
         title="County Government AI Assistant",

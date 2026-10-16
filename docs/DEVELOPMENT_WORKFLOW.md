@@ -1,9 +1,9 @@
 # Development workflow
 
-Status: repository engineering setup, updated 2026-10-16 for P1-01 backend foundation.
+Status: repository engineering setup, updated 2026-10-16 for P1-02 database foundation.
 This workflow supplements [AGENTS.md](../AGENTS.md),
 [CONTRIBUTING.md](../CONTRIBUTING.md), [roadmap](ROADMAP.md), and
-[security requirements](SECURITY.md). Only P1-01 is authorized; no merge or P1-02 work.
+[security requirements](SECURITY.md). P1-02 is authorized; no merge or P1-03 work.
 
 ## Repository boundary
 
@@ -67,11 +67,11 @@ boundaries without explicit approval. There are no automatic merge/deploy steps 
 
 | Tool | Purpose | Current activation / future gate |
 | --- | --- | --- |
-| [Ruff](https://docs.astral.sh/ruff/) | Python linting and formatting | Active for repository tooling and P1-01 backend |
-| [Pytest](https://docs.pytest.org/en/stable/) | Backend policy/API/integration tests | P1-01 configuration/lifecycle/HTTP/logging tests; database tests later |
+| [Ruff](https://docs.astral.sh/ruff/) | Python linting and formatting | Active for repository tooling and backend |
+| [Pytest](https://docs.pytest.org/en/stable/) | Backend policy/API/integration tests | Foundation unit tests plus real PostgreSQL 17 integration tests |
 | [ESLint](https://eslint.org/docs/latest/use/getting-started) | React/TypeScript linting | Add with frontend package and configuration |
 | [Vitest](https://vitest.dev/guide/) | Frontend unit/component testing | Add with Vite frontend and meaningful component tests |
-| [GitHub Actions](https://docs.github.com/en/actions) | Automated review gates; approved deployment later | Documentation/tooling, secrets and P1-01 backend checks |
+| [GitHub Actions](https://docs.github.com/en/actions) | Automated review gates; approved deployment later | Documentation/tooling, secrets, backend and PostgreSQL checks |
 | [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) | Parse and render Markdown diagrams | Local explicit diagram validation; CI checks fenced blocks but does not render them |
 | [Gitleaks](https://github.com/gitleaks/gitleaks) | Secret-pattern scanning of history and working files | Pinned scanner job; no guarantee that every credential or private dataset is detectable |
 
@@ -118,8 +118,10 @@ separate visual check. GitHub's renderer may use a different Mermaid version, so
 review the PR preview after publication is approved. Do not install Node packages
 or generated diagrams into coursework folders.
 
-P1-01 adds the `Backend / foundation` locked Python/Ruff/Pytest job. Future PRs add ESLint/Vitest/frontend build,
-PostgreSQL migration/ownership/concurrency tests, provider-fake evaluation and
+The `Backend / foundation` job runs locked Python/Ruff/Pytest checks;
+`postgresql` verifies migrations, readiness and session cleanup on PostgreSQL 17.
+Future PRs add ESLint/Vitest/frontend build, domain ownership/concurrency tests,
+provider-fake evaluation and
 dependency/image scans when their inputs exist. Live API tests remain opt-in and
 budget-limited; synthetic fixtures are the default. No present check claims the
 future application has passed tests.
@@ -156,8 +158,8 @@ Consider CODEOWNERS when real responsible reviewers are identified.
 
 No branch rules, collaborators, release settings, private reporting channel or
 deployment environments are configured by these local files. The user has authorized
-P1-01 implementation, feature-branch publication and a PR. Verify actual hosted
-checks for that PR; do not merge, release, deploy or begin P1-02. The setup record
+P1-02 implementation, feature-branch publication and a PR. Verify actual hosted
+checks for that PR; do not merge, release, deploy or begin P1-03. The setup record
 below describes the earlier Phase 0 validation, not this PR's CI status.
 
 ## Setup validation record (2026-10-15)
@@ -181,3 +183,11 @@ below describes the earlier Phase 0 validation, not this PR's CI status.
   committed renderer setup needs a reviewed supported dependency lock.
 - GitHub-hosted checks, GitHub diagram previews and branch-rule enforcement remain
   unverified because no push, PR or remote-settings mutation is authorized.
+
+## P1-02 verification addition
+
+The Backend workflow also runs `postgresql`, using a disposable PostgreSQL 17
+service and separate runtime/migration roles. Migrations/revision checks are tested
+against that service; unit tests stay network-blocked. Builds include migration
+resources. See [database operations](DATABASE_OPERATIONS.md). The Phase 0 evidence
+above is historical; actual hosted P1-02 results belong in the implementation PR.

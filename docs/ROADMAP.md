@@ -1,6 +1,6 @@
 # Milestone roadmap
 
-Status: Phase 0 planning baseline, amended 2026-10-16. P1-01 backend foundation is
+Status: Phase 0 planning baseline, amended 2026-10-16. P1-01 is merged and P1-02 database infrastructure is
 authorized for local fictional/synthetic development; the rest of Phase 1 remains
 subject to issue/PR review. Estimates assume one focused engineer
 with access to a county content reviewer and privacy/security reviewer. Parallel
@@ -96,7 +96,7 @@ records, county credentials, confidential documents, payments, public deployment
 live county integration. See [pre-pilot decision gate](PRE_PILOT_GATE.md). All
 implementations require dedicated branches, tests, green relevant CI and the sole
 maintainer's review before merging. A green check is not approval to merge/start
-another issue. P1-01 does not authorize P1-02.
+another issue. P1-02 has explicit owner approval; P1-03 remains unapproved.
 
 Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/2),
 [P1-02 database/migrations](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/3),
@@ -105,4 +105,5 @@ Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grad
 [P1-05 CI integration](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/6),
 [P1-06 acceptance](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/7).
 P1-01 provides dependency-free liveness, settings/lifecycle/error/logging foundations
-and backend checks; readiness, PostgreSQL and migration work remain P1-02.
+and backend checks. P1-02 adds PostgreSQL sessions, baseline migrations, readiness
+and real-database CI; no frontend/Compose/domain functionality is pulled forward.

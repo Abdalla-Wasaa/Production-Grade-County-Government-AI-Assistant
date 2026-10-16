@@ -1,7 +1,7 @@
 # Security, privacy and operational assurance
 
-Status: Phase 0 requirements, amended 2026-10-16. P1-01 implements only local
-configuration/HTTP/logging boundaries; other product controls remain planned and
+Status: Phase 0 requirements, amended 2026-10-16. P1-01/P1-02 implement local
+configuration/HTTP/logging boundaries and restricted database/migration infrastructure; other product controls remain planned and
 no compliance certification is claimed. Applies to the [MVP](REQUIREMENTS.md) and later RAG/tools defined in
 [architecture](ARCHITECTURE.md). [Database](DATABASE_DESIGN.md) and
 [API contracts](API_SPECIFICATION.md) specify enforceable state and permissions.
@@ -182,3 +182,16 @@ review privacy/data-flow/DPIA evidence; evaluate both languages; verify unauthor
 tools and sources remain unavailable; measure budgets/deadlines; restore backup and
 reapply deletion; document residual risks and obtain county owner/user approval.
 No compliance, penetration-test, production SLA or deployment claim is made in Phase 0.
+
+## P1-02 database credential boundary
+
+Runtime and migration credentials are separate. Runtime needs CONNECT, schema USAGE
+and SELECT on `public.alembic_version` only. No DDL, revision mutation or superuser
+privileges. Privileged migrations are explicit operator actions; neither HTTP nor
+startup applies migrations. URL values are secrets, excluded from model repr/JSON
+and error/log output. Query echo is off and SQL parameters are hidden. Only supported
+URL options are accepted, preventing connection/statement logging option injection.
+No real county database is authorized. Integration fixtures require disposable
+loopback PostgreSQL 17 and create/remove only recorded random databases/roles.
+See [database operations](DATABASE_OPERATIONS.md). These controls do not certify
+production TLS, backup/recovery, privacy compliance or vulnerability-free packages.
