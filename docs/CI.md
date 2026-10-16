@@ -109,7 +109,8 @@ by GitHub's default-branch discovery rules.
 
 JUnit reports are validated and stripped of payloads before upload; failures still
 fail jobs. Browser traces/screenshots contain synthetic UI data only and are kept
-seven days. Test/dependency/image reports are retained fourteen days. Compose
+seven days. Frontend JUnit reports share that seven-day retention. Backend,
+repository, dependency and image reports are retained fourteen days. Compose
 failure diagnostics contain status/exit/health/restart counters and a failure class,
 not raw logs, inspect environments, secrets or volume contents. The raw full scan
 reports contain public package/advisory evidence; no runtime secret mounts are
@@ -148,8 +149,8 @@ The initial hosted checks passed but uploaded zero artifacts: upload-artifact's
 hidden-file default excluded .artifacts. The follow-up explicitly enables hidden
 files only for the reviewed generated-report paths and sets missing-file behavior
 to error. JUnit validation/sanitization still precedes uploads; browser artifacts
-contain synthetic UI data only. Retention remains seven days for browser reports
-and fourteen for JUnit/security reports. A green local run does not verify hosted
+contain synthetic UI data only. Retention remains seven days for frontend/browser reports
+and fourteen for backend/repository/security reports. A green local run does not verify hosted
 retention: inspect the run's artifact API/list and download the archives.
 
 The workflow policy now compares parsed command sequences by workflow, job and
