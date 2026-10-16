@@ -1,7 +1,8 @@
 # Architecture
 
-Status: Phase 0 target design, amended 2026-10-16. P1-01 implements only the backend
-factory/settings/lifecycle/liveness and safe HTTP/logging boundaries; remaining
+Status: Phase 0 target design, amended 2026-10-16. P1-01/P1-02 implement the backend
+factory/settings/lifecycle/health and safe HTTP/logging boundaries, async database
+sessions and explicit baseline migrations; remaining
 modules and infrastructure in this target design are not yet implemented.
 Scope and targets come from [requirements](REQUIREMENTS.md). Rationale is recorded
 in [ADR 0001](DECISIONS/0001-modular-monolith.md).
@@ -211,3 +212,18 @@ Current implementation details and limitations: [backend guide](../backend/READM
 The approved runtime/tool versions and synthetic-only scope are recorded in
 [requirements](REQUIREMENTS.md); real-data decisions remain behind the
 [pre-pilot gate](PRE_PILOT_GATE.md). This does not change the modular-monolith design.
+
+## P1-02 database infrastructure decisions
+
+Use SQLAlchemy 2.0 with async Psycopg 3. Lifespan owns one lazy engine and session
+factory per application; each independent task owns its session and service code
+owns commits. Shield cleanup from request cancellation. Do not connect at startup,
+auto-migrate or create metadata tables. Missing database configuration disables
+readiness while preserving liveness. Explicit malformed configuration is rejected.
+
+Separate privileged migration credentials from restricted runtime credentials.
+The baseline only introduces Alembic revision tracking. Readiness checks reachability
+and the single packaged head, without caching or running migrations. Bounded pools,
+pre-ping and a complete readiness deadline limit dependency failure effects.
+Migration scripts ship in the backend wheel. See
+[database operations](DATABASE_OPERATIONS.md) for permissions, commands and limits.

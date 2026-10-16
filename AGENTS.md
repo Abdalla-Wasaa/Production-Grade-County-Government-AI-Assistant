@@ -15,14 +15,14 @@
 
 ## Current scope
 
-P1-01 backend foundation is authorized on `build/p1-01-backend-foundation`:
-Python 3.12, uv with committed lockfile, FastAPI/Pydantic v2 settings/lifecycle,
-liveness, safe HTTP/logging boundaries, tests, documentation and relevant CI.
+P1-02 PostgreSQL/Alembic foundation is authorized on
+`build/p1-02-postgresql-alembic`: Python 3.12, PostgreSQL 17, SQLAlchemy 2.x,
+async Psycopg 3, explicit Alembic baseline, readiness, tests, documentation and CI.
+Keep liveness independent of the database. No domain tables or automatic migrations.
 Develop only a fictional county environment with synthetic information. English
-and Kiswahili remain required. Real-pilot decisions are deferred to the documented
-pre-pilot gate. No real citizen records, county credentials, confidential documents,
-payments, public deployment, or live county integration are authorized.
-All implementation uses dedicated feature branches, Conventional Commits, meaningful
-tests, green relevant GitHub Actions checks, and PRs reviewed by the sole maintainer.
-The user authorized pushing this feature branch and opening its PR into main.
-Do not merge, deploy, release, start P1-02, or add auth/database/chat/AI functionality.
+and Kiswahili remain required. Real-pilot decisions stay behind the pre-pilot gate.
+No real citizen records, county credentials, confidential documents, payments,
+public deployment or live county integration are authorized.
+Use dedicated branches, Conventional Commits, meaningful tests, green relevant CI,
+and PRs reviewed by the sole maintainer. Pushing this branch and opening its PR are
+authorized. Do not merge, deploy, release, start P1-03, or add auth/chat/AI features.
