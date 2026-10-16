@@ -231,3 +231,24 @@ absence or local-only configuration constitutes a waiver. Complete reports inclu
 unfixed findings even though CI's existing fixable-finding gate can be green.
 Residual-risk acceptance requires explicit maintainer review; public/production/
 real-data use remains blocked pending separate security clearance.
+
+## P1-05 automated development gates
+
+[CI policy](CI.md) adds seven stable PR contexts and a separate daily monitor.
+Runtime/dev/tool Python dependencies are audited; Node audit remains active. Complete
+image findings are preserved and fail for new/fixable/escalated/known-exploited
+records, invalid evidence or absent/expired owner acceptance. The baseline is not
+an exception list. Decisions bind the exact baseline hash, approved scope, actual
+owner reference, exposure hash and expiry. Changed application/infrastructure
+exposure requires another owner review. No acceptance is automatically created or renewed.
+
+The Trivy process ignores repository override files and inherited TRIVY_* options.
+Reports bind the immutable built image ID and recorded runtime base pin; a retagged
+image or mismatched scan identity fails. Scan errors never count as clean images.
+CI policy/source changes require explicit human review; a self-edited workflow or
+approval metadata cannot cryptographically prove owner authorization.
+
+The sole maintainer must approve any residual development risk. No secret/model/
+AWS credentials, publishing or deployment permissions are required. Production
+remains blocked even if every development check passes. GitHub ruleset changes
+remain a separately approved operation after actual contexts are verified.

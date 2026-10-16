@@ -15,11 +15,9 @@
 
 ## Current scope
 
-P1-04 security follow-up is authorized on
-`fix/p1-04-container-security-review`, starting from reviewed main after PR #11.
-The owner approved carrying the tested backend Trixie image remediation and dated
-vulnerability register into a dedicated follow-up branch and PR. Preserve all
-existing security controls, scan thresholds, dependency locks and checks. Only
-synthetic local development is authorized. Do not modify coursework or its Docker
-resources. Push and open the follow-up PR for owner review; do not merge, deploy,
-release, begin P1-05, change PostgreSQL distro/storage, or add application features.
+P1-05 quality/security CI implementation is authorized on `ci/p1-05-quality-gates`.
+Reopen/correct issue #6, implement the approved gates, push and open a review PR.
+Preserve all existing tests and security controls. Risk decisions require explicit
+owner approval; never auto-accept or renew findings. Synthetic development only.
+Do not change GitHub settings, PostgreSQL distro/storage, coursework or unrelated
+application behavior. Do not merge, deploy or begin P1-06.

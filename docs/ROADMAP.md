@@ -1,8 +1,8 @@
 # Milestone roadmap
 
-Status: Phase 0 planning baseline, amended 2026-10-16. P1-01/P1-02 are merged and P1-03 frontend foundation is
-authorized for local fictional/synthetic development; the rest of Phase 1 remains
-subject to issue/PR review. Estimates assume one focused engineer
+Status: updated 2026-10-16. Phase 0, P1-01 through P1-04 and security follow-up
+PR #12 are merged. P1-05 is authorized and pending review; P1-06 requires separate
+approval. Development remains fictional/synthetic only. Estimates assume one focused engineer
 with access to a county content reviewer and privacy/security reviewer. Parallel
 organizational review is possible; no sub-agent delegation or extra engineering team
 is assumed. Part-time work, procurement, credentials, approvals and county source
@@ -111,3 +111,14 @@ and real-database CI. P1-03 adds the independent bilingual frontend shell, with
 draft Kiswahili copy behind human review before pilot. P1-04 adds the isolated
 local Compose environment with explicit migrations, synthetic secrets and
 disposable acceptance checks; domain/chat functionality remains excluded.
+
+## P1-05 implementation scope
+
+PR #12 is merged. The owner authorizes ci/p1-05-quality-gates for CI/tooling,
+scoped backend typing, dependency/image audits, reporting, actual-Nginx browser
+smoke, workflow-policy tests and daily security monitoring. Issue #6 is reopened
+because previous completion markers lacked this milestone's evidence. Its exit
+requires actual hosted context verification, negative-test evidence and explicit
+residual-risk decisions; a green functional suite alone is insufficient.
+GitHub required-check/ruleset configuration needs separate approval and remote
+verification. No ruleset changes or P1-06 work are authorized. See [CI.md](CI.md).
