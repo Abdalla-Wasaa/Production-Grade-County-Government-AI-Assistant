@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import struct
+import zlib
 
 import yaml
 
@@ -133,6 +135,47 @@ def check_path(relative):
         raise ValueError("only .env.example may be tracked")
 
 
+def check_review_image(relative, data):
+    """Only two bounded PNG review screenshots are permitted as binary artifacts."""
+    if relative not in {
+        "docs/evidence/frontend/desktop-en.png",
+        "docs/evidence/frontend/mobile-sw.png",
+    }:
+        raise ValueError("image outside approved review screenshot paths")
+    if len(data) > 2_000_000 or not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise ValueError("invalid or oversized PNG")
+    offset = 8
+    chunks = []
+    while offset + 12 <= len(data):
+        length = struct.unpack(">I", data[offset : offset + 4])[0]
+        kind = data[offset + 4 : offset + 8]
+        end = offset + 12 + length
+        if end > len(data) or kind not in {b"IHDR", b"IDAT", b"IEND"}:
+            raise ValueError("invalid PNG chunk")
+        payload = data[offset + 8 : offset + 8 + length]
+        crc = struct.unpack(">I", data[end - 4 : end])[0]
+        if zlib.crc32(kind + payload) != crc:
+            raise ValueError("invalid PNG checksum")
+        if kind == b"IHDR":
+            if chunks or length != 13:
+                raise ValueError("invalid PNG header")
+            width, height = struct.unpack(">II", payload[:8])
+            if not (0 < width <= 4000 and 0 < height <= 6000):
+                raise ValueError("invalid PNG dimensions")
+        if kind == b"IEND" and (length or end != len(data)):
+            raise ValueError("invalid PNG ending")
+        chunks.append(kind)
+        offset = end
+    if (
+        offset != len(data)
+        or not chunks
+        or chunks[0] != b"IHDR"
+        or chunks[-1] != b"IEND"
+        or b"IDAT" not in chunks
+    ):
+        raise ValueError("incomplete PNG")
+
+
 def main():
     root = Path(__file__).resolve().parents[1]
     actual = subprocess.check_output(
@@ -155,6 +198,9 @@ def main():
             check_path(relative)
             if path.is_symlink() or not path.resolve().is_relative_to(root):
                 raise ValueError("repository file must not escape through a symlink")
+            if path.suffix == ".png":
+                check_review_image(relative, path.read_bytes())
+                continue
             text = path.read_text(encoding="utf-8")
             check_text(text)
             if path.suffix == ".md":
