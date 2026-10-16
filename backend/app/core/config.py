@@ -3,8 +3,9 @@
 from typing import Literal
 from urllib.parse import urlsplit
 
-from pydantic import ValidationError, field_validator
+from pydantic import Field, SecretStr, ValidationError, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict, SettingsError
+from sqlalchemy.engine import make_url
 
 
 class ConfigurationError(RuntimeError):
@@ -25,6 +26,20 @@ class Settings(BaseSettings):
     environment: Literal["development", "test"]
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     cors_origins: tuple[str, ...] = ()
+
+    database_url: SecretStr | None = Field(default=None, repr=False)
+    db_connect_timeout_seconds: int = Field(default=5, ge=2, le=60)
+    db_pool_timeout_seconds: float = Field(default=5, gt=0, le=60)
+    db_pool_size: int = Field(default=5, ge=1, le=20)
+    db_max_overflow: int = Field(default=5, ge=0, le=20)
+    db_readiness_timeout_seconds: float = Field(default=10, gt=0, le=60)
+
+    @field_validator("database_url")
+    @classmethod
+    def validate_url(cls, value: SecretStr | None) -> SecretStr | None:
+        if value is not None:
+            validate_database_url(value)
+        return value
 
     @field_validator("cors_origins")
     @classmethod
@@ -58,3 +73,26 @@ def load_settings() -> Settings:
         raise ConfigurationError(
             "Invalid configuration; review COUNTY_ environment variables."
         ) from None
+
+
+def validate_database_url(value: SecretStr) -> None:
+    """Validate explicit PostgreSQL targets without echoing driver parse failures."""
+    try:
+        url = make_url(value.get_secret_value())
+        if (
+            url.drivername != "postgresql+psycopg"
+            or not url.host
+            or not url.database
+            or not url.username
+            or not url.password
+            or (url.port is not None and not 1 <= url.port <= 65535)
+            or set(url.query) - {"sslmode", "sslrootcert"}
+            or (
+                "sslmode" in url.query
+                and url.query["sslmode"] not in {"disable", "require", "verify-ca", "verify-full"}
+            )
+            or any(c.isspace() or c in {",", "/"} for c in url.host)
+        ):
+            raise ValueError
+    except Exception:
+        raise ValueError("Invalid PostgreSQL configuration") from None

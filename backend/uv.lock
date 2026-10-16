@@ -80,6 +80,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "alembic" },
+    { name = "anyio" },
     { name = "fastapi" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic" },
@@ -100,6 +101,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "alembic", specifier = ">=1.18,<2" },
+    { name = "anyio", specifier = ">=4.0,<5" },
     { name = "fastapi", specifier = ">=0.143.2,<0.144" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3,<4" },
     { name = "pydantic", specifier = ">=2.14.1,<3" },

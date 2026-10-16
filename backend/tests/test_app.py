@@ -47,16 +47,14 @@ def test_liveness_without_external_dependencies(client: TestClient) -> None:
     assert response.headers["X-Request-ID"] != client.get("/health/live").headers["X-Request-ID"]
 
 
-@pytest.mark.parametrize(
-    "path", ["/health/ready", "/api/v1/auth/login", "/api/v1/conversations", "/docs"]
-)
+@pytest.mark.parametrize("path", ["/api/v1/auth/login", "/api/v1/conversations", "/docs"])
 def test_future_endpoints_absent(client: TestClient, path: str) -> None:
     assert client.get(path).status_code == 404
 
 
-def test_openapi_only_exposes_liveness(client: TestClient) -> None:
+def test_openapi_only_exposes_operational_health(client: TestClient) -> None:
     schema = client.get("/api/v1/openapi.json").json()
-    assert set(schema["paths"]) == {"/health/live"}
+    assert set(schema["paths"]) == {"/health/live", "/health/ready"}
     assert schema["info"]["version"] == "0.1.0"
 
 
