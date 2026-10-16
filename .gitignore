@@ -39,3 +39,7 @@ test-results/
 # Private local Compose configuration and credentials
 .local/
 .secrets/
+
+# Sanitized CI reports and local CI tooling
+.artifacts/
+.ci-venv/

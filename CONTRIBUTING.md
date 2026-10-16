@@ -1,73 +1,70 @@
 # Contributing
 
-Follow [AGENTS.md](AGENTS.md) and the detailed
-[development workflow](docs/DEVELOPMENT_WORKFLOW.md). This repository currently
-contains design documents, repository tooling and the P1-01 backend foundation.
-Coursework outside this independent checkout is strictly read-only.
+Follow [AGENTS.md](AGENTS.md), [development workflow](docs/DEVELOPMENT_WORKFLOW.md)
+and [CI gates](docs/CI.md). Coursework outside this checkout is strictly read-only.
+Use a dedicated approved branch, meaningful tests and Conventional Commits. Never
+commit implementation to main, merge without owner approval or begin the next phase.
 
-## Plan, branch and review
+## Local checks
 
-Start with an issue describing the problem, scope, acceptance criteria and relevant
-requirement/ADR. Obtain explicit approval before beginning another project phase.
-Use a short-lived `feat/`, `fix/`, `docs/`, `test/`, `chore/` or `ci/` branch;
-the current workflow setup stays on `docs/phase-0-architecture` as requested.
-Never commit directly to `main` after initialization.
-
-Use small Conventional Commits such as `docs(api): clarify retry semantics` or
-`ci: validate repository documentation`. Keep unrelated changes separate. Do not
-rewrite published history or force-push without explicit approval. Inspect the exact
-staged diff before committing; never stage the parent coursework directory.
-
-When authorized to publish, open a PR linked to the issue, explain behavior/design,
-attach actual validation results, and describe limitations. A reviewer checks scope,
-contracts, security/privacy, tests and maintainability. Resolve blocking comments;
-do not claim review or CI execution that did not happen. User approval is required
-before merging; a green check alone is not approval.
-
-## Current checks
-
-Use a project-local virtual environment or an isolated tooling environment; never
-install into, activate for modification, or run scripts from coursework environments.
-From the official repository root:
+Use Python 3.12, uv 0.13.1 and Node 24.22.0/npm 11.19.1. Do not use coursework venvs.
+From the repository root, install only the hash-locked CI tools into a local venv:
 
 ```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements-dev.txt
-.venv/bin/python scripts/check_repository.py
-.venv/bin/python -m unittest discover -s tests/tooling -v
-.venv/bin/ruff check scripts tests/tooling
-.venv/bin/ruff format --check scripts tests/tooling
-git diff --check
-git diff --cached --check
+python3 -m pip install --only-binary=:all: --require-hashes -r .github/uv-bootstrap.txt
+uv venv .ci-venv
+uv pip sync --python .ci-venv/bin/python --require-hashes requirements-ci.lock
+.ci-venv/bin/python scripts/check_repository.py
+.ci-venv/bin/python scripts/check_ci_policy.py
+.ci-venv/bin/python -m pytest tests/tooling -q
+.ci-venv/bin/ruff check scripts tests/tooling
+.ci-venv/bin/ruff format --check scripts tests/tooling
 ```
 
-These commands validate repository tooling/documents. Backend Pytest/Ruff and uv
-locked-dependency checks are documented in [backend setup](backend/README.md).
-Frontend ESLint/Vitest, migrations, builds and live AI checks arrive in their own
-milestones. Add them with meaningful fixtures; never use
-empty test suites or skipped jobs as evidence of application readiness.
+Backend checks:
+
+```bash
+cd backend
+uv lock --check
+uv sync --locked
+uv run --locked ruff check .
+uv run --locked ruff format --check .
+uv run --locked mypy
+uv run --locked pytest -q -m "not integration"
+```
+
+Frontend checks from frontend/:
+
+```bash
+npm ci
+npm run lint
+npm run format:check
+npm run typecheck
+npm run test:ci
+npm run build
+npx --no-install playwright install chromium firefox webkit
+npm run test:e2e
+npm audit --audit-level=high
+```
+
+Run real database tests only against explicitly authorized disposable PostgreSQL 17.
+The Compose suite provisions its own isolated resources and executes those tests;
+see [Compose development](docs/COMPOSE_DEVELOPMENT.md). With frontend dependencies
+and Chromium installed, add --browser to scripts/compose_smoke.py to test Nginx.
+Do not reuse a developer/coursework database or reset its volume for tests.
 
 ## Definition of Done
 
-- Scope and acceptance criteria are met; important decisions/tradeoffs are explained.
-- Documentation, contracts and diagrams agree; changed links and JSON/YAML validate.
-- Relevant tests/checks pass, with exact commands and outcomes in the PR.
-- Implementation changes include behavior-focused tests; documentation-only changes
-  do not require fake backend/frontend tests.
-- No secrets, personal datasets, coursework, virtual environments or build output
-  are tracked; inspect staged filenames/content and run secret scanning.
-- Security/privacy and bilingual/accessibility impact are assessed where applicable.
-- Review blockers are resolved and residual risks are explicit.
-- Working tree is clean after logical commits; no unapproved merge, release or phase.
+- Approved scope and observable acceptance criteria are met.
+- Behavior-focused tests and all applicable CI checks pass; failures are reported honestly.
+- Docs/contracts agree and links/configuration validate.
+- Security findings and expiring owner risk decisions remain visible and current.
+- No secrets, private datasets, coursework, environments or generated artifacts are staged.
+- Actual check names and remote enforcement are verified separately; no false protection claim.
+- Owner review is required before merge; working tree is clean after logical commits.
 
-## Security and releases
-
-Never post credentials, citizen records, raw production logs or exploitation details
-in public issues. Use synthetic reproductions. Contact the repository owner through
-an already trusted private channel for sensitive reports; a dedicated private
-reporting channel still needs owner configuration. See [security](docs/SECURITY.md).
-
-Use reviewed semantic versions for application releases, changelog/release notes,
-immutable artifact identifiers and tested rollback. No application release/tag is
-appropriate for this documentation-only state. See the workflow for release gates,
-recommended tools and GitHub settings that still need configuration.
+Never introduce a real credential for a scanner test. The scanner self-test uses a
+nonfunctional ephemeral pattern, redacts output and deletes its own temporary fixture.
+Use a trusted private channel for sensitive reports. Synthetic development approval
+is not production approval. No release, deployment or next milestone follows
+implicitly from passing checks or merging a PR.

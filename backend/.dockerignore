@@ -9,3 +9,6 @@ __pycache__
 .local
 Dockerfile
 README.md
+**/.artifacts
+**/.mypy_cache
+**/.secrets

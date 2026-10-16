@@ -2,6 +2,7 @@ name: Frontend
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -9,50 +10,67 @@ permissions:
   contents: read
 
 concurrency:
-  group: frontend-${{ github.workflow }}-${{ github.ref }}
+  group: frontend-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  frontend:
+  frontend-quality:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
-    defaults:
-      run:
-        working-directory: frontend
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
-      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
           node-version-file: frontend/.nvmrc
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
-      - name: Verify approved toolchain
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-p105-${{ hashFiles('backend/uv.lock', 'requirements-ci.lock', 'frontend/package-lock.json', '.github/uv-bootstrap.txt') }}
+      - name: Install and verify approved frontend toolchain
         run: |
-          node --version
-          npm --version
-          node --input-type=module -e "import p from './package.json' with { type: 'json' }; if (process.version !== 'v24.22.0' || p.packageManager !== 'npm@11.19.1') process.exit(1)"
-          test "$(npm --version)" = '11.19.1'
-      - name: Install reproducibly
-        run: npm ci
-      - name: Verify dependency compatibility and security
+          test "$(node --version)" = v24.22.0
+          test "$(npm --version)" = 11.19.1
+          npm --prefix frontend ci
+          npm --prefix frontend ls --all
+      - name: Frontend quality build and unit tests
         run: |
-          npm ls --all
+          cd frontend
           npm audit --audit-level=high
-      - name: Lint and format
-        run: |
           npm run lint
           npm run format:check
-      - name: Type check and component tests
-        run: |
           npm run typecheck
-          npm test
-      - name: Build production assets
-        run: npm run build
-      - name: Install browser engines and system dependencies
-        run: npx --no-install playwright install --with-deps chromium firefox webkit
-      - name: Browser and accessibility acceptance
-        run: npm run test:e2e
-      - name: Verify lock remains unchanged
-        run: git -C .. diff --exit-code -- frontend/package-lock.json
+          npm run test:ci
+          npm run build
+          npx --no-install playwright install --with-deps chromium firefox webkit
+          npm run test:e2e
+      - name: Validate and sanitize test reports
+        if: always()
+        run: |
+          python3 scripts/check_test_report.py --sanitize frontend/.artifacts/vitest.xml frontend/.artifacts/playwright.xml
+      - name: Retain frontend-reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: frontend-reports
+          path: frontend/.artifacts/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Verify frontend lock integrity
+        run: |
+          git diff --exit-code -- frontend/package-lock.json
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-p105-${{ hashFiles('backend/uv.lock', 'requirements-ci.lock', 'frontend/package-lock.json', '.github/uv-bootstrap.txt') }}
+      - name: Job summary
+        if: always()
+        run: |
+          echo "Validation outcome: $JOB_STATUS. Review failed steps and retained evidence; production remains blocked." >> "$GITHUB_STEP_SUMMARY"
+        env:
+          JOB_STATUS: ${{ job.status }}

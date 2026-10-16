@@ -1,3 +1,5 @@
-# Repository validation tooling only; application dependencies are not defined yet.
+# Repository and security tooling; runtime dependencies remain in backend/uv.lock.
 PyYAML==6.0.3
 ruff==0.14.0
+pip-audit==2.10.1
+pytest==9.1.1

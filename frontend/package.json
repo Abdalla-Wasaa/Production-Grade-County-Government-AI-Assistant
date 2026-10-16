@@ -17,7 +17,9 @@
     "build": "tsc -b && vite build",
     "test:e2e": "playwright test",
     "format:check": "prettier --check .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=.artifacts/vitest.xml",
+    "test:compose": "playwright test --config playwright.compose.config.ts"
   },
   "dependencies": {
     "react": "19.3.1",

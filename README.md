@@ -4,8 +4,8 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Phase 0 and P1-01 through P1-03 are merged. P1-04 adds a secure local Compose
-stack, pending maintainer review. The bilingual assistant is still a placeholder
+Phase 0 and P1-01 through P1-04, including security follow-up PR #12, are merged.
+P1-05 strengthens CI quality/security gates and is pending maintainer review. The bilingual assistant is still a placeholder
 without messaging or authentication. Kiswahili copy remains pending human review.
 Only fictional/synthetic information is authorized.
 
@@ -38,6 +38,9 @@ Compose guide before using the guarded reset command.
 - [Milestone roadmap](docs/ROADMAP.md)
 - [ADR 0001: modular monolith](docs/DECISIONS/0001-modular-monolith.md)
 - [Coursework review](docs/COURSEWORK_REVIEW.md)
+
+See [CI gates](docs/CI.md) and the [vulnerability register](docs/VULNERABILITY_REGISTER.md)
+for required check contexts, residual risks and expiring development-only acceptance.
 
 ## Development workflow
 
