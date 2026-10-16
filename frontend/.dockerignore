@@ -7,3 +7,6 @@ playwright-report
 .local
 README.md
 Dockerfile
+**/.artifacts
+**/.mypy_cache
+**/.secrets

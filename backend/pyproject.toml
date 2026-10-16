@@ -17,6 +17,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "mypy==2.4.0",
     "httpx>=0.28,<1",
     "pytest>=9,<10",
     "pytest-asyncio>=1,<2",
@@ -47,3 +48,9 @@ asyncio_mode = "auto"
 name = "pypi"
 url = "https://pypi.org/simple"
 default = true
+
+[tool.mypy]
+python_version = "3.12"
+files = ["app"]
+strict = true
+plugins = ["pydantic.mypy"]

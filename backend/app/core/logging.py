@@ -36,7 +36,7 @@ class SafeJSONFormatter(logging.Formatter):
         if type(status) is int and 100 <= status <= 599:
             payload["status_code"] = status
         elapsed = getattr(record, "duration_ms", None)
-        if type(elapsed) in (int, float) and 0 <= elapsed <= 86_400_000:
+        if (type(elapsed) is int or type(elapsed) is float) and 0 <= elapsed <= 86_400_000:
             payload["duration_ms"] = round(elapsed, 3)
         return json.dumps(payload, allow_nan=False)
 
