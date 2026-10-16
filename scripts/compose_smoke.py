@@ -131,6 +131,17 @@ def verify_containers(stack):
                 == "127.0.0.1"
             )
         stack.assert_secrets_not_in(json.dumps(item))
+    stack.run(
+        "exec",
+        "-T",
+        "backend",
+        "python",
+        "-c",
+        "import sys,sqlite3,ssl;import psycopg;"
+        "assert sys.version_info[:2]==(3,12);"
+        "assert sqlite3.sqlite_version_info>=(3,42,0);"
+        "assert ssl.OPENSSL_VERSION_INFO>=(3,0,0)",
+    )
     runtime = stack.run(
         "exec",
         "-T",

@@ -15,12 +15,11 @@
 
 ## Current scope
 
-P1-04 secure local Docker Compose environment is authorized on
-`build/p1-04-compose-environment`: non-root locked application images, isolated
-web/backend/PostgreSQL networks, synthetic per-role secrets, explicit migrations,
-guarded disposable-resource reset, tests, CI and documentation. Reopening issue
-#5, pushing this branch and creating its review PR are authorized. Preserve all
-existing backend, frontend, documentation and security checks. Only synthetic
-information is authorized. Do not modify coursework containers or storage.
-Do not merge, deploy, release, begin P1-05, or add authentication, chat, AI
-providers, RAG, tools, agents or application domain tables.
+P1-04 security follow-up is authorized on
+`fix/p1-04-container-security-review`, starting from reviewed main after PR #11.
+The owner approved carrying the tested backend Trixie image remediation and dated
+vulnerability register into a dedicated follow-up branch and PR. Preserve all
+existing security controls, scan thresholds, dependency locks and checks. Only
+synthetic local development is authorized. Do not modify coursework or its Docker
+resources. Push and open the follow-up PR for owner review; do not merge, deploy,
+release, begin P1-05, change PostgreSQL distro/storage, or add application features.

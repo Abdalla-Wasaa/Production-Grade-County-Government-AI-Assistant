@@ -221,3 +221,13 @@ volume deletion is allowed. Reset requires exact confirmation and matching resou
 ownership labels. See [Compose development](COMPOSE_DEVELOPMENT.md) for the trust
 model and [image findings](CONTAINER_IMAGES.md) for remaining upstream OS risks.
 These controls do not approve a public or real-data deployment.
+
+## P1-04 residual vulnerability gate
+
+The dated [vulnerability register](VULNERABILITY_REGISTER.md) retains every reported
+HIGH/CRITICAL package/CVE occurrence, distinguishes vendor applicability from
+confirmed exploitation, and records owner/review triggers. No known-exploitation
+absence or local-only configuration constitutes a waiver. Complete reports include
+unfixed findings even though CI's existing fixable-finding gate can be green.
+Residual-risk acceptance requires explicit maintainer review; public/production/
+real-data use remains blocked pending separate security clearance.
