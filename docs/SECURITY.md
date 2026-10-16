@@ -195,3 +195,16 @@ No real county database is authorized. Integration fixtures require disposable
 loopback PostgreSQL 17 and create/remove only recorded random databases/roles.
 See [database operations](DATABASE_OPERATIONS.md). These controls do not certify
 production TLS, backup/recovery, privacy compliance or vulnerability-free packages.
+
+## P1-03 browser foundation
+
+The shell renders text only, validates public same-origin API paths, and makes no
+backend/provider requests. No auth tokens, messages or personal records are stored;
+only the `en`/`sw` preference is saved locally, with safe storage-denial handling.
+Vite loads frontend-local environment files; every exposed VITE_ value is public.
+No database/provider credentials belong in browser configuration or bundled assets.
+Fixed error-boundary messages replace exception output; React's default exception
+reporting is disabled at the root. No telemetry or remote assets are introduced.
+Future diagnostic reporting needs its own privacy review. Kiswahili draft copy and
+actual browser/screen-reader accessibility remain pre-pilot review obligations.
+See [frontend verification](FRONTEND_VERIFICATION.md).

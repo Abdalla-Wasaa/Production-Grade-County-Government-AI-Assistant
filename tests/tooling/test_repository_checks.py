@@ -75,6 +75,38 @@ jobs:
         with self.assertRaises(ValueError):
             checks.check_yaml(Path(".github/workflows/docs.yml"), text)
 
+    def test_only_bounded_review_pngs_are_allowed(self):
+        # Build a minimal integrity-valid PNG fixture, independent of image tooling.
+        import struct
+        import zlib
+
+        def chunk(kind, payload):
+            return (
+                struct.pack(">I", len(payload))
+                + kind
+                + payload
+                + struct.pack(">I", zlib.crc32(kind + payload))
+            )
+
+        png = (
+            b"\x89PNG\r\n\x1a\n"
+            + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
+            + chunk(b"IDAT", zlib.compress(b"\x00\x00\x00\x00"))
+            + chunk(b"IEND", b"")
+        )
+        path = "docs/evidence/frontend/desktop-en.png"
+        checks.check_review_image(path, png)
+        for invalid in (
+            png + b"hidden data",
+            png[:-1],
+            b"not png",
+            png + b"x" * 2_000_000,
+        ):
+            with self.assertRaises(ValueError):
+                checks.check_review_image(path, invalid)
+        with self.assertRaises(ValueError):
+            checks.check_review_image("frontend/secret.png", png)
+
     def test_rejects_forbidden_artifacts(self):
         for name in (
             ".env",

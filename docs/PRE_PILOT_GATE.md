@@ -19,7 +19,7 @@ required before any future external inference, even with synthetic inputs.
 | --- | --- | --- |
 | County, service scope, participants and invitation/access process | Repository owner and designated county service owner | Deferred; no real county approved |
 | Official service catalogue, source provenance, review schedule, escalation contacts | County departmental content owners | Deferred; synthetic examples convey no official policy |
-| English/Kiswahili content and independent evaluation review | Designated bilingual reviewers | Reviewers not yet designated |
+| English/Kiswahili UI copy, content and independent evaluation review | Designated bilingual reviewers | P1-03 Kiswahili UI is a development draft; every key and scope/privacy statement needs dated human review before pilot |
 | Staffing, support, incident response and operational ownership | Repository owner and county operations owner | Deferred |
 | Operational/model/hosting budget and spending limits | Funding owner | Deferred; no paid operations authorized here |
 | Controller/processor mapping, legal basis, notice, rights handling, DPIA/registration assessment | Designated county privacy/legal lead | Deferred; no compliance approval claimed |

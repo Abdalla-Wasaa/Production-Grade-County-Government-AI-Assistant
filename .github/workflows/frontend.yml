@@ -1,0 +1,58 @@
+name: Frontend
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Verify approved toolchain
+        run: |
+          node --version
+          npm --version
+          node --input-type=module -e "import p from './package.json' with { type: 'json' }; if (process.version !== 'v24.22.0' || p.packageManager !== 'npm@11.19.1') process.exit(1)"
+          test "$(npm --version)" = '11.19.1'
+      - name: Install reproducibly
+        run: npm ci
+      - name: Verify dependency compatibility and security
+        run: |
+          npm ls --all
+          npm audit --audit-level=high
+      - name: Lint and format
+        run: |
+          npm run lint
+          npm run format:check
+      - name: Type check and component tests
+        run: |
+          npm run typecheck
+          npm test
+      - name: Build production assets
+        run: npm run build
+      - name: Install browser engines and system dependencies
+        run: npx --no-install playwright install --with-deps chromium firefox webkit
+      - name: Browser and accessibility acceptance
+        run: npm run test:e2e
+      - name: Verify lock remains unchanged
+        run: git -C .. diff --exit-code -- frontend/package-lock.json

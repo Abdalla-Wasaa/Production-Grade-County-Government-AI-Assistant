@@ -15,14 +15,15 @@
 
 ## Current scope
 
-P1-02 PostgreSQL/Alembic foundation is authorized on
-`build/p1-02-postgresql-alembic`: Python 3.12, PostgreSQL 17, SQLAlchemy 2.x,
-async Psycopg 3, explicit Alembic baseline, readiness, tests, documentation and CI.
-Keep liveness independent of the database. No domain tables or automatic migrations.
-Develop only a fictional county environment with synthetic information. English
-and Kiswahili remain required. Real-pilot decisions stay behind the pre-pilot gate.
-No real citizen records, county credentials, confidential documents, payments,
-public deployment or live county integration are authorized.
-Use dedicated branches, Conventional Commits, meaningful tests, green relevant CI,
-and PRs reviewed by the sole maintainer. Pushing this branch and opening its PR are
-authorized. Do not merge, deploy, release, start P1-03, or add auth/chat/AI features.
+P1-03 React frontend foundation is authorized on
+`build/p1-03-react-frontend-foundation`: isolated Node 24, React/Vite/strict
+TypeScript/Tailwind 4/React Router, npm exact pins and lockfile, bilingual shell,
+accessibility, tests, documentation and CI. Keep the shell independent of backend
+availability. Development Kiswahili copy is permitted, explicitly pending human
+review before any pilot. No external translation API or official approval claims.
+Only fictional/synthetic information is authorized; no real citizen records,
+credentials, confidential documents, payments, official branding or live systems.
+Use dedicated branches, Conventional Commits, meaningful tests, green relevant CI
+and a PR reviewed by the sole maintainer. Reopening/correcting issue #4, pushing
+this branch and opening its PR are authorized. Preserve existing backend checks.
+Do not merge, deploy, release, start P1-04, or add auth/chat/provider/RAG/tools.
