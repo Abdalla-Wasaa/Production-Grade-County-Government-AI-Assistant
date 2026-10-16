@@ -31,3 +31,7 @@ coverage/
 .DS_Store
 Thumbs.db
 *.log
+
+# Browser test output
+playwright-report/
+test-results/
