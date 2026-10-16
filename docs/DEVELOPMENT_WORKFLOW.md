@@ -67,11 +67,11 @@ boundaries without explicit approval. There are no automatic merge/deploy steps 
 
 | Tool | Purpose | Current activation / future gate |
 | --- | --- | --- |
-| [Ruff](https://docs.astral.sh/ruff/) | Python linting and formatting | Active for repository tooling and P1-01 backend |
+| [Ruff](https://docs.astral.sh/ruff/) | Python linting and formatting | Active for repository tooling and backend |
 | [Pytest](https://docs.pytest.org/en/stable/) | Backend policy/API/integration tests | Foundation unit tests plus real PostgreSQL 17 integration tests |
 | [ESLint](https://eslint.org/docs/latest/use/getting-started) | React/TypeScript linting | Add with frontend package and configuration |
 | [Vitest](https://vitest.dev/guide/) | Frontend unit/component testing | Add with Vite frontend and meaningful component tests |
-| [GitHub Actions](https://docs.github.com/en/actions) | Automated review gates; approved deployment later | Documentation/tooling, secrets and P1-01 backend checks |
+| [GitHub Actions](https://docs.github.com/en/actions) | Automated review gates; approved deployment later | Documentation/tooling, secrets, backend and PostgreSQL checks |
 | [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) | Parse and render Markdown diagrams | Local explicit diagram validation; CI checks fenced blocks but does not render them |
 | [Gitleaks](https://github.com/gitleaks/gitleaks) | Secret-pattern scanning of history and working files | Pinned scanner job; no guarantee that every credential or private dataset is detectable |
 
@@ -118,8 +118,10 @@ separate visual check. GitHub's renderer may use a different Mermaid version, so
 review the PR preview after publication is approved. Do not install Node packages
 or generated diagrams into coursework folders.
 
-P1-01 adds the `Backend / foundation` locked Python/Ruff/Pytest job. Future PRs add ESLint/Vitest/frontend build,
-PostgreSQL migration/ownership/concurrency tests, provider-fake evaluation and
+The `Backend / foundation` job runs locked Python/Ruff/Pytest checks;
+`postgresql` verifies migrations, readiness and session cleanup on PostgreSQL 17.
+Future PRs add ESLint/Vitest/frontend build, domain ownership/concurrency tests,
+provider-fake evaluation and
 dependency/image scans when their inputs exist. Live API tests remain opt-in and
 budget-limited; synthetic fixtures are the default. No present check claims the
 future application has passed tests.
