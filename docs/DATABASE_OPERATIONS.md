@@ -139,3 +139,16 @@ PostgreSQL 17, following the [SQLAlchemy Psycopg dialect](https://docs.sqlalchem
 and [Psycopg installation guidance](https://www.psycopg.org/psycopg3/docs/basic/install.html).
 Binary driver distributions simplify local/CI setup; review their bundled native
 libraries, TLS policy and security updates before any later deployment.
+
+## P1-04 Compose workflow
+
+For the isolated container environment, follow [Compose development](COMPOSE_DEVELOPMENT.md).
+No PostgreSQL port is published. The fresh-volume bootstrap creates separate
+administration, migration and runtime roles. The explicit maintenance command applies
+the existing baseline and grants runtime SELECT on its revision table only. `check`
+does not change privileges. Runtime has no domain-table or DDL permissions.
+Normal shutdown preserves named storage. Partial initialization is not repaired
+automatically; preserve the volume and review safe logs. Never rotate local secret
+files against an existing database. Guarded reset deletes only explicitly confirmed,
+label-verified disposable project storage, preserves credentials and requires another
+explicit migration after reinitialization.

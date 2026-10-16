@@ -121,7 +121,17 @@ def check_yaml(path, text):
 def check_path(relative):
     parts = Path(relative).parts
     if any(
-        p in (".git", "venv", ".venv", "node_modules", "__pycache__") for p in parts
+        p
+        in (
+            ".git",
+            "venv",
+            ".venv",
+            "node_modules",
+            "__pycache__",
+            ".local",
+            ".secrets",
+        )
+        for p in parts
     ):
         raise ValueError("environment or generated files must not be tracked")
     if parts[0].startswith(

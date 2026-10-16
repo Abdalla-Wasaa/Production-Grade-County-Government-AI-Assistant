@@ -96,7 +96,8 @@ records, county credentials, confidential documents, payments, public deployment
 live county integration. See [pre-pilot decision gate](PRE_PILOT_GATE.md). All
 implementations require dedicated branches, tests, green relevant CI and the sole
 maintainer's review before merging. A green check is not approval to merge/start
-another issue. P1-03 has explicit owner approval; P1-04 remains unapproved.
+another issue. P1-03 is merged. P1-04 has explicit owner implementation approval and remains
+pending review; P1-05 requires separate approval.
 
 Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/2),
 [P1-02 database/migrations](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/3),
@@ -107,5 +108,6 @@ Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grad
 P1-01 provides dependency-free liveness, settings/lifecycle/error/logging foundations
 and backend checks. P1-02 adds PostgreSQL sessions, baseline migrations, readiness
 and real-database CI. P1-03 adds the independent bilingual frontend shell, with
-draft Kiswahili copy behind human review before pilot. No Compose/domain/chat
-functionality is pulled forward.
+draft Kiswahili copy behind human review before pilot. P1-04 adds the isolated
+local Compose environment with explicit migrations, synthetic secrets and
+disposable acceptance checks; domain/chat functionality remains excluded.
