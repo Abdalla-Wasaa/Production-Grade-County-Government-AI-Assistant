@@ -15,15 +15,12 @@
 
 ## Current scope
 
-P1-03 React frontend foundation is authorized on
-`build/p1-03-react-frontend-foundation`: isolated Node 24, React/Vite/strict
-TypeScript/Tailwind 4/React Router, npm exact pins and lockfile, bilingual shell,
-accessibility, tests, documentation and CI. Keep the shell independent of backend
-availability. Development Kiswahili copy is permitted, explicitly pending human
-review before any pilot. No external translation API or official approval claims.
-Only fictional/synthetic information is authorized; no real citizen records,
-credentials, confidential documents, payments, official branding or live systems.
-Use dedicated branches, Conventional Commits, meaningful tests, green relevant CI
-and a PR reviewed by the sole maintainer. Reopening/correcting issue #4, pushing
-this branch and opening its PR are authorized. Preserve existing backend checks.
-Do not merge, deploy, release, start P1-04, or add auth/chat/provider/RAG/tools.
+P1-04 secure local Docker Compose environment is authorized on
+`build/p1-04-compose-environment`: non-root locked application images, isolated
+web/backend/PostgreSQL networks, synthetic per-role secrets, explicit migrations,
+guarded disposable-resource reset, tests, CI and documentation. Reopening issue
+#5, pushing this branch and creating its review PR are authorized. Preserve all
+existing backend, frontend, documentation and security checks. Only synthetic
+information is authorized. Do not modify coursework containers or storage.
+Do not merge, deploy, release, begin P1-05, or add authentication, chat, AI
+providers, RAG, tools, agents or application domain tables.

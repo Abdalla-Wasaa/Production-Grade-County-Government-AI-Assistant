@@ -35,3 +35,7 @@ Thumbs.db
 # Browser test output
 playwright-report/
 test-results/
+
+# Private local Compose configuration and credentials
+.local/
+.secrets/

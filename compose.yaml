@@ -1,0 +1,147 @@
+name: ${COMPOSE_PROJECT_NAME:?Run python3 scripts/dev.py setup}
+
+x-restrictions: &restrictions
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  init: true
+  pids_limit: 128
+  mem_limit: 512m
+  cpus: 1.0
+  stop_grace_period: 30s
+  restart: "no"
+  logging:
+    driver: json-file
+    options:
+      max-size: "5m"
+      max-file: "3"
+  labels:
+    org.county.assistant.managed: "true"
+    org.county.assistant.disposable: "true"
+    org.county.assistant.instance: ${COUNTY_INSTANCE_ID:?Run setup}
+
+services:
+  web:
+    <<: *restrictions
+    build:
+      context: ./frontend
+      target: runtime
+    image: ${COMPOSE_PROJECT_NAME}-web:local
+    user: "101:101"
+    networks: [edge, application]
+    ports: ["127.0.0.1:${COUNTY_HTTP_PORT:-8080}:8080"]
+    tmpfs: ["/tmp:uid=101,gid=101,mode=1700,size=32m"]
+    mem_limit: 128m
+    stop_signal: SIGQUIT
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/proxy-health]
+      interval: 5s
+      timeout: 3s
+      retries: 6
+  backend:
+    <<: *restrictions
+    build:
+      context: ./backend
+      target: runtime
+    image: ${COMPOSE_PROJECT_NAME}-backend:local
+    user: "10001:10001"
+    networks: [application, database]
+    depends_on:
+      db:
+        condition: service_started
+    environment:
+      COUNTY_ENVIRONMENT: development
+      COUNTY_LOG_LEVEL: INFO
+    secrets: [runtime_database_url]
+    tmpfs: ["/tmp:uid=10001,gid=10001,mode=1700,size=32m"]
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - |
+          import sys, urllib.request
+          try:
+              urllib.request.urlopen("http://127.0.0.1:8000/health/ready", timeout=12).close()
+          except Exception:
+              sys.exit(1)
+      interval: 5s
+      timeout: 13s
+      retries: 3
+      start_period: 10s
+  db:
+    <<: *restrictions
+    build:
+      context: ./infra/postgres
+    image: ${COMPOSE_PROJECT_NAME}-db:local
+    user: "999:999"
+    networks: [database]
+    environment:
+      POSTGRES_USER: county_bootstrap
+      POSTGRES_DB: county_local
+      POSTGRES_PASSWORD_FILE: /run/secrets/bootstrap_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+    secrets: [bootstrap_password, migration_password, runtime_password]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init/10-bootstrap.sh:/docker-entrypoint-initdb.d/10-bootstrap.sh:ro
+    tmpfs:
+      - /tmp:uid=999,gid=999,mode=1700,size=32m
+      - /var/run/postgresql:uid=999,gid=999,mode=3770,size=16m
+    shm_size: 128m
+    command: [postgres, -c, log_statement=none, -c, log_min_error_statement=panic, -c, log_parameter_max_length_on_error=0]
+    healthcheck:
+      test: [CMD, pg_isready, -h, localhost, -U, county_bootstrap, -d, county_local]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+  migrate:
+    <<: *restrictions
+    profiles: [maintenance]
+    build:
+      context: ./backend
+      target: runtime
+    image: ${COMPOSE_PROJECT_NAME}-backend:local
+    user: "10001:10001"
+    networks: [database]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      COUNTY_ENVIRONMENT: development
+    secrets: [migration_database_url]
+    tmpfs: ["/tmp:uid=10001,gid=10001,mode=1700,size=32m"]
+    command: [check]
+
+networks:
+  edge:
+    labels: &network-labels
+      org.county.assistant.managed: "true"
+      org.county.assistant.disposable: "true"
+      org.county.assistant.instance: ${COUNTY_INSTANCE_ID}
+  application:
+    internal: true
+    labels: *network-labels
+  database:
+    internal: true
+    labels: *network-labels
+
+volumes:
+  postgres_data:
+    labels:
+      org.county.assistant.managed: "true"
+      org.county.assistant.disposable: "true"
+      org.county.assistant.instance: ${COUNTY_INSTANCE_ID}
+
+secrets:
+  runtime_database_url:
+    file: ${COUNTY_SECRET_DIR:?Run setup}/runtime_database_url
+  migration_database_url:
+    file: ${COUNTY_SECRET_DIR}/migration_database_url
+  bootstrap_password:
+    file: ${COUNTY_SECRET_DIR}/bootstrap_password
+  migration_password:
+    file: ${COUNTY_SECRET_DIR}/migration_password
+  runtime_password:
+    file: ${COUNTY_SECRET_DIR}/runtime_password
