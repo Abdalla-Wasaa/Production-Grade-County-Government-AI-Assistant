@@ -3,6 +3,7 @@
 from pathlib import Path
 import sys
 import tempfile
+from unittest.mock import patch
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
@@ -28,3 +29,23 @@ class ReportEvidence(unittest.TestCase):
                 self.assertNotIn("private", path.read_text())
             path.write_text('<testsuite><testcase name="valid"/></testsuite>')
             self.assertEqual(reports.inspect_report(path), 1)
+
+    def test_missing_first_report_does_not_leave_later_report_unsanitized(self):
+        with tempfile.TemporaryDirectory() as directory:
+            missing = Path(directory) / "missing.xml"
+            present = Path(directory) / "present.xml"
+            present.write_text(
+                '<testsuite><testcase name="valid"/><system-out>private</system-out></testsuite>'
+            )
+            with (
+                patch.object(
+                    sys,
+                    "argv",
+                    ["check_test_report", "--sanitize", str(missing), str(present)],
+                ),
+                patch("builtins.print"),
+            ):
+                with self.assertRaises(SystemExit) as error:
+                    reports.main()
+            self.assertEqual(error.exception.code, 1)
+            self.assertNotIn("private", present.read_text())

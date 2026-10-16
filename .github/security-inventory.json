@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "images": {
+    "web": {
+      "source_report_sha256": "cff1f63d769f82a1d15dd9165dc4fa4411ad4d74a164ffa97d0795d1f69f3904",
+      "inventory": {
+        "packages": 70,
+        "sha256": "7e79131d8a8bfb174b281e86f0f1ecc5495a7df6c29242b0605affe1f2de6682"
+      }
+    },
+    "backend": {
+      "source_report_sha256": "d16a6c443d6b98333f42d2cfac3114f62686f5b342ec8a462d5bfcd8e9d2aae1",
+      "inventory": {
+        "packages": 112,
+        "sha256": "adb6e813a680e771238261a781c04b86d3b5e588a3c79d95ab416c7f625167df"
+      }
+    },
+    "db": {
+      "source_report_sha256": "64b10223335511cd1e754fec0a77996568c72645ca28769d186252c7caaed222",
+      "inventory": {
+        "packages": 144,
+        "sha256": "f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288"
+      }
+    }
+  }
+}

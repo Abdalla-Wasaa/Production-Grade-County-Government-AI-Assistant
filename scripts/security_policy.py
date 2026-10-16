@@ -1,5 +1,6 @@
 """Fail-closed development risk policy. Decisions never remove report findings."""
 
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 import hashlib
 import json
@@ -45,12 +46,26 @@ def fetch_kev(output):
     return identifiers
 
 
-def findings(report):
+def findings(report, expected_image=None):
     if report.get("SchemaVersion") != 2:
         raise ValueError("Unsupported scan schema")
     image_id = report["Metadata"]["ImageID"]
     if not re.fullmatch(r"sha256:[a-f0-9]{64}", image_id):
         raise ValueError("Missing immutable image evidence")
+    if report.get("Trivy", {}).get("Version") != "0.76.0":
+        raise ValueError("Unexpected scanner identity/version")
+    if report.get("ArtifactType") != "container_image":
+        raise ValueError("Expected runtime container image")
+    if expected_image is not None and image_id != expected_image:
+        raise ValueError("Altered immutable image identity")
+    if report.get("ArtifactName") != image_id:
+        raise ValueError("Scan must target the immutable image ID")
+    os_info = report["Metadata"]["OS"]
+    if not os_info.get("Family") or not os_info.get("Name"):
+        raise ValueError("Missing OS identification")
+    created = timestamp(report["CreatedAt"])
+    if not timedelta(0) <= utcnow() - created <= timedelta(hours=48):
+        raise ValueError("Stale or future scan")
     results = report["Results"]
     if (
         not isinstance(results, list)
@@ -59,11 +74,53 @@ def findings(report):
     ):
         raise ValueError("Missing OS scan evidence")
     rows = []
+    seen_results = set()
     for result in results:
+        identity = (result["Class"], result["Type"], result["Target"])
+        if identity in seen_results or result["Class"] not in {"os-pkgs", "lang-pkgs"}:
+            raise ValueError("Duplicate or unsupported result")
+        seen_results.add(identity)
+        packages = result["Packages"]
+        if not isinstance(packages, list) or not packages:
+            raise ValueError("Missing package inventory")
+        inventory = set()
+        for package in packages:
+            if result["Class"] == "os-pkgs":
+                # dpkg reports upstream Version separately from Debian revision/epoch;
+                # Trivy's package ID retains the full installed version.
+                identifier = package["ID"]
+                prefix = package["Name"] + "@"
+                if not identifier.startswith(prefix):
+                    raise ValueError("Invalid OS package identifier")
+                version = identifier[len(prefix) :]
+                if not package["Version"]:
+                    raise ValueError("Missing package version")
+            else:
+                identifier = package.get("ID", "")
+                version = package["Version"]
+            item = (identifier, package["Name"], version)
+            if (
+                any(not isinstance(v, str) or not v for v in item[1:])
+                or item in inventory
+            ):
+                raise ValueError("Invalid or duplicated package inventory")
+            inventory.add(item)
+        seen_findings = set()
         vulnerabilities = result.get("Vulnerabilities", [])
         if not isinstance(vulnerabilities, list):
             raise ValueError("Malformed findings")
         for item in vulnerabilities:
+            occurrence = (
+                item["VulnerabilityID"],
+                item.get("PkgID", ""),
+                item["PkgName"],
+                item["InstalledVersion"],
+            )
+            if occurrence in seen_findings:
+                raise ValueError("Duplicate vulnerability occurrence")
+            seen_findings.add(occurrence)
+            if occurrence[1:] not in inventory:
+                raise ValueError("Vulnerability is absent from package inventory")
             severity = item["Severity"]
             if severity not in {"UNKNOWN", "LOW", "MEDIUM", "HIGH", "CRITICAL"}:
                 raise ValueError("Unknown severity")
@@ -86,6 +143,32 @@ def findings(report):
                 raise ValueError("Incomplete finding")
             rows.append(row)
     return rows
+
+
+def inventory_evidence(report):
+    """Stable complete package inventory, excluding rebuilt image IDs and paths."""
+    groups = []
+    for result in report["Results"]:
+        packages = sorted(
+            (p.get("ID", ""), p["Name"], p["Version"]) for p in result["Packages"]
+        )
+        groups.append((result["Class"], result["Type"], packages))
+    raw = json.dumps(sorted(groups), separators=(",", ":")).encode()
+    return {
+        "packages": sum(len(group[2]) for group in groups),
+        "sha256": hashlib.sha256(raw).hexdigest(),
+    }
+
+
+def validate_inventory(role, report, baseline):
+    reference = json.loads((ROOT / ".github/security-inventory.json").read_text())
+    if reference.get("schema_version") != 1 or set(reference["images"]) != ROLES:
+        raise ValueError("Incomplete inventory reference")
+    image = reference["images"][role]
+    if image["source_report_sha256"] != baseline["images"][role]["report_sha256"]:
+        raise ValueError("Inventory is not tied to the approved scan evidence")
+    if image["inventory"] != inventory_evidence(report):
+        raise ValueError("Complete package inventory differs from reviewed scan")
 
 
 def key(row):
@@ -172,6 +255,12 @@ def evaluate(role, rows, base_digest, baseline, accepted, kev):
     reference = baseline["images"][role]
     old = {key(row): row for row in reference["findings"]}
     problems = []
+    actual_counts = Counter(key(row) for row in rows)
+    expected_counts = Counter(key(row) for row in reference["findings"])
+    if any(count != 1 for count in actual_counts.values()):
+        problems.append(role + ": duplicated vulnerability occurrence")
+    if actual_counts != expected_counts:
+        problems.append(role + ": exact approved occurrence inventory changed")
     for row in rows:
         label = f"{role}: {row['cve']} {row['package']}"
         if row["fixed_version"] or row["status"] == "fixed":

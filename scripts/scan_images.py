@@ -61,72 +61,83 @@ def main():
     for index, (role, image) in enumerate(
         zip(("web", "backend", "db"), images, strict=True)
     ):
-        if not isinstance(image, str) or not image.endswith("-" + role + ":local"):
-            raise ValueError("Image role/order mismatch")
-        immutable = expected_ids[role]
-        import re
+        try:
+            if not isinstance(image, str) or not image.endswith("-" + role + ":local"):
+                raise ValueError("Image role/order mismatch")
+            immutable = expected_ids[role]
+            import re
 
-        if not re.fullmatch(r"sha256:[a-f0-9]{64}", immutable):
-            raise ValueError("Invalid built image identity")
-        actual = subprocess.check_output(
-            ["docker", "image", "inspect", "--format", "{{.Id}}", image],
-            text=True,
-            timeout=15,
-        ).strip()
-        if actual != immutable:
-            raise ValueError("Image tag changed after acceptance")
-        output = arguments.output / f"image-{index}.json"
-        subprocess.run(
-            [
-                "trivy",
-                "image",
-                "--quiet",
-                "--timeout",
-                "4m",
-                "--scanners",
-                "vuln",
-                "--config",
-                "/dev/null",
-                "--ignorefile",
-                "/dev/null",
-                "--format",
-                "json",
-                "--output",
-                str(output),
-                immutable,
-            ],
-            check=True,
-            timeout=270,
-            env=environment,
+            if not re.fullmatch(r"sha256:[a-f0-9]{64}", immutable):
+                raise ValueError("Invalid built image identity")
+            actual = subprocess.check_output(
+                ["docker", "image", "inspect", "--format", "{{.Id}}", image],
+                text=True,
+                timeout=15,
+            ).strip()
+            if actual != immutable:
+                raise ValueError("Image tag changed after acceptance")
+            output = arguments.output / f"image-{index}.json"
+            subprocess.run(
+                [
+                    "trivy",
+                    "image",
+                    "--quiet",
+                    "--timeout",
+                    "4m",
+                    "--list-all-pkgs",
+                    "--scanners",
+                    "vuln",
+                    "--config",
+                    "/dev/null",
+                    "--ignorefile",
+                    "/dev/null",
+                    "--format",
+                    "json",
+                    "--output",
+                    str(output),
+                    immutable,
+                ],
+                check=True,
+                timeout=270,
+                env=environment,
+            )
+            report = json.loads(output.read_text())
+            if report["Metadata"]["ImageID"] != immutable:
+                raise ValueError("Scanner reported a different image")
+            rows = policy.findings(report, immutable)
+            policy.validate_inventory(role, report, baseline)
+            counts, fixable = summarize(report)
+            print(
+                f"{role}: HIGH={counts['HIGH']}, CRITICAL={counts['CRITICAL']}, fixable={fixable}",
+                flush=True,
+            )
+            problems.extend(
+                policy.evaluate(role, rows, pins[role], baseline, accepted, kev)
+            )
+            evidence["images"].append(
+                {
+                    "role": role,
+                    "id": report["Metadata"]["ImageID"],
+                    "base_digest": pins[role],
+                    "counts": dict(counts),
+                }
+            )
+        except (ValueError, KeyError, TypeError, OSError, subprocess.SubprocessError):
+            problems.append(role + ": scan evidence missing, invalid or unavailable")
+            evidence["images"].append({"role": role, "status": "failed"})
+    try:
+        metadata = json.loads(
+            (Path.home() / ".cache/trivy/db/metadata.json").read_text()
         )
-        report = json.loads(output.read_text())
-        if report["Metadata"]["ImageID"] != immutable:
-            raise ValueError("Scanner reported a different image")
-        rows = policy.findings(report)
-        counts, fixable = summarize(report)
-        print(
-            f"{role}: HIGH={counts['HIGH']}, CRITICAL={counts['CRITICAL']}, fixable={fixable}",
-            flush=True,
-        )
-        problems.extend(
-            policy.evaluate(role, rows, pins[role], baseline, accepted, kev)
-        )
-        evidence["images"].append(
-            {
-                "role": role,
-                "id": report["Metadata"]["ImageID"],
-                "base_digest": pins[role],
-                "counts": dict(counts),
-            }
-        )
-    metadata = json.loads((Path.home() / ".cache/trivy/db/metadata.json").read_text())
-    if (
-        not timedelta(0)
-        <= policy.utcnow() - policy.timestamp(metadata["UpdatedAt"])
-        <= timedelta(hours=48)
-    ):
-        problems.append("Trivy vulnerability metadata is stale")
-    evidence["database"] = metadata
+        if (
+            not timedelta(0)
+            <= policy.utcnow() - policy.timestamp(metadata["UpdatedAt"])
+            <= timedelta(hours=48)
+        ):
+            raise ValueError("Stale metadata")
+        evidence["database"] = metadata
+    except (ValueError, KeyError, TypeError, OSError):
+        problems.append("Trivy vulnerability metadata is missing, invalid or stale")
     evidence["policy_failures"] = problems
     (arguments.output / "decision.json").write_text(
         json.dumps(evidence, indent=2) + "\n"

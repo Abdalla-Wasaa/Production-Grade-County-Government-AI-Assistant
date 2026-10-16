@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 import re
+import shlex
 
 import yaml
 
@@ -44,6 +45,8 @@ def validate(workflows, policy):
                 "pull_request"
             ] not in ("", None):
                 raise ValueError("PR checks must be unfiltered; pushes main-only")
+        if "defaults" in data or "env" in data:
+            raise ValueError("Unreviewed workflow shell/defaults")
         if data.get("permissions") != {"contents": "read"}:
             raise ValueError("Excessive token permissions")
         if data.get("concurrency", {}).get("cancel-in-progress") != "true":
@@ -84,6 +87,45 @@ def validate(workflows, policy):
                 or not 1 <= int(job["timeout-minutes"]) <= 40
             ):
                 raise ValueError("Unbounded or unsupported runner/job")
+            if any(
+                field in job for field in ("defaults", "container", "uses", "needs")
+            ):
+                raise ValueError("Unreviewed job execution context")
+            scope = filename + "/" + name
+            if job.get("env", {}) != policy["job_environment_contracts"][scope]:
+                raise ValueError("Unreviewed job environment override")
+            actual_commands = {}
+            actual_uploads = {}
+            for step in job["steps"]:
+                if "run" in step and step.get("name") != "Job summary":
+                    if any(
+                        field in step for field in ("shell", "working-directory", "env")
+                    ):
+                        raise ValueError("Unreviewed command execution override")
+                    label = step.get("name")
+                    if not label or label in actual_commands:
+                        raise ValueError("Missing or duplicated validation step")
+                    actual_commands[label] = [
+                        shlex.split(line, comments=False, posix=True)
+                        for line in step["run"].strip().splitlines()
+                        if line.strip()
+                    ]
+                if step.get("uses", "").startswith("actions/upload-artifact@"):
+                    settings = step["with"]
+                    if settings["name"] in actual_uploads:
+                        raise ValueError("Duplicate artifact upload")
+                    actual_uploads[settings["name"]] = settings
+                    if (
+                        settings.get("include-hidden-files") != "true"
+                        or settings.get("if-no-files-found") != "error"
+                    ):
+                        raise ValueError(
+                            "Mandatory hidden evidence must upload or fail"
+                        )
+            if actual_commands != policy["command_contracts"][scope]:
+                raise ValueError("Required command removed, changed or bypassed")
+            if actual_uploads != policy["upload_contracts"][scope]:
+                raise ValueError("Required artifact upload removed or changed")
             contexts.append(name)
             for step in job["steps"]:
                 condition = step.get("if")
@@ -150,6 +192,14 @@ def validate(workflows, policy):
         raise ValueError("Ambiguous check names")
 
 
+def validate_frontend(scripts, policy):
+    if any(
+        scripts.get(name) != command
+        for name, command in policy["frontend_script_contracts"].items()
+    ):
+        raise ValueError("Required frontend command replaced or removed")
+
+
 def main():
     for filename in ("trivy.yaml", "trivy.yml", ".trivyignore", ".trivyignore.yaml"):
         if (ROOT / filename).exists():
@@ -161,6 +211,8 @@ def main():
     }
     policy = json.loads((ROOT / ".github/ci-policy.json").read_text())
     validate(workflows, policy)
+    frontend = json.loads((ROOT / "frontend/package.json").read_text())["scripts"]
+    validate_frontend(frontend, policy)
     from audit_python import expected_dependencies
 
     if not expected_dependencies(ROOT / "requirements-dev.txt").issubset(
