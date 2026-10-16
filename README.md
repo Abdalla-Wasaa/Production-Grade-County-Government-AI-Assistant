@@ -4,13 +4,29 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Phase 0, P1-01 and P1-02 are merged. P1-03 adds an accessible bilingual React
-interface shell, pending maintainer review. The assistant is a placeholder without
-messaging or authentication. Kiswahili copy is a draft pending human review.
-See [frontend setup](frontend/README.md), [backend setup](backend/README.md),
-[database operations](docs/DATABASE_OPERATIONS.md) and the
-[real county pre-pilot gate](docs/PRE_PILOT_GATE.md). Compose, AI and deployment
-remain separately approved milestones.
+Phase 0 and P1-01 through P1-03 are merged. P1-04 adds a secure local Compose
+stack, pending maintainer review. The bilingual assistant is still a placeholder
+without messaging or authentication. Kiswahili copy remains pending human review.
+Only fictional/synthetic information is authorized.
+
+Start with [Compose development](docs/COMPOSE_DEVELOPMENT.md) and
+[container image review](docs/CONTAINER_IMAGES.md). Host-only instructions remain
+in [frontend setup](frontend/README.md), [backend setup](backend/README.md) and
+[database operations](docs/DATABASE_OPERATIONS.md). The
+[real county pre-pilot gate](docs/PRE_PILOT_GATE.md) still applies.
+
+```bash
+python3 scripts/dev.py setup
+docker compose config --quiet
+docker compose build
+docker compose up -d
+docker compose --profile maintenance run --rm migrate upgrade
+docker compose --profile maintenance run --rm migrate check
+```
+
+Open `http://127.0.0.1:8080`. Fresh-stack readiness is deliberately 503 until
+explicit migration. `docker compose down` preserves database storage. Review the
+Compose guide before using the guarded reset command.
 
 ## Design documentation
 
@@ -32,12 +48,15 @@ is required before merging or beginning another phase.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for local checks and Definition of Done,
 and [development workflow](docs/DEVELOPMENT_WORKFLOW.md) for review, tools, CI scope,
 security and release gates. CI covers documentation/repository tooling, secret scans
-and backend locked-dependency/lint/format/tests. Frontend checks begin with P1-03.
+backend locked-dependency/lint/format/tests, frontend checks, and disposable Compose
+integration with runtime image vulnerability checks.
 
 ## Configuration
 
-`.env.example` documents configuration placeholders. Keep real credentials in
-local environment variables or an ignored `.env` file. Never commit secrets.
+The setup helper generates an ignored, non-secret `.env` and private role secrets
+under `.local/compose`. Do not replace this with application credentials. See
+`.env.example` for the convention and the Compose guide for permissions. Never commit
+secret files, environment dumps or database URLs.
 
 Existing AIEngineeringClass coursework is reference material and must remain
 unmodified. Do not copy virtual environments or coursework artifacts here.

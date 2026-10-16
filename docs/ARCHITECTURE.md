@@ -245,3 +245,26 @@ semantic navigation and route focus. Kiswahili is a development draft requiring
 human review under the pre-pilot gate. See [frontend guide](../frontend/README.md)
 and [verification](FRONTEND_VERIFICATION.md). No auth/chat/history or provider
 integration is implemented by this UI milestone.
+
+## P1-04 local container topology
+
+```mermaid
+flowchart LR
+    Browser[Local browser] -->|127.0.0.1:8080| Web[web: Nginx and React]
+    subgraph edge[edge network]
+        Web
+    end
+    subgraph application[internal application network]
+        Web -->|backend:8000| Backend[backend: FastAPI]
+    end
+    subgraph database[internal database network]
+        Backend -->|runtime role| DB[(db: PostgreSQL 17)]
+        Migrate[migrate: maintenance profile] -->|migration role| DB
+    end
+    DB --> Volume[Project named volume]
+```
+
+This is a local synthetic environment only. Nginx remains independent of backend
+health, while readiness checks PostgreSQL reachability and schema revision. Migrate
+runs explicitly; normal startup never applies migrations. No database/backend host
+ports or domain tables are introduced. See [Compose operations](COMPOSE_DEVELOPMENT.md).

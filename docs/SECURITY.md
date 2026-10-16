@@ -208,3 +208,16 @@ reporting is disabled at the root. No telemetry or remote assets are introduced.
 Future diagnostic reporting needs its own privacy review. Kiswahili draft copy and
 actual browser/screen-reader accessibility remain pre-pilot review obligations.
 See [frontend verification](FRONTEND_VERIFICATION.md).
+
+## P1-04 container controls
+
+The local stack binds web to loopback only, isolates database traffic on an internal
+network, drops all capabilities, uses non-root UIDs and read-only root filesystems,
+and bounds writable tmpfs, CPU, memory, PID counts and rotating logs. Runtime,
+migration and bootstrap credentials are independent and mounted per service.
+File-backed Compose secrets rely on private host parent directories, not encryption;
+Docker/host administrators remain trusted. No automatic credential rotation or
+volume deletion is allowed. Reset requires exact confirmation and matching resource
+ownership labels. See [Compose development](COMPOSE_DEVELOPMENT.md) for the trust
+model and [image findings](CONTAINER_IMAGES.md) for remaining upstream OS risks.
+These controls do not approve a public or real-data deployment.
