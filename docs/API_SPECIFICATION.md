@@ -1,6 +1,8 @@
 # API specification
 
-Status: Phase 0 contract proposal, 2026-10-13. Endpoints are not implemented.
+Status: Phase 0 contract baseline, amended 2026-10-16. P1-01 implements only
+GET /health/live, the error envelope, request IDs and local CORS boundary. Readiness,
+authentication and conversation endpoints remain unimplemented.
 Base path `/api/v1`; UTF-8 JSON, UUID IDs and UTC ISO-8601 timestamps. Pydantic
 validates strict types, lengths, enums, and rejects unknown request properties.
 No client can set ownership, roles, provider IDs, system instructions or usage.
@@ -229,6 +231,13 @@ registry; model-created links are rejected. No citation establishes legal author
 `GET /health/ready`: 200 only when settings, migrations and database are ready;
 otherwise 503 with generic status. No paid provider call in health probes. External
 provider availability is measured separately. These two paths are outside `/api/v1`.
+P1-01 returns `{"status":"ok"}` for liveness. Readiness is absent (404) until
+P1-02 can actually check database/migration state. P1-01 exposes only the local
+schema at `/api/v1/openapi.json` and reserves the versioned router; it adds no domain
+routes. Validation error details currently use `field: request` and `code: invalid`
+to avoid echoing untrusted keys/input. Exact `Accept-Language: sw` selects fixed
+Kiswahili errors; other values default to English. See the
+[backend guide](../backend/README.md) for local CORS and logging limitations.
 Metrics are restricted to operator network/authentication, never a public history API.
 
 Document ingestion/search, tool invocation, account provisioning, public registration,

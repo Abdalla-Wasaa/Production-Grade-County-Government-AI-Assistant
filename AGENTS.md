@@ -15,8 +15,14 @@
 
 ## Current scope
 
-Phase 0 architecture documentation is complete. The current authorized follow-up
-adds repository workflow documentation, GitHub templates, and checks that run on
-this documentation/tooling-only repository. Remain on `docs/phase-0-architecture`.
-Do not implement application functionality, modify coursework, push, create a PR,
-merge, release, or begin another phase without the user's explicit authorization.
+P1-01 backend foundation is authorized on `build/p1-01-backend-foundation`:
+Python 3.12, uv with committed lockfile, FastAPI/Pydantic v2 settings/lifecycle,
+liveness, safe HTTP/logging boundaries, tests, documentation and relevant CI.
+Develop only a fictional county environment with synthetic information. English
+and Kiswahili remain required. Real-pilot decisions are deferred to the documented
+pre-pilot gate. No real citizen records, county credentials, confidential documents,
+payments, public deployment, or live county integration are authorized.
+All implementation uses dedicated feature branches, Conventional Commits, meaningful
+tests, green relevant GitHub Actions checks, and PRs reviewed by the sole maintainer.
+The user authorized pushing this feature branch and opening its PR into main.
+Do not merge, deploy, release, start P1-02, or add auth/database/chat/AI functionality.

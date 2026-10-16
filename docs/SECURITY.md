@@ -1,7 +1,8 @@
 # Security, privacy and operational assurance
 
-Status: Phase 0 design requirements, 2026-10-13; controls are planned, not certified
-or implemented. Applies to the [MVP](REQUIREMENTS.md) and later RAG/tools defined in
+Status: Phase 0 requirements, amended 2026-10-16. P1-01 implements only local
+configuration/HTTP/logging boundaries; other product controls remain planned and
+no compliance certification is claimed. Applies to the [MVP](REQUIREMENTS.md) and later RAG/tools defined in
 [architecture](ARCHITECTURE.md). [Database](DATABASE_DESIGN.md) and
 [API contracts](API_SPECIFICATION.md) specify enforceable state and permissions.
 

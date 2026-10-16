@@ -1,6 +1,8 @@
 # Milestone roadmap
 
-Status: Phase 0 planning baseline, 2026-10-13. Estimates assume one focused engineer
+Status: Phase 0 planning baseline, amended 2026-10-16. P1-01 backend foundation is
+authorized for local fictional/synthetic development; the rest of Phase 1 remains
+subject to issue/PR review. Estimates assume one focused engineer
 with access to a county content reviewer and privacy/security reviewer. Parallel
 organizational review is possible; no sub-agent delegation or extra engineering team
 is assumed. Part-time work, procurement, credentials, approvals and county source
@@ -15,7 +17,7 @@ the proposed implementation baseline. Coursework stays read-only.
 
 | Phase / effort estimate | Deliverables | Exit criteria and evidence |
 | --- | --- | --- |
-| 0: architecture and requirements, current phase | Seven linked design documents plus ADR; coursework-informed decisions | Documentation links/examples/consistency validated; logical Conventional Commits; owner reviews assumptions; no functionality implemented |
+| 0: architecture and requirements, merged | Seven linked design documents plus ADR; coursework-informed decisions | Completed through merged PR #1; product features still follow their own milestone gates |
 | 1: foundation, 1 week | Isolated frontend/backend packages; locked dependencies; settings; Docker/Compose PostgreSQL; migration framework; CI skeleton; localized UI shell | Fresh clone starts with documented synthetic setup; non-root containers and live/ready behavior verified; frontend build/lint/types and backend smoke/migration checks pass; no live model or citizen data |
 | 2: identity and conversations, 2–3 weeks | Invite-only acceptance/provisioning procedure; secure sessions; users/conversations/messages migrations; API and bilingual history UI | API contract tests pass; role/ownership 401/403/404 tests; CSRF/rotation/revocation/concurrency tests; ordered history and cascade deletion verified; privacy notice/retention job tested; no provider dispatch |
 | 3: bounded OpenAI assistant MVP, 3–4 weeks | Provider port + OpenAI adapter; reviewed service catalogue; bounded memory; durable attempts/retry/recovery; quota/budget ledger; bilingual replies and source/abstention UI | All FR-01..FR-10 verified for closed pilot; >=100 reviewed held-out cases and per-language gates; failure/deletion/replay tests; 10-user load measurement, token/spend caps and deadline checks; provider/privacy approval before any real-data call |
@@ -69,7 +71,7 @@ must be budget-limited and separately enabled; CI normally uses fakes/synthetic 
 
 | Dependency / risk | Owner / mitigation | Needed by |
 | --- | --- | --- |
-| Pilot county and scope not selected | User/county owner confirms one county, service topics, content reviewers and official escalation contacts | Phase 1 planning |
+| Real pilot county/scope, participants, catalogue approval, staffing and operational budget | Owner-approved fictional/synthetic development proceeds; real owners/reviewers and resources must pass the pre-pilot gate | Before real pilot; deferred by owner on 2026-10-16 |
 | Auth invitation delivery not selected | Engineer proposes one-time acceptance protocol and operator runbook; owner approves pilot participant handling | Phase 2 |
 | No approved catalogue or bilingual benchmark | Department owners and English/Kiswahili reviewers prepare provenance-backed public material and independent cases | Phase 3 |
 | Provider account/model, token budget and pricing approval | Owner chooses evaluated configuration and spend ceiling; engineer tests adapter capabilities and records actual rate assumptions | Phase 3 live calls |
@@ -86,3 +88,21 @@ streaming/queues; staff-only RAG; multilingual voice/attachments; controlled rec
 updates with exact-action confirmation. Each requires contracts, permission/data
 lifecycle review and acceptance evidence before activation. Fine-tuning or services
 extraction require measured need rather than coursework precedent.
+
+## Approved synthetic development and issue gates
+
+The owner's amendment permits fictional county information only; no real citizen
+records, county credentials, confidential documents, payments, public deployment or
+live county integration. See [pre-pilot decision gate](PRE_PILOT_GATE.md). All
+implementations require dedicated branches, tests, green relevant CI and the sole
+maintainer's review before merging. A green check is not approval to merge/start
+another issue. P1-01 does not authorize P1-02.
+
+Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/2),
+[P1-02 database/migrations](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/3),
+[P1-03 frontend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/4),
+[P1-04 Compose](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/5),
+[P1-05 CI integration](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/6),
+[P1-06 acceptance](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/7).
+P1-01 provides dependency-free liveness, settings/lifecycle/error/logging foundations
+and backend checks; readiness, PostgreSQL and migration work remain P1-02.

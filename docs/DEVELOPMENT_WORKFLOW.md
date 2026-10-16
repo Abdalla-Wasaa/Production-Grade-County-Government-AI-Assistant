@@ -1,9 +1,9 @@
 # Development workflow
 
-Status: repository engineering setup, 2026-10-15. The project has no application
-implementation. This workflow supplements [AGENTS.md](../AGENTS.md),
+Status: repository engineering setup, updated 2026-10-16 for P1-01 backend foundation.
+This workflow supplements [AGENTS.md](../AGENTS.md),
 [CONTRIBUTING.md](../CONTRIBUTING.md), [roadmap](ROADMAP.md), and
-[security requirements](SECURITY.md). Setup does not authorize Phase 1 or a merge.
+[security requirements](SECURITY.md). Only P1-01 is authorized; no merge or P1-02 work.
 
 ## Repository boundary
 
@@ -67,11 +67,11 @@ boundaries without explicit approval. There are no automatic merge/deploy steps 
 
 | Tool | Purpose | Current activation / future gate |
 | --- | --- | --- |
-| [Ruff](https://docs.astral.sh/ruff/) | Python linting and formatting | Active only for repository-check tooling; backend configuration arrives with Phase 1 |
-| [Pytest](https://docs.pytest.org/en/stable/) | Backend policy/API/integration tests | Add with backend implementation; no empty backend test job now |
+| [Ruff](https://docs.astral.sh/ruff/) | Python linting and formatting | Active for repository tooling and P1-01 backend |
+| [Pytest](https://docs.pytest.org/en/stable/) | Backend policy/API/integration tests | P1-01 configuration/lifecycle/HTTP/logging tests; database tests later |
 | [ESLint](https://eslint.org/docs/latest/use/getting-started) | React/TypeScript linting | Add with frontend package and configuration |
 | [Vitest](https://vitest.dev/guide/) | Frontend unit/component testing | Add with Vite frontend and meaningful component tests |
-| [GitHub Actions](https://docs.github.com/en/actions) | Automated review gates; approved deployment later | Current workflow validates documentation/tooling and scans secrets only |
+| [GitHub Actions](https://docs.github.com/en/actions) | Automated review gates; approved deployment later | Documentation/tooling, secrets and P1-01 backend checks |
 | [Mermaid CLI](https://github.com/mermaid-js/mermaid-cli) | Parse and render Markdown diagrams | Local explicit diagram validation; CI checks fenced blocks but does not render them |
 | [Gitleaks](https://github.com/gitleaks/gitleaks) | Secret-pattern scanning of history and working files | Pinned scanner job; no guarantee that every credential or private dataset is detectable |
 
@@ -80,6 +80,12 @@ inside this project or an isolated `/tmp` environment. Do not reuse/modify cours
 venv, install app dependencies prematurely, or run coursework scripts. Versions are
 explicit pins; dependency refreshes require review, scanning and rerun checks.
 Do not copy whole coursework implementations; use the documented patterns.
+
+The backend has a separate Python 3.12 uv project and committed uv.lock. Use the
+[backend guide](../backend/README.md) for its checks and local run command. All
+implementation PRs await the sole maintainer's review before merge; no self-approval
+is represented as independent review. The approved synthetic-only development scope
+defers real-pilot decisions to [this gate](PRE_PILOT_GATE.md).
 
 ## Current checks and their limits
 
@@ -112,7 +118,7 @@ separate visual check. GitHub's renderer may use a different Mermaid version, so
 review the PR preview after publication is approved. Do not install Node packages
 or generated diagrams into coursework folders.
 
-Future implementation PRs add Ruff/Pytest backend jobs, ESLint/Vitest/frontend build,
+P1-01 adds the `Backend / foundation` locked Python/Ruff/Pytest job. Future PRs add ESLint/Vitest/frontend build,
 PostgreSQL migration/ownership/concurrency tests, provider-fake evaluation and
 dependency/image scans when their inputs exist. Live API tests remain opt-in and
 budget-limited; synthetic fixtures are the default. No present check claims the
@@ -149,9 +155,10 @@ Enable available secret scanning/push protection and a private vulnerability cha
 Consider CODEOWNERS when real responsible reviewers are identified.
 
 No branch rules, collaborators, release settings, private reporting channel or
-deployment environments are configured by these local files. CI has not run on
-GitHub until publication is approved. Current action: stop after local validation
-and commits; no push, PR, merge, release or next-phase implementation.
+deployment environments are configured by these local files. The user has authorized
+P1-01 implementation, feature-branch publication and a PR. Verify actual hosted
+checks for that PR; do not merge, release, deploy or begin P1-02. The setup record
+below describes the earlier Phase 0 validation, not this PR's CI status.
 
 ## Setup validation record (2026-10-15)
 

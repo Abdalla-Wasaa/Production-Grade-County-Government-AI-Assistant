@@ -1,8 +1,8 @@
 # Requirements
 
-Status: Phase 0 design baseline, 2026-10-13. Nothing in this document is implemented.
-The user has authorized documentation; implementation and each subsequent phase
-require separate approval under [AGENTS.md](../AGENTS.md).
+Status: Phase 0 design baseline, amended 2026-10-16 for approved synthetic Phase 1
+development. P1-01 implements the backend foundation; product requirements below
+remain planned. Subsequent work requires approval under [AGENTS.md](../AGENTS.md).
 
 ## Purpose and scope
 
@@ -11,7 +11,9 @@ conversation history, and point them to reviewed official information. The assis
 does not issue permits, collect payments, adjudicate eligibility, or replace county
 officers. The initial pilot serves one configured county; its identity, department
 owners, source catalogue, and escalation contacts must be confirmed before release.
-No real citizen records or coursework datasets are used for development.
+No real citizen records or coursework datasets are used for development. The owner
+approved a fictional county environment with synthetic English/Kiswahili information
+for initial development; a real county pilot is a separate approval gate.
 
 Design inputs: [coursework review](COURSEWORK_REVIEW.md), user-selected stack,
 [architecture](ARCHITECTURE.md), [API](API_SPECIFICATION.md), and
@@ -104,9 +106,17 @@ percentage is not a substitute for risk-based cases.
 
 ## Decisions requiring owner confirmation
 
-Before Phase 1: confirm pilot county, intended participants, reviewed initial service
-topics, catalogue reviewers, staffing and budget. Before live provider calls: approve
-provider account/model configuration, privacy basis, and permitted data categories.
-Before real-data deployment: confirm hosting location, county privacy officer/legal
-review, identity onboarding, retention values, and operational ownership. These do
-not block completing Phase 0 documents. See [roadmap](ROADMAP.md) for milestone gates.
+The owner's 2026-10-16 amendment defers real county selection, participants, service
+catalogue approval, staffing and operational budget to the explicit
+[pre-pilot gate](PRE_PILOT_GATE.md); they do not block synthetic Phase 1 work.
+Before any live provider calls, separately approve account/model configuration,
+privacy basis, permitted data categories and spend. Before any real pilot, confirm
+the gate's content/privacy/security/hosting/retention and operational decisions.
+No public deployment, live county integration, payments or real/confidential records
+are authorized. See [roadmap](ROADMAP.md) for milestone boundaries.
+
+Approved foundation stack: Python 3.12; uv with committed uv.lock; FastAPI/Pydantic v2;
+Node.js 24 LTS; React/Vite/TypeScript/Tailwind CSS; PostgreSQL 17; SQLAlchemy 2.x and
+Alembic; Pytest/Ruff; Vitest/React Testing Library/ESLint; Docker/Compose and GitHub
+Actions. Exact package compatibility is checked before installation/locking and
+verified by relevant tests. Public-pilot review is not satisfied by synthetic tests.
