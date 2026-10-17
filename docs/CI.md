@@ -1,9 +1,9 @@
 # CI quality and security gates
 
-P1-05 PR #13 is merged; its audit remediation remains pending review.
-P1-05 implements PR checks; it does not configure GitHub rules or authorize merging,
-P1-06, deployment or real data. Required contexts must be selected in the remote
-ruleset after their actual emitted names and results are verified on the PR.
+P1-05 PRs #13/#14 are merged. Ruleset 25222082 now enforces the seven verified
+GitHub Actions contexts with strict current branches and resolved conversations.
+P1-06 documentation/verification is authorized; owner acceptance remains pending.
+No CI result authorizes merging, production, real data or Phase 2.
 
 ## Architecture and contexts
 

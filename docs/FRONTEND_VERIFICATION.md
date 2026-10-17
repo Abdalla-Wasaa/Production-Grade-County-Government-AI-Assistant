@@ -82,7 +82,7 @@ existing text, secret-path, symlink and artifact restrictions. Browser traces an
 reports stay ignored. Screenshot validation is an artifact-integrity check, not a
 privacy or vulnerability certification. Both committed images contain synthetic UI.
 
-## Remaining milestone boundary
+## Historical P1-03 milestone boundary
 
 The shell needs no database, authentication or AI. Do not add a working composer,
 provider calls, conversation persistence or real county content in this milestone.

@@ -90,3 +90,14 @@ manual and unavailable verification distinct in [Phase 1 acceptance](docs/PHASE_
 Main's seven required checks are enforced by ruleset 25222082, source app 15368.
 Owner review still precedes merge and Phase 2. Missing isolated-host or daily human
 security review evidence must remain pending; acceptance is never inferred from CI.
+
+For dependency auditing, select the CI-tool interpreter explicitly; the root .venv
+only contains uv and does not contain pip-audit/packaging:
+
+```bash
+PATH="$PWD/.ci-venv/bin:$PWD/.venv/bin:$PATH" .ci-venv/bin/python scripts/audit_python.py --output .artifacts/python-audit
+```
+
+Use checksum-verified Trivy 0.76.0 and Gitleaks 8.30.1 from the reviewed workflow
+installation steps when running their commands locally. Do not install arbitrary
+latest tools, publish raw diagnostics or treat missing reports as success.

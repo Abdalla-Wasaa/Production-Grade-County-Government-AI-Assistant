@@ -208,13 +208,14 @@ execution, officer authorization, and a new risk assessment.
 
 ## Infrastructure and observability
 
-Docker Compose later provides frontend/proxy, backend and PostgreSQL for isolated
-development; optional telemetry is a separate profile. Non-root images, locked
+Docker Compose now provides frontend/proxy, backend and PostgreSQL for local
+synthetic development; optional telemetry remains future work. Non-root images, locked
 dependencies, private DB network, volumes and health checks are required. GitHub
-Actions runs lint/types, unit/integration/contracts, frontend build, secret/dependency
-checks and budget-free evaluation. Live API tests are opt-in; deployments require
-approved protected environments. Phase 0 established documentation/security CI;
-P1-01 adds backend tests/lint/locked-dependency checks. Docker/Compose remains P1-04.
+Actions runs lint/types, unit/integration/browser tests, frontend builds and
+secret/dependency/image checks. Domain contract/evaluation suites remain future
+milestone requirements, not current passing suites. Live provider calls and any
+deployment require separate approval; no deployment job exists. See CI.md for the
+implemented P1-05 checks and enforced source-app-bound ruleset.
 
 For AWS, evaluate static asset hosting/CDN, container compute, managed PostgreSQL,
 object storage, managed secrets, and telemetry. Region, service choices, pgvector
