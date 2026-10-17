@@ -446,3 +446,98 @@ h1 {
 .primary-button {
   max-width: 100%;
 }
+
+.auth-card {
+  max-width: 640px;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid #cbd9cf;
+  border-radius: 14px;
+  background: white;
+  margin-inline: auto;
+}
+.auth-card h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+.auth-card form {
+  display: grid;
+  gap: 0.8rem;
+  margin-block: 1rem 1.5rem;
+}
+.auth-card input:not([type='checkbox']) {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #788e83;
+  border-radius: 7px;
+  padding: 0.7rem;
+  background: white;
+  color: #183633;
+  font: inherit;
+}
+.auth-card label {
+  font-weight: 600;
+}
+.auth-card p,
+.account-page p {
+  line-height: 1.7;
+}
+.checkbox-label {
+  display: flex;
+  gap: 0.7rem;
+  align-items: start;
+  padding-block: 0.7rem;
+}
+.checkbox-label input {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+}
+.auth-feedback:not(:empty) {
+  border-left: 4px solid #a34208;
+  padding: 1rem;
+  background: #fff4e9;
+  color: #642b0c;
+}
+.secondary-button {
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  border: 1px solid #788e83;
+  border-radius: 7px;
+  color: #143e31;
+  background: white;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+.auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block: 2rem;
+}
+.identity-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem 1.5rem;
+}
+.identity-summary dt {
+  font-weight: 600;
+}
+.identity-summary dd {
+  margin: 0;
+  min-width: 0;
+}
+.session-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+.session-list li {
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #cbd9cf;
+  border-radius: 10px;
+}

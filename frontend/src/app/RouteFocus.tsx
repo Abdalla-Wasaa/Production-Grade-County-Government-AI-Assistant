@@ -12,7 +12,13 @@ export function RouteFocus() {
         ? 'homePageTitle'
         : pathname === '/assistant'
           ? 'assistantPageTitle'
-          : 'notFoundPageTitle';
+          : pathname === '/login'
+            ? 'loginTitle'
+            : pathname === '/activate'
+              ? 'activationTitle'
+              : pathname === '/account'
+                ? 'accountTitle'
+                : 'notFoundPageTitle';
     document.title = `${t(title)} · ${t('appName')}`;
     // A language change updates titles without taking focus from its selector.
     if (previousPath.current !== pathname) {

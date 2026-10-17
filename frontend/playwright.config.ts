@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e',
-  testIgnore: '**/compose.spec.ts',
+  testIgnore: ['**/compose.spec.ts', '**/auth-compose.spec.ts'],
   outputDir: '.artifacts/browser-results',
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
