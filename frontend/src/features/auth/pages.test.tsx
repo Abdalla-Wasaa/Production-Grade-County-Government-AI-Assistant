@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -72,4 +72,20 @@ describe('bilingual account pages', () => {
     await waitFor(() => expect(screen.getByRole('alert')).toHaveFocus());
     expect(screen.getByLabelText('Password', { exact: true })).toHaveValue('');
   });
+});
+
+it('preserves a valid supplementary-Unicode password without HTML truncation', async () => {
+  const s = mount('/login');
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Sign in' })).toBeEnabled());
+  const password = '🔐'.repeat(80);
+  fireEvent.change(screen.getByLabelText('Email address'), {
+    target: { value: 'sample@example.invalid' },
+  });
+  fireEvent.change(screen.getByLabelText('Password', { exact: true }), {
+    target: { value: password },
+  });
+  await userEvent.click(screen.getByRole('button', { name: 'Sign in' }));
+  await screen.findByText('sample@example.invalid');
+  const call = s.fetcher.mock.calls.find(([url]) => url.endsWith('/login'))!;
+  expect((JSON.parse(call[1]!.body as string) as { password: string }).password).toBe(password);
 });

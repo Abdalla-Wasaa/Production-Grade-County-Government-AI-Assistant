@@ -23,6 +23,12 @@ export function LoginPage() {
     if (busy) return;
     const form = event.currentTarget;
     const data = new FormData(form);
+    const password = formText(data, 'password');
+    if ([...password].length < 1 || [...password].length > 128) {
+      form.reset();
+      setIssue('invalid');
+      return;
+    }
     setBusy(true);
     setIssue(null);
     try {
@@ -65,7 +71,6 @@ export function LoginPage() {
           name="password"
           type="password"
           autoComplete="current-password"
-          maxLength={128}
           required
         />
         <button className="primary-button" disabled={busy || state.status === 'loading'}>
