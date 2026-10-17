@@ -2,13 +2,31 @@
 
 Status: Phase 0 target design, amended 2026-10-16. P1-01/P1-02 implement the backend
 factory/settings/lifecycle/health and safe HTTP/logging boundaries, async database
-sessions and explicit baseline migrations; remaining
-modules and infrastructure in this target design are not yet implemented. P1-03
-adds the independent bilingual frontend shell; auth/chat remain deferred.
+sessions and explicit baseline migrations. P1-03 adds the independent bilingual
+frontend shell; P1-04 adds local Compose/Nginx and isolated PostgreSQL; P1-05 adds
+enforced quality/security gates. Auth/chat/AI modules in the target design remain
+unimplemented. P1-06 verifies/documents these boundaries; it adds no API consumer.
 Scope and targets come from [requirements](REQUIREMENTS.md). Rationale is recorded
 in [ADR 0001](DECISIONS/0001-modular-monolith.md).
 
-## Modular monolith and trust boundaries
+## Implemented Phase 1 foundation
+
+```mermaid
+flowchart LR
+    Browser["Bilingual React shell"] -->|"local HTTP assets"| Proxy["Nginx on 127.0.0.1:8080"]
+    Probes["Operator and acceptance probes"] -->|"health and API requests"| Proxy
+    Proxy -->|"preserve /health and /api paths"| API["FastAPI health and safe errors"]
+    API -->|"runtime role: readiness only"| DB[("Private PostgreSQL 17")]
+    CLI["Explicit maintenance migration CLI"] -->|"separate migration role"| DB
+```
+
+The browser shell makes no API/provider requests. Nginx can proxy operational
+requests; this is infrastructure connectivity, not an implemented frontend business
+integration. The sole baseline table is Alembic revision tracking. Only the proxy
+publishes a loopback port; runtime/migration credentials are separated. Local HTTP
+is intentional; HTTPS/auth/quotas/provider boundaries below are future design.
+
+## Target modular monolith and future trust boundaries
 
 One FastAPI backend artifact owns application modules and one PostgreSQL database.
 React/Vite/Tailwind CSS produces a static frontend artifact. A same-origin reverse

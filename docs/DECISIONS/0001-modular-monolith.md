@@ -57,3 +57,11 @@ tenancy before serving multiple counties.
 Related: [architecture](../ARCHITECTURE.md), [requirements](../REQUIREMENTS.md),
 [database](../DATABASE_DESIGN.md), [API](../API_SPECIFICATION.md),
 [security](../SECURITY.md), [roadmap](../ROADMAP.md).
+
+## Implementation record, 17 October 2026
+
+The proposed-status header records the original Phase 0 decision context. Phase 0
+merged in PR #1; P1-01 through P1-05 implement its foundation through PR #14. P1-06
+checks that evidence without replacing this architectural decision. Domain modules,
+provider calls, RAG/tools and production deployment remain future approved phases.
+No additional ADR or changed architecture is introduced by documentation acceptance.

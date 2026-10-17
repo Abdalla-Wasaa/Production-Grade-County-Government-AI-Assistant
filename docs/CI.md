@@ -128,20 +128,28 @@ normal/fallback cleanup. Cancellation cleanup is best effort; a hard runner kill
 can prevent final steps, and hosted runners are disposable. No global Docker prune
 or existing developer/coursework volume cleanup is authorized.
 
-## Ruleset rollout after separate approval
+## Enforced main ruleset
 
-The observed active main ruleset requires PRs, zero external approvals, no force
-push/deletion and no bypass actors. Its required-check list was empty at planning
-review. Classic branch-protection 404 does not mean no ruleset exists.
+Ruleset 25222082 is active for default branch main. On 17 October 2026 the owner
+approved adding all seven contexts in the table above, each bound to verified
+GitHub Actions app 15368. Strict current-branch synchronization and resolved review
+conversations are required. Existing mandatory PRs, zero required approvals, no
+code-owner/last-push approval requirement, force-push/deletion blocks and no bypass
+actors are preserved. Future settings changes require separate owner approval.
 
-After the seven real contexts succeed, obtain owner approval to add all seven,
-bind the source to GitHub Actions (observed app ID 15368), require current branches
-and resolved conversations, and preserve zero external approvals and no bypass.
-Do not demand impossible self-approval. Verify effective rules through the ruleset
-and branch-rules APIs, then use a controlled PR to inspect missing/failing-check
-blocking. Never test by attempting an unauthorized push or merge to main.
-Until this is configured and verified, these are CI checks, not verified remote
-merge-blocking requirements. Passing checks never grant permission to merge.
+[Controlled PR #15](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/pull/15)
+was blocked with pending checks, then with only a deliberate repository-quality
+failure while six checks passed. After correcting the synthetic document, all seven
+reported isRequired=true from app 15368 and GitHub reported CLEAN/MERGEABLE without
+self-approval. The PR was closed unmerged and only its test branch removed. No merge
+or bypass was attempted. Effective main-rules APIs and the live ruleset confirmed
+the settings. The earlier empty-check proposal is historical, not the current state.
+
+Expiry, fresh vulnerability changes, unavailable services, missing artifacts or
+renamed contexts intentionally block merging, including documentation-only PRs.
+An absent check is not success. Resolve the cause through a reviewed PR; do not
+weaken the gate or silently renew risk acceptance. Reuse this enforcement evidence
+for P1-06 unless settings/workflows change; no repeat failure PR is required.
 
 ## P1-05 audit remediation
 
@@ -182,5 +190,5 @@ contain no raw exception text or credential dumps. A hard job cancellation/timeo
 can still interrupt execution; retained partial evidence is not a completed daily
 review. The owner must inspect failed/missing daily runs and review CRITICAL risk.
 
-P1-05 completion remains subject to verified hosted artifacts, passing checks and
-owner review. No ruleset change, merge, production clearance or P1-06 is implied.
+P1-05 remediation passed hosted verification and merged as PR #14. P1-06
+acceptance remains subject to its own evidence and owner review. No ruleset change, merge, production clearance or P1-06 is implied.
