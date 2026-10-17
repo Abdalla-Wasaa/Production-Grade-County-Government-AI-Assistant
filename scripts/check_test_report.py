@@ -63,9 +63,17 @@ def main():
     parser.add_argument("reports", nargs="+", type=Path)
     parser.add_argument("--sanitize", action="store_true")
     args = parser.parse_args()
+    failed = False
     for path in args.reports:
-        count = inspect_report(path, args.sanitize)
-        print(f"PASS: {path.name}: {count} tests executed")
+        try:
+            count = inspect_report(path, args.sanitize)
+            print(f"PASS: {path.name}: {count} tests executed")
+        except (ValueError, OSError, ET.ParseError):
+            # Sanitize every available report even if an earlier one failed.
+            failed = True
+            print(f"FAIL: {path.name}: required test evidence invalid or unavailable")
+    if failed:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

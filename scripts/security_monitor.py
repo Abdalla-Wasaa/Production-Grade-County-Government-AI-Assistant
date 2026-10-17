@@ -51,51 +51,77 @@ def current_digest(reference):
     }
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    args.output.mkdir(parents=True, exist_ok=True)
+def monitor(output):
+    """Isolate failures; retain safe stage status without exception/credential text."""
+    output.mkdir(parents=True, exist_ok=True)
     statuses = {}
 
-    def run(name, command, timeout=600):
+    def stage(name, operation):
         try:
-            result = subprocess.run(command, cwd=ROOT, check=False, timeout=timeout)
-            statuses[name] = result.returncode
+            code = operation()
+            statuses[name] = {
+                "code": int(code or 0),
+                "status": "passed" if not code else "failed",
+            }
         except subprocess.TimeoutExpired:
-            statuses[name] = 124
+            statuses[name] = {"code": 124, "status": "timeout"}
+        except (ValueError, KeyError, TypeError, OSError, subprocess.SubprocessError):
+            statuses[name] = {"code": 1, "status": "invalid-or-unavailable"}
+        # Write after every stage so partial results survive later failures.
+        (output / "status.json").write_text(json.dumps(statuses, indent=2) + "\n")
 
-    run(
+    def run(command, timeout=600, cwd=ROOT):
+        return subprocess.run(command, cwd=cwd, check=False, timeout=timeout).returncode
+
+    stage(
         "python",
-        ["python", "scripts/audit_python.py", "--output", str(args.output / "python")],
+        lambda: run(
+            ["python", "scripts/audit_python.py", "--output", str(output / "python")]
+        ),
     )
-    result = subprocess.run(
-        ["npm", "audit", "--json", "--audit-level=high"],
-        cwd=ROOT / "frontend",
-        capture_output=True,
-        text=True,
-        timeout=180,
-    )
-    data = json.loads(result.stdout)
-    if "metadata" not in data or "vulnerabilities" not in data or "error" in data:
-        raise ValueError("Invalid frontend audit evidence")
-    (args.output / "frontend.json").write_text(json.dumps(data, indent=2) + "\n")
-    statuses["frontend"] = result.returncode
+
+    def frontend():
+        result = subprocess.run(
+            ["npm", "audit", "--json", "--audit-level=high"],
+            cwd=ROOT / "frontend",
+            capture_output=True,
+            text=True,
+            timeout=180,
+        )
+        data = json.loads(result.stdout)
+        if "metadata" not in data or "vulnerabilities" not in data or "error" in data:
+            raise ValueError("Invalid frontend audit evidence")
+        (output / "frontend.json").write_text(json.dumps(data, indent=2) + "\n")
+        return result.returncode
+
+    stage("frontend", frontend)
     refs = set()
-    for directory in ("backend", "frontend", "infra/postgres"):
-        refs.update(
-            re.findall(
+
+    def collect_refs():
+        for directory in ("backend", "frontend", "infra/postgres"):
+            matches = re.findall(
                 r"^FROM (\S+@sha256:[a-f0-9]{64})",
                 (ROOT / directory / "Dockerfile").read_text(),
                 re.M,
             )
-        )
-    registry_rows = [current_digest(reference) for reference in sorted(refs)]
-    (args.output / "registry.json").write_text(
-        json.dumps(registry_rows, indent=2) + "\n"
-    )
-    statuses["digest_updates"] = int(any(row["changed"] for row in registry_rows))
-    images = []
+            if not matches:
+                raise ValueError("Missing registry references")
+            refs.update(matches)
+
+    stage("registry_inputs", collect_refs)
+    registry_rows = []
+    for index, reference in enumerate(sorted(refs)):
+
+        def lookup(reference=reference):
+            row = current_digest(reference)
+            registry_rows.append(row)
+            (output / "registry.json").write_text(
+                json.dumps(registry_rows, indent=2) + "\n"
+            )
+            return int(row["changed"])
+
+        stage("registry_" + str(index), lookup)
+    images, image_ids = [], {}
     for role, directory in (
         ("web", "frontend"),
         ("backend", "backend"),
@@ -105,41 +131,48 @@ def main():
         command = ["docker", "build", "-t", image]
         if role != "db":
             command += ["--target", "runtime"]
-        run("build_" + role, [*command, str(ROOT / directory)], timeout=900)
-        images.append(image)
-    manifest = args.output / "images.json"
-    manifest.write_text(
-        json.dumps(
-            {
-                "images": images,
-                "image_ids": {
-                    role: subprocess.check_output(
-                        ["docker", "image", "inspect", "--format", "{{.Id}}", image],
-                        text=True,
-                    ).strip()
-                    for role, image in zip(
-                        ("web", "backend", "db"), images, strict=True
-                    )
-                },
-            }
+        stage(
+            "build_" + role,
+            lambda command=command, directory=directory: run(
+                [*command, str(ROOT / directory)], timeout=600
+            ),
         )
-        + "\n"
-    )
-    if not any(statuses.get("build_" + role) for role in ("web", "backend", "db")):
-        run(
-            "images",
+        images.append(image)
+        image_ids[role] = None
+
+        def inspect(role=role, image=image):
+            if statuses["build_" + role]["code"]:
+                raise ValueError("Cannot inspect failed build")
+            image_ids[role] = subprocess.check_output(
+                ["docker", "image", "inspect", "--format", "{{.Id}}", image],
+                text=True,
+                timeout=15,
+            ).strip()
+
+        stage("identity_" + role, inspect)
+    manifest = output / "images.json"
+    manifest.write_text(json.dumps({"images": images, "image_ids": image_ids}) + "\n")
+    stage(
+        "images",
+        lambda: run(
             [
                 "python",
                 "scripts/scan_images.py",
                 str(manifest),
                 "--output",
-                str(args.output / "images"),
+                str(output / "images"),
             ],
             timeout=900,
-        )
-    (args.output / "status.json").write_text(json.dumps(statuses, indent=2) + "\n")
+        ),
+    )
     print(json.dumps(statuses))
-    return int(any(statuses.values()))
+    return int(any(item["code"] for item in statuses.values()))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, required=True)
+    return monitor(parser.parse_args().output)
 
 
 if __name__ == "__main__":

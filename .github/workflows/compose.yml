@@ -71,7 +71,8 @@ jobs:
         with:
           name: compose-evidence
           path: .artifacts/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true
           retention-days: 14
       - name: Retain compose-browser
         if: always()
@@ -79,7 +80,8 @@ jobs:
         with:
           name: compose-browser
           path: frontend/.artifacts/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true
           retention-days: 7
       - name: Cleanup verified disposable resources
         if: always()

@@ -29,5 +29,808 @@
     "frontend/.artifacts/",
     ".artifacts/",
     "${{ runner.temp }}/county-image-scans/*.json"
-  ]
+  ],
+  "command_contracts": {
+    "compose.yml/compose-integration": {
+      "Install and verify approved frontend toolchain": [
+        [
+          "test",
+          "$(node --version)",
+          "=",
+          "v24.22.0"
+        ],
+        [
+          "test",
+          "$(npm --version)",
+          "=",
+          "11.19.1"
+        ],
+        [
+          "npm",
+          "--prefix",
+          "frontend",
+          "ci"
+        ],
+        [
+          "npm",
+          "--prefix",
+          "frontend",
+          "ls",
+          "--all"
+        ]
+      ],
+      "Verify Docker and install Chromium": [
+        [
+          "docker",
+          "version"
+        ],
+        [
+          "docker",
+          "compose",
+          "version"
+        ],
+        [
+          "docker",
+          "buildx",
+          "version"
+        ],
+        [
+          "cd",
+          "frontend"
+        ],
+        [
+          "npx",
+          "--no-install",
+          "playwright",
+          "install",
+          "--with-deps",
+          "chromium"
+        ]
+      ],
+      "Container unit tests": [
+        [
+          "python3",
+          "scripts/dev.py",
+          "test-frontend"
+        ],
+        [
+          "python3",
+          "scripts/dev.py",
+          "test-backend"
+        ]
+      ],
+      "Compose integration and Nginx browser smoke": [
+        [
+          "python3",
+          "scripts/compose_smoke.py",
+          "--browser",
+          "--report",
+          "$RUNNER_TEMP/county-images.json",
+          "--cleanup-manifest",
+          "$RUNNER_TEMP/county-cleanup.json",
+          "--diagnostics",
+          ".artifacts/compose-diagnostics.json"
+        ]
+      ],
+      "Install checksum-verified Trivy": [
+        [
+          "mkdir",
+          "-p",
+          "$RUNNER_TEMP/trivy"
+        ],
+        [
+          "curl",
+          "--fail",
+          "--silent",
+          "--show-error",
+          "--location",
+          "--retry",
+          "3",
+          "https://github.com/aquasecurity/trivy/releases/download/v0.76.0/trivy_0.76.0_Linux-64bit.tar.gz",
+          "-o",
+          "$RUNNER_TEMP/trivy/trivy.tar.gz"
+        ],
+        [
+          "echo",
+          "e24b1c51293c1b15e4ba8d45bbc7891ba053f90278ec2698f3562c993e145fe7  $RUNNER_TEMP/trivy/trivy.tar.gz",
+          "|",
+          "sha256sum",
+          "--check",
+          "--strict"
+        ],
+        [
+          "tar",
+          "-xzf",
+          "$RUNNER_TEMP/trivy/trivy.tar.gz",
+          "-C",
+          "$RUNNER_TEMP/trivy",
+          "trivy"
+        ],
+        [
+          "echo",
+          "$RUNNER_TEMP/trivy",
+          ">>",
+          "$GITHUB_PATH"
+        ]
+      ],
+      "Complete image reports and development security decision": [
+        [
+          "python3",
+          "scripts/scan_images.py",
+          "$RUNNER_TEMP/county-images.json",
+          "--output",
+          ".artifacts/image-scans"
+        ]
+      ],
+      "Validate and sanitize Nginx browser report": [
+        [
+          "python3",
+          "scripts/check_test_report.py",
+          "--sanitize",
+          "frontend/.artifacts/compose-browser.xml"
+        ]
+      ],
+      "Cleanup verified disposable resources": [
+        [
+          "python3",
+          "scripts/compose_smoke.py",
+          "--cleanup",
+          "$RUNNER_TEMP/county-cleanup.json"
+        ]
+      ]
+    },
+    "backend.yml/backend-quality": {
+      "Install hash-verified tooling": [
+        [
+          "python",
+          "-m",
+          "pip",
+          "install",
+          "--disable-pip-version-check",
+          "--only-binary=:all:",
+          "--require-hashes",
+          "-r",
+          ".github/uv-bootstrap.txt"
+        ]
+      ],
+      "Install locked backend": [
+        [
+          "uv",
+          "lock",
+          "--project",
+          "backend",
+          "--check"
+        ],
+        [
+          "uv",
+          "sync",
+          "--project",
+          "backend",
+          "--locked"
+        ],
+        [
+          "uv",
+          "pip",
+          "check",
+          "--python",
+          "backend/.venv/bin/python"
+        ]
+      ],
+      "Lint format types and unit tests": [
+        [
+          "cd",
+          "backend"
+        ],
+        [
+          "uv",
+          "run",
+          "--locked",
+          "ruff",
+          "check",
+          "."
+        ],
+        [
+          "uv",
+          "run",
+          "--locked",
+          "ruff",
+          "format",
+          "--check",
+          "."
+        ],
+        [
+          "uv",
+          "run",
+          "--locked",
+          "mypy"
+        ],
+        [
+          "uv",
+          "run",
+          "--locked",
+          "pytest",
+          "-q",
+          "-m",
+          "not integration",
+          "--junitxml=.artifacts/unit.xml"
+        ]
+      ],
+      "Validate and sanitize unit report": [
+        [
+          "python3",
+          "scripts/check_test_report.py",
+          "--sanitize",
+          "backend/.artifacts/unit.xml"
+        ]
+      ],
+      "Verify lock integrity": [
+        [
+          "git",
+          "diff",
+          "--exit-code",
+          "--",
+          "backend/uv.lock"
+        ]
+      ]
+    },
+    "backend.yml/postgresql-integration": {
+      "Install hash-verified tooling": [
+        [
+          "python",
+          "-m",
+          "pip",
+          "install",
+          "--disable-pip-version-check",
+          "--only-binary=:all:",
+          "--require-hashes",
+          "-r",
+          ".github/uv-bootstrap.txt"
+        ]
+      ],
+      "Install locked backend": [
+        [
+          "uv",
+          "lock",
+          "--project",
+          "backend",
+          "--check"
+        ],
+        [
+          "uv",
+          "sync",
+          "--project",
+          "backend",
+          "--locked"
+        ],
+        [
+          "uv",
+          "pip",
+          "check",
+          "--python",
+          "backend/.venv/bin/python"
+        ]
+      ],
+      "Real PostgreSQL integration and packaged migrations": [
+        [
+          "cd",
+          "backend"
+        ],
+        [
+          "uv",
+          "run",
+          "--locked",
+          "pytest",
+          "-q",
+          "-m",
+          "integration",
+          "--junitxml=.artifacts/postgresql.xml"
+        ],
+        [
+          "uv",
+          "build",
+          "--out-dir",
+          "$RUNNER_TEMP/backend-dist"
+        ]
+      ],
+      "Validate and sanitize PostgreSQL report": [
+        [
+          "python3",
+          "scripts/check_test_report.py",
+          "--sanitize",
+          "backend/.artifacts/postgresql.xml"
+        ]
+      ]
+    },
+    "backend.yml/python-dependency-audit": {
+      "Install hash-verified tooling": [
+        [
+          "python",
+          "-m",
+          "pip",
+          "install",
+          "--disable-pip-version-check",
+          "--only-binary=:all:",
+          "--require-hashes",
+          "-r",
+          ".github/uv-bootstrap.txt"
+        ],
+        [
+          "uv",
+          "venv",
+          ".ci-venv"
+        ],
+        [
+          "uv",
+          "pip",
+          "sync",
+          "--python",
+          ".ci-venv/bin/python",
+          "--require-hashes",
+          "requirements-ci.lock"
+        ],
+        [
+          "echo",
+          "$PWD/.ci-venv/bin",
+          ">>",
+          "$GITHUB_PATH"
+        ]
+      ],
+      "Audit runtime dev and repository tool dependencies": [
+        [
+          "python",
+          "scripts/audit_python.py",
+          "--output",
+          ".artifacts/python-audit"
+        ]
+      ]
+    },
+    "frontend.yml/frontend-quality": {
+      "Install and verify approved frontend toolchain": [
+        [
+          "test",
+          "$(node --version)",
+          "=",
+          "v24.22.0"
+        ],
+        [
+          "test",
+          "$(npm --version)",
+          "=",
+          "11.19.1"
+        ],
+        [
+          "npm",
+          "--prefix",
+          "frontend",
+          "ci"
+        ],
+        [
+          "npm",
+          "--prefix",
+          "frontend",
+          "ls",
+          "--all"
+        ]
+      ],
+      "Frontend quality build and unit tests": [
+        [
+          "cd",
+          "frontend"
+        ],
+        [
+          "npm",
+          "audit",
+          "--audit-level=high"
+        ],
+        [
+          "npm",
+          "run",
+          "lint"
+        ],
+        [
+          "npm",
+          "run",
+          "format:check"
+        ],
+        [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        [
+          "npm",
+          "run",
+          "test:ci"
+        ],
+        [
+          "npm",
+          "run",
+          "build"
+        ],
+        [
+          "npx",
+          "--no-install",
+          "playwright",
+          "install",
+          "--with-deps",
+          "chromium",
+          "firefox",
+          "webkit"
+        ],
+        [
+          "npm",
+          "run",
+          "test:e2e"
+        ]
+      ],
+      "Validate and sanitize test reports": [
+        [
+          "python3",
+          "scripts/check_test_report.py",
+          "--sanitize",
+          "frontend/.artifacts/vitest.xml",
+          "frontend/.artifacts/playwright.xml"
+        ]
+      ],
+      "Verify frontend lock integrity": [
+        [
+          "git",
+          "diff",
+          "--exit-code",
+          "--",
+          "frontend/package-lock.json"
+        ]
+      ]
+    },
+    "documentation.yml/repository-quality": {
+      "Install hash-verified tooling": [
+        [
+          "python",
+          "-m",
+          "pip",
+          "install",
+          "--disable-pip-version-check",
+          "--only-binary=:all:",
+          "--require-hashes",
+          "-r",
+          ".github/uv-bootstrap.txt"
+        ],
+        [
+          "uv",
+          "venv",
+          ".ci-venv"
+        ],
+        [
+          "uv",
+          "pip",
+          "sync",
+          "--python",
+          ".ci-venv/bin/python",
+          "--require-hashes",
+          "requirements-ci.lock"
+        ],
+        [
+          "echo",
+          "$PWD/.ci-venv/bin",
+          ">>",
+          "$GITHUB_PATH"
+        ]
+      ],
+      "Repository policy lint and regression tests": [
+        [
+          "python",
+          "scripts/check_repository.py"
+        ],
+        [
+          "python",
+          "scripts/check_ci_policy.py"
+        ],
+        [
+          "ruff",
+          "check",
+          "scripts",
+          "tests/tooling"
+        ],
+        [
+          "ruff",
+          "format",
+          "--check",
+          "scripts",
+          "tests/tooling"
+        ],
+        [
+          "python",
+          "-m",
+          "pytest",
+          "tests/tooling",
+          "-q",
+          "--junitxml=.artifacts/repository.xml"
+        ],
+        [
+          "git",
+          "show",
+          "--format=",
+          "--check",
+          "HEAD"
+        ]
+      ],
+      "Validate and sanitize repository report": [
+        [
+          "python3",
+          "scripts/check_test_report.py",
+          "--sanitize",
+          ".artifacts/repository.xml"
+        ]
+      ]
+    },
+    "documentation.yml/secret-scan": {
+      "Install checksum-verified Gitleaks": [
+        [
+          "curl",
+          "--fail",
+          "--silent",
+          "--show-error",
+          "--location",
+          "--retry",
+          "3",
+          "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz",
+          "-o",
+          "$RUNNER_TEMP/gitleaks.tar.gz"
+        ],
+        [
+          "echo",
+          "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  $RUNNER_TEMP/gitleaks.tar.gz",
+          "|",
+          "sha256sum",
+          "--check",
+          "--strict"
+        ],
+        [
+          "tar",
+          "-xzf",
+          "$RUNNER_TEMP/gitleaks.tar.gz",
+          "-C",
+          "$RUNNER_TEMP",
+          "gitleaks"
+        ],
+        [
+          "echo",
+          "$RUNNER_TEMP",
+          ">>",
+          "$GITHUB_PATH"
+        ]
+      ],
+      "Verify scanner detects synthetic fixture": [
+        [
+          "python3",
+          "scripts/test_secret_scanner.py"
+        ]
+      ],
+      "Scan history and current files": [
+        [
+          "gitleaks",
+          "git",
+          "--redact",
+          "--no-banner",
+          "--log-opts=--all",
+          "."
+        ],
+        [
+          "gitleaks",
+          "dir",
+          "--redact",
+          "--no-banner",
+          "."
+        ]
+      ]
+    },
+    "security-monitor.yml/monitor": {
+      "Install hash-verified tooling": [
+        [
+          "python",
+          "-m",
+          "pip",
+          "install",
+          "--disable-pip-version-check",
+          "--only-binary=:all:",
+          "--require-hashes",
+          "-r",
+          ".github/uv-bootstrap.txt"
+        ],
+        [
+          "uv",
+          "venv",
+          ".ci-venv"
+        ],
+        [
+          "uv",
+          "pip",
+          "sync",
+          "--python",
+          ".ci-venv/bin/python",
+          "--require-hashes",
+          "requirements-ci.lock"
+        ],
+        [
+          "echo",
+          "$PWD/.ci-venv/bin",
+          ">>",
+          "$GITHUB_PATH"
+        ]
+      ],
+      "Install and verify approved frontend toolchain": [
+        [
+          "test",
+          "$(node --version)",
+          "=",
+          "v24.22.0"
+        ],
+        [
+          "test",
+          "$(npm --version)",
+          "=",
+          "11.19.1"
+        ],
+        [
+          "npm",
+          "--prefix",
+          "frontend",
+          "ci"
+        ],
+        [
+          "npm",
+          "--prefix",
+          "frontend",
+          "ls",
+          "--all"
+        ]
+      ],
+      "Install checksum-verified Trivy": [
+        [
+          "mkdir",
+          "-p",
+          "$RUNNER_TEMP/trivy"
+        ],
+        [
+          "curl",
+          "--fail",
+          "--silent",
+          "--show-error",
+          "--location",
+          "--retry",
+          "3",
+          "https://github.com/aquasecurity/trivy/releases/download/v0.76.0/trivy_0.76.0_Linux-64bit.tar.gz",
+          "-o",
+          "$RUNNER_TEMP/trivy/trivy.tar.gz"
+        ],
+        [
+          "echo",
+          "e24b1c51293c1b15e4ba8d45bbc7891ba053f90278ec2698f3562c993e145fe7  $RUNNER_TEMP/trivy/trivy.tar.gz",
+          "|",
+          "sha256sum",
+          "--check",
+          "--strict"
+        ],
+        [
+          "tar",
+          "-xzf",
+          "$RUNNER_TEMP/trivy/trivy.tar.gz",
+          "-C",
+          "$RUNNER_TEMP/trivy",
+          "trivy"
+        ],
+        [
+          "echo",
+          "$RUNNER_TEMP/trivy",
+          ">>",
+          "$GITHUB_PATH"
+        ]
+      ],
+      "Audit dependencies and monitor runtime images": [
+        [
+          "python",
+          "scripts/security_monitor.py",
+          "--output",
+          ".artifacts/monitor"
+        ]
+      ]
+    }
+  },
+  "upload_contracts": {
+    "compose.yml/compose-integration": {
+      "compose-evidence": {
+        "name": "compose-evidence",
+        "path": ".artifacts/",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "14"
+      },
+      "compose-browser": {
+        "name": "compose-browser",
+        "path": "frontend/.artifacts/",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "7"
+      }
+    },
+    "backend.yml/backend-quality": {
+      "backend-unit-results": {
+        "name": "backend-unit-results",
+        "path": "backend/.artifacts/*.xml",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "14"
+      }
+    },
+    "backend.yml/postgresql-integration": {
+      "postgresql-results": {
+        "name": "postgresql-results",
+        "path": "backend/.artifacts/*.xml",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "14"
+      }
+    },
+    "backend.yml/python-dependency-audit": {
+      "python-dependency-reports": {
+        "name": "python-dependency-reports",
+        "path": ".artifacts/",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "14"
+      }
+    },
+    "frontend.yml/frontend-quality": {
+      "frontend-reports": {
+        "name": "frontend-reports",
+        "path": "frontend/.artifacts/",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "7"
+      }
+    },
+    "documentation.yml/repository-quality": {
+      "repository-results": {
+        "name": "repository-results",
+        "path": ".artifacts/",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "14"
+      }
+    },
+    "documentation.yml/secret-scan": {},
+    "security-monitor.yml/monitor": {
+      "daily-security-evidence": {
+        "name": "daily-security-evidence",
+        "path": ".artifacts/",
+        "if-no-files-found": "error",
+        "include-hidden-files": "true",
+        "retention-days": "14"
+      }
+    }
+  },
+  "frontend_script_contracts": {
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "build": "tsc -b && vite build",
+    "test:e2e": "playwright test",
+    "format:check": "prettier --check .",
+    "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=.artifacts/vitest.xml",
+    "test:compose": "playwright test --config playwright.compose.config.ts"
+  },
+  "job_environment_contracts": {
+    "compose.yml/compose-integration": {},
+    "backend.yml/backend-quality": {},
+    "backend.yml/postgresql-integration": {
+      "COUNTY_TEST_ADMIN_URL": "postgresql+psycopg://postgres:synthetic-ci-admin-only@127.0.0.1:5432/postgres",
+      "COUNTY_TEST_DISPOSABLE": "YES"
+    },
+    "backend.yml/python-dependency-audit": {},
+    "frontend.yml/frontend-quality": {},
+    "documentation.yml/repository-quality": {},
+    "documentation.yml/secret-scan": {},
+    "security-monitor.yml/monitor": {}
+  }
 }

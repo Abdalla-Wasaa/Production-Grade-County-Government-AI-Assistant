@@ -1,5 +1,6 @@
 # CI quality and security gates
 
+P1-05 PR #13 is merged; its audit remediation remains pending review.
 P1-05 implements PR checks; it does not configure GitHub rules or authorize merging,
 P1-06, deployment or real data. Required contexts must be selected in the remote
 ruleset after their actual emitted names and results are verified on the PR.
@@ -108,7 +109,8 @@ by GitHub's default-branch discovery rules.
 
 JUnit reports are validated and stripped of payloads before upload; failures still
 fail jobs. Browser traces/screenshots contain synthetic UI data only and are kept
-seven days. Test/dependency/image reports are retained fourteen days. Compose
+seven days. Frontend JUnit reports share that seven-day retention. Backend,
+repository, dependency and image reports are retained fourteen days. Compose
 failure diagnostics contain status/exit/health/restart counters and a failure class,
 not raw logs, inspect environments, secrets or volume contents. The raw full scan
 reports contain public package/advisory evidence; no runtime secret mounts are
@@ -140,3 +142,45 @@ and branch-rules APIs, then use a controlled PR to inspect missing/failing-check
 blocking. Never test by attempting an unauthorized push or merge to main.
 Until this is configured and verified, these are CI checks, not verified remote
 merge-blocking requirements. Passing checks never grant permission to merge.
+
+## P1-05 audit remediation
+
+The initial hosted checks passed but uploaded zero artifacts: upload-artifact's
+hidden-file default excluded .artifacts. The follow-up explicitly enables hidden
+files only for the reviewed generated-report paths and sets missing-file behavior
+to error. JUnit validation/sanitization still precedes uploads; browser artifacts
+contain synthetic UI data only. Retention remains seven days for frontend/browser reports
+and fourteen for backend/repository/security reports. A green local run does not verify hosted
+retention: inspect the run's artifact API/list and download the archives.
+
+The workflow policy now compares parsed command sequences by workflow, job and
+named step against reviewed contracts. Missing steps, no-op replacements, appended
+shell bypasses, shell/directory/environment overrides and missing/altered uploads
+fail validation. Frontend script contracts prevent npm indirection becoming a
+no-op. Contracts need an explicit reviewed update when legitimate commands change.
+This is a change-detection control, not a shell interpreter or independent trust
+root: an author can edit both policy and implementation, so owner review is required.
+
+Trivy 0.76.0 container reports must identify the scanned immutable image, OS,
+recent timestamp, result types and nonempty package inventory. Every vulnerability
+must map to its inventory package; duplicate packages/findings fail. Full inventory
+counts and fingerprints in .github/security-inventory.json derive from the original
+reports whose hashes are in the unchanged approved baseline. Missing/truncated or
+changed inventories fail. Debian package IDs retain epoch/revision even when the
+upstream Version field differs; language packages use their name/version identity.
+HIGH/CRITICAL occurrence counts and identities must exactly equal the approved
+baseline; even removals require evidence review rather than silently passing an
+ambiguous incomplete scan. This stricter validation does not broaden acceptance.
+Reports remain scanner evidence, not proof that every vulnerability is exploitable.
+
+The daily monitor records safe outcome codes after each stage. Python audit, npm
+audit, each registry lookup, each image build/identity and image scanning continue
+independently after bounded failures. Failed builds never reuse stale local images.
+Image scanning attempts every role and retains successful reports when another
+role fails. Any required failure makes the overall result fail. Status summaries
+contain no raw exception text or credential dumps. A hard job cancellation/timeout
+can still interrupt execution; retained partial evidence is not a completed daily
+review. The owner must inspect failed/missing daily runs and review CRITICAL risk.
+
+P1-05 completion remains subject to verified hosted artifacts, passing checks and
+owner review. No ruleset change, merge, production clearance or P1-06 is implied.
