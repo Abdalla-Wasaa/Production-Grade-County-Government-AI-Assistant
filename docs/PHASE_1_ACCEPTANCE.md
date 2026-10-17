@@ -1,6 +1,7 @@
 # Phase 1 foundation acceptance
 
-Status: P1-06 verification in progress; owner acceptance is not granted.
+Status: automated evidence collected; ordinary isolated onboarding and daily human
+CRITICAL review remain pending. Phase 1 owner acceptance is not granted.
 Tracking: [issue #7](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/7).
 No production, public deployment, real data or Phase 2 authorization.
 
@@ -23,10 +24,10 @@ No pending result counts as a pass.
 | Issue #7 criterion (original wording) | Verification / current status |
 | --- | --- |
 | Another clean isolated checkout can reproduce locked setup, baseline migration, local Compose startup and all relevant tests using documentation alone and synthetic data. | Pending: isolated ordinary onboarding replay unavailable; host tests and hosted automation recorded separately below. |
-| Non-root containers, private PostgreSQL, liveness/readiness, frontend build/lint/types and backend smoke/migration checks have actual recorded evidence matching the approved roadmap exit criteria. | Pending fresh candidate CI results; historical Phase 1 evidence is not this replay. |
-| English/Kiswahili shell and accessibility observations are documented; no real-county facts, contacts or approvals are fabricated. | Pending candidate browser results; human review gates remain explicit. |
-| Documentation links/formatting/security checks and hosted CI are green; all outstanding defects/decisions are explicit. | Pending final-head checks and downloaded artifacts. |
-| Acceptance report distinguishes implemented foundation from Phase 2/3 capabilities, real-pilot governance and production deployment; no application release/deployment is implied. | Report in progress; owner review pending. |
+| Non-root containers, private PostgreSQL, liveness/readiness, frontend build/lint/types and backend smoke/migration checks have actual recorded evidence matching the approved roadmap exit criteria. | Evidenced by fresh P1-06 hosted PostgreSQL/Compose and build checks at 3ff617b; ordinary onboarding remains separate. |
+| English/Kiswahili shell and accessibility observations are documented; no real-county facts, contacts or approvals are fabricated. | Evidenced: 48 candidate and hosted browser/axe cases pass; draft-language and manual pre-pilot reviews remain pending. |
+| Documentation links/formatting/security checks and hosted CI are green; all outstanding defects/decisions are explicit. | Initial seven checks and eight archives verified at 3ff617b; final reporting head must also pass. See PR #16 for latest check results; all gaps are explicit. |
+| Acceptance report distinguishes implemented foundation from Phase 2/3 capabilities, real-pilot governance and production deployment; no application release/deployment is implied. | Evidenced by this report; owner acceptance/merge and any later phase remain separate decisions. |
 
 ## Actual isolation attempt and unavailable verification
 
@@ -188,8 +189,82 @@ execution, suite counts and scan results must be verified below, not inferred.
 
 ### Hosted candidate verification
 
-Pending the P1-06 PR run and actual artifact download. No ordinary-onboarding
-success is inferred from CI, even when hosted component/Compose checks pass.
+All seven required checks passed at hosted evidence commit
+3ff617b4a50da9e409abce625ba7c31c30b93ea7. The final reporting commit is documentation
+only and must also pass all seven; its actual latest results are recorded in
+[PR #16](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/pull/16). No ordinary-onboarding success is inferred from CI.
+
+| Required context | Verified run |
+| --- | --- |
+| backend-quality | [Backend: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310018) |
+| postgresql-integration | [12 real PostgreSQL cases: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310018) |
+| python-dependency-audit | [Runtime/dev/tool audits: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310018) |
+| frontend-quality | [27 unit / 48 browser-axe / build: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310008) |
+| compose-integration | [Container tests, real stack and one Nginx browser smoke: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310027) |
+| repository-quality | [Docs/policy/41 tests and 233 subtests: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310005) |
+| secret-scan | [Source/history and scanner self-test: passed](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310005) |
+
+Hosted Compose logs report Python 3.12.15, Docker client/server 28.0.4 and Compose
+2.38.2; Node/npm checks enforce 24.22.0/11.19.1. These are distinct from the local
+packaged Docker 29.1.3 isolation attempt; hosted success does not fix that daemon.
+
+The separate [security monitor](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018323585) passed all 15
+stages at the same commit. Hosted Linux runner jobs provide disposable component
+and randomized-Compose automation, not a replay of README's ordinary county-dev
+setup on the unavailable private local daemon. PostgreSQL readiness/migrations,
+non-root/private networking, outage/recovery, DNS recreation, secret canaries,
+normal-down persistence and graceful cleanup are backed by actual Compose PASS
+results. No developer/coursework volumes were targeted.
+
+Eight hosted archives were listed, downloaded and inspected, containing 29 files:
+
+| Artifact | Files | Retention | Hosted archive |
+| --- | --- | --- | --- |
+| backend-unit-results | 1 | 14 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310018/artifacts/12096150159) |
+| postgresql-results | 1 | 14 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310018/artifacts/12095841925) |
+| python-dependency-reports | 3 | 14 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310018/artifacts/12094978720) |
+| repository-results | 1 | 14 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310005/artifacts/12096050459) |
+| frontend-reports | 4 | 7 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310008/artifacts/12095772458) |
+| daily-security-evidence | 12 | 14 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018323585/artifacts/12096145373) |
+| compose-browser | 2 | 7 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310027/artifacts/12096140586) |
+| compose-evidence | 5 | 14 days | [Download/view](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39018310027/artifacts/12096045849) |
+
+JUnit case counts/statuses and absence of raw output/property nodes were checked.
+Full image reports, inventories, KEV and decision evidence validate; findings are
+not suppressed. Artifacts contain expected XML/JSON/public dependency text/HTML,
+not .env/credentials/volumes/raw application logs. Successful browser runs do not
+produce failure-only screenshots/traces or Compose failure diagnostics.
+
+An extra secret scan of downloaded archives reported four matches: duplicated
+public Python signing-key fingerprints in backend image metadata. They match the
+original approved image and official Python Dockerfile, not private credentials.
+No ignore rule or security-scan suppression was added. Archives expire; rerun CI
+when evidence is no longer available rather than treating a dead link as proof.
+
+### Fresh scan snapshot, separate from the approved baseline
+
+Compose scan timestamp: 2026-10-17T08:44:25.704829+00:00 UTC; 2026-10-17T11:44:25.704829+03:00 EAT.
+
+| Runtime | HIGH | CRITICAL | Fixable | Scanned immutable image ID |
+| --- | --- | --- | --- | --- |
+| web | 0 | 0 | 0 | `sha256:64368fc285a8e5af0358db1523f4521a71c915facae3933fe14a95b803ab0b9e` |
+| backend | 44 | 0 | 0 | `sha256:15a93d12dcbc5083d5495178aa7deed950f0c8a22bc824b23ec380f8a393c92a` |
+| db | 71 | 3 | 0 | `sha256:2c7409eb75538b1ada7b681bcf53124c6a3f8fdf2bc19cd5d9b6aa01a2573935` |
+
+Both Compose and monitor snapshots retain exactly 115 HIGH/3 CRITICAL occurrences,
+zero fixable findings, zero current KEV matches and no policy failures. Counts are
+scanner evidence, not confirmed exploitability. Lower severities remain in full
+JSON. Database timestamps and catalogue provenance are in the retained decision/KEV
+files. These fresh snapshots do not replace or broaden the approved baseline.
+
+### Repository and coursework boundary
+
+Only Markdown files changed. No application, workflow, dependency lock, migration,
+acceptance/baseline or ruleset was modified. The read-only coursework inventory
+checked 213646 paths: 213645 match; only module4-capstone/.git/config differs from
+the older baseline. Its previously documented modification predates P1-05/P1-06;
+it was left untouched. No coursework scripts/dependencies were executed or changed.
+
 
 ## Automated versus manual evidence
 

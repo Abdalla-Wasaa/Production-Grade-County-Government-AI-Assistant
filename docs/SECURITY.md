@@ -228,8 +228,9 @@ The dated [vulnerability register](VULNERABILITY_REGISTER.md) retains every repo
 HIGH/CRITICAL package/CVE occurrence, distinguishes vendor applicability from
 confirmed exploitation, and records owner/review triggers. No known-exploitation
 absence or local-only configuration constitutes a waiver. Complete reports include
-unfixed findings even though CI's existing fixable-finding gate can be green.
-Residual-risk acceptance requires explicit maintainer review; public/production/
+unfixed findings. The historical P1-04 fixable-only gate could be green despite
+unfixed findings; P1-05 superseded it with exact-inventory and expiring-decision
+checks. Residual-risk acceptance requires explicit maintainer review; public/production/
 real-data use remains blocked pending separate security clearance.
 
 ## P1-05 automated development gates
