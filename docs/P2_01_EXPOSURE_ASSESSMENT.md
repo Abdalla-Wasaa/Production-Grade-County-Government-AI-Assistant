@@ -98,3 +98,51 @@ policy-compatible decision or remediation resolves it. If no such decision is
 provided, keep source work reviewable locally and mark completion/CI blocked.
 
 No production approval is requested. No vulnerabilities are accepted by this report.
+
+## Actual pre-execution evidence — 17 October 2026
+
+Application/source candidate: 053d9282260cbde8c2751edaaa5077c96d24f0a8.
+Exposure SHA-256: 2d29eead8a1aa778633a73f05c38e360d68ef17597f2c7f6eb427066e22af085.
+This documentation addendum does not change that application hash. Ruff lint/format
+passed (49 files formatted); strict Mypy passed (28 application files); uv lock/pip
+compatibility passed (46 installed packages compatible); repository checker passed
+(172 files, 49 external coursework links deferred); tooling tests passed (41 tests,
+233 subtests); source Gitleaks found no leaks; backend/tool advisory audits found zero.
+No new app unit/PG/Compose test, migration or password benchmark was run.
+
+All three images built successfully without starting changed services. Trivy 0.76.0
+scan timestamp: 2026-10-17T13:35:50.631702+00:00 (16:35 EAT).
+
+| Role | HIGH | CRITICAL | Fixable | Immutable image ID |
+| --- | --- | --- | --- | --- |
+| web | 0 | 0 | 0 | sha256:cfd270d351856a71dc16e3a3f8b7e26fb86c1a90d3fcb0b11ed69a30e7285cb5 |
+| backend | 44 | 0 | 0 | sha256:e4f8a0e67af54f1231a2184ae2cb9850c6ddafff9de5db6109c75ce58c057475 |
+| db | 71 | 3 | 0 | sha256:f52049cb7e9fae14fc73d6ed63842489e6aeda9ee855450aecd842167e9731d7 |
+
+Complete HIGH/CRITICAL occurrence comparison against the reviewed baseline, immutable
+image identities and fresh KEV catalogue found no new/changed/escalated/fixable or
+KEV-listed occurrence. Counts are scanner findings, not independently proven exploits.
+Full lower-severity/package reports remain at /tmp/county-p201-review-scans alongside
+kev.json and decision.json; image manifest is /tmp/county-p201-review-images.json.
+These are local evidence files, not hosted artifacts or a passing security decision.
+
+The unmodified scanner/policy correctly exits nonzero: exposure acceptance is invalid
+for changed code, and backend complete inventory differs. Backend inventory increased
+from 112 to 119 packages, adding exactly PyJWT 2.15.1, argon2-cffi 25.1.0,
+argon2-cffi-bindings 26.1.0, cffi 2.1.1, dnspython 2.9.0, email-validator 2.3.0 and
+pycparser 3.11, with no package removals against the retained Phase 1 report.
+New inventory SHA-256: 7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e.
+The backend raw scan is complete and identity-checked; its policy classification as
+invalid evidence reflects that exact-inventory gate, not a claim of scanner success.
+The current decision file consequently marks backend status failed and reports 74
+unaccepted database occurrences; independently parsing/comparing the full backend
+report establishes the additional 44 existing HIGH rows. Never present that raw
+comparison as a passing policy result or hide the failed backend classification.
+
+.github/security-baseline.json, security-inventory.json and security-risk-acceptances.json
+are unchanged, as are workflows, severity thresholds and ruleset 25222082. No pending
+runtime test or CI result is a pass. The smallest next decision is explicit permission
+for isolated synthetic P2-01 validation under the unchanged expiry; this alone does
+not update policy records or make seven-check CI green. Any later policy-record
+change requires its own explicit reviewed authorization; no exception is silently
+inherited, broadened or renewed here.
