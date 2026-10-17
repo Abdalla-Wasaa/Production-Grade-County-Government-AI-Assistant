@@ -15,18 +15,23 @@
 
 ## Current scope
 
-Phase 1 is technically closed for restricted synthetic development. P2-01 backend
-implementation is authorized subject to reviewed, merged contracts. Contract PR #23 is merged. Use feat/p2-01-account-authentication from those contracts;
-the owner now authorizes isolated synthetic backend/PostgreSQL/Compose validation,
-benchmarking and bounded P2-01 corrections within the seven approved dependencies.
-The implementation PR may be opened for review under the original workflow request;
-its security checks must remain failing until an explicitly authorized policy-record
-decision resolves changed exposure/inventory. No acceptance/hash/inventory file edits
-or expiry extension are authorized by validation permission.
+P2-01 backend implementation and isolated synthetic validation are authorized under
+merged contract PR #23. Work on feat/p2-01-account-authentication and PR #24.
+On 17 October 2026 the owner separately approved the exact implementation at
+933967ea2a03368677e175f65f6f65dc193a8716, exposure
+d82e1a0e6a43f2bea054684dd7e5fad9a2e2fbb96723a93e74f0bde1bf7bfb17
+and backend inventory
+7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e.
+Only the seven proposed security/documentation files may change for this approval;
+the original Phase 1 records are preserved as an unchanged historical snapshot.
+The separate P2-01 acceptance covers only the exact 118 inherited occurrences,
+reviewed exposure and seven added dependencies, for isolated synthetic development.
+Expiry remains 23 October 2026 at 23:59 EAT. Daily human CRITICAL reviews and all
+existing invalidation triggers remain required; no automatic approval of later
+exposure changes, acceptance expansion or renewal. Production/public deployment,
+real citizen/county data and production credentials remain prohibited.
+Run normal repository/Compose validation and all seven hosted checks; do not bypass
+rules or manufacture reports. Preserve scans, branch protection and PR review.
 Fixed citizen/staff/admin roles; invite-only activation and operator-assisted recovery;
 no frontend auth, conversations, live email, AI/RAG/tools or deployment in P2-01.
-Never silently reuse/update the Phase 1 exposure-bound vulnerability acceptance,
-change its hash, expand scope or extend expiry. Changed application execution under
-an exception requires focused assessment/scans and the policy-required owner decision.
-Preserve all seven checks and branch rules; mark blocked verification pending.
 Coursework remains read-only. No automatic merge or start of a later milestone.

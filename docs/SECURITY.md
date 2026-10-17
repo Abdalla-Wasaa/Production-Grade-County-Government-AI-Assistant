@@ -297,7 +297,8 @@ in [acceptance history](PHASE_1_ACCEPTANCE.md). Historical pending-review statem
 above are superseded for that date only; subsequent daily human review remains due.
 The owner authorized fixed-role invite-only backend auth, synthetic operator-assisted
 reset, no live email and no public registration. See [ADR 0002](DECISIONS/0002-invite-only-authentication.md)
-and [authentication contract](AUTHENTICATION.md). No endpoints are implemented yet.
+and [authentication contract](AUTHENTICATION.md). The P2-01 backend endpoints are
+implemented and have passed isolated synthetic validation; frontend auth is excluded.
 
 The Phase 1 exception is NOT approval of changed auth code or migrations. The policy
 hash includes application, migration, frontend, dependency and infra bytes. Preserve
@@ -308,3 +309,24 @@ under an exception. A required owner decision must be explicit; do not rewrite t
 hash or broaden acceptance to obtain green CI. If blocked, retain source/static work,
 report runtime/security checks pending and do not bypass seven-check enforcement.
 No public deployment, real records, production credentials or live integrations.
+
+
+### Separate P2-01 owner decision — 17 October 2026
+
+The owner explicitly approved the reviewed PR #24 implementation and exact exposure/
+backend inventory documented in [P2-01 assessment](P2_01_EXPOSURE_ASSESSMENT.md).
+This supersedes the earlier source-only execution gate for that exact candidate.
+The original Phase 1 records remain unchanged in the
+[historical snapshot](security/p2-01/phase-1-policy-snapshot.json); the active records
+carry a separate P2-01 decision, not a reattributed or renewed Phase 1 approval.
+All 118 package/CVE occurrences remain individually enumerated; none is suppressed.
+Only backend scan identity/report provenance and its complete 119-package inventory
+change. No vulnerability row, severity, fix status or base-image pin is changed.
+
+Expiry stays 23 October 2026 at 23:59 EAT (20:59 UTC). Daily human CRITICAL reviews
+remain required and must be recorded truthfully. A fix, new finding, severity increase,
+KEV listing or further exposure/dependency change invalidates the applicable decision.
+Synthetic isolated local development only; no real county/citizen data, production
+credentials, public or production deployment. Scanning, all seven required contexts,
+strict branch protection and normal PR review remain active. Green development CI
+is not production security approval or authorization to merge.

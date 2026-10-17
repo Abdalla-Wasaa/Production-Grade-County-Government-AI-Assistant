@@ -9,10 +9,10 @@
       }
     },
     "backend": {
-      "source_report_sha256": "d16a6c443d6b98333f42d2cfac3114f62686f5b342ec8a462d5bfcd8e9d2aae1",
+      "source_report_sha256": "28f237cfdf1608a45a5020be5bc978279ee40f6693671fcc711f4dc01bc0d0c0",
       "inventory": {
-        "packages": 112,
-        "sha256": "adb6e813a680e771238261a781c04b86d3b5e588a3c79d95ab416c7f625167df"
+        "packages": 119,
+        "sha256": "7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e"
       }
     },
     "db": {

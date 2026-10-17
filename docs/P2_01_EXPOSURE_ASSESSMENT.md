@@ -1,6 +1,8 @@
 # P2-01 changed-exposure assessment and execution gate
 
-Status: isolated synthetic validation authorized and exercised on 17 October 2026.
+Status: separate exact-scope P2-01 owner acceptance authorized on 17 October 2026.
+The earlier validation-only gate below is historical; the final decision section
+supersedes its blocked policy-record status for the approved candidate only.
 The owner explicitly replied: Authorize isolated synthetic validation only.
 This authorizes validation and bounded P2-01 test-driven corrections, not acceptance/
 inventory/hash edits, expiry extension, production use or merge. The earlier source-
@@ -245,3 +247,60 @@ Reports are /tmp/county-p201-final-scans/{image-0,image-1,image-2,kev,decision}.
 Compose output is /tmp/county-p201-final-compose.log. Image IDs differ from the
 benchmark's earlier build; benchmark provenance is recorded separately above.
 No policy records or expiry were updated. Production remains prohibited.
+
+
+## Owner-approved policy resolution — 17 October 2026
+
+The owner explicitly approved the seven-file P2-01 synthetic-development acceptance
+update for implementation commit 933967ea2a03368677e175f65f6f65dc193a8716,
+exposure d82e1a0e6a43f2bea054684dd7e5fad9a2e2fbb96723a93e74f0bde1bf7bfb17,
+and backend inventory 7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e.
+This is actual owner authorization, not an inferred acceptance from green tests.
+
+Original Phase 1 baseline/inventory/decision bytes and SHA-256 values are preserved
+in [the historical snapshot](security/p2-01/phase-1-policy-snapshot.json).
+The active baseline keeps every vulnerability row and base pin unchanged. Only backend
+image identity/report provenance updates to the hosted scan:
+sha256:008ab22a737e148330729eb20ef01de16879c87a916fdf91043eaf4aad551387;
+report SHA-256 28f237cfdf1608a45a5020be5bc978279ee40f6693671fcc711f4dc01bc0d0c0.
+The resulting baseline SHA-256 is
+3b4b2b44866f00c4d24d219b6ee0e4e7428bbc81362af9bc8313e39615c5d234.
+
+[Hosted Compose evidence](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39039792278)
+contains complete Trivy 0.76.0 reports (schema 2) for web/backend/db, valid full
+inventories and KEV evidence retrieved on 17 October. Backend JSON was present and
+valid; its 112-to-119 package mismatch caused the broad diagnostic about missing
+scan evidence. No scanner failure or truncated report was demonstrated. The prior
+repository exposure guard stopped the shell before Pytest, so repository.xml was
+absent, not a malformed report or failed/skipped test result. No fake report or
+workflow bypass is needed; rerun existing commands with the authorized records.
+
+The new decision binds all 118 exact inherited occurrence rows: backend 44 HIGH,
+PostgreSQL 71 HIGH/3 CRITICAL, web zero. Independently compared keys, severities,
+vendor status, fixes and KEV matches have no new/removed/escalated/fixable/KEV delta
+in the reviewed reports. Seven added packages remain exactly those listed above.
+No vulnerability-free claim follows. Authentication risks and individual CRITICAL
+assessments above remain applicable; SQL/XML after compromise remains a plausible
+path. Bounded hashing/throttles, parameterized queries, non-root/read-only isolation,
+private loopback access and separate DB roles remain necessary compensating controls.
+
+Expiry is unchanged: 23 October 2026, 23:59 EAT (2026-10-23T20:59:00+00:00).
+Daily human CRITICAL review remains mandatory, without invented/backdated review.
+Immediate invalidation remains required on an available fix, new finding, severity
+increase, KEV listing or further exposure/dependency change. No automatic renewal,
+real data, production credentials, public/production deployment or merge is approved.
+All seven required checks, scanning, branch protection and normal PR review remain
+active. The owner authorized normal repository/Compose validation and pushing these
+records to existing PR #24; actual hosted results must be checked on the new head.
+
+
+Local policy-update verification: repository documentation and exposure/workflow
+policy checks passed; Ruff lint/format passed; locked CI-tooling suite passed
+41 tests and 233 subtests, producing a valid sanitized repository.xml. An initial
+invocation in the backend-only environment failed collection for missing PyYAML;
+rerunning in the existing CI tooling environment resolved that environment error.
+The archived Phase 1 bytes match git show of the approved source commit. All three
+existing complete hosted reports pass inventory/finding evaluation against the new
+records, with unchanged occurrence rows and base pins. Source secret scanning and
+whitespace validation passed. Hosted normal Compose/scans and all seven required
+checks must still be verified on the policy-update commit; no pending result is a pass.
