@@ -35,6 +35,8 @@ test('actual Nginx activation, login, bilingual account, refresh, cross-tab rest
   context,
 }) => {
   const data = fixture();
+  // Install before app startup so its already-scheduled refresh timer is controlled.
+  await page.clock.install();
   let secretInUrl = false;
   let refreshes = 0;
   context.on('request', (request) => {
@@ -79,8 +81,14 @@ test('actual Nginx activation, login, bilingual account, refresh, cross-tab rest
   await expect(other.getByRole('heading', { name: 'This browser session' })).toBeVisible();
   const previous = refreshes;
   await page.bringToFront();
-  await page.clock.install();
+  const rotated = page.waitForResponse(
+    (response) =>
+      response.url().endsWith('/auth/refresh') &&
+      response.request().method() === 'POST' &&
+      response.status() === 200,
+  );
   await page.clock.fastForward(871000);
+  await rotated;
   await expect.poll(() => refreshes > previous).toBe(true);
   await expect(page.getByRole('heading', { name: 'My account', exact: true })).toBeVisible();
   const stored = await page.evaluate(() => ({

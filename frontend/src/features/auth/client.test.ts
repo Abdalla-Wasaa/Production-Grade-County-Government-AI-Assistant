@@ -159,3 +159,21 @@ it('rejects used or expired invitations with the same safe response', async () =
   ).rejects.toMatchObject({ issue: 'invitation' });
   expect(client.getSnapshot().user).toBeNull();
 });
+
+it('automatically refreshes a visible session at the pre-expiry timer', async () => {
+  vi.useFakeTimers();
+  const s = setup(true);
+  vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('visible');
+  const client = new AuthClient();
+  const stop = client.start();
+  try {
+    await client.restore();
+    expect(s.fetcher.mock.calls.filter(([url]) => url.endsWith('/refresh'))).toHaveLength(1);
+    await vi.advanceTimersByTimeAsync(870001);
+    expect(s.fetcher.mock.calls.filter(([url]) => url.endsWith('/refresh'))).toHaveLength(2);
+    expect(client.getSnapshot().status).toBe('authenticated');
+  } finally {
+    stop();
+    vi.useRealTimers();
+  }
+});
