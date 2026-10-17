@@ -2,8 +2,11 @@
 
 Status: backend PR #24 is merged with its separate, exact-scope P2-01 development
 acceptance and all seven checks passing. Backend auth remains explicitly enabled.
-P2-02 frontend source is prepared under issue #18; changed frontend exposure needs
-a separate owner decision before runtime validation. No production approval exists.
+P2-02 frontend under issue #18 has isolated synthetic runtime evidence under the
+owner's separate validation authorization. See the
+[frontend assessment](P2_02_EXPOSURE_ASSESSMENT.md) for exact source and current
+security/PR decision status; validation does not automatically accept changed code.
+No production approval exists.
 Conversations, AI, public registration and live delivery remain excluded.
 [ADR 0002](DECISIONS/0002-invite-only-authentication.md) records the tradeoffs.
 
@@ -183,7 +186,9 @@ hasher interfaces. Measure hashing time, memory and overload handling. Preserve
 safe live=200 independently of DB; ready requires reachability and latest revision.
 Backend/unit/type/audit, PostgreSQL, Compose, repository/secret and unchanged frontend
 checks all remain required. Evidence unavailable due to the exposure gate is pending,
-never a pass. The nine handlers have isolated runtime evidence; current security-policy approval remains blocked.
+never a pass. The nine handlers have real runtime evidence; current frontend
+security/PR decision status is recorded in the linked assessment. A passing test is
+not an owner acceptance of changed exposure.
 
 ## Exposure-impact boundary
 

@@ -7,10 +7,12 @@ adds `/login`, `/activate` and protected `/account`, with no public registration
 admin UI. Public preview routes initiate no authentication requests and remain
 independent of backend availability. The assistant remains visibly unavailable.
 
-**P2-02 runtime verification is pending changed-exposure authorization.** Existing
-acceptance does not authorize running this changed application, tests or runtime CI.
-See [the focused assessment](../docs/P2_02_EXPOSURE_ASSESSMENT.md). Commands below
-are setup/reference instructions, not permission to bypass that gate.
+P2-02 has actual isolated synthetic runtime evidence under the owner's explicit
+17 October validation authorization: 53 unit/component tests, 78 preview-browser
+cases and the real-backend Compose auth case passed. See
+[the focused assessment](../docs/P2_02_EXPOSURE_ASSESSMENT.md) for the exact source,
+security decision status and any remaining PR gate. Validation is not permission
+for production, future source changes or silently reusing the P2-01 acceptance.
 
 ## Local setup
 
@@ -163,7 +165,7 @@ backend, PostgreSQL, documentation and secret workflows remain in place. P1-04/P
 [acceptance record](../docs/PHASE_1_ACCEPTANCE.md); no merge or Phase 2 start is
 permitted without the owner's separate approval.
 
-## P2-02 prepared verification
+## P2-02 authentication verification
 
 Auth unit/component and preview-browser tests cover forms, safe errors, protected
 routes, restoration/expiry, cross-tab serialization/revocation, memory-only tokens,
@@ -178,6 +180,7 @@ file afterward. Browser cases cover real activation/login, HttpOnly cookie attri
 restoration, automatic refresh, two tabs, bilingual axe and current-session revocation.
 Auth traces/screenshots/videos are disabled to avoid credential/body artifacts.
 The sanitized auth-compose.xml joins the existing retained browser evidence. No
-workflow/check/ruleset changes are introduced. These runtime tests are prepared but
-not executed pending the specific owner decision. Manual screen-reader and fluent
+workflow/check/ruleset changes are introduced. These cases were executed under the
+owner's isolated validation grant; the first clock-fixture failure, test-only fix and
+passing rerun are recorded in the assessment. Manual screen-reader and fluent
 Kiswahili review remain required; automated axe is not WCAG certification.
