@@ -58,7 +58,12 @@ export function AccountPage() {
           className="primary-button"
           disabled={busy}
           onClick={() => {
-            void client.logout().catch(() => {});
+            if (busy) return;
+            setBusy(true);
+            void client
+              .logout()
+              .catch(() => {})
+              .finally(() => setBusy(false));
           }}
         >
           {t('logout')}
@@ -67,7 +72,12 @@ export function AccountPage() {
           className="secondary-button"
           disabled={busy}
           onClick={() => {
-            void client.logout(true).catch(() => {});
+            if (busy) return;
+            setBusy(true);
+            void client
+              .logout(true)
+              .catch(() => {})
+              .finally(() => setBusy(false));
           }}
         >
           {t('logoutAll')}
