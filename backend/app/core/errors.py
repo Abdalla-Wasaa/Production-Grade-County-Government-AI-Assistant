@@ -30,6 +30,12 @@ class ErrorResponse(BaseModel):
 
 MESSAGES = {
     "en": {
+        "invalid_credentials": "Authentication failed.",
+        "invitation_invalid": "The invitation cannot be used.",
+        "csrf_rejected": "Request verification failed.",
+        "forbidden": "This operation is not permitted.",
+        "rate_limited": "Please wait before trying again.",
+        "request_too_large": "Request is too large.",
         "not_found": "Resource not found.",
         "method_not_allowed": "Method not allowed.",
         "validation_error": "Check the request fields.",
@@ -39,6 +45,12 @@ MESSAGES = {
         "cors_rejected": "Cross-origin request not allowed.",
     },
     "sw": {
+        "invalid_credentials": "Uthibitishaji haukufaulu.",
+        "invitation_invalid": "Mwaliko huu hauwezi kutumika.",
+        "csrf_rejected": "Uhakiki wa ombi haukufaulu.",
+        "forbidden": "Kitendo hiki hakiruhusiwi.",
+        "rate_limited": "Tafadhali subiri kabla ya kujaribu tena.",
+        "request_too_large": "Ombi ni kubwa mno.",
         "not_found": "Rasilimali haikupatikana.",
         "method_not_allowed": "Njia hii hairuhusiwi.",
         "validation_error": "Kagua sehemu za ombi.",

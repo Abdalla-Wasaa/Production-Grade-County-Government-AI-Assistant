@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     )
 
     environment: Literal["development", "test"]
+    auth_enabled: bool = False
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
     cors_origins: tuple[str, ...] = ()
 

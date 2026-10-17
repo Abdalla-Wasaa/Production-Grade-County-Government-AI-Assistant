@@ -26,7 +26,11 @@ class Database:
                 pool_size=settings.db_pool_size,
                 max_overflow=settings.db_max_overflow,
                 pool_timeout=settings.db_pool_timeout_seconds,
-                connect_args={"connect_timeout": settings.db_connect_timeout_seconds},
+                connect_args={
+                    "connect_timeout": settings.db_connect_timeout_seconds,
+                    "options": "-c statement_timeout=5000 -c lock_timeout=2000 "
+                    "-c idle_in_transaction_session_timeout=10000",
+                },
                 echo=False,
                 hide_parameters=True,
             )
