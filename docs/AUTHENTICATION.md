@@ -1,8 +1,7 @@
 # P2-01 backend authentication contract
 
-Status: implementation authorized subject to owner-reviewed, merged contracts and
-existing security-policy gates. This document specifies behavior, not implemented
-endpoints. Frontend authentication, conversations, AI and live delivery are excluded.
+Status: contracts merged in PR #23. Backend source is prepared but unexecuted,
+subject to the changed-exposure gate; no runtime acceptance is claimed. Frontend authentication, conversations, AI and live delivery are excluded.
 [ADR 0002](DECISIONS/0002-invite-only-authentication.md) records the tradeoffs.
 
 ## Operator provisioning and recovery
@@ -181,7 +180,7 @@ hasher interfaces. Measure hashing time, memory and overload handling. Preserve
 safe live=200 independently of DB; ready requires reachability and latest revision.
 Backend/unit/type/audit, PostgreSQL, Compose, repository/secret and unchanged frontend
 checks all remain required. Evidence unavailable due to the exposure gate is pending,
-never a pass. No authentication endpoints are implemented by this contract PR.
+never a pass. The nine handlers are source-prepared; all runtime verification remains pending.
 
 ## Exposure-impact boundary
 
@@ -207,3 +206,7 @@ Sources consulted for this design:
 [OWASP password storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html),
 [OWASP recovery](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html),
 [RFC 9700 rotation/replay guidance](https://www.rfc-editor.org/rfc/rfc9700.html).
+
+Source preparation, environment/operator commands and actual verification status are
+recorded in [operations](AUTHENTICATION_OPERATIONS.md) and the
+[exposure assessment](P2_01_EXPOSURE_ASSESSMENT.md). These do not authorize execution.

@@ -13,6 +13,7 @@ from app.db.base import Base
 from app.db.readiness import is_ready
 from app.db.session import Database
 from app.main import create_app
+from app.modules.identity import models  # noqa: F401 -- reviewed metadata
 
 
 @pytest.mark.parametrize(
@@ -59,7 +60,14 @@ def test_valid_settings_hide_secret():
     assert "synthetic-password" not in config.model_dump_json()
     assert config.db_pool_size == config.db_max_overflow == 5
     assert config.db_readiness_timeout_seconds == 10
-    assert not Base.metadata.tables
+    assert set(Base.metadata.tables) == {
+        "users",
+        "invitations",
+        "auth_sessions",
+        "refresh_tokens",
+        "auth_audit_events",
+        "auth_rate_limits",
+    }
 
 
 def test_missing_database_ready_503_bilingual(client):

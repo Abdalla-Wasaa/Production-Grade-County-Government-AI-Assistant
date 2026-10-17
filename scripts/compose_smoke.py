@@ -172,7 +172,7 @@ async def verify():
     try:
         async with engine.connect() as c:
             names=(await c.execute(text("SELECT tablename FROM pg_tables WHERE schemaname='public'"))).scalars().all()
-            assert names==['alembic_version']
+            assert set(names)=={'alembic_version','users','invitations','auth_sessions','refresh_tokens','auth_audit_events','auth_rate_limits'}
             for statement in ["CREATE TABLE forbidden(id integer)","UPDATE public.alembic_version SET version_num='forbidden'"]:
                 try:
                     await c.execute(text(statement))
@@ -186,7 +186,7 @@ async def verify():
 asyncio.run(verify())
 """
     stack.run("exec", "-T", "backend", "python", "-c", code)
-    print("PASS: baseline-only schema and denied runtime DDL/revision writes")
+    print("PASS: identity-only schema and denied runtime DDL/revision writes")
 
 
 def verify_leaks(stack):

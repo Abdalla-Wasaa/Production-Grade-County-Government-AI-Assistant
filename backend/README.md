@@ -180,3 +180,10 @@ stale, unknown, multiple or inaccessible revisions return 503, as do missing URL
 authentication failures, outages and timeouts. No readiness results are cached.
 Errors preserve the existing request ID/no-store/bilingual envelope and disclose
 no database details. Liveness never calls these database checks.
+
+## P2-01 source and security gate
+
+Invite-only backend auth source is prepared behind explicit COUNTY_AUTH_ENABLED.
+Runtime/migration/security tests remain pending the changed-exposure decision; no
+auth functionality is certified yet. See [identity operations](../docs/AUTHENTICATION_OPERATIONS.md)
+and [exposure assessment](../docs/P2_01_EXPOSURE_ASSESSMENT.md) before executing it.

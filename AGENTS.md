@@ -16,9 +16,9 @@
 ## Current scope
 
 Phase 1 is technically closed for restricted synthetic development. P2-01 backend
-implementation is authorized subject to reviewed, merged contracts. Prepare the
-contract/ADR PR on docs/p2-01-authentication-contracts first; do not merge it without
-owner review. Then use feat/p2-01-account-authentication from the merged contracts.
+implementation is authorized subject to reviewed, merged contracts. Contract PR #23 is merged. Use feat/p2-01-account-authentication from those contracts;
+prepare source/static work and scan evidence, then stop before changed-app execution
+or opening runtime CI until the policy-required exposure decision.
 Fixed citizen/staff/admin roles; invite-only activation and operator-assisted recovery;
 no frontend auth, conversations, live email, AI/RAG/tools or deployment in P2-01.
 Never silently reuse/update the Phase 1 exposure-bound vulnerability acceptance,
