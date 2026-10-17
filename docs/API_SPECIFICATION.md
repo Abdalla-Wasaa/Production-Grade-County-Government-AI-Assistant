@@ -249,3 +249,15 @@ Document ingestion/search, tool invocation, account provisioning, public registr
 feedback, streaming and record-changing actions have no MVP endpoints. Later phases
 must specify schemas/authz/errors before implementation. A server-internal tool
 dispatcher is not permission to expose arbitrary tools through HTTP.
+
+## Phase 1 verification boundary
+
+The implemented OpenAPI paths are exactly /health/live and /health/ready; the
+document is served at /api/v1/openapi.json. Swagger/ReDoc UI is disabled. Future
+authentication/conversation tables above remain contracts, not working endpoints.
+Verify liveness=200 without DB, readiness=503 without configuration/reachable current
+schema, and readiness=200 only after explicit migration and runtime revision-table
+access. Errors retain safe JSON, request IDs and no-store without connection details.
+Nginx preserves these paths and error statuses; unknown API paths must not fall
+through to SPA HTML. The frontend shell deliberately issues no backend requests.
+Actual P1-06 evidence belongs in [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md).

@@ -11,7 +11,9 @@ Use Python 3.12, uv 0.13.1 and Node 24.22.0/npm 11.19.1. Do not use coursework v
 From the repository root, install only the hash-locked CI tools into a local venv:
 
 ```bash
-python3 -m pip install --only-binary=:all: --require-hashes -r .github/uv-bootstrap.txt
+python3.12 -m venv .venv
+.venv/bin/python -m pip install --only-binary=:all: --require-hashes -r .github/uv-bootstrap.txt
+export PATH="$PWD/.venv/bin:$PATH"
 uv venv .ci-venv
 uv pip sync --python .ci-venv/bin/python --require-hashes requirements-ci.lock
 .ci-venv/bin/python scripts/check_repository.py
@@ -68,3 +70,34 @@ nonfunctional ephemeral pattern, redacts output and deletes its own temporary fi
 Use a trusted private channel for sensitive reports. Synthetic development approval
 is not production approval. No release, deployment or next milestone follows
 implicitly from passing checks or merging a PR.
+
+## Isolated tool bootstrap and final acceptance
+
+Avoid installing tooling into the system Python or coursework environments. On the
+reference Linux x86-64 host with Python 3.12, bootstrap the pinned uv wheel into an
+ignored root tooling environment, then install the separately hash-locked CI tools:
+
+Use the root bootstrap commands in Local checks above; uv must report 0.13.1.
+
+The root .venv is tooling only; backend/.venv is independently created by backend
+uv sync. Activate approved Node 24.22.0/npm 11.19.1 before frontend commands; a
+machine's default Node can be older. Do not force unsupported engines/peer ranges.
+The bootstrap wheel is Linux x86-64 specific; other platforms need a separately
+verified installation procedure, not a claim of current portability.
+
+Issue #7 criteria require exact-commit fresh-checkout evidence. Keep automated,
+manual and unavailable verification distinct in [Phase 1 acceptance](docs/PHASE_1_ACCEPTANCE.md).
+Main's seven required checks are enforced by ruleset 25222082, source app 15368.
+Owner review still precedes merge and Phase 2. Missing isolated-host or daily human
+security review evidence must remain pending; acceptance is never inferred from CI.
+
+For dependency auditing, select the CI-tool interpreter explicitly; the root .venv
+only contains uv and does not contain pip-audit/packaging:
+
+```bash
+PATH="$PWD/.ci-venv/bin:$PWD/.venv/bin:$PATH" .ci-venv/bin/python scripts/audit_python.py --output .artifacts/python-audit
+```
+
+Use checksum-verified Trivy 0.76.0 and Gitleaks 8.30.1 from the reviewed workflow
+installation steps when running their commands locally. Do not install arbitrary
+latest tools, publish raw diagnostics or treat missing reports as success.

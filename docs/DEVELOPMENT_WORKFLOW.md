@@ -12,8 +12,9 @@ Use dedicated feature branches, Conventional Commits, focused diffs and meaningf
 tests. Stage explicit project paths, inspect the staged diff and scan for secrets.
 Do not rewrite published history, force-push or commit implementation to main.
 
-P1-05 is authorized on ci/p1-05-quality-gates. Issue #6 was reopened to correct its
-premature closure. Phase 0 through P1-04 and security PR #12 are merged. An issue
+P1-01 through P1-05 and remediation PR #14 are merged. P1-06 is authorized on
+`docs/p1-06-foundation-acceptance`; issue #7 is reopened to reconcile premature
+completion markers against actual evidence. An issue
 checkbox or prior merge is not approval to begin another milestone. Preserve the
 modular monolith and synthetic-only scope. No authentication/chat/AI/RAG/tools,
 public deployment or real county integration is introduced here.
@@ -21,7 +22,7 @@ public deployment or real county integration is introduced here.
 Open a PR only when authorized. Include actual results, design decisions, failures,
 residual risks and applicable docs. Resolve review blockers and await explicit owner
 approval before merging. The sole maintainer reviews; do not manufacture independent
-self-approval or require an unavailable external reviewer. Do not start P1-06.
+self-approval or require an unavailable external reviewer. Do not begin Phase 2 without separate authorization.
 
 ## Checks and failure investigation
 
@@ -46,8 +47,12 @@ owner risk decisions. Never edit a baseline to silently accept new findings or
 renew dates without approval. CI preserves all findings and rejects new/fixable/
 escalated/known-exploited or unaccepted risk. Production remains blocked.
 
-Ruleset changes require separate approval after actual check contexts exist. The
-current active ruleset is not proof that required checks have been selected.
+Main ruleset 25222082 now requires all seven checks from GitHub Actions app 15368,
+current branches and resolved conversations. It preserves zero required approvals,
+no code-owner/last-push approval requirement, force/deletion blocks and no bypass.
+PR #15 demonstrated pending/failing checks block and successful checks yield
+CLEAN/MERGEABLE without self-approval; it was closed unmerged and its branch removed.
+Future ruleset changes require separate approval. No bypass is permitted.
 
 Future releases need reviewed semantic versions, changelog, immutable source/image
 identity, migration/rollback and restore evidence, privacy/hosting approval and

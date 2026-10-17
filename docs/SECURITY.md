@@ -228,8 +228,9 @@ The dated [vulnerability register](VULNERABILITY_REGISTER.md) retains every repo
 HIGH/CRITICAL package/CVE occurrence, distinguishes vendor applicability from
 confirmed exploitation, and records owner/review triggers. No known-exploitation
 absence or local-only configuration constitutes a waiver. Complete reports include
-unfixed findings even though CI's existing fixable-finding gate can be green.
-Residual-risk acceptance requires explicit maintainer review; public/production/
+unfixed findings. The historical P1-04 fixable-only gate could be green despite
+unfixed findings; P1-05 superseded it with exact-inventory and expiring-decision
+checks. Residual-risk acceptance requires explicit maintainer review; public/production/
 real-data use remains blocked pending separate security clearance.
 
 ## P1-05 automated development gates
@@ -269,3 +270,22 @@ The original 118-occurrence baseline and explicit owner acceptance are unchanged
 Expiry remains 23 October 2026 at 23:59 EAT; there is no new approval or renewal.
 Production/public/real-data use remains blocked. Daily automated monitoring provides
 evidence, while human CRITICAL review and investigation of failed runs remain required.
+
+## P1-06 acceptance and daily human review
+
+Ruleset 25222082 now enforces all seven app-bound checks, strict current branches
+and resolved conversations; controlled PR #15 verified pending/failing blocking and
+a clean passing state without merging. Earlier fixable-only scan-policy statements
+are historical; current P1-05 policy retains all findings and exact-inventory gates.
+
+Technical foundation acceptance can only authorize restricted synthetic development,
+never production security approval. The baseline/acceptance files remain unchanged,
+with 115 HIGH and 3 CRITICAL occurrences and expiry 23 October 2026, 23:59 EAT.
+No renewal, real data, public deployment or later phase is implied. The owner is
+responsible for daily human CRITICAL review. Until an actual dated review reference
+is supplied, mark that obligation pending; a scanner or agent does not perform it
+on the owner's behalf. Do not fabricate or backdate review records.
+
+[Phase 1 acceptance](PHASE_1_ACCEPTANCE.md) separates automated evidence, human review,
+isolation limitations and remaining approval gates. A failed or unavailable required
+verification blocks that acceptance item even when CI is green.

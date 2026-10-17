@@ -82,9 +82,19 @@ existing text, secret-path, symlink and artifact restrictions. Browser traces an
 reports stay ignored. Screenshot validation is an artifact-integrity check, not a
 privacy or vulnerability certification. Both committed images contain synthetic UI.
 
-## Remaining milestone boundary
+## Historical P1-03 milestone boundary
 
 The shell needs no database, authentication or AI. Do not add a working composer,
 provider calls, conversation persistence or real county content in this milestone.
 P1-04 Compose requires a separate approval after review of this PR. Future hosting
 must supply same-origin routing/SPA fallback and the approved security headers.
+
+## P1-06 evidence reconciliation
+
+P1-04 proxy/SPA hosting and P1-05 CI/reporting are now merged; their earlier approval
+stop gates above are historical. Current independent shell behavior and pending
+manual checks remain unchanged. The consolidated [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md)
+records fresh candidate-commit unit/build/three-engine/axe results separately from
+this P1-03 historical evidence. Tests establish dictionary parity, navigation and
+rendering, not fluent Kiswahili approval or full WCAG certification. No frontend
+API consumer, authentication, messaging or backend dependency is introduced.

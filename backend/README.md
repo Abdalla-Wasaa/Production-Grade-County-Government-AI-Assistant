@@ -2,8 +2,9 @@
 
 P1-02 adds PostgreSQL 17 connectivity, explicit Alembic migrations and database
 readiness to the existing process/configuration/HTTP foundation. Use fictional
-county information only. No domain tables, auth, chat, AI, frontend, Compose stack
-or deployment are implemented. Liveness does not establish production readiness.
+county information only. No domain tables, auth, chat or AI are implemented. The repository now includes
+the P1-03 independent frontend shell and P1-04 local Compose stack; these do not
+add a frontend API consumer or authorize deployment. Liveness does not establish production readiness.
 
 ## Setup
 
@@ -104,6 +105,7 @@ uv sync --locked
 uv pip check --python .venv/bin/python
 uv run --locked ruff check .
 uv run --locked ruff format --check .
+uv run --locked mypy
 uv run --locked pytest -q -m "not integration"
 git -C .. diff --exit-code -- backend/uv.lock
 ```
@@ -116,18 +118,21 @@ same locked Python 3.12 checks plus a separate PostgreSQL 17 integration job.
 ## Dependency decision and limits
 
 Python/Requires-Python metadata and direct dependency constraints were checked before
-resolution on 2026-10-16. The lock resolves FastAPI 0.143.2, Pydantic 2.14.1,
-pydantic-settings 2.16.0, Starlette 0.52.1, Uvicorn 0.54.0, HTTPX 0.28.1,
+resolution on 2026-10-16. The historical P1-01 lock resolved FastAPI 0.143.2 and
+Starlette 0.52.1. Reviewed P1-04 security updates superseded that pair: the current
+lock resolves FastAPI 0.143.3, Starlette 1.8.0, Pydantic 2.14.1,
+pydantic-settings 2.16.0, Uvicorn 0.54.0, HTTPX 0.28.1,
 Pytest 9.1.1 and Ruff 0.14.0. Runtime/dev dependencies are isolated in `backend/.venv`;
 repository tooling retains `requirements-dev.txt`. `uv.lock` records transitive
 versions and distribution hashes from public PyPI. Exact compatibility is verified
 through locked sync, dependency checking and tests; metadata alone is insufficient.
 
-Starlette is a direct dependency because its middleware/types are used. It is bounded
-below 1.0 for this HTTPX-based test harness; the newest 1.x release signals a switch
-to HTTPX2. The tested 0.52.1 combination emits an upstream AnyIO BlockingPortal
-deprecation warning. It is recorded rather than hidden; revisit the pair in a focused
-dependency update. This foundation is not an authentication, privacy-compliance,
+Starlette is a direct dependency because its middleware/types are used. P1-01's
+historical below-1.0 constraint and AnyIO warning were superseded by security
+remediation: current constraints are Starlette >=1.3.1,<2 and FastAPI >=0.143.3,<0.144.
+The current TestClient emits an upstream HTTPX deprecation warning; do not suppress
+it or claim the old constraint still applies. Any dependency update needs focused
+compatibility/security review. Mypy 2.4.0 checks app/ in strict mode. This foundation is not an authentication, privacy-compliance,
 dependency-vulnerability or production-readiness certification.
 
 Review [approved scope](../docs/REQUIREMENTS.md), [architecture](../docs/ARCHITECTURE.md)

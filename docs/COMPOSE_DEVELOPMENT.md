@@ -114,7 +114,7 @@ volume persistence. Existing PostgreSQL integration tests run in the disposable
 database container's loopback network namespace; no host database port is opened.
 Cleanup verifies project/instance/disposable ownership labels and deletes **only**
 the test project's resources, including its test volume. Runtime images remain for
-subsequent scanning. The report contains image references only. CI also records a test-only ownership
+subsequent scanning. The report contains image references and immutable built image IDs, never secrets. CI also records a test-only ownership
 manifest for an always-run fallback cleanup; it rejects normal development and
 coursework project names. SIGTERM attempts the same guarded cleanup. A hard kill
 can still require review of the recorded test labels; never use global pruning.
@@ -175,6 +175,29 @@ volume: never put real data there. No global cleanup exists.
 - Tested on Linux x86-64, Docker 29.1.3, Compose 2.40.3 and Buildx 0.30.1. Docker
   Desktop, rootless Docker, macOS/Windows bind-mount modes, SELinux and ARM have not
   been verified. Do not claim portability until those environments pass acceptance.
-- Local HTTP, private-file secrets and one instance per clone are intentional local
-  constraints. TLS, encrypted managed secrets, backup/restore, production monitoring
+- Local HTTP, private-file secrets and one active county-dev instance per Docker daemon are intentional local
+constraints. Separate clones do not isolate this fixed project name; clean
+onboarding replay must use a genuinely separate daemon/host. TLS, encrypted managed secrets, backup/restore, production monitoring
   and public deployment remain future approval gates.
+
+## Clean-checkout acceptance and browser smoke
+
+Do not replay ordinary setup from another clone on a daemon already hosting
+county-dev. The helper deliberately uses that fixed project name; it does not
+provide per-clone daemon isolation. Use an isolated Docker daemon/host with separate
+socket, runtime/storage and no existing volumes or credentials. If it cannot start,
+stop the affected replay and record it as unavailable; another Compose project on
+the shared daemon is not equivalent evidence.
+
+For automated acceptance, the existing smoke suite uses random county-test project
+names and fresh volumes. With approved Node/npm, frontend dependencies and Chromium
+installed, run from the checkout root:
+
+```bash
+python3 scripts/compose_smoke.py --browser --report .artifacts/compose-images.json --cleanup-manifest .artifacts/compose-cleanup.json --diagnostics .artifacts/compose-diagnostics.json
+```
+
+This runs the 12 existing real-PostgreSQL integration tests and the actual Nginx
+browser smoke. Retain safe reports only, never raw logs, secrets or inspect dumps.
+Normal shutdown preserves storage; persistence is not a tested production backup
+or restore guarantee. See [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md).

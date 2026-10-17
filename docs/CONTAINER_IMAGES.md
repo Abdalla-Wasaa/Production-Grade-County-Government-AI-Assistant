@@ -25,9 +25,11 @@ fresh-volume provisioning script. This is not a PostgreSQL source fork.
 ## Security verification and policy
 
 Trivy 0.76.0 scans all three **final runtime images** with current vulnerability
-metadata. The workflow reports all HIGH/CRITICAL findings and fails on findings
-with available fixes (`--ignore-unfixed` applies only to the failure gate, not the
-complete report). Full JSON reports are retained as a 14-day CI artifact. No CVE allowlist or severity suppression is used. Scanning is
+metadata. The current workflow retains all severities, requires complete package inventories
+and exact approved HIGH/CRITICAL occurrence identities/counts, and fails closed
+for new, changed, fixable, KEV-listed or unaccepted findings and invalid evidence.
+The historical P1-04 fixable-only failure gate was superseded by P1-05; it is not
+the current policy. No --ignore-unfixed gate or suppression is used now. Full JSON reports are retained as a 14-day CI artifact. No CVE allowlist or severity suppression is used. Scanning is
 not proof of safety; metadata and available fixes change over time.
 
 The first scan detected two fixable Starlette issues, CVE-2026-48818 and
@@ -65,8 +67,8 @@ The existing repository/history Gitleaks checks and frontend npm audit remain.
 For the original merged-PR counts, exact CI/local image IDs, all package/CVE rows,
 source-vendor applicability, known-exploitation evidence, alternative-image results
 and dated review gates, see the [vulnerability register](VULNERABILITY_REGISTER.md).
-PR #11 is already merged; this backend remediation needs a separate review before
-entering main. The PostgreSQL distro remains unchanged because existing-volume
+PR #11 and backend remediation PR #12 are merged, as are P1-05 PRs #13/#14.
+Fresh P1-06 scans must be recorded separately from historical snapshots. The PostgreSQL distro remains unchanged because existing-volume
 collation compatibility has not been cleared.
 
 ## Refresh procedure
@@ -78,3 +80,14 @@ Review resulting dependency locks separately. Never silently replace a pinned
 image, disable a failing scanner, ignore a fixable issue or change the PostgreSQL
 major version. Document new findings and seek review before merge. The Linux
 x86-64 validation does not certify other architectures.
+
+## Current acceptance boundary
+
+The approved baseline remains backend 44 HIGH, database 71 HIGH/3 CRITICAL and
+web zero. Acceptance is synthetic-local-development only and expires 23 October
+2026 at 23:59 EAT. Neither a fresh scan nor a green check renews it. New findings,
+fixes, severity/KEV/exposure changes invalidate the appropriate decision. Daily
+human CRITICAL review is the project owner's responsibility, not an automated
+monitor approval. Production/public/real-data deployment remains prohibited.
+See [the consolidated acceptance record](PHASE_1_ACCEPTANCE.md) for actual current
+scan provenance, results and pending verification.

@@ -88,7 +88,8 @@ and a loopback administrator URL to the `postgres` control database. Never set t
 variables for an existing/shared server. Use a new isolated container with synthetic
 credentials, loopback-only published port and no bind mounts or existing volumes.
 A local PostgreSQL installation may also be used only if it is explicitly disposable.
-Full Docker Compose orchestration remains P1-04.
+P1-04 now supplies the preferred isolated Compose workflow below; standalone
+commands remain an alternative requiring a deliberately disposable server.
 
 Example container lifecycle (set `POSTGRES_PASSWORD` privately in the environment
 first; its value is never part of the command):
@@ -152,3 +153,13 @@ automatically; preserve the volume and review safe logs. Never rotate local secr
 files against an existing database. Guarded reset deletes only explicitly confirmed,
 label-verified disposable project storage, preserves credentials and requires another
 explicit migration after reinitialization.
+
+## Final acceptance evidence
+
+Repeat fresh/repeat baseline upgrade, revision checks, runtime privilege denial,
+outage/recovery and normal-down storage persistence. No users, conversations or
+messages tables may appear. Unknown/stale revisions require investigation, never
+blind stamping or automatic upgrades. Future Phase 2 migrations are separately
+reviewed additions; keep 0001_baseline immutable. Existing volume persistence is
+not backup/restore certification. Record exact versions, command outcomes and
+limitations in [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md).
