@@ -103,6 +103,7 @@ async def issue(
         "success",
         uuid4(),
         str(user.id) if user else normalized,
+        actor=operator,
     )
     return raw
 
@@ -147,7 +148,15 @@ async def run(args: argparse.Namespace) -> None:
                 if invitation is None:
                     raise ValueError("Invitation unavailable")
                 invitation.revoked_at = tokens.clock()
-                await audit(db, tokens, "invitation_revoke", "success", uuid4(), str(invitation.id))
+                await audit(
+                    db,
+                    tokens,
+                    "invitation_revoke",
+                    "success",
+                    uuid4(),
+                    str(invitation.id),
+                    actor=args.operator,
+                )
             elif args.command in {"disable", "set-role"}:
                 user = await lock_user(db, args.id)
                 if user is None:
@@ -164,6 +173,7 @@ async def run(args: argparse.Namespace) -> None:
                     "success",
                     uuid4(),
                     str(user.id),
+                    actor=args.operator,
                 )
             elif args.command == "purge":
                 now = tokens.clock()
@@ -181,7 +191,7 @@ async def run(args: argparse.Namespace) -> None:
                 await db.execute(
                     delete(AuthAudit).where(AuthAudit.occurred_at < now - timedelta(days=90))
                 )
-                await audit(db, tokens, "retention_purge", "success", uuid4())
+                await audit(db, tokens, "retention_purge", "success", uuid4(), actor=args.operator)
     except BaseException:
         if created_file:
             args.output.unlink(missing_ok=True)

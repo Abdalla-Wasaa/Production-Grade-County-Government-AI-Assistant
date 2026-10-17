@@ -78,13 +78,14 @@ async def test_argon_hash_policy_verification_and_bounded_work(tmp_path):
     assert not await passwords.verify("unknown account", None)
     with pytest.raises(AuthFailure):
         await passwords.hash("commonly-guessed-synthetic-password")
-    passwords.capacity.acquire_nowait()
+    other_request = object()
+    passwords.capacity.acquire_on_behalf_of_nowait(other_request)
     try:
         with pytest.raises(AuthFailure) as failure:
             await passwords.hash("another synthetic passphrase 28")
         assert failure.value.status == 503
     finally:
-        passwords.capacity.release()
+        passwords.capacity.release_on_behalf_of(other_request)
     config.password_blocklist.write_text("changed")
     with pytest.raises(ValueError):
         Passwords(config)
@@ -159,6 +160,9 @@ def test_enabled_auth_db_unavailable_returns_safe_503(tmp_path, monkeypatch, cap
         create_app(Settings(environment="test", auth_enabled=True)), base_url="http://127.0.0.1"
     ) as client:
         assert client.get("/health/live").status_code == 200
+        schema = client.get("/api/v1/openapi.json").json()
+        assert "/api/v1/auth/sessions/{id}" in schema["paths"]
+        assert len(schema["paths"]) == 11
         result = client.get("/api/v1/auth/me")
         assert result.status_code == 503 and result.json()["error"]["code"] == "service_unavailable"
         assert result.headers["cache-control"] == "no-store"

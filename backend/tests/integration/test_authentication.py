@@ -2,7 +2,8 @@
 
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
-from uuid import uuid4
+from pathlib import Path
+from uuid import UUID, uuid4
 
 import psycopg
 import pytest
@@ -353,3 +354,188 @@ def test_expired_family_and_logout_idempotency(auth):
     assert client.post("/api/v1/auth/refresh", headers=csrf(client), json={}).status_code == 401
     assert client.post("/api/v1/auth/logout", headers=csrf(client), json={}).status_code == 204
     assert client.post("/api/v1/auth/logout", headers=csrf(client), json={}).status_code == 204
+
+
+def test_authentication_database_outage_and_recovery(auth):
+    target, client, _config = auth
+    _result, bearer = account(auth)
+    from psycopg import sql
+
+    control_url = (
+        make_url(target.admin).set(database="postgres").render_as_string(hide_password=False)
+    )
+    with psycopg.connect(control_url, autocommit=True) as control:
+        control.execute(
+            sql.SQL("ALTER DATABASE {} ALLOW_CONNECTIONS false").format(sql.Identifier(target.name))
+        )
+        try:
+            control.execute(
+                "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname=%s",
+                (target.name,),
+            )
+            result = client.get("/api/v1/auth/me", headers=bearer)
+            assert result.status_code == 503
+            assert result.json()["error"]["code"] == "service_unavailable"
+            assert client.get("/health/live").status_code == 200
+        finally:
+            control.execute(
+                sql.SQL("ALTER DATABASE {} ALLOW_CONNECTIONS true").format(
+                    sql.Identifier(target.name)
+                )
+            )
+    assert client.get("/api/v1/auth/me", headers=bearer).status_code == 200
+
+
+def test_explicit_operator_and_maintenance_grants(target, tmp_path, monkeypatch):
+    import argparse
+    import secrets
+
+    from psycopg import sql
+
+    from app.modules.identity.grants import grant
+    from app.modules.identity.operator import run
+
+    config = auth_settings(tmp_path, monkeypatch)
+    assert target.migrate().returncode == 0
+    target.grant_revision()
+    runtime = make_url(target.runtime).username
+    op_role, maint_role = "p201_op_" + uuid4().hex, "p201_ret_" + uuid4().hex
+    password = secrets.token_urlsafe(32)
+    control_url = (
+        make_url(target.admin).set(database="postgres").render_as_string(hide_password=False)
+    )
+    with psycopg.connect(control_url, autocommit=True) as control:
+        try:
+            for role in [op_role, maint_role]:
+                control.execute(
+                    sql.SQL("CREATE ROLE {} LOGIN PASSWORD {}").format(
+                        sql.Identifier(role), sql.Literal(password)
+                    )
+                )
+            monkeypatch.setenv("COUNTY_MIGRATION_DATABASE_URL", target.migration)
+            asyncio.run(grant(runtime, op_role, maint_role))
+            operator_url = (
+                make_url(target.runtime)
+                .set(username=op_role, password=password)
+                .render_as_string(hide_password=False)
+            )
+            monkeypatch.setenv("COUNTY_AUTH_OPERATOR_DATABASE_URL", operator_url)
+            output = tmp_path / ".local" / "identity" / "handoff"
+            asyncio.run(
+                run(
+                    argparse.Namespace(
+                        command="invite",
+                        email="operator@example.invalid",
+                        role="staff",
+                        language="sw",
+                        operator="synthetic-issuer",
+                        output=output,
+                    )
+                )
+            )
+            assert len(output.read_text().strip()) == 43
+            import os
+            import subprocess
+            import sys
+
+            cli_output = output.parent / "cli-token"
+            cli_environment = {
+                key: value
+                for key, value in os.environ.items()
+                if key not in {"COUNTY_TEST_ADMIN_URL", "COUNTY_MIGRATION_DATABASE_URL"}
+            }
+            command = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "app.modules.identity.operator",
+                    "invite",
+                    "--email",
+                    "cli@example.invalid",
+                    "--operator",
+                    "synthetic-cli-issuer",
+                    "--output",
+                    str(cli_output),
+                ],
+                cwd=Path(__file__).resolve().parents[2],
+                env=cli_environment,
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+            assert command.returncode == 0
+            assert cli_output.read_text().strip() not in command.stdout + command.stderr
+            with psycopg.connect(target.admin) as db:
+                assert (
+                    db.execute(
+                        "SELECT role FROM invitations "
+                        "WHERE email_normalized='operator@example.invalid'"
+                    ).fetchone()[0]
+                    == "staff"
+                )
+                assert db.execute(
+                    "SELECT actor FROM auth_audit_events WHERE action='invitation_issue' "
+                    "ORDER BY occurred_at LIMIT 1"
+                ).fetchone()[0] == Tokens(config).pseudonym("synthetic-issuer")
+            application = create_app(
+                Settings(
+                    environment="test", auth_enabled=True, database_url=SecretStr(target.runtime)
+                )
+            )
+            with TestClient(application, base_url=ORIGIN) as client:
+                assert activation(client, output.read_text().strip()).status_code == 204
+                signed_in = login(client, email="operator@example.invalid")
+                assert signed_in.status_code == 200
+                assert signed_in.json()["user"]["role"] == "staff"
+                old_bearer = {"Authorization": "Bearer " + signed_in.json()["access_token"]}
+                asyncio.run(
+                    run(
+                        argparse.Namespace(
+                            command="set-role",
+                            id=UUID(signed_in.json()["user"]["id"]),
+                            role="admin",
+                            operator="synthetic-role-operator",
+                        )
+                    )
+                )
+                assert client.get("/api/v1/auth/me", headers=old_bearer).status_code == 401
+                assert (
+                    login(client, email="operator@example.invalid").json()["user"]["role"]
+                    == "admin"
+                )
+                asyncio.run(
+                    run(
+                        argparse.Namespace(
+                            command="disable",
+                            id=UUID(signed_in.json()["user"]["id"]),
+                            operator="synthetic-role-operator",
+                        )
+                    )
+                )
+                assert login(client, email="operator@example.invalid").status_code == 401
+            with (
+                psycopg.connect(
+                    operator_url.replace("postgresql+psycopg:", "postgresql:"), autocommit=True
+                ) as db,
+                pytest.raises(psycopg.errors.InsufficientPrivilege),
+            ):
+                db.execute("DELETE FROM auth_audit_events")
+            maintenance_url = (
+                make_url(target.runtime)
+                .set(username=maint_role, password=password)
+                .render_as_string(hide_password=False)
+            )
+            with (
+                psycopg.connect(
+                    maintenance_url.replace("postgresql+psycopg:", "postgresql:"), autocommit=True
+                ) as db,
+                pytest.raises(psycopg.errors.InsufficientPrivilege),
+            ):
+                db.execute("UPDATE users SET role='admin'")
+        finally:
+            # Revoke/drop only roles created by this fixture; no developer roles.
+            with psycopg.connect(target.admin, autocommit=True) as db:
+                for role in [op_role, maint_role]:
+                    db.execute(sql.SQL("DROP OWNED BY {}").format(sql.Identifier(role)))
+            for role in [op_role, maint_role]:
+                control.execute(sql.SQL("DROP ROLE IF EXISTS {}").format(sql.Identifier(role)))

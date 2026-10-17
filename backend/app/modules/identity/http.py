@@ -302,14 +302,14 @@ async def sessions(
     return await service.sessions(user, family, limit, cursor)
 
 
-@router.delete("/sessions/{session_id}", status_code=204)
-async def revoke(session_id: UUID, request: Request, service: Service) -> Response:
+@router.delete("/sessions/{id}", status_code=204)
+async def revoke(id: UUID, request: Request, service: Service) -> Response:
     await csrf(request, service)
     await service.admission(client_ip(request, service.tokens), "mutation")
     user, family = await bearer(request, service)
-    await service.revoke_session(user, session_id)
+    await service.revoke_session(user, id)
     response = Response(status_code=204)
-    if session_id == family.id:
+    if id == family.id:
         clear(response, service)
     return response
 
