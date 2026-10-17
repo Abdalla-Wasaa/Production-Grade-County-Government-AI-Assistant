@@ -1,3 +1,8 @@
+import { AuthProvider } from '../features/auth/AuthProvider';
+import { LoginPage } from '../features/auth/LoginPage';
+import { ActivationPage } from '../features/auth/ActivationPage';
+import { AccountPage } from '../features/auth/AccountPage';
+import { ProtectedRoute } from '../features/auth/ProtectedRoute';
 import { Route, Routes } from 'react-router';
 import { AppLayout } from '../components/AppLayout';
 import { HomePage } from '../features/home/HomePage';
@@ -17,6 +22,11 @@ function AppRoutes() {
         <Route element={<AppLayout />}>
           <Route index element={<HomePage />} />
           <Route path="assistant" element={<AssistantPlaceholder />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="activate" element={<ActivationPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="account" element={<AccountPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
@@ -27,7 +37,9 @@ export function App() {
   const { language } = useLanguage();
   return (
     <AppErrorBoundary language={language}>
-      <AppRoutes />
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
     </AppErrorBoundary>
   );
 }

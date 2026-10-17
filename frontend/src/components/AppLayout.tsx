@@ -35,6 +35,9 @@ export function AppLayout() {
           <NavLink to="/assistant">
             <Text message="navAssistant" />
           </NavLink>
+          <NavLink to="/account">
+            <Text message="navAccount" />
+          </NavLink>
         </nav>
       </header>
       <main id="main-content" className="page-width main-content" tabIndex={-1}>
