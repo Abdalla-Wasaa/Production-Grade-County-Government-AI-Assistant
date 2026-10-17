@@ -15,10 +15,11 @@
 
 ## Current scope
 
-P1-05 audit remediation is authorized on `fix/p1-05-ci-audit-remediation`,
-starting from merged PR #13. Fix the four reviewed findings, push and open a
-follow-up PR linked to #13 and issue #6. Verify hosted artifacts before completion.
-Preserve all existing tests and security controls. Risk decisions require explicit
-owner approval; never auto-accept or renew findings. Synthetic development only.
-Do not change GitHub settings, PostgreSQL distro/storage, coursework or unrelated
-application behavior. Do not merge, deploy or begin P1-06.
+P1-06 documentation and acceptance verification is authorized on
+`docs/p1-06-foundation-acceptance`. Reopen/correct issue #7 without erasing its
+criteria/history; reconcile docs; verify a clean exact-commit checkout; push and
+open one focused review PR. If genuine Docker isolation is unavailable, stop the
+affected replay and mark its criteria pending. Never invent human review or approval.
+Do not change application code without separate approval for a verified defect.
+Do not change rulesets, vulnerability baseline/acceptance or its expiry. Synthetic
+local development only. No merge, deployment, coursework changes or Phase 2 work.

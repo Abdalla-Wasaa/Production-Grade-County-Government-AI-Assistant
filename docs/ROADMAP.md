@@ -1,8 +1,9 @@
 # Milestone roadmap
 
-Status: updated 2026-10-16. Phase 0, P1-01 through P1-04 and security follow-up
-PR #12 are merged. P1-05 is authorized and pending review; P1-06 requires separate
-approval. Development remains fictional/synthetic only. Estimates assume one focused engineer
+Status: updated 2026-10-17. Phase 0 and P1-01 through P1-05 are merged,
+including PR #14 remediation. Ruleset 25222082 is enforced and tested by PR #15.
+P1-06 documentation/verification is authorized; acceptance remains pending.
+Phase 2 requires separate approval. Development remains fictional/synthetic only. Estimates assume one focused engineer
 with access to a county content reviewer and privacy/security reviewer. Parallel
 organizational review is possible; no sub-agent delegation or extra engineering team
 is assumed. Part-time work, procurement, credentials, approvals and county source
@@ -51,8 +52,8 @@ flowchart LR
 Every arrow after a phase also requires explicit user approval; diagram arrows are
 dependencies, not permission. Use feature branches and PRs; Conventional Commits;
 attach actual checks and risks; obtain approval before merge and before starting
-another phase. No direct commits to main after initialization. Phase 0 ends after
-documentation validation and local commits; no push, PR, merge, or Phase 1 work.
+another phase. No direct commits to main after initialization. The historical Phase 0 stop gate applied to that milestone; it does not override
+subsequent explicit authorizations recorded in the merged implementation PRs.
 
 ## Work breakdown and release evidence
 
@@ -96,8 +97,8 @@ records, county credentials, confidential documents, payments, public deployment
 live county integration. See [pre-pilot decision gate](PRE_PILOT_GATE.md). All
 implementations require dedicated branches, tests, green relevant CI and the sole
 maintainer's review before merging. A green check is not approval to merge/start
-another issue. P1-03 is merged. P1-04 has explicit owner implementation approval and remains
-pending review; P1-05 requires separate approval.
+another issue. P1-01 through P1-05 are merged. P1-06 is authorized for documentation and evidence
+only; no later functionality or automatic acceptance is authorized.
 
 Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/2),
 [P1-02 database/migrations](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/3),
@@ -122,3 +123,12 @@ requires actual hosted context verification, negative-test evidence and explicit
 residual-risk decisions; a green functional suite alone is insufficient.
 GitHub required-check/ruleset configuration needs separate approval and remote
 verification. No ruleset changes or P1-06 work are authorized. See [CI.md](CI.md).
+
+## P1-06 acceptance gate
+
+Issue #7's prior closure/checkmarks were premature relative to this final replay.
+The owner authorized reopening it while preserving its original criteria/history.
+[Phase 1 acceptance](PHASE_1_ACCEPTANCE.md) maps each criterion to exact-commit
+results, limitations and owner decisions. Missing isolated onboarding or human
+security-review evidence stays pending. Foundation acceptance is development-only;
+production security approval and Phase 2 implementation are separate decisions.

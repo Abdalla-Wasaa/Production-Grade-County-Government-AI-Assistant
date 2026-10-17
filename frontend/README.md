@@ -142,5 +142,6 @@ focused dependency update. See [Vite setup](https://vite.dev/guide/),
 
 The frontend CI uses the pinned Node version, clean install, dependency security,
 lint/format/types/unit/build/browser checks and lock-drift verification. Existing
-backend, PostgreSQL, documentation and secret workflows remain in place. Do not
-merge or start P1-04 without the owner's review/approval.
+backend, PostgreSQL, documentation and secret workflows remain in place. P1-04/P1-05 are now merged. Current P1-06 results belong in the consolidated
+[acceptance record](../docs/PHASE_1_ACCEPTANCE.md); no merge or Phase 2 start is
+permitted without the owner's separate approval.

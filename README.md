@@ -4,8 +4,11 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Phase 0 and P1-01 through P1-04, including security follow-up PR #12, are merged.
-P1-05 CI gates are merged in PR #13; audit remediation is pending maintainer review. The bilingual assistant is still a placeholder
+Phase 0 and P1-01 through P1-05 are merged, including security/CI remediation
+PRs #12 and #14. Main ruleset 25222082 enforces all seven CI checks; controlled
+PR #15 verified blocking and passing states without merging. P1-06 acceptance
+verification is in progress; see [the acceptance record](docs/PHASE_1_ACCEPTANCE.md).
+The bilingual assistant is still a placeholder
 without messaging or authentication. Kiswahili copy remains pending human review.
 Only fictional/synthetic information is authorized.
 
@@ -63,3 +66,11 @@ secret files, environment dumps or database URLs.
 
 Existing AIEngineeringClass coursework is reference material and must remain
 unmodified. Do not copy virtual environments or coursework artifacts here.
+
+## Acceptance boundary
+
+The recorded runtime baseline contains 115 HIGH and 3 CRITICAL scanner occurrences.
+Owner acceptance permits only synthetic local development through 23 October 2026,
+23:59 EAT. No automatic renewal, real-data use or public/production deployment.
+Daily human CRITICAL review is the project owner's responsibility; absent evidence
+remains pending. Green CI does not establish unconditional Phase 1 acceptance.
