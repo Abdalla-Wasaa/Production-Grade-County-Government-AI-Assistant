@@ -2,9 +2,15 @@
 
 P1-03 is an independent React/Vite/strict TypeScript/Tailwind 4 application shell.
 It uses fictional information only and is not an official government service.
-Routes are `/`, `/assistant` and a localized catch-all 404. The assistant is visibly
-unavailable: no input, messages, fabricated history, authentication, AI or county API
-integration. Backend and PostgreSQL availability do not affect this shell.
+Public routes remain `/`, `/assistant` and a localized catch-all 404. P2-02 source
+adds `/login`, `/activate` and protected `/account`, with no public registration or
+admin UI. Public preview routes initiate no authentication requests and remain
+independent of backend availability. The assistant remains visibly unavailable.
+
+**P2-02 runtime verification is pending changed-exposure authorization.** Existing
+acceptance does not authorize running this changed application, tests or runtime CI.
+See [the focused assessment](../docs/P2_02_EXPOSURE_ASSESSMENT.md). Commands below
+are setup/reference instructions, not permission to bypass that gate.
 
 ## Local setup
 
@@ -35,15 +41,26 @@ the 404 page within a successful SPA document response, not an HTTP 404 status.
 - `src/main.tsx`: React root, strict mode, language context and browser router.
 - `src/app/`: composition, safe error boundary and route title/focus management.
 - `src/components/`: layout, native language selector and loading/error/empty states.
-- `src/features/`: home, honest assistant placeholder and not-found page.
+- `src/features/`: public preview pages and bounded `auth` client/context/pages.
 - `src/i18n/`: complete typed dictionaries, defensive resolution, preference storage.
-- `src/config.ts`: public same-origin API path validation; no network client yet.
+- `src/config.ts`: public same-origin API path validation for native Fetch auth.
 - `src/styles.css`: Tailwind entry, layout, colour/focus and responsive styles.
 
-React state/context owns the language only. React Router uses declarative routes;
-no server framework, loaders or auth guards are introduced. Native Fetch is the
-choice for future consumers, but P1-03 makes no backend/provider/translation calls.
-No API-client abstraction is created before there is a real consumer.
+React context owns language and memory-only authentication state. Native Fetch uses
+same-origin cookies, no-store and redirect rejection. Only account routes are guarded;
+these guards provide UX, while backend authorization remains authoritative.
+Web Locks serialize cookie-changing operations across tabs, with fresh CSRF inside
+the lock before each mutation. BroadcastChannel carries only invalidation markers.
+No access/CSRF/invitation token is written to storage or included in a redirect.
+Refresh cookies remain backend-owned and HttpOnly. Missing browser coordination
+capabilities fail closed. Ambiguous refresh is not automatically retried; sign in
+afresh. Failed logout clears local identity but warns server revocation is unconfirmed.
+
+Activation/reset uses the synthetic-v1 notice matching the synthetic backend.
+A different configured version requires a reviewed notice-content update. Paste the
+one-time token, or use `/activate#token=...`; initial fragment/query data is scrubbed
+before React renders. Never use query-string tokens, analytics or telemetry. Only
+language preference persists. Recovery remains operator-assisted; no public endpoint.
 
 ## Language and review gate
 
@@ -72,7 +89,7 @@ missing production dictionary entries.
 `VITE_API_BASE_URL` defaults to `/api/v1`; only a same-origin `/api` path with safe
 segments is accepted. Origins, credentials, traversal, queries and fragments are
 rejected with a generic message. Invalid configuration reaches the safe render
-boundary. This value is reserved for future consumers and triggers no requests.
+boundary. Authentication uses this path for approved account operations.
 
 Vite loads environment files only from this frontend package (`envDir` is explicit).
 Use `.env.example` as documentation; local `.env` files stay ignored. **Every VITE\_
@@ -101,7 +118,7 @@ npm run test:e2e
 ```
 
 Playwright system dependencies are needed on a fresh Linux host; browser downloads
-live outside the repository. Unit tests deny Fetch calls and need no backend.
+live outside the repository. Unit tests deny real Fetch calls; auth cases explicitly mock synthetic responses.
 Browser tests run the actual production build on loopback. They cover navigation,
 history, deep links, keyboard use, focus, both languages, denied storage, safe errors,
 reflow and text enlargement. Browser automation checks for unexpected external
@@ -145,3 +162,22 @@ lint/format/types/unit/build/browser checks and lock-drift verification. Existin
 backend, PostgreSQL, documentation and secret workflows remain in place. P1-04/P1-05 are now merged. Current P1-06 results belong in the consolidated
 [acceptance record](../docs/PHASE_1_ACCEPTANCE.md); no merge or Phase 2 start is
 permitted without the owner's separate approval.
+
+## P2-02 prepared verification
+
+Auth unit/component and preview-browser tests cover forms, safe errors, protected
+routes, restoration/expiry, cross-tab serialization/revocation, memory-only tokens,
+fragment scrubbing, keyboard behavior, bilingual labels and axe. Preview cases use
+mocked API responses and are not proof of backend integration.
+
+The normal `scripts/compose_smoke.py --browser` command additionally runs
+`playwright.auth-compose.config.ts` against the actual auth-enabled backend/Nginx.
+The fixture seeds a fresh synthetic invitation and hands credentials through an
+owned temporary 0600 file; the environment carries only its path. It deletes the
+file afterward. Browser cases cover real activation/login, HttpOnly cookie attributes,
+restoration, automatic refresh, two tabs, bilingual axe and current-session revocation.
+Auth traces/screenshots/videos are disabled to avoid credential/body artifacts.
+The sanitized auth-compose.xml joins the existing retained browser evidence. No
+workflow/check/ruleset changes are introduced. These runtime tests are prepared but
+not executed pending the specific owner decision. Manual screen-reader and fluent
+Kiswahili review remain required; automated axe is not WCAG certification.

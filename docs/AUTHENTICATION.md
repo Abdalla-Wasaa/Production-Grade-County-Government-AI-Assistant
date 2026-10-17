@@ -1,8 +1,10 @@
 # P2-01 backend authentication contract
 
-Status: contracts merged in PR #23; P2-01 backend is implemented behind explicit
-enablement and exercised under isolated synthetic validation authorization. Machine-
-policy/security acceptance remains blocked; no production approval is claimed. Frontend authentication, conversations, AI and live delivery are excluded.
+Status: backend PR #24 is merged with its separate, exact-scope P2-01 development
+acceptance and all seven checks passing. Backend auth remains explicitly enabled.
+P2-02 frontend source is prepared under issue #18; changed frontend exposure needs
+a separate owner decision before runtime validation. No production approval exists.
+Conversations, AI, public registration and live delivery remain excluded.
 [ADR 0002](DECISIONS/0002-invite-only-authentication.md) records the tradeoffs.
 
 ## Operator provisioning and recovery

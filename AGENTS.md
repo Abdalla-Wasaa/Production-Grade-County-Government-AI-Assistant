@@ -15,23 +15,18 @@
 
 ## Current scope
 
-P2-01 backend implementation and isolated synthetic validation are authorized under
-merged contract PR #23. Work on feat/p2-01-account-authentication and PR #24.
-On 17 October 2026 the owner separately approved the exact implementation at
-933967ea2a03368677e175f65f6f65dc193a8716, exposure
-d82e1a0e6a43f2bea054684dd7e5fad9a2e2fbb96723a93e74f0bde1bf7bfb17
-and backend inventory
-7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e.
-Only the seven proposed security/documentation files may change for this approval;
-the original Phase 1 records are preserved as an unchanged historical snapshot.
-The separate P2-01 acceptance covers only the exact 118 inherited occurrences,
-reviewed exposure and seven added dependencies, for isolated synthetic development.
-Expiry remains 23 October 2026 at 23:59 EAT. Daily human CRITICAL reviews and all
-existing invalidation triggers remain required; no automatic approval of later
-exposure changes, acceptance expansion or renewal. Production/public deployment,
-real citizen/county data and production credentials remain prohibited.
-Run normal repository/Compose validation and all seven hosted checks; do not bypass
-rules or manufacture reports. Preserve scans, branch protection and PR review.
-Fixed citizen/staff/admin roles; invite-only activation and operator-assisted recovery;
-no frontend auth, conversations, live email, AI/RAG/tools or deployment in P2-01.
-Coursework remains read-only. No automatic merge or start of a later milestone.
+Issue #18, P2-02 frontend authentication, is authorized from merged backend PR #24
+(main ecc9f76). Use feat/p2-02-frontend-authentication. Implement bilingual
+login/activation, memory-only session state, protected account routes, serialized
+refresh/restoration, logout and own-session management with meaningful tests.
+No public registration, admin dashboard, conversations, AI/RAG or deployment.
+Prepare source, static/build/audit and complete image scan evidence, then stop at
+the exact human changed-exposure decision before running changed-app tests/Compose
+or opening runtime CI. The P2-01 acceptance does not cover changed frontend code.
+Do not change baseline/inventory/acceptance records, expiry, CI policies, workflows
+or rulesets without explicit authorization. Preserve all seven checks and normal PR
+review. Existing expiry remains 23 October 2026 at 23:59 EAT; daily human CRITICAL
+reviews remain mandatory and must not be fabricated. Synthetic isolated local
+information only; no real citizen/county data, production credentials or public/
+production deployment. No automatic merge or start of another milestone.
+Coursework outside this official repository remains strictly read-only.
