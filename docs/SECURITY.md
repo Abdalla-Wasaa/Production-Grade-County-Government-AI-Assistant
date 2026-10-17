@@ -330,3 +330,23 @@ Synthetic isolated local development only; no real county/citizen data, producti
 credentials, public or production deployment. Scanning, all seven required contexts,
 strict branch protection and normal PR review remain active. Green development CI
 is not production security approval or authorization to merge.
+
+
+### Separate P2-02 owner decision — 17 October 2026
+
+The owner explicitly approved tested PR #25 source 2a33394 and exposure
+0b8f2dc7e55e72fbc96325edbec4d57a5a97c9eb52d4fae3251e9aec302b958d,
+with unchanged full dependency inventories and all 118 inherited findings
+(115 HIGH/3 CRITICAL) individually enumerated in the existing bound baseline.
+See [P2-02 evidence](P2_02_EXPOSURE_ASSESSMENT.md). The active decision is separate
+from P2-01, whose original approval bytes are preserved in the
+[P2-01 acceptance snapshot](security/p2-02/p2-01-acceptance-snapshot.json).
+No baseline, inventory, vulnerability row, scanner rule, workflow or ruleset changes.
+
+This is isolated synthetic local development only. Expiry remains 23 October 2026
+at 23:59 EAT (20:59 UTC). Daily human CRITICAL reviews must continue truthfully.
+Any available fix, new finding, severity increase, KEV listing or further exposure/
+dependency change invalidates the applicable decision. No automatic expansion or
+renewal. No real citizen/county data, production credentials or public/production
+deployment. All seven required checks, vulnerability scanning, strict branch
+protection and normal owner PR review remain active. No merge is authorized.

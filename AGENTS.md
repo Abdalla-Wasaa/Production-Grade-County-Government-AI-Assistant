@@ -20,17 +20,19 @@ Issue #18, P2-02 frontend authentication, is authorized from merged backend PR #
 login/activation, memory-only session state, protected account routes, serialized
 refresh/restoration, logout and own-session management with meaningful tests.
 No public registration, admin dashboard, conversations, AI/RAG or deployment.
-On 17 October 2026 the owner explicitly authorized isolated synthetic frontend,
-browser/accessibility and backend integration validation of source 17f03c0 and
-reviewed exposure c65d01bdd17de179fce4284328d372aeb23b17b7b49b10e0cd09688c919a6b28,
-including bounded test-driven corrections within issue #18 with no new dependencies.
-This authorizes validation only, not acceptance-record changes or automatic reuse
-of P2-01 acceptance. Recheck exposure/security delta after corrections; present the
-exact final security decision before opening the frontend PR. No merge is approved.
-Do not change baseline/inventory/acceptance records, expiry, CI policies, workflows
-or rulesets without explicit authorization. Preserve all seven checks and normal PR
-review. Existing expiry remains 23 October 2026 at 23:59 EAT; daily human CRITICAL
-reviews remain mandatory and must not be fabricated. Synthetic isolated local
-information only; no real citizen/county data, production credentials or public/
-production deployment. No automatic merge or start of another milestone.
+On 17 October 2026 the owner separately approved the exact tested P2-02 source
+2a3339410aba6c3037ef349569afffbbae002bd4, exposure
+0b8f2dc7e55e72fbc96325edbec4d57a5a97c9eb52d4fae3251e9aec302b958d,
+unchanged inventories and 115 HIGH/3 CRITICAL inherited findings. Only the five
+specified security/documentation files may change for this acceptance update.
+The previous P2-01 acceptance is preserved byte-for-byte in its historical snapshot.
+Acceptance is isolated synthetic local development only; expiry remains
+23 October 2026 at 23:59 EAT. Daily human CRITICAL reviews and all existing
+invalidation triggers remain mandatory; no automatic future-exposure approval,
+renewal or scope expansion. No real citizen/county data, production credentials,
+public/production deployment, automatic merge or next milestone.
+Run normal checks and verify all seven hosted contexts on PR #25 after pushing;
+fix only genuine remaining defects without weakening controls. Keep scans, baseline,
+inventories, policies, workflows, ruleset and normal PR review unchanged. A further
+exposure change requires a new exact owner decision, not a silently updated hash.
 Coursework outside this official repository remains strictly read-only.

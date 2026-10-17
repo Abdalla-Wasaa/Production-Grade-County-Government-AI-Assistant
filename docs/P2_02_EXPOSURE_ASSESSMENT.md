@@ -3,8 +3,9 @@
 Status: isolated synthetic runtime validation authorized by the owner and completed
 on 17 October 2026. The source-preparation sections below are historical; the dated
 runtime results and updated exposure supersede their pending-test statements.
-Machine-policy acceptance and frontend PR approval remain pending. No production
-approval or hosted CI pass is claimed.
+The owner subsequently authorized the exact five-file P2-02 acceptance update
+on 17 October 2026; the final decision section supersedes earlier pending-decision
+statements. Hosted CI must be verified on the update commit. No production approval.
 
 Current tested source is 145d562; current exposure is
 0b8f2dc7e55e72fbc96325edbec4d57a5a97c9eb52d4fae3251e9aec302b958d.
@@ -302,3 +303,35 @@ not private key material. Findings were classified, not suppressed; no scanner i
 or report rewrite was introduced. Auth traces/media were disabled and runtime secret
 canaries passed. Final documentation/format/whitespace checks passed. No acceptance,
 baseline, inventory, workflow, policy algorithm or ruleset was edited in validation.
+
+
+## Explicit owner-authorized P2-02 decision — 17 October 2026
+
+The owner explicitly approved the separate P2-02 synthetic-development-only
+acceptance for PR #25, tested commit 2a3339410aba6c3037ef349569afffbbae002bd4,
+exposure 0b8f2dc7e55e72fbc96325edbec4d57a5a97c9eb52d4fae3251e9aec302b958d,
+the 115 HIGH/3 CRITICAL inherited findings, unchanged inventories and residual risks.
+The authorization named exactly five files and permitted commit/push and all seven
+hosted checks, with no automatic merge. This actual owner decision supersedes the
+proposal-only boundary above for this exact candidate; future changes are not approved.
+
+Before replacing the active decision, its complete original bytes were copied to
+[the P2-01 snapshot](security/p2-02/p2-01-acceptance-snapshot.json), with byte equality
+verified against git show of 2a33394. The active P2-02 decision retains baseline hash
+3b4b2b44866f00c4d24d219b6ee0e4e7428bbc81362af9bc8313e39615c5d234 and original expiry
+2026-10-23T20:59:00+00:00 (23 October 2026 at 23:59 EAT). Baseline, inventories,
+occurrence rows, dependencies, application source, scan policy, workflows and
+ruleset remain unchanged. Daily human CRITICAL review is mandatory; no review is
+forged by this record. All existing invalidation triggers remain active: available
+fix, new finding, severity increase, KEV listing or further exposure/dependency change.
+No expansion, renewal, real data, production credentials, public/production deployment
+or merge is authorized. The next evidence is the normal seven hosted checks on the
+policy-update commit; pending results must not be described as passing.
+
+The failed hosted runs on the previous head are preserved:
+[repository](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39049256726)
+and [Compose](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39049256728).
+Repository policy stopped before Pytest, leaving repository.xml absent; the upload
+correctly failed. Complete Compose scans and real functional/browser tests passed;
+only the applicable owner decision was missing. No fabricated XML, scanner result,
+workflow bypass or broad code refactoring is needed to resolve those failures.
