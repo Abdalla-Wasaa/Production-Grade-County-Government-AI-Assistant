@@ -30,6 +30,8 @@ class Stack:
         )
         self.prefix = dev.compose_command(self.environment, self.project)
         self.secret_directory = directory / "secrets"
+        self.extra_secret_canaries = []
+        self.authentication_checks = []
 
     def run(self, *args, timeout=180):
         result = subprocess.run(
@@ -73,6 +75,9 @@ class Stack:
         raise RuntimeError("Timed out waiting for " + path)
 
     def assert_secrets_not_in(self, text):
+        for value in self.extra_secret_canaries:
+            if value in text:
+                raise RuntimeError("Authentication secret canary leaked")
         for path in self.secret_directory.iterdir():
             if path.read_text().strip() in text:
                 raise RuntimeError("Secret canary leaked")
@@ -172,7 +177,7 @@ async def verify():
     try:
         async with engine.connect() as c:
             names=(await c.execute(text("SELECT tablename FROM pg_tables WHERE schemaname='public'"))).scalars().all()
-            assert names==['alembic_version']
+            assert set(names)=={'alembic_version','users','invitations','auth_sessions','refresh_tokens','auth_audit_events','auth_rate_limits'}
             for statement in ["CREATE TABLE forbidden(id integer)","UPDATE public.alembic_version SET version_num='forbidden'"]:
                 try:
                     await c.execute(text(statement))
@@ -186,13 +191,14 @@ async def verify():
 asyncio.run(verify())
 """
     stack.run("exec", "-T", "backend", "python", "-c", code)
-    print("PASS: baseline-only schema and denied runtime DDL/revision writes")
+    print("PASS: identity-only schema and denied runtime DDL/revision writes")
 
 
 def verify_leaks(stack):
     logs = stack.run("logs", "--no-color", "web", "backend", "db")
     stack.assert_secrets_not_in(logs)
     for service in ("web", "backend", "db"):
+        stack.assert_secrets_not_in(json.dumps(stack.inspect(service)))
         image = stack.inspect(service)["Config"]["Image"]
         history = subprocess.check_output(
             ["docker", "history", "--no-trunc", image], text=True
@@ -275,8 +281,14 @@ os.execv('/opt/venv/bin/python',['/opt/venv/bin/python','-m','pytest','-q','-m',
     stack.assert_secrets_not_in(result.stdout + result.stderr)
     if result.returncode:
         raise RuntimeError("Existing PostgreSQL integration suite failed")
+    import re
+
+    summary = re.search(r"(?m)^(\d+) passed", result.stdout)
+    if summary is None or int(summary.group(1)) < 12:
+        raise RuntimeError("PostgreSQL integration evidence incomplete")
     print(
-        "PASS: existing PostgreSQL integration suite (12 tests), isolated loopback namespace"
+        f"PASS: PostgreSQL integration suite ({summary.group(1)} tests), "
+        "isolated loopback namespace"
     )
 
 
@@ -319,6 +331,9 @@ def exercise(stack):
         )
         print("PASS: Chromium against actual Compose/Nginx application")
     verify_postgresql_suite(stack)
+    from auth_compose_smoke import exercise_auth
+
+    exercise_auth(stack)
     backend_id = stack.inspect("backend")["Id"]
     restarts = stack.inspect("backend")["RestartCount"]
     stack.run("stop", "db")
@@ -354,6 +369,8 @@ def exercise(stack):
     stack.wait("/health/ready")
     stack.run("--profile", "maintenance", "run", "--rm", "-T", "migrate", "check")
     print("PASS: named volume and migrated state persist without reinitialization")
+    stack.auth_persistence_check()
+    verify_leaks(stack)
     stack.run("stop")
     assert '"event": "application_stopped"' in stack.run(
         "logs", "--no-color", "backend"
@@ -426,6 +443,7 @@ def main():
                 arguments.report.write_text(
                     json.dumps(
                         {
+                            "authentication_checks": stack.authentication_checks,
                             "image_ids": {
                                 role: stack.inspect(role)["Image"]
                                 for role in ("web", "backend", "db")

@@ -1,6 +1,6 @@
 # ADR 0002: Invite-only accounts and revocable rotating sessions
 
-Date: 2026-10-17. Status: owner-approved direction; contract review pending.
+Date: 2026-10-17. Status: contracts reviewed and merged in PR #23; runtime implementation pending validation.
 This ADR specifies P2-01; no authentication functionality is implemented by it.
 Implementation starts from reviewed, merged contracts on
 feat/p2-01-account-authentication. No PR is merged without owner review.

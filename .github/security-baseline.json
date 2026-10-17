@@ -400,8 +400,8 @@
           "version": "2.41.5-0+deb13u1"
         }
       ],
-      "image_id": "sha256:7379eb8dc71b634cfb9ce9bca17c1bd97372015b01d7bd9e14a3922261c0200f",
-      "report_sha256": "d16a6c443d6b98333f42d2cfac3114f62686f5b342ec8a462d5bfcd8e9d2aae1"
+      "image_id": "sha256:008ab22a737e148330729eb20ef01de16879c87a916fdf91043eaf4aad551387",
+      "report_sha256": "28f237cfdf1608a45a5020be5bc978279ee40f6693671fcc711f4dc01bc0d0c0"
     },
     "db": {
       "base_digest": "sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",

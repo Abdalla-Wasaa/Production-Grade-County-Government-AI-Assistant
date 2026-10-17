@@ -48,11 +48,23 @@ def test_baseline_repeat_schema_and_readiness(target):
         assert target.migrate("check").returncode == 0
         assert client.get("/health/ready").status_code == 200
         with psycopg.connect(target.admin) as db:
-            assert db.execute(
-                "SELECT tablename FROM pg_tables WHERE schemaname='public'"
-            ).fetchall() == [("alembic_version",)]
+            names = {
+                row[0]
+                for row in db.execute(
+                    "SELECT tablename FROM pg_tables WHERE schemaname='public'"
+                ).fetchall()
+            }
+            assert names == {
+                "alembic_version",
+                "users",
+                "invitations",
+                "auth_sessions",
+                "refresh_tokens",
+                "auth_audit_events",
+                "auth_rate_limits",
+            }
             assert db.execute("SELECT version_num FROM public.alembic_version").fetchall() == [
-                ("0001_baseline",)
+                ("0004_auth_controls",)
             ]
 
 
@@ -68,7 +80,7 @@ def test_bad_revisions_and_recovery(target, revisions):
         assert target.migrate("check").returncode == 1
         with psycopg.connect(target.admin, autocommit=True) as db:
             db.execute("DELETE FROM public.alembic_version")
-            db.execute("INSERT INTO public.alembic_version VALUES ('0001_baseline')")
+            db.execute("INSERT INTO public.alembic_version VALUES ('0004_auth_controls')")
         assert client.get("/health/ready").status_code == 200
 
 

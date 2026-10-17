@@ -10,6 +10,7 @@ from sqlalchemy.pool import NullPool
 from app.db.base import Base
 from app.db.migrate import MigrationSettings
 from app.db.session import protect_engine_logging
+from app.modules.identity import models  # noqa: F401 -- register reviewed model metadata
 
 
 def run_migrations(connection: Connection) -> None:

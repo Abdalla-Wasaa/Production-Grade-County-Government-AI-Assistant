@@ -4,8 +4,9 @@ Status: Phase 0 target design, amended 2026-10-16. P1-01/P1-02 implement the bac
 factory/settings/lifecycle/health and safe HTTP/logging boundaries, async database
 sessions and explicit baseline migrations. P1-03 adds the independent bilingual
 frontend shell; P1-04 adds local Compose/Nginx and isolated PostgreSQL; P1-05 adds
-enforced quality/security gates. Auth/chat/AI modules in the target design remain
-unimplemented. P1-06 verifies/documents these boundaries; it adds no API consumer.
+enforced quality/security gates. P2-01 now adds opt-in identity/session behavior with synthetic runtime evidence;
+chat/AI modules in the target design remain unimplemented. Security acceptance of
+changed exposure/inventory is still blocked; no production authorization. P1-06 verifies/documents these boundaries; it adds no API consumer.
 Scope and targets come from [requirements](REQUIREMENTS.md). Rationale is recorded
 in [ADR 0001](DECISIONS/0001-modular-monolith.md).
 
@@ -288,7 +289,7 @@ health, while readiness checks PostgreSQL reachability and schema revision. Migr
 runs explicitly; normal startup never applies migrations. No database/backend host
 ports or domain tables are introduced. See [Compose operations](COMPOSE_DEVELOPMENT.md).
 
-## P2-01 identity design (implementation pending)
+## P2-01 identity implementation (restricted validation)
 
 [ADR 0002](DECISIONS/0002-invite-only-authentication.md) and
 [authentication contract](AUTHENTICATION.md) specify the owner-authorized identity
@@ -296,5 +297,6 @@ module. Existing per-request AsyncSession and explicit transaction ownership rem
 Routes delegate to identity services/repositories; clocks, hashing and token creation
 are injectable. Fixed current roles and live database sessions govern authorization.
 No generic framework, microservice, Redis, frontend auth or provider call is added.
-The contract PR introduces no runtime changes. Implementation requires contract merge
-and the existing changed-exposure security gate; Phase 1 acceptance is not inherited.
+Contract PR #23 merged before implementation. Isolated validation is now authorized;
+the [exposure report](P2_01_EXPOSURE_ASSESSMENT.md) records actual results and the
+remaining machine-policy blocker. Phase 1 acceptance is not inherited or extended.

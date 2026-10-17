@@ -38,6 +38,21 @@ class Target:
                 )
             )
 
+    def grant_auth(self):
+        role = sql.Identifier(make_url(self.runtime).username)
+        statements = [
+            "GRANT SELECT, INSERT ON users TO {}",
+            "GRANT UPDATE(password_hash,preferred_language,privacy_notice_version,"
+            "privacy_notice_acknowledged_at,token_version,updated_at) ON users TO {}",
+            "GRANT SELECT ON invitations TO {}",
+            "GRANT UPDATE(consumed_at,accepted_user_id) ON invitations TO {}",
+            "GRANT SELECT, INSERT, UPDATE ON auth_sessions,refresh_tokens,auth_rate_limits TO {}",
+            "GRANT INSERT ON auth_audit_events TO {}",
+        ]
+        with psycopg.connect(self.admin, autocommit=True) as connection:
+            for statement in statements:
+                connection.execute(sql.SQL(statement).format(role))
+
 
 @pytest.fixture
 def target():
