@@ -161,3 +161,13 @@ code, migrations or locks. Focused assessment, current scans and any policy-requ
 owner decision precede changed-runtime execution under an exception. Do not modify
 acceptance records or bypass CI. Production remains prohibited; the existing
 23 October 2026, 23:59 EAT expiry and daily human review obligation are unchanged.
+
+## P2-01 validation status, 17 October 2026
+
+Contract PR #23 is merged. The owner authorized isolated synthetic backend/PG/Compose
+validation and bounded fixes only. Issue #17 remains open: nine auth routes, six
+tables and three explicit migrations are implemented and exercised; frontend auth,
+conversations and later issues are not started. [Actual evidence](P2_01_EXPOSURE_ASSESSMENT.md)
+records 112 backend tests and the real-proxy flow, not Phase 2 completion. The
+unchanged exposure and complete-package inventory gates still reject new code.
+No policy-record/expiry change or merge is authorized; seven-check enforcement remains.

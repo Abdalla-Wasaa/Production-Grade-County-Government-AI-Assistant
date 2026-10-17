@@ -17,8 +17,12 @@
 
 Phase 1 is technically closed for restricted synthetic development. P2-01 backend
 implementation is authorized subject to reviewed, merged contracts. Contract PR #23 is merged. Use feat/p2-01-account-authentication from those contracts;
-prepare source/static work and scan evidence, then stop before changed-app execution
-or opening runtime CI until the policy-required exposure decision.
+the owner now authorizes isolated synthetic backend/PostgreSQL/Compose validation,
+benchmarking and bounded P2-01 corrections within the seven approved dependencies.
+The implementation PR may be opened for review under the original workflow request;
+its security checks must remain failing until an explicitly authorized policy-record
+decision resolves changed exposure/inventory. No acceptance/hash/inventory file edits
+or expiry extension are authorized by validation permission.
 Fixed citizen/staff/admin roles; invite-only activation and operator-assisted recovery;
 no frontend auth, conversations, live email, AI/RAG/tools or deployment in P2-01.
 Never silently reuse/update the Phase 1 exposure-bound vulnerability acceptance,

@@ -1,8 +1,9 @@
-# P2-01 synthetic identity operations (execution pending approval)
+# P2-01 synthetic identity operations (restricted validation)
 
-These instructions describe the prepared source and are NOT a verified onboarding
-record. Do not run the changed application or migrations until the
-[exposure gate](P2_01_EXPOSURE_ASSESSMENT.md) is explicitly resolved. Contracts remain
+The owner authorized isolated synthetic validation, including bounded P2-01 fixes.
+Backend, real PostgreSQL/operator and Nginx/Compose behavior has been exercised; see
+the exact [validation/exposure record](P2_01_EXPOSURE_ASSESSMENT.md). This does not
+authorize general deployment or replace the blocked machine-policy acceptance. Contracts remain
 in [AUTHENTICATION.md](AUTHENTICATION.md). No frontend authentication is implemented.
 
 ## Explicit enablement and secrets
@@ -33,8 +34,9 @@ coursework environments, command-line URL/password arguments, logs or GitHub iss
 
 Do not use a test fixture's one-entry blocklist as production password assurance.
 The blocklist is offline and checksum-validated; no password/hash is sent to an online
-service. Secret provisioning, file mounts and cookie settings need actual isolated
-validation; no Compose auto-injection or public deployment is added by source work.
+service. The owned Compose test harness uses private leaf secret mounts and a test-only
+launcher to set process configuration, never raw secrets in Docker Config.Env.
+Normal Compose still defaults to auth off; no public deployment is added.
 
 ## Database roles and explicit migration
 
@@ -119,7 +121,7 @@ rotation invalidates CSRF/cursors; clients must obtain fresh state. No key mater
 belongs in Vite/browser config. IP/account throttle keys and audit identities are
 pseudonymous but can still be linkable; they are not a privacy exemption.
 
-Only after runtime authorization:
+Within the approved isolated synthetic validation scope:
 
 ```bash
 uv run --locked pytest -q -m "not integration"

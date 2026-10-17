@@ -1,7 +1,9 @@
 # Database design
 
 Status: Phase 0 logical domain schema with P1-02 infrastructure, updated 2026-10-16.
-Only the empty Alembic baseline is implemented; domain models/DDL remain planned.
+The immutable baseline is followed by P2-01 identity revisions 0002/0003/0004,
+validated on disposable PostgreSQL 17 under explicit synthetic-test authorization.
+Conversation/message models remain planned; security-policy acceptance is blocked.
 PostgreSQL is the authoritative store; SQLAlchemy maps application entities and
 Alembic manages explicit reviewed schema changes. See [API](API_SPECIFICATION.md) and
 [architecture](ARCHITECTURE.md). UUIDs are server-generated random identifiers;
@@ -236,13 +238,13 @@ a lazy async engine/session factory, and immutable `0001_baseline`, creating onl
 Runtime cannot migrate or mutate revision state. See
 [database operations](DATABASE_OPERATIONS.md) for privileges and explicit commands.
 
-## P2-01 identity schema amendment (DDL not implemented)
+## P2-01 identity schema (explicit revisions, restricted validation)
 
 Fixed users.role remains citizen/staff/admin; no normalized role/permission tables.
 Add users.privacy_notice_acknowledged_at (required timestamptz). Pending invitation
 recipients have no user row until activation; password_hash stays non-null. The
-following records are proposed SQLAlchemy models and explicit Alembic migrations,
-not automatically created metadata. See [authentication contract](AUTHENTICATION.md).
+following records are SQLAlchemy models and explicit Alembic migrations,
+never automatically created metadata. See [authentication contract](AUTHENTICATION.md).
 
 | Table | Columns and constraints | Index/lifecycle |
 | --- | --- | --- |
@@ -260,7 +262,7 @@ coordinate refresh/revoke/reset/disable; revocation/audit must commit before a d
 Use local CHECKs for enum/length/timestamp ordering and cross-row service/transaction
 checks for family expiry, one-time consumption and account version invariants.
 
-Planned revisions: 0002_identity_accounts (users/invitations),
+Implemented revisions: 0002_identity_accounts (users/invitations),
 0003_identity_sessions (families/lineage), 0004_auth_controls (audit/counters).
 Do not alter 0001_baseline. Seed no accounts/passwords. Role names are CHECK values,
 not seeded login identities. Runtime receives only needed SELECT/INSERT/DELETE and

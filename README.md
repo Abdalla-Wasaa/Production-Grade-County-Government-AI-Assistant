@@ -8,11 +8,12 @@ Phase 1 technical foundation is completed for restricted synthetic development,
 merged through PR #16 at c49998ff2c8ec371085e2c1a5341ba60af4f2ec1. Main ruleset
 25222082 enforces all seven CI checks; PR #15 verified enforcement without merging.
 See [the acceptance record](docs/PHASE_1_ACCEPTANCE.md) for closure and actual owner
-review. Production approval remains pending. P2-01 contracts merged in PR #23. Backend source is being prepared against the
-[authentication contracts](docs/AUTHENTICATION.md); runtime verification awaits the
-[changed-exposure decision](docs/P2_01_EXPOSURE_ASSESSMENT.md).
-The bilingual assistant is still a placeholder
-without messaging or authentication. Kiswahili copy remains pending human review.
+review. Production approval remains pending. P2-01 contracts merged in PR #23. Backend authentication is implemented behind
+explicit enablement and exercised under isolated synthetic validation; the
+[changed-exposure/inventory approval](docs/P2_01_EXPOSURE_ASSESSMENT.md) still blocks
+security acceptance. See [authentication operations](docs/AUTHENTICATION_OPERATIONS.md).
+The bilingual frontend remains a placeholder without messaging or frontend
+authentication; those features are not implemented by the backend milestone. Kiswahili copy remains pending human review.
 Only fictional/synthetic information is authorized.
 
 Start with [Compose development](docs/COMPOSE_DEVELOPMENT.md) and

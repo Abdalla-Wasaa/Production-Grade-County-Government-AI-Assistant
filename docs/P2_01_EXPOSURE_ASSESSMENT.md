@@ -1,11 +1,19 @@
 # P2-01 changed-exposure assessment and execution gate
 
-Status: source/static preparation only. No changed application, migration or new
-backend/PostgreSQL/Compose test has been executed. No implementation PR has been
-opened because doing so triggers changed-runtime CI. This document is not risk
-acceptance, a test pass, production approval or a vulnerability suppression.
+Status: isolated synthetic validation authorized and exercised on 17 October 2026.
+The owner explicitly replied: Authorize isolated synthetic validation only.
+This authorizes validation and bounded P2-01 test-driven corrections, not acceptance/
+inventory/hash edits, expiry extension, production use or merge. The earlier source-
+only stage below is historical; subsequent validation evidence supersedes its pending
+execution status. Machine-policy approval remains blocked and must not be confused
+with permission to run isolated tests. No security finding was suppressed.
 
-## Authority and candidate
+## Source-only assessment before runtime authorization (historical)
+
+The following sections through the pre-execution evidence describe the earlier
+blocked stage; the dated isolated-validation section supersedes pending test status.
+
+### Authority and candidate
 
 P2-01 issue #17 is authorized. Contract PR #23 merged into main at
 980b35d (17 October 2026). The branch is feat/p2-01-account-authentication.
@@ -146,3 +154,94 @@ for isolated synthetic P2-01 validation under the unchanged expiry; this alone d
 not update policy records or make seven-check CI green. Any later policy-record
 change requires its own explicit reviewed authorization; no exception is silently
 inherited, broadened or renewed here.
+
+## Isolated validation authorization and results
+
+Application candidate: 3e3a5683ef3cc5c0ff94911c4c4af8de101bd7ef.
+Current exposure SHA-256: d82e1a0e6a43f2bea054684dd7e5fad9a2e2fbb96723a93e74f0bde1bf7bfb17.
+Compared with the source-only candidate, test-driven changes record operator audit
+actors, preserve the exact /sessions/{id} OpenAPI contract, correct the competing-
+borrower unit fixture and add actual operator CLI/grant/outage/proxy acceptance.
+No eighth dependency, public endpoint, new role or production capability was added.
+
+The isolated Docker 28.0.4 daemon ID is
+374a4482-97a0-436d-89c1-b4430e8c6d01, with socket
+/tmp/county-p201-daemon/docker.sock and dedicated data/containerd roots. It runs in
+its own network/mount namespace and shares neither developer PGDATA nor credentials.
+Only prepared/public image layers were imported; DB passwords, volumes, test databases,
+roles and host loopback ports were fresh/disposable. Existing coursework and developer
+containers were not stopped/reset. Docker/containerd share the private mount namespace;
+cgroup v2 is visible/enforced. All HTTP/PG/Compose processes used that private network.
+Network-free unit tests use the repository's socket-denial fixtures.
+
+Actual results:
+
+| Verification | Actual outcome |
+| --- | --- |
+| Combined backend suite | 112 passed: 81 unit/security plus 31 PostgreSQL integration, one existing upstream TestClient warning |
+| Final unit/schema run | 81 passed; 31 integration cases intentionally excluded from this separate run |
+| Additional real PG operator/maintenance CLI/grants | Passed; real unprivileged roles, exclusive private token handoff, role/disable revocation and audit actors checked |
+| Authentication DB outage/recovery | Passed: auth returns safe 503, live remains 200, existing account access recovers |
+| Container unit targets | Backend 81 and frontend 27 passed |
+| Actual Nginx/Compose auth | Nine-route schema, activation without auto-login, login/me, listing/revoke, refresh/reuse, logout/logout-all and CSRF denial passed |
+| Existing Compose foundation | Private non-root/read-only/capability/secret restrictions, explicit migration, 31 real PG cases, browser smoke, outage/DNS recovery, persistence/shutdown and owned cleanup passed |
+| Root tooling | 41 tests and 233 subtests passed; not an auth-runtime test count |
+| Static checks | Ruff lint/format and strict Mypy (28 app files) passed; source/runtime/tool dependency audits unchanged at zero advisories |
+
+The initial unit run had 80 passes and one test-fixture failure: the limiter was
+borrowed by the same task rather than a separate concurrent borrower. Correcting
+the fixture exercised the intended WouldBlock/503 path; no capacity limit weakened.
+Public role/ownership, password policy, cookie/CSRF and replay semantics are preserved.
+The nine-route proxy harness is invoked unconditionally by the existing Compose
+acceptance command; no workflow job/check/context was added, removed or disabled.
+
+Backend application benchmark image:
+sha256:4477f62c19be0626c4521e3a854ec300a3aad5580cb73d5d592612477e3a58be.
+Container UID 10001, read-only root, cap-drop ALL, no-new-privileges, network none.
+Actual cgroup memory.max=536870912, cpu.max=100000 100000, pids.max=128 were read
+inside the container and asserted. Argon2id memory 65536 KiB, iterations 3,
+parallelism 1, one hash borrower per worker: five hash-plus-verify samples had
+median 396.54 ms and peak process RSS 110788 KiB (about 108 MiB). This is sizing
+on this hardware, not a production latency/load guarantee. The one-entry synthetic
+blocklist fixture is not production compromised-password coverage.
+
+Local evidence is in /tmp/county-p201-final-backend.log,
+/tmp/county-p201-unit-final.log, /tmp/county-p201-postgresql-extra.log,
+/tmp/county-p201-operator-cli.log, /tmp/county-p201-container-unit.log,
+/tmp/county-p201-compose-auth.log, /tmp/county-p201-final-tooling.log and
+/tmp/county-p201-private/benchmark-final.json. Raw private configs/passwords must
+never be copied into review artifacts. Hosted CI results must be recorded from the
+PR's actual latest head; no pending or failed security check is claimed as a pass.
+
+The seven contexts and active ruleset 25222082 remain unchanged. Permission to run
+validation did not approve/renew the new exposure or package inventory. Therefore
+repository policy and complete-image security CI are expected to fail until a
+separately authorized, evidence-bound policy-record decision is reviewed. Do not
+replace the old hash/inventory/baseline or extend expiry under validation authority.
+
+
+### Final frozen-source image verification
+
+The final Compose run also verified account/language persistence and continued
+session revocation after down/up; post-restart secret-canary checks passed.
+The final scan at 2026-10-17T14:10:13Z retained complete, unsuppressed reports.
+Fresh CISA KEV catalogue dateReleased was 2026-10-16T17:15:48.8752Z; none of the
+reported HIGH/CRITICAL identifiers matched it. An earlier attempt failed to obtain
+fresh KEV evidence and was not treated as a security pass.
+
+| Image | Exact final image ID | HIGH | CRITICAL | Available fixes |
+| --- | --- | --- | --- | --- |
+| Web | sha256:ba35bf46920e0879495e3b3353771217b70969abda70a413161eecc8ab05a371 | 0 | 0 | 0 |
+| Backend | sha256:564f320a01f09409b3c2c2602b91a82a663cb7bf6e9839cc3dcf459e8c90b40a | 44 | 0 | 0 |
+| PostgreSQL | sha256:2c24800e5f51ab51e3cd4b61955bbe40eb52c96d31424ebe58a5f798d912fc72 | 71 | 3 | 0 |
+
+The scanner reports 118 occurrences, not 118 independently demonstrated exploits.
+Backend inventory contains 119 packages and hashes to
+7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e.
+The unchanged policy rejects that inventory and the changed exposure. Consequently
+its decision marks backend evidence failed even though the raw JSON is complete
+and independently identity-checked. This is not an accepted security result.
+Reports are /tmp/county-p201-final-scans/{image-0,image-1,image-2,kev,decision}.json;
+Compose output is /tmp/county-p201-final-compose.log. Image IDs differ from the
+benchmark's earlier build; benchmark provenance is recorded separately above.
+No policy records or expiry were updated. Production remains prohibited.

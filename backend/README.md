@@ -183,7 +183,8 @@ no database details. Liveness never calls these database checks.
 
 ## P2-01 source and security gate
 
-Invite-only backend auth source is prepared behind explicit COUNTY_AUTH_ENABLED.
-Runtime/migration/security tests remain pending the changed-exposure decision; no
-auth functionality is certified yet. See [identity operations](../docs/AUTHENTICATION_OPERATIONS.md)
+Invite-only backend auth is implemented behind explicit COUNTY_AUTH_ENABLED and
+validated with synthetic unit, real PostgreSQL and actual Nginx/Compose tests.
+Changed-exposure/inventory policy approval still blocks CI acceptance; no production
+or general deployment approval is granted. See [identity operations](../docs/AUTHENTICATION_OPERATIONS.md)
 and [exposure assessment](../docs/P2_01_EXPOSURE_ASSESSMENT.md) before executing it.

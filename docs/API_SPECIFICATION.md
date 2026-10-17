@@ -2,7 +2,9 @@
 
 Status: Phase 0 contract baseline, amended 2026-10-16. P1-01/P1-02 implement only
 GET /health/live and GET /health/ready, the error envelope, request IDs and local
-CORS boundary. Authentication and conversation endpoints remain unimplemented.
+CORS boundary. P2-01 adds nine auth endpoints only when explicitly enabled; isolated synthetic
+validation is recorded in [the exposure report](P2_01_EXPOSURE_ASSESSMENT.md).
+Conversation endpoints remain unimplemented; policy acceptance remains blocked.
 Base path `/api/v1`; UTF-8 JSON, UUID IDs and UTC ISO-8601 timestamps. Pydantic
 validates strict types, lengths, enums, and rejects unknown request properties.
 No client can set ownership, roles, provider IDs, system instructions or usage.
@@ -100,7 +102,7 @@ Missing browser origin evidence fails closed. CORS has no wildcard credential mo
 Development permits documented local cookie settings only on loopback. Bearer-only
 conversation routes do not authenticate using these cookies.
 
-## P2-01 contract amendment (implementation pending)
+## P2-01 authentication implementation (restricted synthetic validation)
 
 The owner approved fixed roles, backend-first invite-only authentication and
 synthetic operator-assisted recovery on 17 October 2026. The existing login,
@@ -110,8 +112,9 @@ CSRF transitions and operator-only boundary are specified in
 [AUTHENTICATION.md](AUTHENTICATION.md), with rationale in
 [ADR 0002](DECISIONS/0002-invite-only-authentication.md).
 
-Additional reviewed contracts are POST /auth/activate, POST /auth/logout-all,
-GET /auth/sessions and DELETE /auth/sessions/{id}. This is not evidence they exist.
+Additional implemented routes are POST /auth/activate, POST /auth/logout-all,
+GET /auth/sessions and DELETE /auth/sessions/{id}. All nine routes have real-PG
+and actual Nginx acceptance evidence, without frontend authentication changes.
 No public recovery/provisioning endpoint is added. Activation/reset never issues
 login tokens. Unsafe session-management mutations require bearer and CSRF; list
 and current-user reads use bearer only. Ordinary conversation ownership rules
@@ -269,9 +272,10 @@ dispatcher is not permission to expose arbitrary tools through HTTP.
 
 ## Phase 1 verification boundary
 
-The implemented OpenAPI paths are exactly /health/live and /health/ready; the
+With auth disabled, OpenAPI paths remain exactly /health/live and /health/ready; the
 document is served at /api/v1/openapi.json. Swagger/ReDoc UI is disabled. Future
-authentication/conversation tables above remain contracts, not working endpoints.
+conversation tables above remain contracts; the optional nine auth endpoints are
+implemented in P2-01 and documented in AUTHENTICATION.md.
 Verify liveness=200 without DB, readiness=503 without configuration/reachable current
 schema, and readiness=200 only after explicit migration and runtime revision-table
 access. Errors retain safe JSON, request IDs and no-store without connection details.

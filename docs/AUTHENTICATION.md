@@ -1,7 +1,8 @@
 # P2-01 backend authentication contract
 
-Status: contracts merged in PR #23. Backend source is prepared but unexecuted,
-subject to the changed-exposure gate; no runtime acceptance is claimed. Frontend authentication, conversations, AI and live delivery are excluded.
+Status: contracts merged in PR #23; P2-01 backend is implemented behind explicit
+enablement and exercised under isolated synthetic validation authorization. Machine-
+policy/security acceptance remains blocked; no production approval is claimed. Frontend authentication, conversations, AI and live delivery are excluded.
 [ADR 0002](DECISIONS/0002-invite-only-authentication.md) records the tradeoffs.
 
 ## Operator provisioning and recovery
@@ -180,7 +181,7 @@ hasher interfaces. Measure hashing time, memory and overload handling. Preserve
 safe live=200 independently of DB; ready requires reachability and latest revision.
 Backend/unit/type/audit, PostgreSQL, Compose, repository/secret and unchanged frontend
 checks all remain required. Evidence unavailable due to the exposure gate is pending,
-never a pass. The nine handlers are source-prepared; all runtime verification remains pending.
+never a pass. The nine handlers have isolated runtime evidence; current security-policy approval remains blocked.
 
 ## Exposure-impact boundary
 
