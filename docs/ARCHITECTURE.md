@@ -287,3 +287,14 @@ This is a local synthetic environment only. Nginx remains independent of backend
 health, while readiness checks PostgreSQL reachability and schema revision. Migrate
 runs explicitly; normal startup never applies migrations. No database/backend host
 ports or domain tables are introduced. See [Compose operations](COMPOSE_DEVELOPMENT.md).
+
+## P2-01 identity design (implementation pending)
+
+[ADR 0002](DECISIONS/0002-invite-only-authentication.md) and
+[authentication contract](AUTHENTICATION.md) specify the owner-authorized identity
+module. Existing per-request AsyncSession and explicit transaction ownership remain.
+Routes delegate to identity services/repositories; clocks, hashing and token creation
+are injectable. Fixed current roles and live database sessions govern authorization.
+No generic framework, microservice, Redis, frontend auth or provider call is added.
+The contract PR introduces no runtime changes. Implementation requires contract merge
+and the existing changed-exposure security gate; Phase 1 acceptance is not inherited.

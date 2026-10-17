@@ -4,10 +4,12 @@ A production-grade County Government AI Assistant project.
 
 ## Project status
 
-Phase 0 and P1-01 through P1-05 are merged, including security/CI remediation
-PRs #12 and #14. Main ruleset 25222082 enforces all seven CI checks; controlled
-PR #15 verified blocking and passing states without merging. P1-06 acceptance
-verification is in progress; see [the acceptance record](docs/PHASE_1_ACCEPTANCE.md).
+Phase 1 technical foundation is completed for restricted synthetic development,
+merged through PR #16 at c49998ff2c8ec371085e2c1a5341ba60af4f2ec1. Main ruleset
+25222082 enforces all seven CI checks; PR #15 verified enforcement without merging.
+See [the acceptance record](docs/PHASE_1_ACCEPTANCE.md) for closure and actual owner
+review. Production approval remains pending. P2-01 contracts are under review;
+backend implementation follows reviewed, merged [authentication contracts](docs/AUTHENTICATION.md).
 The bilingual assistant is still a placeholder
 without messaging or authentication. Kiswahili copy remains pending human review.
 Only fictional/synthetic information is authorized.

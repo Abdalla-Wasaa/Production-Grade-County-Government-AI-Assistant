@@ -75,7 +75,8 @@ erDiagram
 No national ID, date of birth, phone number, ethnicity, or inferred citizen profile.
 Role assignment occurs only through an audited operator procedure in the pilot;
 the public API cannot submit role/status/token-version fields. Email changes,
-credential recovery and public registration require a later approved identity flow.
+public recovery and public registration require a later approved identity flow.
+Synthetic operator-assisted reset is specified by the P2-01 contract below.
 
 ### `conversations`
 
@@ -234,3 +235,39 @@ a lazy async engine/session factory, and immutable `0001_baseline`, creating onl
 `public.alembic_version`. No users, sessions, conversations or messages tables exist.
 Runtime cannot migrate or mutate revision state. See
 [database operations](DATABASE_OPERATIONS.md) for privileges and explicit commands.
+
+## P2-01 identity schema amendment (DDL not implemented)
+
+Fixed users.role remains citizen/staff/admin; no normalized role/permission tables.
+Add users.privacy_notice_acknowledged_at (required timestamptz). Pending invitation
+recipients have no user row until activation; password_hash stays non-null. The
+following records are proposed SQLAlchemy models and explicit Alembic migrations,
+not automatically created metadata. See [authentication contract](AUTHENTICATION.md).
+
+| Table | Columns and constraints | Index/lifecycle |
+| --- | --- | --- |
+| invitations | UUID PK; normalized email <=254; purpose activation/password_reset; nullable target_user_id FK for reset only; fixed role; en/sw language; notice version; unique char(64) token_digest; pseudonymous issuer; created_at/expires_at; consumed_at/revoked_at nullable; accepted_user_id FK nullable | Partial unique email/purpose where consumed_at and revoked_at are NULL; expiry index; replacement revokes prior outstanding rows, including expired; 24-hour lifetime; reset requires target user, activation forbids target user |
+| auth_sessions | UUID PK; user_id FK ON DELETE CASCADE; created_at, expires_at, last_used_at; nullable revoked_at/reason | User/created_at/id listing index; expiry index; expires_at=login+7 days; nondecreasing timestamps; revocation cannot reactivate |
+| refresh_tokens | UUID PK; session_id FK CASCADE; unique char(64) token_digest; created_at/expires_at; consumed_at nullable; replaced_by_id nullable | Partial unique session_id for unconsumed token; same-family replacement via composite FK; unique predecessor linkage; consumed history retained through expiry and purged within 24 hours |
+| auth_audit_events | UUID PK; occurred_at; actor/subject pseudonym nullable; allowlisted action/outcome; generated request_id UUID; bounded validated metadata | occurred_at and subject/time indexes; no secrets/bodies/raw email/IP; insert-only runtime grant, separate retention operator; 90-day proposed retention |
+| auth_rate_limits | Dimension plus HMAC identifier and window key composite PK; count nonnegative; window start/end; optional blocked_until | Expiry index and bounded cleanup; atomic counters for account/IP and other auth abuse dimensions across workers; no raw submitted identity |
+
+Every timestamp uses timestamptz; digest inputs are high-entropy random secrets,
+not passwords. Invitation consumption/user creation/audit commit atomically with
+email uniqueness as the final duplicate guard. Password hashing precedes row locks;
+service revalidates state under lock. Family-first locking and guarded updates
+coordinate refresh/revoke/reset/disable; revocation/audit must commit before a denial.
+Use local CHECKs for enum/length/timestamp ordering and cross-row service/transaction
+checks for family expiry, one-time consumption and account version invariants.
+
+Planned revisions: 0002_identity_accounts (users/invitations),
+0003_identity_sessions (families/lineage), 0004_auth_controls (audit/counters).
+Do not alter 0001_baseline. Seed no accounts/passwords. Role names are CHECK values,
+not seeded login identities. Runtime receives only needed SELECT/INSERT/DELETE and
+column-specific UPDATE privileges: never invitation issuance, role/status mutation,
+audit alteration, schema DDL or revision writes. Separate restricted operator and
+maintenance roles handle provisioning/reset/disable and retention. Test grants and
+schema from the packaged wheel on actual PostgreSQL 17 before claiming completion.
+No application startup migration. Deployed recovery favors forward repair/restore;
+any downgrade destroying account/session data is explicitly destructive, not a
+routine recovery instruction. Conversations/messages remain later Phase 2 work.

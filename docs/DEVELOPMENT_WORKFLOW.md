@@ -12,17 +12,17 @@ Use dedicated feature branches, Conventional Commits, focused diffs and meaningf
 tests. Stage explicit project paths, inspect the staged diff and scan for secrets.
 Do not rewrite published history, force-push or commit implementation to main.
 
-P1-01 through P1-05 and remediation PR #14 are merged. P1-06 is authorized on
-`docs/p1-06-foundation-acceptance`; issue #7 is reopened to reconcile premature
-completion markers against actual evidence. An issue
-checkbox or prior merge is not approval to begin another milestone. Preserve the
-modular monolith and synthetic-only scope. No authentication/chat/AI/RAG/tools,
-public deployment or real county integration is introduced here.
+Phase 1 technical foundation is closed through PR #16 with issue #7 evidence.
+The owner authorizes P2-01 contracts first, followed by backend implementation from
+reviewed, merged contracts. No PR merges without owner review. Frontend authentication
+and later Phase 2 work require their own approval. Preserve historical records and
+all current synthetic-only restrictions. Changed runtime exposure cannot inherit
+the Phase 1 security exception; see [authentication contract](AUTHENTICATION.md).
 
 Open a PR only when authorized. Include actual results, design decisions, failures,
 residual risks and applicable docs. Resolve review blockers and await explicit owner
 approval before merging. The sole maintainer reviews; do not manufacture independent
-self-approval or require an unavailable external reviewer. Do not begin Phase 2 without separate authorization.
+self-approval or require an unavailable external reviewer. P2-01 authorization does not authorize another issue or Phase 3.
 
 ## Checks and failure investigation
 

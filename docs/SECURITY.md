@@ -289,3 +289,22 @@ on the owner's behalf. Do not fabricate or backdate review records.
 [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md) separates automated evidence, human review,
 isolation limitations and remaining approval gates. A failed or unavailable required
 verification blocks that acceptance item even when CI is green.
+
+## P2-01 approved direction and changed-exposure gate
+
+Phase 1 technical closure and actual 17 October owner CRITICAL review are recorded
+in [acceptance history](PHASE_1_ACCEPTANCE.md). Historical pending-review statements
+above are superseded for that date only; subsequent daily human review remains due.
+The owner authorized fixed-role invite-only backend auth, synthetic operator-assisted
+reset, no live email and no public registration. See [ADR 0002](DECISIONS/0002-invite-only-authentication.md)
+and [authentication contract](AUTHENTICATION.md). No endpoints are implemented yet.
+
+The Phase 1 exception is NOT approval of changed auth code or migrations. The policy
+hash includes application, migration, frontend, dependency and infra bytes. Preserve
+the existing baseline/acceptance records and expiry (23 October 2026, 23:59 EAT).
+Prepare source-level work only after contract merge; assess changed paths, dependencies,
+full built-image findings and newly reachable surfaces before running changed code
+under an exception. A required owner decision must be explicit; do not rewrite the
+hash or broaden acceptance to obtain green CI. If blocked, retain source/static work,
+report runtime/security checks pending and do not bypass seven-check enforcement.
+No public deployment, real records, production credentials or live integrations.
