@@ -1,9 +1,11 @@
 # Milestone roadmap
 
-Status: updated 2026-10-17. Phase 0 and P1-01 through P1-05 are merged,
-including PR #14 remediation. Ruleset 25222082 is enforced and tested by PR #15.
-P1-06 documentation/verification is authorized; acceptance remains pending.
-Phase 2 requires separate approval. Development remains fictional/synthetic only. Estimates assume one focused engineer
+Status: updated 2026-10-17. Phase 1 technically closed through PR #16 at
+c49998ff2c8ec371085e2c1a5341ba60af4f2ec1; issue #7 records owner acceptance and the
+actual dated human CRITICAL review. Production security approval remains pending.
+Ruleset 25222082 remains enforced. P2-01 backend implementation is authorized only
+from reviewed, merged contracts; later work requires separate approval. Development
+remains fictional/synthetic only. Estimates assume one focused engineer
 with access to a county content reviewer and privacy/security reviewer. Parallel
 organizational review is possible; no sub-agent delegation or extra engineering team
 is assumed. Part-time work, procurement, credentials, approvals and county source
@@ -73,7 +75,7 @@ must be budget-limited and separately enabled; CI normally uses fakes/synthetic 
 | Dependency / risk | Owner / mitigation | Needed by |
 | --- | --- | --- |
 | Real pilot county/scope, participants, catalogue approval, staffing and operational budget | Owner-approved fictional/synthetic development proceeds; real owners/reviewers and resources must pass the pre-pilot gate | Before real pilot; deferred by owner on 2026-10-16 |
-| Auth invitation delivery not selected | Engineer proposes one-time acceptance protocol and operator runbook; owner approves pilot participant handling | Phase 2 |
+| Auth invitation delivery | P2-01 synthetic operator-file handoff and one-time activation/reset contract under review; real-pilot delivery still requires approval | Phase 2 / pre-pilot |
 | No approved catalogue or bilingual benchmark | Department owners and English/Kiswahili reviewers prepare provenance-backed public material and independent cases | Phase 3 |
 | Provider account/model, token budget and pricing approval | Owner chooses evaluated configuration and spend ceiling; engineer tests adapter capabilities and records actual rate assumptions | Phase 3 live calls |
 | Sensitive data and overseas processing | County privacy/legal lead maps purposes, roles, locations, safeguards, retention and DPIA requirements | Before any real-data provider processing |
@@ -98,7 +100,7 @@ live county integration. See [pre-pilot decision gate](PRE_PILOT_GATE.md). All
 implementations require dedicated branches, tests, green relevant CI and the sole
 maintainer's review before merging. A green check is not approval to merge/start
 another issue. P1-01 through P1-05 are merged. P1-06 is authorized for documentation and evidence
-only; no later functionality or automatic acceptance is authorized.
+only in that historical stage; P2-01 now follows the approval gate below.
 
 Phase 1 issues: [P1-01 backend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/2),
 [P1-02 database/migrations](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/3),
@@ -113,7 +115,7 @@ draft Kiswahili copy behind human review before pilot. P1-04 adds the isolated
 local Compose environment with explicit migrations, synthetic secrets and
 disposable acceptance checks; domain/chat functionality remains excluded.
 
-## P1-05 implementation scope
+## Historical P1-05 implementation scope
 
 PR #12 is merged. The owner authorizes ci/p1-05-quality-gates for CI/tooling,
 scoped backend typing, dependency/image audits, reporting, actual-Nginx browser
@@ -124,7 +126,7 @@ residual-risk decisions; a green functional suite alone is insufficient.
 GitHub required-check/ruleset configuration needs separate approval and remote
 verification. No ruleset changes or P1-06 work are authorized. See [CI.md](CI.md).
 
-## P1-06 acceptance gate
+## Historical P1-06 acceptance gate
 
 Issue #7's prior closure/checkmarks were premature relative to this final replay.
 The owner authorized reopening it while preserving its original criteria/history.
@@ -132,3 +134,30 @@ The owner authorized reopening it while preserving its original criteria/history
 results, limitations and owner decisions. Missing isolated onboarding or human
 security-review evidence stays pending. Foundation acceptance is development-only;
 production security approval and Phase 2 implementation are separate decisions.
+
+## Phase 2 tracking and execution order
+
+The Phase 2 exit criteria above are unchanged. The owner authorized creation of the
+following tracking breakdown; issue existence is not permission to start later work.
+P2-01 is backend-only. Contract/ADR review comes first; implementation follows from
+its reviewed, merged main on feat/p2-01-account-authentication. No self-merge.
+
+- [P2-01 Invite-only account activation and secure backend authentication](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/17)
+- [P2-02 Bilingual frontend authentication integration](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/18)
+- [P2-03 Private conversation and message persistence APIs](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/19)
+- [P2-04 Bilingual private conversation history interface](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/20)
+- [P2-05 Privacy notices retention and account lifecycle](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/21)
+- [P2-06 Identity and conversations acceptance verification](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/22)
+
+Dependencies: P2-02/P2-03 follow P2-01; P2-04 follows P2-02/P2-03; P2-05 depends on
+identity/history; P2-06 verifies all preceding work. Detailed tasks and measurable
+criteria live in the issues. Authentication/role/session contracts are in
+[AUTHENTICATION.md](AUTHENTICATION.md) and [ADR 0002](DECISIONS/0002-invite-only-authentication.md).
+The historical P1-05/P1-06 authorization paragraphs above record their original
+scope; the dated Phase 1 closure supersedes their pending status, not their evidence.
+
+The exposure-hash policy blocks inheriting Phase 1 acceptance for new application
+code, migrations or locks. Focused assessment, current scans and any policy-required
+owner decision precede changed-runtime execution under an exception. Do not modify
+acceptance records or bypass CI. Production remains prohibited; the existing
+23 October 2026, 23:59 EAT expiry and daily human review obligation are unchanged.

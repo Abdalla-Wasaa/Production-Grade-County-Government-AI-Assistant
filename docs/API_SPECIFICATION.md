@@ -100,6 +100,23 @@ Missing browser origin evidence fails closed. CORS has no wildcard credential mo
 Development permits documented local cookie settings only on loopback. Bearer-only
 conversation routes do not authenticate using these cookies.
 
+## P2-01 contract amendment (implementation pending)
+
+The owner approved fixed roles, backend-first invite-only authentication and
+synthetic operator-assisted recovery on 17 October 2026. The existing login,
+refresh, logout, CSRF and current-user shapes above remain unchanged. The nine
+route schemas, activation/reset behavior, session representations, status codes,
+CSRF transitions and operator-only boundary are specified in
+[AUTHENTICATION.md](AUTHENTICATION.md), with rationale in
+[ADR 0002](DECISIONS/0002-invite-only-authentication.md).
+
+Additional reviewed contracts are POST /auth/activate, POST /auth/logout-all,
+GET /auth/sessions and DELETE /auth/sessions/{id}. This is not evidence they exist.
+No public recovery/provisioning endpoint is added. Activation/reset never issues
+login tokens. Unsafe session-management mutations require bearer and CSRF; list
+and current-user reads use bearer only. Ordinary conversation ownership rules
+remain unchanged and are outside P2-01 implementation.
+
 ## Conversation contracts
 
 | Method / path | Request | Success | Important errors |

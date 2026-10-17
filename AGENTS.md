@@ -15,11 +15,14 @@
 
 ## Current scope
 
-P1-06 documentation and acceptance verification is authorized on
-`docs/p1-06-foundation-acceptance`. Reopen/correct issue #7 without erasing its
-criteria/history; reconcile docs; verify a clean exact-commit checkout; push and
-open one focused review PR. If genuine Docker isolation is unavailable, stop the
-affected replay and mark its criteria pending. Never invent human review or approval.
-Do not change application code without separate approval for a verified defect.
-Do not change rulesets, vulnerability baseline/acceptance or its expiry. Synthetic
-local development only. No merge, deployment, coursework changes or Phase 2 work.
+Phase 1 is technically closed for restricted synthetic development. P2-01 backend
+implementation is authorized subject to reviewed, merged contracts. Prepare the
+contract/ADR PR on docs/p2-01-authentication-contracts first; do not merge it without
+owner review. Then use feat/p2-01-account-authentication from the merged contracts.
+Fixed citizen/staff/admin roles; invite-only activation and operator-assisted recovery;
+no frontend auth, conversations, live email, AI/RAG/tools or deployment in P2-01.
+Never silently reuse/update the Phase 1 exposure-bound vulnerability acceptance,
+change its hash, expand scope or extend expiry. Changed application execution under
+an exception requires focused assessment/scans and the policy-required owner decision.
+Preserve all seven checks and branch rules; mark blocked verification pending.
+Coursework remains read-only. No automatic merge or start of a later milestone.
