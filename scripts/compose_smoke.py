@@ -333,7 +333,7 @@ def exercise(stack):
     verify_postgresql_suite(stack)
     from auth_compose_smoke import exercise_auth
 
-    exercise_auth(stack)
+    exercise_auth(stack, browser=BROWSER)
     backend_id = stack.inspect("backend")["Id"]
     restarts = stack.inspect("backend")["RestartCount"]
     stack.run("stop", "db")

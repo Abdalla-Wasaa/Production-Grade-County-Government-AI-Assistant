@@ -5,12 +5,13 @@ import hashlib
 from http.cookiejar import CookieJar
 import json
 import secrets
+import subprocess
 import urllib.error
 import urllib.request
 from uuid import uuid4
 
 
-def exercise_auth(stack):
+def exercise_auth(stack, browser=False):
     origin = f"http://127.0.0.1:{stack.port}"
     config = {
         "COUNTY_AUTH_ENABLED": "true",
@@ -225,6 +226,75 @@ def exercise_auth(stack):
         "POST",
         {"email": "proxy@example.invalid", "password": password},
     )
+
+    if browser:
+        browser_token = secrets.token_urlsafe(32)
+        browser_password = secrets.token_urlsafe(24)
+        stack.extra_secret_canaries.extend([browser_token, browser_password])
+        statement = (
+            "INSERT INTO invitations(id,email_normalized,purpose,role,preferred_language,"
+            "privacy_notice_version,token_digest,issuer,created_at,expires_at) VALUES ("
+            f"'{uuid4()}','browser@example.invalid','activation','citizen','en','synthetic-v1',"
+            f"'{hashlib.sha256(browser_token.encode()).hexdigest()}','synthetic-fixture',now(),"
+            "now()+interval '24 hours')"
+        )
+        stack.run(
+            "exec",
+            "-T",
+            "db",
+            "sh",
+            "-c",
+            'export PGPASSWORD="$(cat /run/secrets/bootstrap_password)"; '
+            'exec psql -h 127.0.0.1 -U county_bootstrap -d county_local -v ON_ERROR_STOP=1 -c "$1"',
+            "sh",
+            statement,
+        )
+        fixture = stack.secret_directory.parent / "browser-auth-fixture.json"
+        fixture.write_text(
+            json.dumps(
+                {
+                    "token": browser_token,
+                    "password": browser_password,
+                    "email": "browser@example.invalid",
+                }
+            )
+        )
+        fixture.chmod(0o600)
+        import dev
+
+        environment = dev.docker_environment()
+        environment["COUNTY_BROWSER_BASE_URL"] = origin
+        environment["COUNTY_AUTH_FIXTURE_FILE"] = str(fixture)
+        try:
+            subprocess.run(
+                [
+                    "npx",
+                    "--no-install",
+                    "playwright",
+                    "test",
+                    "--config",
+                    "playwright.auth-compose.config.ts",
+                ],
+                cwd=dev.ROOT / "frontend",
+                env=environment,
+                check=True,
+                timeout=150,
+            )
+            subprocess.run(
+                [
+                    "python3",
+                    str(dev.ROOT / "scripts/check_test_report.py"),
+                    "--sanitize",
+                    str(dev.ROOT / "frontend/.artifacts/auth-compose.xml"),
+                ],
+                check=True,
+                timeout=15,
+            )
+        finally:
+            fixture.unlink(missing_ok=True)
+        print(
+            "PASS: real bilingual browser activation/login, cross-tab refresh and revocation"
+        )
 
     def persistence_check():
         request("/api/v1/auth/me", 401, bearer=third)
