@@ -15,24 +15,16 @@
 
 ## Current scope
 
-Issue #18, P2-02 frontend authentication, is authorized from merged backend PR #24
-(main ecc9f76). Use feat/p2-02-frontend-authentication. Implement bilingual
-login/activation, memory-only session state, protected account routes, serialized
-refresh/restoration, logout and own-session management with meaningful tests.
-No public registration, admin dashboard, conversations, AI/RAG or deployment.
-On 17 October 2026 the owner separately approved the exact tested P2-02 source
-2a3339410aba6c3037ef349569afffbbae002bd4, exposure
-0b8f2dc7e55e72fbc96325edbec4d57a5a97c9eb52d4fae3251e9aec302b958d,
-unchanged inventories and 115 HIGH/3 CRITICAL inherited findings. Only the five
-specified security/documentation files may change for this acceptance update.
-The previous P2-01 acceptance is preserved byte-for-byte in its historical snapshot.
-Acceptance is isolated synthetic local development only; expiry remains
-23 October 2026 at 23:59 EAT. Daily human CRITICAL reviews and all existing
-invalidation triggers remain mandatory; no automatic future-exposure approval,
-renewal or scope expansion. No real citizen/county data, production credentials,
-public/production deployment, automatic merge or next milestone.
-Run normal checks and verify all seven hosted contexts on PR #25 after pushing;
-fix only genuine remaining defects without weakening controls. Keep scans, baseline,
-inventories, policies, workflows, ruleset and normal PR review unchanged. A further
-exposure change requires a new exact owner decision, not a silently updated hash.
-Coursework outside this official repository remains strictly read-only.
+The owner authorizes issue #19 P2-03 on feat/p2-03-conversation-persistence from
+merged PR #25 (main 5ff0e2281ed7f4984ffcb090a3c87c14157fd800). Implement the
+explicitly approved persistence contract amendment, private conversation CRUD and
+user-only message storage/history, migrations and tests. No assistant placeholders,
+LLM calls, RAG, frontend history or unrelated work.
+
+Before executing changed app code, stop with exact commit, exposure hash, dependency
+delta and vulnerability evidence for a separate owner synthetic-runtime decision.
+Do not dispatch changed-runtime hosted CI or reuse/modify the P2-02 acceptance.
+Preserve all seven checks, scans, policy records, inventories and branch protection.
+Expiry remains 23 October 2026, 23:59 EAT; daily actual human CRITICAL review and
+all invalidation triggers remain required. No real data or production deployment.
+No PR until authorized, no automatic merge. Coursework remains read-only.
