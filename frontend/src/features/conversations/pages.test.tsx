@@ -7,21 +7,36 @@ import { App } from '../../app/App';
 import { LanguageProvider } from '../../i18n/LanguageProvider';
 import { firstId, secondId, installHistoryServer } from './testServer';
 let restore = () => {};
+const dialogMethods = {
+  showModal: Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, 'showModal'),
+  close: Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, 'close'),
+};
 beforeEach(() => {
-  vi.spyOn(HTMLDialogElement.prototype, 'showModal').mockImplementation(function (
-    this: HTMLDialogElement,
-  ) {
-    this.open = true;
+  // jsdom has the element but not the native modal methods. Browser tests retain
+  // the real dialog implementation and verify focus/inert behavior separately.
+  Object.defineProperty(HTMLDialogElement.prototype, 'showModal', {
+    configurable: true,
+    writable: true,
+    value: function (this: HTMLDialogElement) {
+      this.open = true;
+    },
   });
-  vi.spyOn(HTMLDialogElement.prototype, 'close').mockImplementation(function (
-    this: HTMLDialogElement,
-  ) {
-    this.open = false;
+  Object.defineProperty(HTMLDialogElement.prototype, 'close', {
+    configurable: true,
+    writable: true,
+    value: function (this: HTMLDialogElement) {
+      this.open = false;
+    },
   });
 });
 afterEach(() => {
   restore();
   vi.restoreAllMocks();
+  for (const name of ['showModal', 'close'] as const) {
+    const original = dialogMethods[name];
+    if (original) Object.defineProperty(HTMLDialogElement.prototype, name, original);
+    else Reflect.deleteProperty(HTMLDialogElement.prototype, name);
+  }
 });
 function mount(path = '/conversations', count = 2, messages = 2) {
   const s = installHistoryServer(count, messages);
@@ -74,6 +89,7 @@ describe('private bilingual conversation workspace', () => {
     expect(screen.getByRole('button', { name: 'Keep conversation' })).toHaveFocus();
     await userEvent.click(screen.getByRole('button', { name: 'Keep conversation' }));
     expect(s.records.has(firstId)).toBe(true);
+    expect(screen.getByRole('button', { name: 'Delete conversation' })).toHaveFocus();
     await userEvent.click(screen.getByRole('button', { name: 'Delete conversation' }));
     await userEvent.click(screen.getByRole('button', { name: 'Delete permanently' }));
     await screen.findByRole('heading', { name: 'Choose a conversation' });

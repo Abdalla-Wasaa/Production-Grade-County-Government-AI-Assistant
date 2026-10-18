@@ -34,6 +34,11 @@ export function ConversationDetail({ id, onChanged }: { id: string; onChanged: (
   useSyncExternalStore(client.subscribe, client.getRevision);
   const pending = client.pending(id);
   useEffect(() => {
+    // Restore focus after the dialog has unmounted and closed. Focusing the
+    // background in the cancel handler fails while the modal makes it inert.
+    if (!confirm) deletionButton.current?.focus();
+  }, [confirm]);
+  useEffect(() => {
     alive.current = true;
     const controller = new AbortController();
     const current = ++epoch.current;
@@ -255,7 +260,6 @@ export function ConversationDetail({ id, onChanged }: { id: string; onChanged: (
           error={deletionError}
           onCancel={() => {
             setConfirm(false);
-            deletionButton.current?.focus();
           }}
           onConfirm={() => {
             if (working.current) return;
