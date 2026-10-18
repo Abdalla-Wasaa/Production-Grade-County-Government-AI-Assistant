@@ -275,7 +275,8 @@ os.execv('/opt/venv/bin/python',['/opt/venv/bin/python','-m','pytest','-q','-m',
         ],
         capture_output=True,
         text=True,
-        timeout=180,
+        # Includes identity plus persistence fixtures and real migration round-trips.
+        timeout=600,
         check=False,
     )
     stack.assert_secrets_not_in(result.stdout + result.stderr)
