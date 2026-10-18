@@ -84,12 +84,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(health_router)
     app.include_router(api_router)
     if auth_config is not None:
+        from app.modules.conversations.http import router as conversation_router
         from app.modules.identity.body_limit import AuthBodyLimit
         from app.modules.identity.http import auth_error
         from app.modules.identity.http import router as auth_router
         from app.modules.identity.security import AuthFailure
 
         app.include_router(auth_router)
+        app.include_router(conversation_router)
         app.add_exception_handler(AuthFailure, auth_error)
         app.add_middleware(AuthBodyLimit)
     # Starlette wraps later-added middleware around earlier layers. Error handling

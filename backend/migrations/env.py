@@ -10,6 +10,7 @@ from sqlalchemy.pool import NullPool
 from app.db.base import Base
 from app.db.migrate import MigrationSettings
 from app.db.session import protect_engine_logging
+from app.modules.conversations import models as conversation_models  # noqa: F401
 from app.modules.identity import models  # noqa: F401 -- register reviewed model metadata
 
 
