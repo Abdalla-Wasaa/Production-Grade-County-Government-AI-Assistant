@@ -44,3 +44,17 @@ and the exact approved OpenAPI path expectation; no application checks were weak
 Security-record updates, push, PR and merge remain unapproved. No daily human
 CRITICAL review is asserted; actual confirmation remains required. Stop for the
 consolidated seven-file record decision; do not extend expiry or auto-accept exposure.
+
+## Owner-approved P2-03 records, 18 October 2026
+
+The owner explicitly approved the seven-file update for f9520eb932341a150f26ea1d977b8fff67a51c7d,
+exposure 88669fbe4cfafc7dc45e6775546e44e6ca8bcbec1dcacfb0f89a36c702af19b4,
+web inventory 21 packages and unchanged 115 HIGH/3 CRITICAL inherited occurrences.
+Previous P2-02 policy bytes are preserved in docs/security/p2-03/p2-02-policy-snapshot.json.
+Expiry remains 23 October 2026, 23:59 EAT. Synthetic isolated local development only;
+no real data or production deployment. All invalidation triggers, seven checks, scans,
+branch protection and owner PR review remain mandatory. Push and PR linked to issue
+19 are now authorized; no merge. Human CRITICAL review for today remains pending: no
+review completion is asserted. Automated policy does not require a human-review
+timestamp before CI; documented human acceptance obligations remain incomplete even
+if CI passes. This approval does not grant unconditional milestone acceptance.
