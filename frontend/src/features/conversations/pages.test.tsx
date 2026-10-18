@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { act, render, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -102,7 +102,9 @@ describe('private bilingual conversation workspace', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Load more messages' }));
     await screen.findByText('Synthetic message 21');
     await userEvent.click(screen.getByRole('button', { name: 'Load more conversations' }));
-    await screen.findByRole('link', { name: /Synthetic conversation 21/ });
+    expect(
+      (await screen.findByText('Synthetic conversation 21', { exact: true })).closest('a'),
+    ).toHaveAttribute('href', '/conversations/10000000-0000-4000-8000-000000000021');
     expect(screen.getAllByText('Synthetic message 1', { exact: true })).toHaveLength(1);
   });
   it('renders plain text rather than injected HTML and supports Kiswahili', async () => {
@@ -141,24 +143,49 @@ describe('private bilingual conversation workspace', () => {
     const s = mount();
     await screen.findByRole('link', { name: /Synthetic conversation 1/ });
     const original = s.fetcher.getMockImplementation()!;
-    let release!: (value: Response) => void;
-    s.fetcher.mockImplementation((url, init) =>
-      url.includes(firstId + '/messages')
-        ? new Promise((resolve) => {
-            release = resolve;
-          })
-        : original(url, init),
-    );
+    let release!: () => void;
+    let delayed = false;
+    s.fetcher.mockImplementation((url, init) => {
+      if (url.includes(firstId + '/messages') && !delayed && !init?.signal?.aborted) {
+        delayed = true;
+        // Return headers promptly so the auth lock can serve the next selection.
+        // Delay only the body to exercise an actual late-response render race.
+        return Promise.resolve(
+          new Response(
+            new ReadableStream<Uint8Array>({
+              start(controller) {
+                release = () => {
+                  controller.enqueue(
+                    new TextEncoder().encode(
+                      JSON.stringify({
+                        items: [
+                          {
+                            ...s.messages.get(firstId)![0]!,
+                            content: 'Old selection must stay hidden',
+                          },
+                        ],
+                        next_cursor: null,
+                      }),
+                    ),
+                  );
+                  controller.close();
+                };
+              },
+            }),
+            { headers: { 'Content-Type': 'application/json' } },
+          ),
+        );
+      }
+      return original(url, init);
+    });
     await userEvent.click(screen.getByRole('link', { name: /Synthetic conversation 1/ }));
     await vi.waitFor(() => expect(release).toBeDefined());
     await userEvent.click(screen.getByRole('link', { name: /Synthetic conversation 2/ }));
-    release(
-      s.response(200, {
-        items: [{ ...s.messages.get(firstId)![0]!, content: 'Old selection must stay hidden' }],
-        next_cursor: null,
-      }),
-    );
     await screen.findByRole('heading', { name: 'Synthetic conversation 2' });
+    await act(async () => {
+      release();
+      await Promise.resolve();
+    });
     expect(screen.queryByText('Old selection must stay hidden')).not.toBeInTheDocument();
     expect(s.calls.some((c) => c.path.includes(secondId))).toBe(true);
   });
