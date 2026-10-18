@@ -1,0 +1,3 @@
+<testsuite tests="1" failures="0" skipped="0">
+  <testcase name="actual Nginx activation, login, bilingual account, refresh, cross-tab restoration and revocation" classname="auth-compose.spec.ts" time="3.609" />
+</testsuite>

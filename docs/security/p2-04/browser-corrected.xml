@@ -1,0 +1,11 @@
+<testsuite tests="9" failures="0" skipped="0">
+  <testcase name="bilingual keyboard history flow persists text, renames and confirms deletion" classname="history.spec.ts" time="3.825" />
+  <testcase name="responsive saved history stays within a narrow viewport" classname="history.spec.ts" time="0.802" />
+  <testcase name="cross-tab invalidation clears rendered messages and protects session restoration" classname="history.spec.ts" time="1.663" />
+  <testcase name="bilingual keyboard history flow persists text, renames and confirms deletion" classname="history.spec.ts" time="8.378" />
+  <testcase name="responsive saved history stays within a narrow viewport" classname="history.spec.ts" time="5.299" />
+  <testcase name="cross-tab invalidation clears rendered messages and protects session restoration" classname="history.spec.ts" time="2.705" />
+  <testcase name="bilingual keyboard history flow persists text, renames and confirms deletion" classname="history.spec.ts" time="6.394" />
+  <testcase name="responsive saved history stays within a narrow viewport" classname="history.spec.ts" time="1.77" />
+  <testcase name="cross-tab invalidation clears rendered messages and protects session restoration" classname="history.spec.ts" time="2.896" />
+</testsuite>

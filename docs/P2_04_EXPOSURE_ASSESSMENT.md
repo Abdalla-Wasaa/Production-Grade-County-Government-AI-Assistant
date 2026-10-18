@@ -241,3 +241,76 @@ fixable or KEV-matching HIGH/CRITICAL occurrence. The scanner's overall exit 1
 is the expected unapproved-exposure decision, not an incomplete scan. Raw JSON
 and KEV are retained under `/tmp/county-p204-runtime-scans/`. The corrected image
 has not been built or run; no claim of runtime validation is made for it.
+
+## Corrected exposure validation, second owner authorization
+
+The owner explicitly authorized synthetic-only runtime validation of
+`ea2e8425f8d7a89652cda0ded89eabaadff77e15`, exposure
+`656bd3b5fc48def5402e6e06db69b9a49715b45c69bfea6d96cfcc1a40de7a7a`.
+No security acceptance update or human CRITICAL review completion was authorized.
+
+Actual results:
+
+- **32/34 unit/component passed; 2 failed; none skipped.** The jsdom setup and
+  delete-dialog cancellation/focus test now pass. Remaining failures are test
+  fixtures: a regex also matches adjacent date text in another link's accessible
+  name; a delayed-header mock holds the serialized auth lock, making the next
+  selection wait on an unrealistic unresolved mocked fetch.
+- **9/9 browser passed**, three each on Chromium, Firefox and WebKit. All three
+  keyboard CRUD flows pass with Escape cancellation, focus return, rename and
+  confirmed deletion. All three axe scans report zero violations. Narrow reflow
+  and cross-tab clearing pass in all engines. This is not manual WCAG certification.
+- **Both actual Compose browser cases passed**: public Nginx routing/language/SPA
+  smoke, and real-backend authentication/history CRUD with reload persistence.
+  Isolation, least privilege, outage/recovery, shutdown, secret-canary and durable
+  state checks also passed. Test resources were cleaned up; unrelated containers
+  were untouched. Real-backend UI pagination above 20 rows is still not claimed.
+- The **51 earlier passing PostgreSQL cases were reused, not rerun**, as requested.
+  The local-only driver verified unchanged backend/test/script/infrastructure paths,
+  the exact retained test-image identity and prior successful log checksum. Hosted
+  scripts, mandatory commands and checks were not changed. The driver exists at
+  `/tmp/county-p204-corrected-compose.py`; it explicitly reports REUSED, not a fresh
+  test pass. New local log: `/tmp/county-p204-corrected-compose.log`.
+
+Sanitized actual evidence: [unit results](security/p2-04/unit-corrected-attempt.xml),
+[browser results](security/p2-04/browser-corrected.xml),
+[Compose browser](security/p2-04/compose-browser-corrected.xml),
+[auth/history browser](security/p2-04/auth-compose-corrected.xml),
+[validation/reuse summary](security/p2-04/corrected-validation-summary.json), and
+[actual runtime manifest](security/p2-04/corrected-runtime-manifest.json).
+
+### Test-only correction and explicit stop
+
+Only `frontend/src/features/conversations/pages.test.tsx` is changed after that
+execution. Production application modules remain byte-identical to the tested
+source. The pagination assertion now selects the exact title text and verifies its
+link destination. The stale-selection fixture returns headers immediately and
+streams the old body only after the next conversation is displayed. This exercises
+the late-body race without holding the auth lock forever; it retains the assertion
+that old content must never be rendered. No assertion, timeout or security control
+was removed or relaxed.
+
+New exposure:
+`2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996`.
+The exposure algorithm includes tests under `frontend/src`, so this test-only edit
+changes the digest. Per the owner's explicit condition, the revised tests have not
+executed. Static checks are permitted and do not imply passing runtime results.
+The next required decision is permission to run the corrected focused component
+suite at this exact new commit/digest, reusing the nine passing browser cases and
+successful Compose/backend evidence because production code is unchanged.
+
+Final security-record approval remains premature until these two test corrections
+are validated. The prospective five-file proposal above is unchanged; no snapshot,
+acceptance, baseline or inventory record was modified. All seven hosted checks,
+scanning and branch protection remain active, no push/PR was made, and expiry
+remains 23 October 2026, 23:59 EAT. Today's human CRITICAL review remains pending.
+
+Fresh Trivy scans of the exact second-run Compose images are recorded in the
+[corrected runtime scan summary](security/p2-04/corrected-runtime-scan-summary.json).
+All three inventories match the unchanged approved inventory record, and all 118
+HIGH/CRITICAL occurrence identities and fields match the prior baseline. No added,
+removed, changed, fixable or KEV-matching finding was reported. Counts remain web
+0/0, backend 44 HIGH/0 CRITICAL, PostgreSQL 71 HIGH/3 CRITICAL. Raw evidence is in
+`/tmp/county-p204-corrected-runtime-scans/`. Overall policy rejection remains the
+expected missing approval for changed exposure; it is not a missing image scan.
+No zero-new-findings claim establishes that application code is vulnerability-free.

@@ -62,3 +62,17 @@ when corrections change exposure. Do not execute this corrected source until tha
 new runtime authorization arrives. Static checks are permitted. Do not infer
 security acceptance, push/PR authorization or daily human CRITICAL review from the
 prior runtime grant. All historical approvals, expiry and controls remain unchanged.
+
+## Second runtime grant and test-only checkpoint
+
+The owner authorized ea2e8425f8d7a89652cda0ded89eabaadff77e15 / exposure
+656bd3b5fc48def5402e6e06db69b9a49715b45c69bfea6d96cfcc1a40de7a7a.
+Actual result: 32/34 unit/component pass; all nine browser cases and both real
+Compose browser cases pass; existing 51-case PG result reused with source/image/log
+verification. Cleanup completed. Two remaining fixture defects were corrected only
+in pages.test.tsx; production application modules did not change.
+New test-inclusive exposure is
+2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996.
+Stop before executing the edited tests until the owner authorizes this new hash.
+Do not rerun unchanged browser/backend suites without a reason. Security-record
+approval, push/PR, merge and today's human CRITICAL review remain ungranted.

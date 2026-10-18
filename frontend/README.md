@@ -228,3 +228,10 @@ approval and runs the actual PostgreSQL/backend/Nginx authentication/history flo
 See [the P2-04 assessment](../docs/P2_04_EXPOSURE_ASSESSMENT.md) for static results,
 scan evidence and the outstanding runtime/security decisions. Existing P2-03 green
 CI is prerequisite evidence, not a passing result for this changed application.
+
+The corrected ea2e842 validation passed all nine browser cases and the actual
+Compose authentication/history flow; 32/34 focused unit/component cases passed.
+Two remaining fixture corrections affect only `pages.test.tsx` and await the
+owner's explicit test-inclusive exposure authorization before execution. Production
+UI code is unchanged from that passing browser/Compose run. See the assessment for
+exact source hashes, retained failures and PostgreSQL evidence reuse.
