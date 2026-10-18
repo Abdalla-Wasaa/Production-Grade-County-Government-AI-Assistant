@@ -28,3 +28,11 @@ Preserve all seven checks, scans, policy records, inventories and branch protect
 Expiry remains 23 October 2026, 23:59 EAT; daily actual human CRITICAL review and
 all invalidation triggers remain required. No real data or production deployment.
 No PR until authorized, no automatic merge. Coursework remains read-only.
+
+On 18 October the owner explicitly authorized isolated backend/PostgreSQL validation
+of 0dd84f9658c1c8dae4beee9a1fac4214658b4088, exposure
+f0fa257c41dc225ba807ffd87aba15897fc1f77bde82323d56ed6782b6fe32b3.
+All 25 unit/contract and 20 real-PG cases passed without source corrections.
+Web/Compose execution, new exposure, security-record updates, push and PR remain
+unapproved. The vendor slim-base change is an unapplied proposal, not permission
+to modify the approved exposure. Actual daily human CRITICAL review is unconfirmed.

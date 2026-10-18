@@ -1,7 +1,8 @@
 # P2-03 exposure assessment and runtime authorization checkpoint
 
-Date: 18 October 2026. This is an assessment, not a security acceptance, runtime
-permission, passing-test report or production approval. Issue #19's persistence
+Date: 18 October 2026. Updated after the explicitly authorized limited backend/PG
+validation below. This is an assessment and actual test report, not a development
+risk acceptance, web/Compose runtime permission or production approval. Issue #19's persistence
 amendment was explicitly approved by the owner before implementation.
 
 ## Exact source and scope
@@ -44,7 +45,8 @@ UPDATE columns; messages permit only SELECT/INSERT. Audit records are content-fr
 pseudonymous mutation events and must commit with changes; audit/DB failures must
 roll back and return safe 503. The shared body limiter now also bounds conversation
 paths. No logs include content, tokens, cursor values, raw errors or credentials.
-These are source-reviewed controls, not runtime-verified claims at this checkpoint.
+These controls were source-reviewed at the initial checkpoint. The limited backend/PG
+validation below now verifies the covered cases; it is not a claim of complete security.
 
 The new SQL text is parameterized; no arbitrary SQL, XML input, archive processing,
 provider dispatch, tool execution, new listener or real data is introduced. The
@@ -124,15 +126,24 @@ The runtime image build completed. Mermaid source is documented; visual renderin
 has not been verified. No host dependency installation or coursework execution occurred; the image build
 installed only the unchanged locked dependency set.
 
-Prepared, **not executed**: 25 new parameterized unit/contract cases and 20 real-PG
-integration cases, plus updated existing metadata/revision/OpenAPI and Compose
-schema assertions. Tests cover ownership/401/404, role injection, content/byte caps,
+The owner explicitly authorized commit 0dd84f9658c1c8dae4beee9a1fac4214658b4088
+with unchanged exposure f0fa257c41dc225ba807ffd87aba15897fc1f77bde82323d56ed6782b6fe32b3
+for isolated backend/PostgreSQL tests. Actual results: **25/25 unit/contract cases
+passed in 0.11 seconds; 20/20 PostgreSQL integration cases passed in 35.42 seconds**,
+zero failures/skips. Each suite emitted the existing Starlette TestClient/httpx
+deprecation warning. No application or test corrections were required.
+
+Sanitized, validator-accepted JUnit evidence: [unit results](security/p2-03/unit-results.xml)
+and [PostgreSQL results](security/p2-03/postgresql-results.xml). The earlier scan-summary
+prepared_tests entries are the historical initial checkpoint, not current execution
+status. Updated existing metadata/revision/OpenAPI and Compose schema assertions
+remain prepared for their relevant full-suite replay after approval. Tests cover ownership/401/404, role injection, content/byte caps,
 idempotency conflict/replay, concurrent same/different-key writes and metadata PATCH,
 sequence/pagination under writes, retention/language snapshots, storage caps,
 FK/CHECKs, cascade deletion, least-privilege grants, mandatory-audit failure rollback,
 and destructive disposable downgrade/re-upgrade preserving identity.
 
-After explicit runtime authorization, use the existing locked Python 3.12 backend
+For the subsequently authorized full regression run, use the existing locked Python 3.12 backend
 from backend/: `.venv/bin/python -m pytest -q -m 'not integration'` and the real-PG
 suite `.venv/bin/python -m pytest -q -m integration` with the documented loopback
 COUNTY_TEST_ADMIN_URL and COUNTY_TEST_DISPOSABLE=YES. Keep credentials in private
@@ -145,17 +156,69 @@ risk decision. These failures are expected enforcement, not clean scans, missing
 inventories or passing CI. All seven mandatory contexts remain unchanged; no hosted
 changed-runtime CI was dispatched and no PR/push/merge occurred at this checkpoint.
 
-## Required human decision
+## Confirmed web remediation proposal (not applied)
 
-Request isolated, synthetic-only **backend and PostgreSQL** unit/integration runtime
-validation of the exact source commit and exposure above, with no web/Compose
-runtime or production use, no acceptance/hash/inventory-file changes, no expiry
-extension, and all scans/checks/rules retained. Separately resolve the fixable web
-image finding before full Compose/hosted security readiness. Validation permission
-would not make CI green or create a new development risk acceptance.
+Installed libexpat remains 2.8.5-r0 in the existing full Alpine web image; vendor fix
+is 2.9.0-r0. Docker Hub inspection confirms stable-alpine still resolves to the
+existing 782bb897... digest, so repulling the same tag does not remediate it.
 
-The owner must also perform today's actual review of the three CRITICAL assessments.
-Any later source correction requires reporting its new exact exposure/security delta;
-no automatic approval of future changes is assumed. Existing expiry remains
-23 October 2026, 23:59 EAT. No real citizen/county data, production credentials,
-public deployment, automatic renewal, PR merge, frontend history or Phase 3 work.
+A vendor-published alternative is nginxinc/nginx-unprivileged:stable-alpine-slim
+at sha256:4ac59c85c8c46d9e91eaabd2122cda4923ba380cf11f4138e389f069bcdc77a3.
+It removes unused dynamic-module dependencies, including libexpat, rather than
+claiming to contain the patched package. The [vendor slim Dockerfile](https://github.com/nginx/docker-nginx-unprivileged/blob/main/stable/alpine-slim/Dockerfile)
+installs core Nginx; the [full variant](https://github.com/nginx/docker-nginx-unprivileged/blob/main/stable/alpine/Dockerfile)
+adds XSLT/GeoIP/image-filter/NJS modules. Our configuration loads none of these.
+
+This candidate base was pulled, inspected/exported without starting a container,
+and scanned by immutable ID with the same complete-inventory scanner controls.
+Result: 21 packages, no libexpat, zero HIGH/CRITICAL findings. Same Nginx 1.30.6 and
+UID 101; /bin/sh, sed, awk, mime.types and nginx binary present by static inspection.
+No explicit proxy-module disable flag was found in the binary. This is static
+compatibility evidence, not a successful nginx -t, web startup or end-to-end test.
+The candidate is not asserted free of all vulnerabilities.
+
+Only frontend/Dockerfile needs a technical image-selection change. The exact
+[proposed one-line patch](security/p2-03/web-base-remediation.patch) passes
+`git apply --check` and is **not applied**. [Candidate scan evidence](security/p2-03/web-remediation-scan-summary.json)
+records the immutable ID, report checksum and full package identity/version list.
+Full candidate report: /tmp/county-p203-web-slim-scan.json. No affected web image or
+Compose runtime was executed. No package override or vulnerability suppression was
+introduced. The candidate changes web inventory from 70 to 21 packages, so it cannot
+inherit the old package inventory approval even with zero HIGH/CRITICAL findings.
+
+## Execution environment and cleanup
+
+Only the two authorized suites were executed, on the approved source/hash.
+PostgreSQL 17 used a unique disposable container, random database/role names,
+private generated password file, custom bridge network, ephemeral loopback-only
+host port, non-root UID 999, read-only root, tmpfs data, dropped capabilities,
+no-new-privileges and bounded resources. Fixture-created DBs/roles and harness-owned
+container/network/password directory were removed. Unrelated developer containers
+were untouched. A first harness attempt could not obtain a published port on an
+internal network and failed before pytest; the harness was corrected to a separate
+bridge with loopback publication. No project source/exposure change was needed.
+No web container was started. Static checks passed again after validation.
+
+## Remaining human decisions and gates
+
+Limited backend/PG validation is complete. The code exposure remains exactly the
+approved f0fa257c... hash; no automatic future-source approval is assumed.
+
+Next approval is needed to apply the proposed single-line frontend/Dockerfile
+variant/digest patch, build/scan the assembled web artifact and validate web/Compose
+compatibility against its newly reported exact source/exposure. Existing security
+acceptance/inventory/baseline records must remain unchanged until a separate owner
+policy decision covers the exact assembled images, inventory and residual findings.
+The technical patch does not itself grant permission to update those records.
+
+Full CI/PR readiness is still blocked by unapproved P2-03 exposure and current web
+fixable finding. After reviewed remediation, the policy procedure will need explicit
+approval for .github/security-baseline.json, .github/security-inventory.json and
+.github/security-risk-acceptances.json, plus preservation of the previous acceptance
+as a historical snapshot and associated assessment documentation. No such changes
+are made or pre-approved here; exact record updates require the completed evidence.
+
+Today's actual human CRITICAL review is still unconfirmed and has not been marked
+complete. All seven CI checks, scanning, branch protection and invalidation rules
+remain active. Expiry remains 23 October 2026, 23:59 EAT. No push, PR, merge,
+real citizen/county data, production credentials, public deployment or Phase 3 work.
