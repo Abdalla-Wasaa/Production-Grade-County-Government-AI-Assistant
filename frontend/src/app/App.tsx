@@ -1,3 +1,5 @@
+import { ConversationProvider } from '../features/conversations/ConversationProvider';
+import { HistoryPage } from '../features/conversations/HistoryPage';
 import { AuthProvider } from '../features/auth/AuthProvider';
 import { LoginPage } from '../features/auth/LoginPage';
 import { ActivationPage } from '../features/auth/ActivationPage';
@@ -26,6 +28,8 @@ function AppRoutes() {
           <Route path="activate" element={<ActivationPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="account" element={<AccountPage />} />
+            <Route path="conversations" element={<HistoryPage />} />
+            <Route path="conversations/:id" element={<HistoryPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
@@ -38,7 +42,9 @@ export function App() {
   return (
     <AppErrorBoundary language={language}>
       <AuthProvider>
-        <AppRoutes />
+        <ConversationProvider>
+          <AppRoutes />
+        </ConversationProvider>
       </AuthProvider>
     </AppErrorBoundary>
   );

@@ -18,13 +18,13 @@ export const en = {
   featureScope: 'Understand what is available today',
   scopeTitle: 'Clear about its limits',
   scopeBody:
-    'Chat and county-service answers are not available in this version. No permits, payments or official decisions can be made here.',
+    'AI answers and county-service guidance are not available in this version. No permits, payments or official decisions can be made here.',
   languageTitle: 'Your preferred language',
   languageBody:
     'Switch the interface between English and Kiswahili. Only your language preference is saved on this device.',
   privacyTitle: 'Keep personal details private',
   privacyBody:
-    'Do not enter citizen records, credentials or confidential information. This preview does not collect messages.',
+    'Do not enter citizen records, credentials or confidential information. Authenticated users can save fictional messages in their private history.',
   assistantEyebrow: 'Assistant preview',
   assistantTitle: 'The assistant is taking shape.',
   assistantIntro:
@@ -107,4 +107,54 @@ export const en = {
   sessionExpires: 'Expires',
   revokeCurrent: 'Revoke this session',
   revokeOther: 'Revoke other session',
+  navConversations: 'My conversations',
+  historyTitle: 'Your saved conversations',
+  historyIntro:
+    'Save fictional questions and review your own history. No AI answers are generated. Never enter personal information.',
+  historyListTitle: 'Saved conversations',
+  historyNewTitle: 'New conversation title (optional)',
+  historyNewHelp:
+    'Up to 120 characters. New conversations use the selected interface language. Existing message languages stay unchanged.',
+  historyCreate: 'Create conversation',
+  historyRefreshList: 'Refresh conversations',
+  historyEmpty: 'No saved conversations yet. Create one to begin.',
+  historyLoading: 'Loading saved history…',
+  historyMoreConversations: 'Load more conversations',
+  historySelectTitle: 'Choose a conversation',
+  historySelectHelp:
+    'Open a saved conversation or create a new one. Only your own history is available.',
+  historySavedConversation: 'Private synthetic history',
+  historyReload: 'Reload conversation',
+  historyRenameLabel: 'Conversation title',
+  historyTitleHelp:
+    'Use a nonblank title of up to 120 characters. Renaming does not extend retention.',
+  historyRename: 'Save title',
+  historyRenamed: 'Conversation title saved.',
+  historyMessages: 'Saved messages',
+  historyMessagesEmpty: 'No messages saved in this conversation.',
+  historyMoreMessages: 'Load more messages',
+  historyYou: 'You',
+  historyMessageLabel: 'Your fictional message',
+  historyMessageHelp:
+    'Up to 4,000 characters. User messages are saved without an automatic assistant response.',
+  historySaveMessage: 'Save message',
+  historyRetrySave: 'Retry saving the same message',
+  historyUncertain:
+    'Saving could not be confirmed. Retry this same message; its request key is kept only in memory. Do not send it again as a new message.',
+  historySaved: 'Message saved. Use Load more messages if earlier history pages remain.',
+  historyDelete: 'Delete conversation',
+  historyDeleteTitle: 'Delete this conversation?',
+  historyDeleteHelp:
+    'This permanently removes the conversation and all its saved messages. This cannot be undone.',
+  historyCancel: 'Keep conversation',
+  historyDeleteConfirm: 'Delete permanently',
+  history_invalid: 'Check the title or message length. Only nonblank plain text is accepted.',
+  history_missing:
+    'This conversation is unavailable, expired or deleted. Refresh your conversation list.',
+  history_conflict:
+    'The conversation changed or the request key conflicts. Reload the conversation before trying again; an uncertain message keeps its original key.',
+  history_limited:
+    'A storage or request limit was reached. Wait, or remove an unneeded conversation.',
+  history_unavailable:
+    'Saved history is temporarily unavailable. Retry when the connection recovers.',
 } as const;

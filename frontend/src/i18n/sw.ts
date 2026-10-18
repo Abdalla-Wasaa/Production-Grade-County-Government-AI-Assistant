@@ -27,7 +27,7 @@ export const sw = {
     'Badilisha kiolesura kati ya Kiingereza na Kiswahili. Mapendeleo yako ya lugha pekee ndiyo yanayohifadhiwa kwenye kifaa hiki.',
   privacyTitle: 'Linda taarifa binafsi',
   privacyBody:
-    'Usiweke rekodi za wananchi, taarifa za kuingia au taarifa za siri. Onyesho hili halikusanyi ujumbe.',
+    'Usiweke rekodi za wananchi, taarifa za kuingia au taarifa za siri. Watumiaji walioingia wanaweza kuhifadhi ujumbe wa kubuni katika historia yao binafsi.',
   assistantEyebrow: 'Onyesho la msaidizi',
   assistantTitle: 'Msaidizi anaendelea kuandaliwa.',
   assistantIntro:
@@ -110,4 +110,55 @@ export const sw = {
   sessionExpires: 'Kinaisha',
   revokeCurrent: 'Futa kikao hiki',
   revokeOther: 'Futa kikao kingine',
+  navConversations: 'Mazungumzo yangu',
+  historyTitle: 'Mazungumzo yako yaliyohifadhiwa',
+  historyIntro:
+    'Hifadhi maswali ya kubuni na uone historia yako tu. Hakuna majibu ya AI yanayotolewa. Usiingize taarifa binafsi.',
+  historyListTitle: 'Mazungumzo yaliyohifadhiwa',
+  historyNewTitle: 'Kichwa cha mazungumzo mapya (si lazima)',
+  historyNewHelp:
+    'Hadi herufi 120. Mazungumzo mapya hutumia lugha iliyochaguliwa. Lugha za ujumbe uliopo hazibadiliki.',
+  historyCreate: 'Anzisha mazungumzo',
+  historyRefreshList: 'Onyesha upya mazungumzo',
+  historyEmpty: 'Bado hakuna mazungumzo yaliyohifadhiwa. Anzisha moja.',
+  historyLoading: 'Inapakia historia iliyohifadhiwa…',
+  historyMoreConversations: 'Pakia mazungumzo zaidi',
+  historySelectTitle: 'Chagua mazungumzo',
+  historySelectHelp:
+    'Fungua mazungumzo yaliyohifadhiwa au anzisha mapya. Historia yako pekee ndiyo inapatikana.',
+  historySavedConversation: 'Historia binafsi ya kubuni',
+  historyReload: 'Onyesha upya mazungumzo',
+  historyRenameLabel: 'Kichwa cha mazungumzo',
+  historyTitleHelp:
+    'Tumia kichwa chenye hadi herufi 120 kisicho tupu. Kubadili kichwa hakuongezi muda wa hifadhi.',
+  historyRename: 'Hifadhi kichwa',
+  historyRenamed: 'Kichwa cha mazungumzo kimehifadhiwa.',
+  historyMessages: 'Ujumbe uliohifadhiwa',
+  historyMessagesEmpty: 'Hakuna ujumbe uliohifadhiwa katika mazungumzo haya.',
+  historyMoreMessages: 'Pakia ujumbe zaidi',
+  historyYou: 'Wewe',
+  historyMessageLabel: 'Ujumbe wako wa kubuni',
+  historyMessageHelp:
+    'Hadi herufi 4,000. Ujumbe wa mtumiaji unahifadhiwa bila jibu la moja kwa moja la msaidizi.',
+  historySaveMessage: 'Hifadhi ujumbe',
+  historyRetrySave: 'Jaribu tena kuhifadhi ujumbe huo huo',
+  historyUncertain:
+    'Uhifadhi haukuweza kuthibitishwa. Jaribu tena ujumbe huo huo; ufunguo wa ombi unabaki kwenye kumbukumbu ya muda tu. Usiutume tena kama ujumbe mpya.',
+  historySaved:
+    'Ujumbe umehifadhiwa. Tumia Pakia ujumbe zaidi ikiwa kurasa nyingine za historia bado zipo.',
+  historyDelete: 'Futa mazungumzo',
+  historyDeleteTitle: 'Futa mazungumzo haya?',
+  historyDeleteHelp:
+    'Hatua hii inafuta kabisa mazungumzo na ujumbe wake wote uliohifadhiwa. Haiwezi kutenduliwa.',
+  historyCancel: 'Hifadhi mazungumzo haya',
+  historyDeleteConfirm: 'Futa kabisa',
+  history_invalid: 'Kagua urefu wa kichwa au ujumbe. Maandishi yasiyo tupu pekee yanakubaliwa.',
+  history_missing:
+    'Mazungumzo haya hayapatikani, yameisha muda au yamefutwa. Onyesha upya orodha yako.',
+  history_conflict:
+    'Mazungumzo yamebadilika au ufunguo wa ombi unakinzana. Onyesha upya mazungumzo kabla ya kujaribu tena; ujumbe usiothibitishwa unabaki na ufunguo wake wa awali.',
+  history_limited:
+    'Kikomo cha hifadhi au maombi kimefikiwa. Subiri, au futa mazungumzo yasiyohitajika.',
+  history_unavailable:
+    'Historia iliyohifadhiwa haipatikani kwa sasa. Jaribu tena muunganisho ukirejea.',
 } satisfies Record<keyof typeof en, string>;
