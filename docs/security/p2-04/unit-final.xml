@@ -1,0 +1,36 @@
+<testsuite tests="34" failures="0" skipped="0">
+  <testcase name="authenticated persistence transport &gt; uses bearer only, no-store and no redirects without exposing tokens" classname="src/features/conversations/client.test.ts" time="0.01147892" />
+  <testcase name="authenticated persistence transport &gt; persists once after a lost acknowledgement by reusing the exact key" classname="src/features/conversations/client.test.ts" time="0.004994059" />
+  <testcase name="authenticated persistence transport &gt; coalesces concurrent duplicate submissions" classname="src/features/conversations/client.test.ts" time="0.001840898" />
+  <testcase name="authenticated persistence transport &gt; does not clear a valid session after history is unavailable" classname="src/features/conversations/client.test.ts" time="0.001556523" />
+  <testcase name="authenticated persistence transport &gt; invalidates session and uncertain state on 401" classname="src/features/conversations/client.test.ts" time="0.002425546" />
+  <testcase name="authenticated persistence transport &gt; rejects late old-account responses after sign-out" classname="src/features/conversations/client.test.ts" time="0.053144097" />
+  <testcase name="authenticated persistence transport &gt; keeps metadata ETags, paginates and maps stale writes without replay" classname="src/features/conversations/client.test.ts" time="0.004030877" />
+  <testcase name="authenticated persistence transport &gt; refreshes expired access through the existing serialized auth manager" classname="src/features/conversations/client.test.ts" time="0.001541614" />
+  <testcase name="authenticated persistence transport &gt; discards a delayed old-account response body without clearing the new account" classname="src/features/conversations/client.test.ts" time="0.052945343" />
+  <testcase name="authenticated persistence transport &gt; does not allow bearer requests outside the conversation family" classname="src/features/conversations/client.test.ts" time="0.001069227" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.007138365" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.001072919" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.000802135" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.000580221" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.000604174" />
+  <testcase name="persistence response and text boundaries &gt; counts Unicode code points without truncation" classname="src/features/conversations/contracts.test.ts" time="0.001511672" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.000592902" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.000487529" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.000691" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.00066606" />
+  <testcase name="persistence response and text boundaries &gt; copies only public fields" classname="src/features/conversations/contracts.test.ts" time="0.000670435" />
+  <testcase name="persistence response and text boundaries &gt; rejects non-user history role assistant" classname="src/features/conversations/contracts.test.ts" time="0.000611254" />
+  <testcase name="persistence response and text boundaries &gt; rejects non-user history role system" classname="src/features/conversations/contracts.test.ts" time="0.000301246" />
+  <testcase name="persistence response and text boundaries &gt; rejects non-user history role tool" classname="src/features/conversations/contracts.test.ts" time="0.000232483" />
+  <testcase name="persistence response and text boundaries &gt; rejects cross-conversation history and oversized pages/cursors" classname="src/features/conversations/contracts.test.ts" time="0.000554167" />
+  <testcase name="private bilingual conversation workspace &gt; lists and opens ordered saved messages under StrictMode" classname="src/features/conversations/pages.test.tsx" time="0.259754674" />
+  <testcase name="private bilingual conversation workspace &gt; creates a conversation and saves only a user message" classname="src/features/conversations/pages.test.tsx" time="0.155875204" />
+  <testcase name="private bilingual conversation workspace &gt; renames with an ETag and deletes only after explicit confirmation" classname="src/features/conversations/pages.test.tsx" time="0.146533871" />
+  <testcase name="private bilingual conversation workspace &gt; loads bounded conversation and message pages without duplicates" classname="src/features/conversations/pages.test.tsx" time="0.108370279" />
+  <testcase name="private bilingual conversation workspace &gt; renders plain text rather than injected HTML and supports Kiswahili" classname="src/features/conversations/pages.test.tsx" time="0.050990267" />
+  <testcase name="private bilingual conversation workspace &gt; shows unavailable and empty states with a working reload" classname="src/features/conversations/pages.test.tsx" time="0.045764067" />
+  <testcase name="private bilingual conversation workspace &gt; rejects cross-user/missing resource responses without showing old messages" classname="src/features/conversations/pages.test.tsx" time="0.027080292" />
+  <testcase name="private bilingual conversation workspace &gt; removes history immediately after cross-tab session invalidation" classname="src/features/conversations/pages.test.tsx" time="0.034667627" />
+  <testcase name="private bilingual conversation workspace &gt; does not render delayed history from the previous selection" classname="src/features/conversations/pages.test.tsx" time="0.079361318" />
+</testsuite>

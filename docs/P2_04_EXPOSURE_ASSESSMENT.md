@@ -314,3 +314,81 @@ removed, changed, fixable or KEV-matching finding was reported. Counts remain we
 `/tmp/county-p204-corrected-runtime-scans/`. Overall policy rejection remains the
 expected missing approval for changed exposure; it is not a missing image scan.
 No zero-new-findings claim establishes that application code is vulnerability-free.
+
+## Final focused validation — consolidated acceptance decision pending
+
+The owner explicitly authorized commit
+`f6e65c1a1bbd927114458c57282823a6468392d7`, exposure
+`2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996`.
+The corrected focused suite now passes **34/34, zero failures or skips**: 15 contract,
+10 client and 9 component cases. See [final sanitized JUnit](security/p2-04/unit-final.xml).
+No new application or test correction was needed during this run.
+
+The production modules remain identical to the ea2e842 source that passed all nine
+browser cases (three per engine), three axe scans and both real-backend Compose
+browser cases. Those results and the verified 51-case PostgreSQL result are reused
+with the owner's explicit authorization. No unchanged suite was rerun. Freshness
+and completeness of all three retained immutable image reports were revalidated:
+all inventories and all 118 HIGH/CRITICAL finding fields still match P2-03, with
+zero added/removed/changed/fixable/KEV findings. No package or lockfile changed.
+The latest raw scan evidence remains `/tmp/county-p204-corrected-runtime-scans/`.
+Zero new scanner findings do not establish vulnerability-free source.
+
+This final validation supersedes the preceding historical pending-test statements;
+those earlier failures remain retained for traceability. Security acceptance is
+still pending. Exactly five files are proposed for the separate owner decision:
+
+1. `.github/security-risk-acceptances.json`: a separate P2-04 decision binding the
+   final reviewed exposure to the unchanged baseline SHA-256
+   `0f48571f3b819b906b4aa78ce06c0beb4afd517283f78aad4e35c186d6056acf`.
+   Keep production_allowed=false, the exact 118 individually enumerated inherited
+   occurrences and expiry `2026-10-23T20:59:00+00:00`. Record only the actual subsequent
+   explicit owner decision/time, not this testing authorization.
+2. `docs/security/p2-04/p2-03-acceptance-snapshot.json`: preserve the complete current
+   P2-03 acceptance file byte-for-byte before replacing the active decision.
+3. This assessment: append the actual owner decision and scope after it is granted.
+4. `docs/SECURITY.md`: document the separate decision, unchanged controls and limits.
+5. `AGENTS.md`: update the current checkpoint to the specifically approved record,
+   push/PR/CI scope while preserving permanent rules and all prior approvals.
+
+No approved vulnerability baseline, inventory, workflow, ruleset or historical
+snapshot requires modification. Immediate invalidation on a fix, new finding,
+severity increase, KEV listing, exposure or dependency change remains mandatory.
+Daily actual human CRITICAL review remains required and unconfirmed. No real data,
+production use, expiry extension, automatic future approval or merge is authorized.
+Normal hosted CI and PR publication await the separate record approval. No PR is
+open and no push was performed for P2-04.
+
+### P2-05/P2-06 readiness, read-only issue review
+
+GitHub issue #21 is **P2-05 Privacy notices retention and account lifecycle**.
+Reuse activation's notice-version/acknowledgement fields, current expiry filtering,
+operator disable/revocation and existing identity purge command. Verified code:
+`backend/app/modules/identity/operator.py` has disable/recovery/purge, while
+`backend/app/modules/identity/grants.py` currently gives maintenance no conversation
+purge rights. Existing purge covers sessions/invitations/rate counters and 90-day
+audit rows with explicit no-incident-hold confirmation; it does not purge expired
+conversations. The smallest remaining work is approved bounded conversation purge
+with cascade, scheduling/monitoring and least-privilege maintenance grants;
+verify session/audit retention boundaries, rollback/hold handling and operator
+failure/recovery; document account rights/deletion and backup-recovery boundaries.
+Add focused PostgreSQL time-boundary, concurrent/idempotent purge and revoked-access
+tests. Confirm concrete synthetic retention/scheduler/incident-hold decisions before
+coding. Do not redo authentication or add public rights/admin APIs.
+
+GitHub issue #22 is **P2-06 Identity and conversations acceptance verification**.
+It depends on reviewed/merged P2-01 through P2-05 and separate owner approval.
+The smallest remaining scope is a roadmap exit-criterion/evidence matrix, reproducible
+synthetic onboarding and operator handover, clean isolated checkout replay, current
+seven-context CI/artifact/scan and ruleset verification, and explicit residual pilot,
+translation/manual-accessibility and security gates. Reuse prior valid negative,
+concurrency, bilingual and migration evidence, rerunning only where final-source
+replay or a changed dependency requires it. No provider dispatch, public registration,
+production approval, automatic Phase 3 start or combined P2-04/P2-05/P2-06 PR.
+
+Both issues currently show CLOSED on GitHub despite their unchecked acceptance
+lists and not-yet-delivered work. That tracker state is not completion evidence;
+confirm/reconcile issue status through the normal maintainer workflow, not by
+claiming implementation. Neither issue was modified and no P2-05 application work
+or P2-06 acceptance was started. Daily human review and the fixed exception expiry
+remain closure constraints regardless of tracker state.
