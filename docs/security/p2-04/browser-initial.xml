@@ -1,0 +1,17 @@
+<testsuite tests="9" failures="3" skipped="0">
+  <testcase name="bilingual keyboard history flow persists text, renames and confirms deletion" classname="history.spec.ts" time="9.618">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="responsive saved history stays within a narrow viewport" classname="history.spec.ts" time="1.5" />
+  <testcase name="cross-tab invalidation clears rendered messages and protects session restoration" classname="history.spec.ts" time="1.533" />
+  <testcase name="bilingual keyboard history flow persists text, renames and confirms deletion" classname="history.spec.ts" time="17.26">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="responsive saved history stays within a narrow viewport" classname="history.spec.ts" time="6.226" />
+  <testcase name="cross-tab invalidation clears rendered messages and protects session restoration" classname="history.spec.ts" time="4.185" />
+  <testcase name="bilingual keyboard history flow persists text, renames and confirms deletion" classname="history.spec.ts" time="12.062">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="responsive saved history stays within a narrow viewport" classname="history.spec.ts" time="1.589" />
+  <testcase name="cross-tab invalidation clears rendered messages and protects session restoration" classname="history.spec.ts" time="4.017" />
+</testsuite>

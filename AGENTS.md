@@ -43,3 +43,22 @@ The previous P2-02 policy is preserved byte-for-byte in
 `docs/security/p2-03/p2-02-policy-snapshot.json`. See
 `docs/P2_03_EXPOSURE_ASSESSMENT.md` for the prior validation and review limitations.
 This historical approval does not authorize the P2-04 exposure.
+
+## P2-04 controlled validation and correction checkpoint
+
+The owner authorized isolated synthetic frontend/browser/Compose validation of
+c34436487b8bd107fb4f910d3d6a17da1e291d6c with exposure
+cd2fd44345bb3b6c09fe05dad6ea0cbe762c866feb8992c6c41c70910ce6f951.
+That run is complete: unit/component 25 passed and 9 setup failures; browser
+6 passed and 3 keyboard focus failures; real Compose/auth/history flow and all
+51 PostgreSQL cases passed, with disposable cleanup verified.
+
+Two bounded corrections are prepared: jsdom modal-method shims with restoration,
+and focus return after modal unmount instead of while the background is inert.
+Corrected exposure is
+656bd3b5fc48def5402e6e06db69b9a49715b45c69bfea6d96cfcc1a40de7a7a.
+The owner explicitly requires stopping before executing changed application code
+when corrections change exposure. Do not execute this corrected source until that
+new runtime authorization arrives. Static checks are permitted. Do not infer
+security acceptance, push/PR authorization or daily human CRITICAL review from the
+prior runtime grant. All historical approvals, expiry and controls remain unchanged.

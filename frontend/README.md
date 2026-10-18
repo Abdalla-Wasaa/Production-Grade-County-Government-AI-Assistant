@@ -211,7 +211,10 @@ Expired sessions return to sign-in; network outages do not erase a valid identit
 
 Prepared tests are `contracts.test.ts`, `client.test.ts` and `pages.test.tsx` in that
 module, `e2e/history.spec.ts`, and the extended real-backend
-`e2e/auth-compose.spec.ts`. They have not been executed for this new exposure.
+`e2e/auth-compose.spec.ts`. Initial execution on c344364 produced 25 passing unit/client cases, nine component
+setup failures and six passing/three failing browser cases. The real-backend
+Compose history flow passed. Two corrections now await authorization to execute
+the revised exposure; no passing result is claimed for the corrected source.
 Runtime commands below require the owner's separate synthetic-validation approval:
 
 ```bash

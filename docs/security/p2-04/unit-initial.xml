@@ -1,0 +1,54 @@
+<testsuite tests="34" failures="9" skipped="0">
+  <testcase name="authenticated persistence transport &gt; uses bearer only, no-store and no redirects without exposing tokens" classname="src/features/conversations/client.test.ts" time="0.060721557" />
+  <testcase name="authenticated persistence transport &gt; persists once after a lost acknowledgement by reusing the exact key" classname="src/features/conversations/client.test.ts" time="0.014976201" />
+  <testcase name="authenticated persistence transport &gt; coalesces concurrent duplicate submissions" classname="src/features/conversations/client.test.ts" time="0.00666966" />
+  <testcase name="authenticated persistence transport &gt; does not clear a valid session after history is unavailable" classname="src/features/conversations/client.test.ts" time="0.00904971" />
+  <testcase name="authenticated persistence transport &gt; invalidates session and uncertain state on 401" classname="src/features/conversations/client.test.ts" time="0.013165516" />
+  <testcase name="authenticated persistence transport &gt; rejects late old-account responses after sign-out" classname="src/features/conversations/client.test.ts" time="0.058791897" />
+  <testcase name="authenticated persistence transport &gt; keeps metadata ETags, paginates and maps stale writes without replay" classname="src/features/conversations/client.test.ts" time="0.013778253" />
+  <testcase name="authenticated persistence transport &gt; refreshes expired access through the existing serialized auth manager" classname="src/features/conversations/client.test.ts" time="0.006386074" />
+  <testcase name="authenticated persistence transport &gt; discards a delayed old-account response body without clearing the new account" classname="src/features/conversations/client.test.ts" time="0.058687105" />
+  <testcase name="authenticated persistence transport &gt; does not allow bearer requests outside the conversation family" classname="src/features/conversations/client.test.ts" time="0.00304944" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.01546541" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.002851912" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.001636049" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.001802965" />
+  <testcase name="persistence response and text boundaries &gt; rejects invalid content without reflecting it" classname="src/features/conversations/contracts.test.ts" time="0.001700128" />
+  <testcase name="persistence response and text boundaries &gt; counts Unicode code points without truncation" classname="src/features/conversations/contracts.test.ts" time="0.006054331" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.005331464" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.002903458" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.00171346" />
+  <testcase name="persistence response and text boundaries &gt; rejects malformed metadata" classname="src/features/conversations/contracts.test.ts" time="0.002631954" />
+  <testcase name="persistence response and text boundaries &gt; copies only public fields" classname="src/features/conversations/contracts.test.ts" time="0.002370443" />
+  <testcase name="persistence response and text boundaries &gt; rejects non-user history role assistant" classname="src/features/conversations/contracts.test.ts" time="0.006267356" />
+  <testcase name="persistence response and text boundaries &gt; rejects non-user history role system" classname="src/features/conversations/contracts.test.ts" time="0.001429696" />
+  <testcase name="persistence response and text boundaries &gt; rejects non-user history role tool" classname="src/features/conversations/contracts.test.ts" time="0.00117226" />
+  <testcase name="persistence response and text boundaries &gt; rejects cross-conversation history and oversized pages/cursors" classname="src/features/conversations/contracts.test.ts" time="0.002541093" />
+  <testcase name="private bilingual conversation workspace &gt; lists and opens ordered saved messages under StrictMode" classname="src/features/conversations/pages.test.tsx" time="0.019575277">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; creates a conversation and saves only a user message" classname="src/features/conversations/pages.test.tsx" time="0.002327689">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; renames with an ETag and deletes only after explicit confirmation" classname="src/features/conversations/pages.test.tsx" time="0.001528742">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; loads bounded conversation and message pages without duplicates" classname="src/features/conversations/pages.test.tsx" time="0.0030134">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; renders plain text rather than injected HTML and supports Kiswahili" classname="src/features/conversations/pages.test.tsx" time="0.001888037">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; shows unavailable and empty states with a working reload" classname="src/features/conversations/pages.test.tsx" time="0.001720807">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; rejects cross-user/missing resource responses without showing old messages" classname="src/features/conversations/pages.test.tsx" time="0.000886172">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; removes history immediately after cross-tab session invalidation" classname="src/features/conversations/pages.test.tsx" time="0.000933556">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="private bilingual conversation workspace &gt; does not render delayed history from the previous selection" classname="src/features/conversations/pages.test.tsx" time="0.001308516">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+</testsuite>

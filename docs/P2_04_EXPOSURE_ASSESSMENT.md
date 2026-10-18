@@ -145,3 +145,99 @@ expiry remains **23 October 2026, 23:59 EAT**; all invalidation triggers, scanni
 seven required checks and branch protection remain active. Today's human CRITICAL
 review is unconfirmed and must not be invented. No real citizen/county data,
 production deployment, automatic acceptance renewal or automatic merge is authorized.
+
+## Authorized validation attempt, 18 October 2026
+
+The owner explicitly authorized isolated synthetic-only frontend, browser,
+accessibility and real-backend Compose validation of commit
+`c34436487b8bd107fb4f910d3d6a17da1e291d6c`, exposure
+`cd2fd44345bb3b6c09fe05dad6ea0cbe762c866feb8992c6c41c70910ce6f951`.
+Bounded genuine corrections are authorized, but execution of a corrected exposure
+requires stopping and reporting the new hash first. No security-record change,
+push, PR, merge, expiry extension or human CRITICAL review completion was authorized.
+
+Actual focused unit/component result: **25 passed, 9 failed, 0 skipped (34 total)**.
+All 15 DTO/contract and 10 transport/session/idempotency cases passed. All nine
+component cases failed in setup before their assertions: jsdom does not implement
+`HTMLDialogElement.showModal`, so spying on the missing method throws. This is test
+harness evidence, not nine independent application failures. See
+[sanitized unit report](security/p2-04/unit-initial.xml).
+
+The production build passed. Actual focused browser result: **6 passed, 3 failed,
+0 skipped (9 total)** across Chromium, Firefox and WebKit. Mobile reflow and
+cross-tab invalidation passed in all engines. All three keyboard CRUD cases reached
+and passed the axe scan with zero reported violations, then failed the same genuine
+focus-return assertion after Escape dismissed the delete dialog. Focus was attempted
+while the modal still made its background inert. Final permanent deletion in those
+three preview cases was not reached. See
+[sanitized browser report](security/p2-04/browser-initial.xml).
+
+These failures are retained as failures. No result is replaced with a passing or
+skipped report. Runtime evidence above belongs only to the explicitly tested
+commit/exposure, not a subsequently corrected source baseline.
+
+### Real-backend Compose result
+
+The ordinary `scripts/compose_smoke.py --browser` command completed successfully
+on the authorized c344364 source. The actual Nginx browser smoke passed (one case),
+as did the authenticated real-backend browser case extended with listing, creation,
+message persistence across reload, rename, cancel-delete and confirmed deletion.
+All 51 real-PostgreSQL regression cases passed, including server pagination.
+UI pagination against the real backend was not explicitly exercised with more than
+20 rows; the prepared component pagination case remains blocked by the setup defect.
+No broader real-browser pagination claim is made.
+
+The full command also verified migration checks, least-privilege runtime access,
+non-root/read-only/network isolation, secret canaries, database outage/recovery,
+graceful shutdown, proxy recovery and persisted state after down/up. It finished
+with test-only cleanup. Only the pre-existing unrelated container remained; it was
+not modified. See [Compose browser report](security/p2-04/compose-browser.xml),
+[auth/history browser report](security/p2-04/auth-compose.xml) and
+[validated image manifest](security/p2-04/validated-runtime-manifest.json).
+The full local command log is `/tmp/county-p204-compose.log`. The PostgreSQL
+subprocess result is the existing harness's 51-case assertion, not an invented
+standalone JUnit report.
+
+### Corrections prepared; new execution checkpoint
+
+- `ConversationDetail.tsx`: return focus in the post-unmount effect after modal
+  closure, rather than synchronously in the cancellation handler while the
+  background remains inert. The existing three-engine focus assertion is retained.
+- `pages.test.tsx`: define the absent jsdom dialog methods only in the test harness
+  and restore their original descriptors afterward. Add a focus-return assertion
+  to the existing cancellation case. Native browser modal behavior remains real.
+
+Corrected exposure:
+`656bd3b5fc48def5402e6e06db69b9a49715b45c69bfea6d96cfcc1a40de7a7a`.
+No new dependency, Dockerfile, backend, API or security-policy change is involved.
+These corrections have not executed. Strict types/lint/format are rechecked
+statically. The earlier passing and failing results remain tied to c344364.
+
+A new owner authorization is required to execute the corrected source: rerun the
+focused 34 unit/component cases and nine history browser cases with axe, and the
+relevant real-backend UI regression. Existing valid backend/infrastructure evidence
+may be reused; do not repeat unrelated suites without a reason. Stop on any further
+exposure change before executing its corrected source.
+
+No security acceptance update is appropriate before completing that validation.
+After it passes, the anticipated narrow record proposal is
+`.github/security-risk-acceptances.json`, a new unchanged P2-03 acceptance snapshot
+at `docs/security/p2-04/p2-03-acceptance-snapshot.json`, this assessment,
+`docs/SECURITY.md`, and `AGENTS.md`. This is a prospective file list, not approval
+to modify those records. Baseline/inventory records need no change if the findings
+and inventories remain identical. The final exact source and evidence must be
+presented for that separate decision; production remains prohibited and the
+23 October 2026, 23:59 EAT expiry cannot be extended by this work.
+
+### Fresh scans of the actual validated runtime images
+
+All three immutable images in the validated manifest were scanned after cleanup.
+[Runtime scan summary](security/p2-04/validated-runtime-scan-summary.json) binds
+those exact IDs and report hashes to the authorized, tested source, separately
+from the corrected source awaiting execution. All three inventories pass the
+existing unchanged inventory validator. Findings remain exactly web 0/0, backend
+44 HIGH/0 CRITICAL, PostgreSQL 71 HIGH/3 CRITICAL: no added, removed, changed,
+fixable or KEV-matching HIGH/CRITICAL occurrence. The scanner's overall exit 1
+is the expected unapproved-exposure decision, not an incomplete scan. Raw JSON
+and KEV are retained under `/tmp/county-p204-runtime-scans/`. The corrected image
+has not been built or run; no claim of runtime validation is made for it.
