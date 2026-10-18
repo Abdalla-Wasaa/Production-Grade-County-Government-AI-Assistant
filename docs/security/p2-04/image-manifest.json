@@ -1,0 +1,22 @@
+{
+  "authentication_checks": [
+    "nine OpenAPI routes",
+    "activation without auto-login",
+    "login/current user",
+    "own session listing/revocation",
+    "rotating refresh/reuse revocation",
+    "logout/logout-all",
+    "CSRF rejection",
+    "non-root secret-file configuration"
+  ],
+  "image_ids": {
+    "web": "sha256:5d5290b2212e66f6eaa60a466a1379b0de772ca5924ac26269cbfca3710b0a29",
+    "backend": "sha256:4b8a0d2d0ccca3b8a9f0b7836837e554574613d8d249bd4ab95314a95e32df08",
+    "db": "sha256:a2c349c6634be2c75fed54068e58f2a1e618b188b83b5e72a1066c5603a2420e"
+  },
+  "images": [
+    "county-p204-review-web:local",
+    "county-test-089536f98d65-backend:local",
+    "county-test-089536f98d65-db:local"
+  ]
+}
