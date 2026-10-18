@@ -83,7 +83,7 @@ repositories encapsulate SQL. A module must not reach into another module's priv
 repositories. Avoid a generic utility layer absorbing domain policy. Explicit
 composition during FastAPI lifespan replaces network/model initialization at import.
 
-## Request flow and durable turn lifecycle
+## Future Phase 3 turn lifecycle (not Phase 2 persistence)
 
 The MVP uses synchronous HTTP completion with durable database state, not streaming
 or a separate queue. The frontend can recover a lost response by reading messages
@@ -96,7 +96,7 @@ sequenceDiagram
     participant API as FastAPI / turn coordinator
     participant DB as PostgreSQL
     participant LLM as Provider adapter
-    UI->>API: POST message + bearer + idempotency key
+    UI->>API: Separate generation operation (contract deferred)
     API->>DB: Check account, ownership, quota and reserve ordered pair with lease
     DB-->>API: Committed user message + pending assistant
     API->>DB: Read bounded complete history
@@ -300,3 +300,34 @@ No generic framework, microservice, Redis, frontend auth or provider call is add
 Contract PR #23 merged before implementation. Isolated validation is now authorized;
 the [exposure report](P2_01_EXPOSURE_ASSESSMENT.md) records actual results and the
 remaining machine-policy blocker. Phase 1 acceptance is not inherited or extended.
+
+## P2-03 private persistence boundary
+
+The owner-approved [ADR 0003](DECISIONS/0003-separate-message-persistence.md) separates
+user-message storage from future AI generation. The conversations module owns strict
+HTTP schemas, ownership-scoped service queries and explicit SQLAlchemy models; it
+reuses the identity transaction/session dependency and live bearer validation.
+It registers only when authentication is enabled. No new dependency is introduced.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API as Persistence API
+    participant DB as PostgreSQL
+    Client->>API: Content + bearer + idempotency key
+    API->>DB: Validate and lock active account/session
+    API->>DB: Lock owned unexpired conversation
+    API->>DB: Check key, allocate sequence, insert user message and audit
+    DB-->>API: Commit atomically
+    API-->>Client: 201 user message or 200 identical replay
+```
+
+There is no provider boundary in this flow. Account -> session -> conversation
+locking preserves auth revocation ordering and serializes per-user cap checks;
+this deliberately favors simple correctness over per-account write throughput.
+Separate AsyncSessions are never shared across requests. Conversation list cursors
+are signed, owner-bound and ordered by updated_at/id; message cursors are owner-
+and conversation-bound with immutable ascending sequence. Lists are best-effort
+under concurrent metadata changes, as already specified. No content caches exist
+to invalidate; DELETE cascades in the same database transaction. Physical expiry
+purge remains P2-05. Source/static/scanner evidence does not grant runtime approval.

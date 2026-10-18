@@ -1,0 +1,3 @@
+Source: normal Compose invocation at 8fe5d2ec3b6d6ec334ce95bdb65782b24d89813d
+PASS: PostgreSQL integration suite (51 tests), isolated loopback namespace
+The later auth schema assertion failed in that invocation; the successful PG result is reused after the independent assertion correction.

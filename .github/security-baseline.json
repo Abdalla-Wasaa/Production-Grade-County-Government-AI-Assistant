@@ -1077,13 +1077,13 @@
       "report_sha256": "64b10223335511cd1e754fec0a77996568c72645ca28769d186252c7caaed222"
     },
     "web": {
-      "base_digest": "sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01",
+      "base_digest": "sha256:4ac59c85c8c46d9e91eaabd2122cda4923ba380cf11f4138e389f069bcdc77a3",
       "findings": [],
-      "image_id": "sha256:fe638e882e5b6a949a6ee56a59d77f200b43db4ef31235cb32fbf213d44e8be1",
-      "report_sha256": "cff1f63d769f82a1d15dd9165dc4fa4411ad4d74a164ffa97d0795d1f69f3904"
+      "image_id": "sha256:8d52ce476c83a44926cbb9a40222dfa88440b502f7fba22753e401415565f951",
+      "report_sha256": "b01ee40624627654afb3b6d405ad706a41a13317a48a5e19f959220ff1231071"
     }
   },
   "schema_version": 1,
-  "snapshot_date": "2026-10-16",
-  "source": "Actual fresh Trivy scans of approved P1-04 runtime images; baseline is evidence, not acceptance"
+  "snapshot_date": "2026-10-18",
+  "source": "P2-03 web-only remediation evidence; backend and PostgreSQL baseline records retained unchanged from the prior reviewed snapshot"
 }

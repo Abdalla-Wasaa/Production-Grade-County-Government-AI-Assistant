@@ -177,7 +177,7 @@ async def verify():
     try:
         async with engine.connect() as c:
             names=(await c.execute(text("SELECT tablename FROM pg_tables WHERE schemaname='public'"))).scalars().all()
-            assert set(names)=={'alembic_version','users','invitations','auth_sessions','refresh_tokens','auth_audit_events','auth_rate_limits'}
+            assert set(names)=={'alembic_version','users','invitations','auth_sessions','refresh_tokens','auth_audit_events','auth_rate_limits','conversations','messages'}
             for statement in ["CREATE TABLE forbidden(id integer)","UPDATE public.alembic_version SET version_num='forbidden'"]:
                 try:
                     await c.execute(text(statement))
@@ -275,7 +275,8 @@ os.execv('/opt/venv/bin/python',['/opt/venv/bin/python','-m','pytest','-q','-m',
         ],
         capture_output=True,
         text=True,
-        timeout=180,
+        # Includes identity plus persistence fixtures and real migration round-trips.
+        timeout=600,
         check=False,
     )
     stack.assert_secrets_not_in(result.stdout + result.stderr)

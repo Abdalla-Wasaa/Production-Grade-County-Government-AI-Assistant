@@ -130,6 +130,9 @@ def exercise_auth(stack, browser=False):
         "/api/v1/auth/me",
         "/api/v1/auth/sessions",
         "/api/v1/auth/sessions/{id}",
+        "/api/v1/conversations",
+        "/api/v1/conversations/{id}",
+        "/api/v1/conversations/{id}/messages",
     }
     raw = secrets.token_urlsafe(32)
     # Fixture seeding only: actual operator grants/CLI are verified by the PG suite.

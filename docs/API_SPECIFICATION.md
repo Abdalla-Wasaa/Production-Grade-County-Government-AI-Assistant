@@ -4,7 +4,8 @@ Status: Phase 0 contract baseline, amended 2026-10-16. P1-01/P1-02 implement onl
 GET /health/live and GET /health/ready, the error envelope, request IDs and local
 CORS boundary. P2-01 adds nine auth endpoints only when explicitly enabled; isolated synthetic
 validation is recorded in [the exposure report](P2_01_EXPOSURE_ASSESSMENT.md).
-Conversation endpoints remain unimplemented; policy acceptance remains blocked.
+P2-03 persistence source is prepared under the owner-approved amendment below;
+changed-runtime execution and policy acceptance remain pending.
 Base path `/api/v1`; UTF-8 JSON, UUID IDs and UTC ISO-8601 timestamps. Pydantic
 validates strict types, lengths, enums, and rejects unknown request properties.
 No client can set ownership, roles, provider IDs, system instructions or usage.
@@ -130,13 +131,12 @@ remain unchanged and are outside P2-01 implementation.
 | `PATCH /conversations/{id}` | At least one of title/language; `If-Match` required | 200 updated Conversation | 404; 428 missing version; 412 stale version; 409 pending turn |
 | `DELETE /conversations/{id}` | UUID, bearer | 204 atomic removal and cache invalidation | 404 (including repeated deletion); 503 DB unavailable |
 | `GET /conversations/{id}/messages` | `limit`, sequence cursor | 200 MessageList | 404; 422 |
-| `POST /conversations/{id}/messages` | Send contract below + `Idempotency-Key` UUID | 201 durable terminal pair | 202 pending replay; 409; 422; 429; 503 |
-| `POST /conversations/{id}/messages/{user_message_id}/retry` | Empty object + a new `Idempotency-Key` UUID | 201 terminal existing user/new assistant pair | 202 pending replay; 404; 409; 429; 503 |
+| `POST /conversations/{id}/messages` | `{ "content": "Synthetic service question" }` + required `Idempotency-Key` UUID header | 201 persisted user Message; 200 identical replay | 404; 409 conflicting key; 422; 429; 503 |
 
 Title is trimmed nonblank 1..120 characters; language defaults to user preference
 on creation. PATCH changes future reply language only; historical message language
-is immutable. Pending turn blocks metadata mutation; deletion can cancel pending
-work. Conversation reads/mutations return `ETag: "<version>"`; PATCH `If-Match`
+is immutable. Phase 2 has no pending assistant work; unanswered user messages do not block
+metadata changes or further user messages. Conversation creation, retrieval, PATCH, message listing and message writes return `ETag: "<version>"`; PATCH `If-Match`
 uses that value. Expired conversations return 404 even before physical purge.
 
 Conversation representation:
@@ -154,96 +154,71 @@ Conversation representation:
 ```
 
 Do not return owner IDs or counters unnecessarily. List entries use the same shape.
-Proposed caps: 100 unexpired conversations/user and 1,000 logical user turns per
+Enforced Phase 2 caps: 100 unexpired conversations/user and 1,000 user messages per
 conversation; return `storage_limit` when exceeded rather than silently deleting.
 
-## Send and retry state machine
+## Phase 2 user-message persistence (owner-approved amendment)
 
-Send body is `{ "content": "How do I find permit information?" }`. No model,
-role, history, citations, tool list or language override is accepted. Reply language
-is the conversation preference snapshotted on its user turn; retry preserves it.
+POST /conversations/{id}/messages stores one user message atomically. The request
+body accepts only content; role, user_id, conversation_id, language, sequence and
+other unknown fields are rejected (422), including an explicit role=user. Role is
+always assigned as user by the server. Content is trimmed, nonblank, at most 4,000
+Unicode characters; raw field length is also bounded at 4,000 before normalization.
+NUL and invalid UTF-8/surrogate text are rejected. The shared 32 KiB body cap includes
+chunked bodies. Titles similarly have a raw 120-character cap and are trimmed.
+Optional creation title/language must be omitted rather than null; PATCH requires
+at least one non-null field. Metadata GET and message history GET are separate
+bounded resources; conversation retrieval never embeds unbounded message history.
 
-`Idempotency-Key` is required UUID. Bind key to conversation, operation/path and
-canonical request body. Same key/body returns original pair without another charge;
-same key/different operation or body =>409 `idempotency_conflict`. First send
-allocates ordered user+assistant rows. Replay after commit returns 202 if assistant
-pending or 200 if terminal, with `Idempotency-Replayed: true`. First successfully
-reserved send/retry returns 201 once terminal even when provider failed, because
-the durable attempt resource was created. Failures before reservation use normal
-error statuses and create no messages. State is visible through message listings.
-
-Turn result:
+First persistence returns HTTP 201 and this shape (also used in MessageList.items):
 
 ```json
 {
-  "user_message": {
-    "id": "fded04d6-2d08-4c94-a024-74b49fd9e402",
-    "sequence": 1,
-    "role": "user",
-    "status": "completed",
-    "content": "How do I find permit information?",
-    "language": "en",
-    "parent_message_id": null,
-    "answer_kind": null,
-    "error_code": null,
-    "citations": [],
-    "created_at": "2026-10-13T10:01:00Z",
-    "completed_at": "2026-10-13T10:01:00Z"
-  },
-  "assistant_message": {
-    "id": "7d1494e4-ea6e-4915-993c-fb4505a12aa1",
-    "sequence": 2,
-    "role": "assistant",
-    "status": "completed",
-    "content": "I cannot verify this county's permit process from the approved information. Please use the county's reviewed service directory.",
-    "language": "en",
-    "parent_message_id": "fded04d6-2d08-4c94-a024-74b49fd9e402",
-    "answer_kind": "abstention",
-    "error_code": null,
-    "citations": [],
-    "created_at": "2026-10-13T10:01:00Z",
-    "completed_at": "2026-10-13T10:01:02Z"
-  },
-  "request_id": "7df076dc-9d5c-4a55-95b2-9f2ec07e2ee8"
+  "id": "fded04d6-2d08-4c94-a024-74b49fd9e402",
+  "conversation_id": "81fd20ee-2b9f-4a4c-afae-4acf65723aeb",
+  "sequence": 1,
+  "role": "user",
+  "content": "Synthetic service question",
+  "language": "en",
+  "created_at": "2026-10-18T10:01:00Z"
 }
 ```
 
-This is an illustrative abstention, not real county guidance or an approved contact.
-Every Message has this common shape; pending assistant has null content/kind/error
-and null completed_at; failed assistant has null content/kind, safe error_code,
-empty citations and terminal completed_at. Valid codes include `provider_timeout`,
-`provider_unavailable`, `provider_configuration_error`, `invalid_provider_output`,
-`context_too_large`, `attempt_expired`. Refusal/abstention is a completed result,
-not a failed request. Internal provider IDs, lease values, hashes and hidden
-reasoning are absent from public Message objects.
+An unanswered message is valid persisted history. Multiple unanswered messages are
+permitted. No assistant placeholder, generation state, provider dispatch or fabricated
+answer is created. Language is snapshotted from conversation preference on insertion.
 
-One pending attempt per conversation. New sends are rejected with 409
-`conversation_busy` during generation or `unresolved_turn` after a failed latest
-turn. Retry targets only the latest unresolved user turn; 409 `turn_already_answered`
-if completed, `retry_not_allowed` if not latest, or `conversation_busy` if pending.
-An older failed assistant remains in history but does not enter prompts. Retries
-use new attempt IDs and assistant sequence numbers without duplicating user text.
-Deadline 30 s, lease 45 s; late results fail fencing. Cancellation/crash becomes
-failed through recovery, within 60 s after lease expiry. Client must refresh state
-before offering retry and never invent a new send key on a network timeout.
+Keys are scoped to the owned conversation and this persistence operation. Canonical
+JSON of trimmed content is SHA-256 hashed. Same key/canonical content returns the
+original message, HTTP 200 and Idempotency-Replayed: true, without changing version,
+sequence, retention or language. Same key/different content returns 409
+idempotency_conflict without modifying data. Same key in a different owned
+conversation is independent. Missing/invalid keys return 422. A retry must reuse
+the original key; clients must not invent a new key after an ambiguous timeout.
 
-Citations are typed, server-validated references. MVP card citation:
+Account -> session -> conversation locks serialize concurrent requests. A unique
+conversation/key constraint and conversation/sequence constraint are final guards.
+First insertion increments next_sequence and version, updates activity/updated_at,
+and recomputes expiry as min(creation+90 days, last accepted new user message+30 days).
+Renames, reads and replays never extend expiry. DELETE atomically cascades messages;
+expired, deleted, unknown and other-user conversation IDs return indistinguishable
+404s. Storage caps return 429 storage_limit, without silently deleting history.
 
-```json
-{
-  "type": "catalogue",
-  "source_id": "service-card-placeholder",
-  "version": "reviewed-version-placeholder",
-  "title": "Reviewed service information",
-  "url": "https://example.invalid/official-service",
-  "reviewed_at": "2026-10-13"
-}
-```
+Bearer is the sole authentication mechanism for these endpoints. Scoped refresh
+cookies cannot authorize them; auth CSRF/cookie behavior remains unchanged. All
+responses remain no-store with generated request IDs and safe EN/SW errors.
 
-These placeholders never ship as approved evidence. Phase 4 adds type=document,
-document/version/chunk IDs, page/section and official URL through a reviewed schema
-extension. Browser cannot send citations. URL scheme/host must satisfy the source
-registry; model-created links are rejected. No citation establishes legal authority.
+## Phase 3 generation: separate future operation
+
+The historical send/retry design reserved paired user/assistant rows as part of a
+message write. This amendment supersedes that coupling. Generation must be a
+separate operation; its endpoint, request/response, idempotency, retry, pending-state,
+fencing, quota and recovery contracts require Phase 3 owner design approval.
+No generation or retry endpoint is registered by P2-03. Existing persisted user
+messages must remain valid without answers; Phase 3 must explicitly address choosing
+which messages to answer and history/context selection without silently generating
+answers for the Phase 2 backlog. Assistant schemas, citations and usage accounting
+are future reviewed migrations, not fabricated fields on Phase 2 messages.
 
 ## Operational and deferred contracts
 
@@ -258,8 +233,7 @@ Alembic head under a complete-operation deadline, without exposing internal deta
 or applying migrations. Missing database URL is allowed at startup (live=200,
 ready=503); malformed explicit configuration fails safely. See
 [database operations](DATABASE_OPERATIONS.md). The local schema remains at
-`/api/v1/openapi.json`; the versioned router adds no domain
-routes. Validation error details currently use `field: request` and `code: invalid`
+`/api/v1/openapi.json`. With auth disabled, no domain routes are registered. Validation error details currently use `field: request` and `code: invalid`
 to avoid echoing untrusted keys/input. Exact `Accept-Language: sw` selects fixed
 Kiswahili errors; other values default to English. See the
 [backend guide](../backend/README.md) for local CORS and logging limitations.
@@ -273,12 +247,13 @@ dispatcher is not permission to expose arbitrary tools through HTTP.
 ## Phase 1 verification boundary
 
 With auth disabled, OpenAPI paths remain exactly /health/live and /health/ready; the
-document is served at /api/v1/openapi.json. Swagger/ReDoc UI is disabled. Future
-conversation tables above remain contracts; the optional nine auth endpoints are
-implemented in P2-01 and documented in AUTHENTICATION.md.
+document is served at /api/v1/openapi.json. Swagger/ReDoc UI is disabled. P2-01 adds nine optional auth endpoints; P2-03 adds the seven persistence handlers
+on three paths when authentication is enabled. Their runtime verification is
+separately gated. Authentication remains documented in AUTHENTICATION.md.
 Verify liveness=200 without DB, readiness=503 without configuration/reachable current
 schema, and readiness=200 only after explicit migration and runtime revision-table
 access. Errors retain safe JSON, request IDs and no-store without connection details.
 Nginx preserves these paths and error statuses; unknown API paths must not fall
-through to SPA HTML. The frontend shell deliberately issues no backend requests.
+through to SPA HTML. The historical Phase 1 shell issued no backend requests; P2-02 adds auth requests
+only. Conversation history UI is outside P2-03.
 Actual P1-06 evidence belongs in [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md).

@@ -1,0 +1,27 @@
+<testsuite tests="25" failures="0" skipped="0">
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body0]" classname="tests.test_conversations" time="0.002" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body1]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body2]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body3]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body4]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body5]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body6]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body7]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body8]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body9]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_message_rejects_invalid_content_and_mass_assignment[body10]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_unicode_character_count_and_normalization" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body0]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body1]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body2]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body3]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body4]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body5]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body6]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body7]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_validation[body8]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_patch_requires_a_non_null_edit[body0]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_patch_requires_a_non_null_edit[body1]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_patch_requires_a_non_null_edit[body2]" classname="tests.test_conversations" time="0.001" />
+  <testcase name="test_creation_defaults_and_patch" classname="tests.test_conversations" time="0.001" />
+</testsuite>

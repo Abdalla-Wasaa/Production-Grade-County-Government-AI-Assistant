@@ -1,0 +1,22 @@
+<testsuite tests="20" failures="0" skipped="0">
+  <testcase name="test_create_ordered_unanswered_messages_and_idempotent_replay" classname="tests.integration.test_conversations" time="1.796" />
+  <testcase name="test_pagination_is_scoped_and_bounded" classname="tests.integration.test_conversations" time="1.711" />
+  <testcase name="test_metadata_preconditions_retention_and_language_snapshot" classname="tests.integration.test_conversations" time="1.667" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[get]" classname="tests.integration.test_conversations" time="1.886" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[patch]" classname="tests.integration.test_conversations" time="1.845" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[delete]" classname="tests.integration.test_conversations" time="1.900" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[messages]" classname="tests.integration.test_conversations" time="1.794" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[send]" classname="tests.integration.test_conversations" time="1.780" />
+  <testcase name="test_unauthenticated_revoked_and_invalid_identifiers" classname="tests.integration.test_conversations" time="2.690" />
+  <testcase name="test_concurrent_replays_distinct_writes_and_deletion" classname="tests.integration.test_conversations" time="1.644" />
+  <testcase name="test_transaction_failure_rolls_back_and_never_logs_content" classname="tests.integration.test_conversations" time="1.415" />
+  <testcase name="test_role_injection_chunked_body_cap_and_missing_key" classname="tests.integration.test_conversations" time="1.454" />
+  <testcase name="test_migration_downgrade_upgrade_and_immutable_message_grants" classname="tests.integration.test_conversations" time="2.788" />
+  <testcase name="test_concurrent_metadata_uses_version_precondition" classname="tests.integration.test_conversations" time="1.396" />
+  <testcase name="test_message_page_continues_after_new_write_and_key_is_conversation_scoped" classname="tests.integration.test_conversations" time="1.618" />
+  <testcase name="test_message_cap_preserves_replay_and_never_changes_history" classname="tests.integration.test_conversations" time="1.654" />
+  <testcase name="test_database_constraints_and_account_cascade" classname="tests.integration.test_conversations" time="1.440" />
+  <testcase name="test_conversation_cap_is_atomic_for_concurrent_creation" classname="tests.integration.test_conversations" time="1.586" />
+  <testcase name="test_same_key_different_content_race_stores_exactly_one_message" classname="tests.integration.test_conversations" time="1.823" />
+  <testcase name="test_idempotent_replay_after_metadata_change_keeps_original_snapshot" classname="tests.integration.test_conversations" time="1.381" />
+</testsuite>

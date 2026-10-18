@@ -21,6 +21,10 @@ RUNTIME_GRANTS = (
     "SELECT, INSERT, UPDATE ON auth_sessions,refresh_tokens,auth_rate_limits",
     "INSERT ON auth_audit_events",
     "SELECT ON alembic_version",
+    "SELECT, INSERT, DELETE ON conversations",
+    "UPDATE(title,language,next_sequence,version,last_activity_at,updated_at,expires_at) "
+    "ON conversations",
+    "SELECT, INSERT ON messages",
 )
 OPERATOR_GRANTS = (
     "SELECT ON users",
