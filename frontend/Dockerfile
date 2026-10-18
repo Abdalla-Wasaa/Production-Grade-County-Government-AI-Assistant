@@ -9,7 +9,7 @@ COPY --chown=node:node . .
 CMD ["npm", "test"]
 FROM test AS build
 RUN npm run build
-FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01 AS runtime
+FROM nginxinc/nginx-unprivileged:stable-alpine-slim@sha256:4ac59c85c8c46d9e91eaabd2122cda4923ba380cf11f4138e389f069bcdc77a3 AS runtime
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY docker/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY docker/start-proxy.sh /opt/start-proxy.sh
