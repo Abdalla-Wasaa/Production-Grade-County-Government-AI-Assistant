@@ -1,5 +1,9 @@
 # P2-03 exposure assessment and runtime authorization checkpoint
 
+Current status: the approved Docker remediation and controlled Compose validation
+are complete; read the final section for the new exact exposure and remaining
+security-record checkpoint. Earlier sections retain the pre-remediation evidence.
+
 Date: 18 October 2026. Updated after the explicitly authorized limited backend/PG
 validation below. This is an assessment and actual test report, not a development
 risk acceptance, web/Compose runtime permission or production approval. Issue #19's persistence
@@ -156,7 +160,7 @@ risk decision. These failures are expected enforcement, not clean scans, missing
 inventories or passing CI. All seven mandatory contexts remain unchanged; no hosted
 changed-runtime CI was dispatched and no PR/push/merge occurred at this checkpoint.
 
-## Confirmed web remediation proposal (not applied)
+## Historical web remediation proposal (subsequently authorized below)
 
 Installed libexpat remains 2.8.5-r0 in the existing full Alpine web image; vendor fix
 is 2.9.0-r0. Docker Hub inspection confirms stable-alpine still resolves to the
@@ -199,7 +203,7 @@ internal network and failed before pytest; the harness was corrected to a separa
 bridge with loopback publication. No project source/exposure change was needed.
 No web container was started. Static checks passed again after validation.
 
-## Remaining human decisions and gates
+## Historical checkpoint before web remediation authorization
 
 Limited backend/PG validation is complete. The code exposure remains exactly the
 approved f0fa257c... hash; no automatic future-source approval is assumed.
@@ -222,3 +226,170 @@ Today's actual human CRITICAL review is still unconfirmed and has not been marke
 complete. All seven CI checks, scanning, branch protection and invalidation rules
 remain active. Expiry remains 23 October 2026, 23:59 EAT. No push, PR, merge,
 real citizen/county data, production credentials, public deployment or Phase 3 work.
+
+## Completed Docker remediation and consolidated security checkpoint
+
+The owner authorized the prepared base replacement and isolated synthetic web/Compose
+validation on 18 October. Runtime/test source commits: ff89b997fceb74ac2d95d0868d7ff69a3ec9ac69
+(one Dockerfile line), 84ff611 (unit-test filename correction) and
+8fe5d2ec3b6d6ec334ce95bdb65782b24d89813d (bounded suite harness timeout), followed
+by 6b3a201 (auth smoke schema expectation correction).
+Subsequent documentation/evidence commits do not change the application exposure.
+
+Final exposure: **88669fbe4cfafc7dc45e6775546e44e6ca8bcbec1dcacfb0f89a36c702af19b4**.
+No backend application, authentication, Nginx configuration, dependency lock or
+security policy algorithm changed during remediation. No previous acceptance was
+inherited. No acceptance/baseline/inventory-policy records have been edited.
+
+### Change and actual runtime results
+
+frontend/Dockerfile now uses vendor stable-alpine-slim at the owner-approved digest
+4ac59c85c8c46d9e91eaabd2122cda4923ba380cf11f4138e389f069bcdc77a3.
+It removes unused modules/dependencies, rather than installing an ad hoc APK override.
+The application still uses Nginx 1.30.6, UID/GID 101, identical configuration and the
+same startup script. Only the remediated web image was used for runtime tests.
+
+The assembled/scanned web image is
+sha256:8d52ce476c83a44926cbb9a40222dfa88440b502f7fba22753e401415565f951.
+The [actual Compose manifest](security/p2-03/remediated-runtime-manifest.json) was
+compared against all three fresh scans of the actual Compose build before startup:
+exact immutable IDs match. Earlier standalone-build scans were not substituted
+for different Compose output IDs.
+
+The controlled Compose/browser flow completed successfully using the already-passing
+51-case PostgreSQL result with verified unchanged backend/test bytes. All remaining
+normal exercise stages were executed. The hosted workflow still invokes the full
+unmodified mandatory test commands; no CI skip/reuse option was added. Results:
+
+- Non-root processes, read-only roots, capability drops, secret/network/loopback
+  isolation and denied runtime DDL/revision writes.
+- Actual frontend serving, SPA refresh, missing-asset behavior and API error proxying;
+  fresh live=200/ready=503, explicit repeatable migrations and ready=200.
+- **51 real-PostgreSQL regression cases passed**, including the 20 persistence cases
+  replayed by the mandatory normal runner. The earlier 25 unit cases were not rerun.
+- **Two actual-Nginx Chromium tests passed**: foundation navigation/language/refresh
+  and authentication/activation/logout/own-session flows. All nine auth routes,
+  cookie/CSRF rejection, refresh reuse and revocation checks passed through Nginx.
+- Database outage/recovery, graceful backend replacement and proxy DNS recovery,
+  independent UI serving, named-volume persistence, persisted account/session checks
+  after down/up, clean shutdown and secret canaries absent from logs/inspect/history.
+- Owned disposable containers/networks/volumes and temporary configuration cleaned
+  up; no existing development project targeted.
+
+Sanitized evidence: [Compose passes/reuse](security/p2-03/remediated-compose-results.txt),
+[previous normal PostgreSQL pass](security/p2-03/remediated-postgresql-pass.txt),
+[foundation browser](security/p2-03/remediated-compose-browser.xml),
+[authentication browser](security/p2-03/remediated-auth-browser.xml) and
+[tooling safety tests](security/p2-03/remediation-tooling.xml). The legacy console
+label 'identity-only schema' corresponds to an assertion including both identity
+and conversation tables; it is not an assertion that conversation tables are absent.
+
+### Narrow test/evidence corrections
+
+The first normal replay exposed a collection collision between unit and integration
+files both named test_conversations.py. The unit file was renamed unchanged to
+backend/tests/test_conversation_contracts.py. Combined discovery then collected all
+157 cases. No tests were removed, skipped, weakened or given fabricated results.
+The 31 existing PostgreSQL cases also passed in isolated diagnostic execution.
+
+The expanded containerized suite then exceeded the old 180-second subprocess limit.
+Only that test-harness limit in scripts/compose_smoke.py was raised to a bounded
+600 seconds. Application/database timeouts, scan timeouts, CI job limits, thresholds
+and required commands were not changed. The mandatory full PostgreSQL replay then passed (51 cases). Its following auth
+smoke assertion exposed a pre-P2-03 exact OpenAPI path set; only the three approved
+conversation paths were added in scripts/auth_compose_smoke.py, retaining every auth
+path assertion. This independent test correction does not change backend/test bytes.
+To avoid another unnecessary 51-case replay, the remaining local flow reused that
+validated PG result; the reuse driver checked git diff against the successful source,
+unchanged exposure and the preserved successful backend test image. This local driver is outside the
+repository; hosted CI has no skip, reuse hook or weakened command.
+These test-only corrections leave the application exposure hash unchanged. Ruff,
+formatting, strict Mypy and repository/documentation validation passed; the four
+relevant cleanup/vulnerability-gating tooling tests passed. No unrelated suite was
+rerun. Known TestClient deprecation/terminal-color warnings are not failures.
+
+### Fresh security delta
+
+[Fresh complete scan summary](security/p2-03/remediated-scan-summary.json) retains
+checksums, immutable IDs, every HIGH/CRITICAL row, inventory hashes and KEV results.
+Full reports remain in /tmp/county-p203-actual-runtime-scans. Trivy was 0.76.0 with
+all-package reporting and no ignore/config overrides. Source/build dependencies and
+backend/PostgreSQL package inventories are unchanged.
+
+| Image | HIGH | CRITICAL | Inventory packages | Fixable HIGH/CRITICAL |
+| --- | --- | --- | --- | --- |
+| Remediated web | 0 | 0 | 21 (previously 70) | 0 |
+| Backend | 44 | 0 | 119 (unchanged) | 0 |
+| PostgreSQL | 71 | 3 | 144 (unchanged) | 0 |
+
+Exactly **115 HIGH + 3 CRITICAL = 118 inherited occurrences** remain. None changed
+by class/CVE/package/version, severity, fix or vendor-status fields; no new findings
+or retrieved-KEV matches were found. The web has 49 removed packages, zero added or
+version-changed retained packages. libexpat 2.8.5-r0 and CVE-2026-77214 are absent.
+The new web inventory SHA-256 is
+e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443.
+This is removal of the vulnerable dependency, not a claim that libexpat 2.9.0 is
+installed or that the whole application is vulnerability-free.
+
+The SQLite CVE-2025-7458, libxml2 CVE-2026-6653 and zlib CVE-2023-45853 assessments
+above remain applicable for human review. No actual daily human review is asserted.
+Production remains prohibited; no real citizen data or production credentials were
+used. Runtime success is not a new development risk acceptance.
+
+### One proposed owner decision: exact seven-file security-record update
+
+Approve only the following subsequent updates for the exact reviewed source/exposure
+and unchanged 118 inherited OS-package/CVE occurrences, synthetic isolated local
+use only, expiry unchanged at **23 October 2026, 23:59 EAT**:
+
+1. .github/security-baseline.json: replace only web base_digest/image_id/report_sha256
+   with the reviewed slim digest, assembled image and fresh report checksum; keep
+   its findings empty and all backend/PostgreSQL entries byte-equivalent. Set
+   snapshot_date to 2026-10-18 and source to the exact text below. No finding removal
+   or suppression from the inherited accepted rows.
+2. .github/security-inventory.json: replace only web inventory (21 packages and hash
+   above) and web source_report_sha256 to match the new baseline's web report.
+   Backend and PostgreSQL inventory entries remain unchanged.
+3. .github/security-risk-acceptances.json: create a separate, explicitly owner-approved
+   P2-03 decision bound to the exact new exposure and baseline hash. Keep
+   production_allowed=false, the existing expiry, all invalidation triggers and
+   actual daily human CRITICAL review requirement; no automatic future approvals.
+4. docs/security/p2-03/p2-02-policy-snapshot.json: preserve the pre-update baseline,
+   complete inventory and P2-02 acceptance as original UTF-8 bytes plus SHA-256,
+   without altering earlier Phase 1/P2-01 snapshots or reattributing approvals.
+5. docs/P2_03_EXPOSURE_ASSESSMENT.md: record the actual owner decision and limits.
+6. docs/SECURITY.md: document the separately approved P2-03 restricted-development
+   scope and remediation; retain production prohibition and expiry.
+7. AGENTS.md: record the same exact approved scope and stop boundaries.
+
+Exact proposed baseline source text:
+
+```text
+P2-03 web-only remediation evidence; backend and PostgreSQL baseline records retained unchanged from the prior reviewed snapshot
+```
+
+With these exact fields serialized as existing sorted, two-space-indented JSON plus
+final LF, the proposed baseline SHA-256 is
+0f48571f3b819b906b4aa78ce06c0beb4afd517283f78aad4e35c186d6056acf.
+The current baseline hash remains
+3b4b2b44866f00c4d24d219b6ee0e4e7428bbc81362af9bc8313e39615c5d234.
+The new web report SHA-256 is
+b01ee40624627654afb3b6d405ad706a41a13317a48a5e19f959220ff1231071.
+
+The owner must also perform today's actual human review of the three CRITICAL
+assessments; no automated check or this document substitutes for that review.
+Only after the explicit decision may these seven files be updated and normal
+policy checks rerun. No acceptance, expiry, baseline or inventory-policy update
+has been applied now. Push/PR/merge remain unauthorized at this checkpoint.
+
+### Current CI readiness
+
+Functional Compose checks passed. Security policy correctly still fails: changed
+exposure requires owner review, and the web inventory/base no longer matches the
+old approved policy. The scanner's generic 'web scan evidence missing, invalid or
+unavailable' is raised by validate_inventory for the 70 -> 21 package change, not
+a missing report or clean-scan assumption; complete scanner evidence validates
+independently. All seven hosted contexts remain required and have not been run on
+this branch. No workflow/ruleset/scan override changed. PR submission still waits
+for the explicit record decision, actual human review and remaining owner workflow
+authorization. No push, PR, merge or production deployment occurred.

@@ -33,6 +33,14 @@ On 18 October the owner explicitly authorized isolated backend/PostgreSQL valida
 of 0dd84f9658c1c8dae4beee9a1fac4214658b4088, exposure
 f0fa257c41dc225ba807ffd87aba15897fc1f77bde82323d56ed6782b6fe32b3.
 All 25 unit/contract and 20 real-PG cases passed without source corrections.
-Web/Compose execution, new exposure, security-record updates, push and PR remain
-unapproved. The vendor slim-base change is an unapplied proposal, not permission
-to modify the approved exposure. Actual daily human CRITICAL review is unconfirmed.
+At that checkpoint web/Compose execution and the slim-base patch were pending;
+the owner subsequently explicitly authorized that pinned Dockerfile remediation
+and controlled synthetic web/Compose validation. That validation is complete.
+Exposure is now 88669fbe4cfafc7dc45e6775546e44e6ca8bcbec1dcacfb0f89a36c702af19b4.
+The 51-case PostgreSQL result, actual Nginx/browser/auth/recovery/persistence checks
+and isolated cleanup are recorded in docs/P2_03_EXPOSURE_ASSESSMENT.md. Narrow
+test corrections fixed duplicate module names, the bounded suite subprocess budget
+and the exact approved OpenAPI path expectation; no application checks were weakened.
+Security-record updates, push, PR and merge remain unapproved. No daily human
+CRITICAL review is asserted; actual confirmation remains required. Stop for the
+consolidated seven-file record decision; do not extend expiry or auto-accept exposure.

@@ -1,0 +1,18 @@
+PASS: Compose topology, secret references and restrictions
+PASS: fresh actual Compose image scans match reviewed findings/inventories before startup; policy approval still pending
+PASS: fresh readiness=503, liveness=200, proxy routing and SPA refresh
+PASS: non-root processes, network/port/secret isolation and read-only roots
+PASS: identity-only schema and denied runtime DDL/revision writes
+PASS: Chromium against actual Compose/Nginx application
+REUSED: 51-case PostgreSQL success from the previous normal Compose invocation; backend/tests unchanged
+PASS: auth-compose.xml: 1 tests executed
+PASS: real bilingual browser activation/login, cross-tab refresh and revocation
+PASS: all nine authentication routes through actual Nginx, cookie/CSRF flow, refresh replay and revocation
+PASS: database outage/recovery without backend restart loop
+PASS: graceful backend shutdown, independent UI and proxy DNS recovery
+PASS: secret canaries absent from logs, inspect, history and runtime files
+PASS: named volume and migrated state persist without reinitialization
+PASS: account credentials/language and session revocation persist after Compose down/up
+PASS: secret canaries absent from logs, inspect, history and runtime files
+PASS: clean application and PostgreSQL shutdown
+PASS: disposable Compose resources cleaned up; no existing project targeted
