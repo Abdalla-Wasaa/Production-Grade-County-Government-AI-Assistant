@@ -13,6 +13,7 @@ from app.db.base import Base
 from app.db.readiness import is_ready
 from app.db.session import Database
 from app.main import create_app
+from app.modules.conversations import models as conversation_models  # noqa: F401
 from app.modules.identity import models  # noqa: F401 -- reviewed metadata
 
 
@@ -61,6 +62,8 @@ def test_valid_settings_hide_secret():
     assert config.db_pool_size == config.db_max_overflow == 5
     assert config.db_readiness_timeout_seconds == 10
     assert set(Base.metadata.tables) == {
+        "conversations",
+        "messages",
         "users",
         "invitations",
         "auth_sessions",

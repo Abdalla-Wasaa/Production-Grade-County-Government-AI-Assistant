@@ -162,7 +162,8 @@ def test_enabled_auth_db_unavailable_returns_safe_503(tmp_path, monkeypatch, cap
         assert client.get("/health/live").status_code == 200
         schema = client.get("/api/v1/openapi.json").json()
         assert "/api/v1/auth/sessions/{id}" in schema["paths"]
-        assert len(schema["paths"]) == 11
+        assert len(schema["paths"]) == 14
+        assert "/api/v1/conversations/{id}/messages" in schema["paths"]
         result = client.get("/api/v1/auth/me")
         assert result.status_code == 503 and result.json()["error"]["code"] == "service_unavailable"
         assert result.headers["cache-control"] == "no-store"
