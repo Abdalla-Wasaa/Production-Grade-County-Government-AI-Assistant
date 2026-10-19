@@ -322,7 +322,11 @@ class Privacy:
                     request.status = "held"
                     continue
                 remaining = await self.db.scalar(
-                    select(exists().where(Conversation.user_id == request.user_id))
+                    select(
+                        select(Conversation.id)
+                        .where(Conversation.user_id == request.user_id)
+                        .exists()
+                    )
                 )
                 if remaining:
                     request.status = "accepted"
