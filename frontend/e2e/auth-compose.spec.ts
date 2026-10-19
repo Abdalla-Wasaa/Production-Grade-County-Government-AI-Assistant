@@ -85,14 +85,22 @@ test('actual Nginx activation, login, bilingual account, refresh, cross-tab rest
   await page
     .getByLabel('Your fictional message')
     .fill('Synthetic saved question without AI generation');
+  // A matching draft textarea is not proof of persistence. Wait for the actual
+  // write and the reloaded history list before testing a full browser reload.
+  const persisted = page.waitForResponse(
+    (response) =>
+      response.url().endsWith('/messages') &&
+      response.request().method() === 'POST' &&
+      response.status() === 201,
+  );
   await page.getByRole('button', { name: 'Save message', exact: true }).click();
-  await expect(
-    page.getByText('Synthetic saved question without AI generation', { exact: true }),
-  ).toBeVisible();
+  await persisted;
+  const savedMessage = page
+    .getByRole('list', { name: 'Saved messages', exact: true })
+    .getByText('Synthetic saved question without AI generation', { exact: true });
+  await expect(savedMessage).toBeVisible();
   await page.reload();
-  await expect(
-    page.getByText('Synthetic saved question without AI generation', { exact: true }),
-  ).toBeVisible();
+  await expect(savedMessage).toBeVisible();
   await page.getByLabel('Conversation title', { exact: true }).fill('Renamed synthetic history');
   await page.getByRole('button', { name: 'Save title', exact: true }).click();
   await expect(

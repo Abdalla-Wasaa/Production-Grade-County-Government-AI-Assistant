@@ -413,3 +413,27 @@ KEV/exposure/dependency invalidation triggers, all seven checks, complete scans,
 branch protection and owner PR review remain mandatory. After this explicit record
 approval, publish the branch/PR linked to issue #20 and run normal hosted CI.
 No automatic renewal, future exposure approval, merge or P2-05 implementation.
+
+## First hosted CI and narrow persistence-evidence correction
+
+PR #27 was opened against main at 99c4d6a03fb1a8337ac9b3f0c86da436b5b89e0c.
+Six required contexts passed; frontend artifacts contained 87 passing unit/component
+and 87 passing browser cases, zero skips/failures. Compose's public browser smoke
+and all 51 PG cases passed, but its auth/history browser failed after page reload:
+message text was absent, while the authenticated conversation remained accessible
+with an empty history. No dependency/security-policy failure was observed; later
+image scan steps were not reached because integration failed.
+
+The pre-reload assertion used unscoped getByText, which can match the controlled
+textarea draft before the POST completes. Reload is then not synchronized with
+persistence. The only correction is frontend/e2e/auth-compose.spec.ts: await the
+actual successful 201 POST response and message inside the accessible saved-message
+list, then reload and assert that same persisted-list message remains visible.
+No timeout, assertion, application code, API contract or security control is relaxed.
+The test remains real PostgreSQL/backend/Nginx, with synthetic content only.
+
+This e2e-only correction is outside exposure-hashed source. Exposure remains
+2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996;
+the current explicit P2-04 owner decision remains valid. No acceptance, baseline,
+inventory or expiry update is needed. Ordinary hosted CI will rerun all seven
+mandatory contexts on the corrected head; no successful result is assumed in advance.
