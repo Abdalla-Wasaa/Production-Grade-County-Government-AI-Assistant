@@ -2,7 +2,7 @@
 
 import logging
 from collections.abc import AsyncIterator
-from contextlib import asynccontextmanager
+from contextlib import AsyncExitStack, asynccontextmanager
 
 from fastapi import FastAPI
 
@@ -17,11 +17,22 @@ from app.core.middleware import (
     RequestContextMiddleware,
 )
 from app.db.session import Database
+from app.modules.ai.factory import provider_context
+from app.modules.ai.settings import AISettings
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(settings: Settings | None = None, ai_settings: AISettings | None = None) -> FastAPI:
     """Construct an isolated app with injectable validated settings and no I/O."""
     config = settings if settings is not None else load_settings()
+    from pydantic import ValidationError
+    from pydantic_settings import SettingsError
+
+    from app.core.config import ConfigurationError
+
+    try:
+        provider_settings = ai_settings if ai_settings is not None else AISettings()
+    except (ValidationError, SettingsError):
+        raise ConfigurationError("Invalid AI provider configuration") from None
     logger = make_logger(config.log_level)
     auth_config = None
     if config.auth_enabled:
@@ -41,6 +52,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         handler.setFormatter(SafeJSONFormatter())
         logger.addHandler(handler)
         database: Database | None = None
+        resources = AsyncExitStack()
         try:
             database = Database(config, logger)
             application.state.database = database
@@ -54,13 +66,19 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     from app.core.config import ConfigurationError
 
                     raise ConfigurationError("Invalid authentication resources") from None
+            application.state.ai_provider = await resources.enter_async_context(
+                provider_context(provider_settings)
+            )
             application.state.started = True
             logger.info("application_started")
             yield
         finally:
             try:
-                if database is not None:
-                    await database.dispose()
+                try:
+                    await resources.aclose()
+                finally:
+                    if database is not None:
+                        await database.dispose()
             finally:
                 application.state.started = False
                 logger.info("application_stopped")
