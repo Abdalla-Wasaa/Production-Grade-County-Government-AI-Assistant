@@ -1,7 +1,8 @@
 # Phase 2 acceptance candidate
 
 Status: **not accepted**. P2-05 [PR #28](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/pull/28)
-is awaiting its latest-head checks and owner review. This document is prepared on
+has all seven required checks passing at head 1302d9826daaf4c204f1724a8a15662eeda34ff9
+and is awaiting owner review/merge. This document is prepared on
 `docs/p2-06-acceptance` from main, separately from P2-05. Final clean-checkout and
 operational verification must follow reviewed P2-05 merge; no acceptance PR is open.
 
@@ -142,7 +143,7 @@ change application exposure policy, accept new findings or authorize production.
 
 ## Remaining acceptance gates and decision
 
-- P2-05 latest-head CI and owner-reviewed merge: pending.
+- P2-05 latest-head CI: seven passed; owner-reviewed merge remains pending.
 - Clean isolated-checkout onboarding/migration/operator/runner/recovery replay: pending.
 - Final seven-check/artifact/security/ruleset verification: pending.
 - Actual human CRITICAL-review evidence: unconfirmed; no fabricated completion.
@@ -154,3 +155,40 @@ report. Do not infer closure from a tracker status or automatically merge either
 After separate Phase 3 approval, the first implementation task is the AI provider
 interface and OpenAI adapter with mocked contracts and bounded timeout/error handling;
 no live-provider calls or conversation-generation endpoint is approved by this report.
+
+
+## Verified P2-05 hosted handover
+
+PR #28 head `1302d9826daaf4c204f1724a8a15662eeda34ff9` has all seven SUCCESS check
+runs bound to GitHub Actions app 15368; GitHub reports CLEAN / MERGEABLE and zero
+unresolved review threads. These are P2-05 results, not P2-06 final acceptance.
+
+| Context | Run evidence | Result |
+| --- | --- | --- |
+| backend-quality | [Backend run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616707) | SUCCESS; 128 unit cases |
+| postgresql-integration | Same backend run; postgresql-results artifact | SUCCESS; 79 PG cases including all 28 privacy cases |
+| python-dependency-audit | Same backend run; python-dependency-reports artifact | SUCCESS |
+| frontend-quality | [Frontend run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616684) | SUCCESS; 88 unit and 87 browser cases |
+| repository-quality | [Repository run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616731) | SUCCESS; 41 tooling cases |
+| secret-scan | Same repository run | SUCCESS |
+| compose-integration | [Compose run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616660) | SUCCESS; both retained browser reports pass, complete image policy passes |
+
+Artifacts from all four runs were downloaded and their JUnit reports validated.
+Compose image decision has zero policy failures: backend 44 HIGH, PostgreSQL
+71 HIGH/3 CRITICAL, web zero. No findings were removed from the baseline and no
+security control was bypassed. Current exact exposure is
+`e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d`.
+
+The approved five-file decision preserves prior P2-04 bytes at
+`docs/security/p2-05/p2-04-acceptance-snapshot.json`, SHA-256
+`70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e`.
+Expiry, all invalidation rules, isolated synthetic scope and production prohibition
+remain unchanged. No bounded-testing policy amendment was implemented. Actual daily
+human CRITICAL review remains unconfirmed. Do not relabel these CI results as that
+review, a clean-checkout operational replay or formal Phase 2 acceptance.
+
+The P2-06 documentation candidate was statically checked in a separate independent
+validation clone because the current repository checker deliberately rejects linked
+worktrees. That document-only check is not the final runtime reproduction. After
+reviewed P2-05 merge, incorporate main without rewriting published history, perform
+only the remaining mandatory final checks above, then open the separate P2-06 PR.
