@@ -70,6 +70,11 @@ def test_valid_settings_hide_secret():
         "refresh_tokens",
         "auth_audit_events",
         "auth_rate_limits",
+        "privacy_operators",
+        "privacy_holds",
+        "privacy_deletion_requests",
+        "privacy_deletion_ledger",
+        "privacy_maintenance_state",
     }
 
 
