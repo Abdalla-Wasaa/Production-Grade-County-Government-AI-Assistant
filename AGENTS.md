@@ -13,19 +13,19 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope — P3-02 Ollama source implementation
+## Current scope — P3-03 prompt orchestration source implementation
 
-Owner-merged PR #31 is d66602dcd8c0ab46a33279ee7807b12954285ae8 with all seven
-PR checks passed. Updated issue #32 and owner authorization permit the local Ollama
-adapter, validated allowlisted model/endpoint configuration and mocked HTTP tests on
-feat/p3-02-ollama-adapter. Preserve P3-01 contracts and default fake/fake-v1.
-No generation API, frontend UI, RAG, model install/download or live inference.
+The owner authorizes P3-03 source implementation on
+feat/p3-03-prompt-orchestration after merged P3-02 PR #33. Implement only versioned
+English/Kiswahili prompts, bounded provider-neutral orchestration and reproducible
+synthetic evaluation. No generation API, frontend generation, RAG, tools or live
+county integrations. Default automated execution remains fake/mocked.
 
 Before executing changed application code, report exact commit/exposure and complete
 scan/dependency delta; stop for explicit isolated synthetic runtime authorization.
-Static validation and packaging-only scans may prepare this checkpoint. P3-01
+Static validation and packaging-only scans may prepare this checkpoint. Prior
 acceptance is not inherited. No security acceptance/baseline/inventory/snapshot edits
-without separate approval; no push/PR until the required decisions. Preserve all seven
+without separate approval; no push/PR until required decisions. Preserve all seven
 checks, full scans, branch protection, logging and domain authorization/privacy rules.
 Expiry remains 23 October 2026, 23:59 EAT. No real data/production deployment.
 The owner's actual CRITICAL review for 19 October is recorded separately; no invented
