@@ -563,7 +563,7 @@ def test_physical_deletion_and_ledger_roll_back_when_audit_fails(lifecycle):
             "CREATE TRIGGER privacy_test_fail BEFORE INSERT ON auth_audit_events "
             "FOR EACH ROW EXECUTE FUNCTION privacy_test_fail()"
         )
-    with pytest.raises(DBAPIError):
+    with pytest.raises(DBAPIError, match="synthetic audit failure"):
         operate(lambda s: s.maintenance(force=True), maintenance=True)
     with psycopg.connect(history[0].admin) as db:
         assert db.execute("SELECT status FROM users").fetchone()[0] == "disabled"
