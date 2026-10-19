@@ -15,6 +15,7 @@ from app.db.session import Database
 from app.main import create_app
 from app.modules.conversations import models as conversation_models  # noqa: F401
 from app.modules.identity import models  # noqa: F401 -- reviewed metadata
+from app.modules.privacy import models as privacy_models  # noqa: F401 -- reviewed metadata
 
 
 @pytest.mark.parametrize(
