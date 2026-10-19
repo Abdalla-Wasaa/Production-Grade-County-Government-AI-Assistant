@@ -10,13 +10,13 @@ from pathlib import Path
 from uuid import UUID, uuid4
 
 from pydantic import SecretStr
-from sqlalchemy import delete, select, text, update
+from sqlalchemy import select, text, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.pool import NullPool
 
 from app.core.config import validate_database_url
 from app.db.session import protect_engine_logging
-from app.modules.identity.models import AuthAudit, AuthRateLimit, AuthSession, Invitation, User
+from app.modules.identity.models import Invitation, User
 from app.modules.identity.repository import audit, lock_user, revoke_all
 from app.modules.identity.schemas import Login
 from app.modules.identity.security import AuthFailure, Tokens, digest, random_token
@@ -176,22 +176,8 @@ async def run(args: argparse.Namespace) -> None:
                     actor=args.operator,
                 )
             elif args.command == "purge":
-                now = tokens.clock()
-                # Family cascade deletes retained token history only after expiry+24h.
-                await db.execute(
-                    delete(AuthSession).where(AuthSession.expires_at < now - timedelta(hours=24))
-                )
-                await db.execute(
-                    delete(Invitation).where(Invitation.expires_at < now - timedelta(hours=24))
-                )
-                await db.execute(delete(AuthRateLimit).where(AuthRateLimit.expires_at < now))
-                # Audit retention requires separate controlled role/incident-hold check.
-                if not args.no_incident_hold:
-                    raise ValueError("Retention requires explicit incident-hold verification")
-                await db.execute(
-                    delete(AuthAudit).where(AuthAudit.occurred_at < now - timedelta(days=90))
-                )
-                await audit(db, tokens, "retention_purge", "success", uuid4(), actor=args.operator)
+                # The old unbounded, unaudited hold-confirmation flag is insufficient.
+                raise ValueError("Use authorized privacy maintenance")
     except BaseException:
         if created_file:
             args.output.unlink(missing_ok=True)

@@ -108,6 +108,7 @@ export const en = {
   revokeCurrent: 'Revoke this session',
   revokeOther: 'Revoke other session',
   navConversations: 'My conversations',
+  history_restricted: 'Deletion is currently restricted. Contact the authorized operator.',
   historyTitle: 'Your saved conversations',
   historyIntro:
     'Save fictional questions and review your own history. No AI answers are generated. Never enter personal information.',

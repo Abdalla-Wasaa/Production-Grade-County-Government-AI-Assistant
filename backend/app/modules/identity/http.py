@@ -1,5 +1,6 @@
 """Authentication HTTP boundary: typed bodies, origin/CSRF and committed failures."""
 
+import hashlib
 import hmac
 import ipaddress
 from collections.abc import AsyncIterator
@@ -9,7 +10,7 @@ from uuid import UUID
 
 import anyio
 from fastapi import APIRouter, Depends, Query, Request, Response
-from sqlalchemy import select, update
+from sqlalchemy import select, text, update
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from starlette.responses import JSONResponse
 
@@ -44,6 +45,11 @@ async def identity(request: Request) -> AsyncIterator[Identity]:
             UUID(request.state.request_id),
         )
         try:
+            if not await db.scalar(
+                text("SELECT public.privacy_audit_key_matches(:key)"),
+                {"key": hashlib.sha256(service.tokens.throttle_key).hexdigest()},
+            ):
+                raise AuthFailure(503, "service_unavailable")
             await counter(db, service.tokens, "global_auth", "all", 60, 300)
             await db.commit()
             yield service

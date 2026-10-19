@@ -25,7 +25,8 @@ export interface Versioned<T> {
   value: T;
   etag: string;
 }
-export type HistoryIssue = 'invalid' | 'missing' | 'conflict' | 'limited' | 'unavailable';
+export type HistoryIssue =
+  'invalid' | 'missing' | 'conflict' | 'limited' | 'restricted' | 'unavailable';
 export class HistoryError extends Error {
   constructor(readonly issue: HistoryIssue) {
     super('Conversation request could not be completed.');
