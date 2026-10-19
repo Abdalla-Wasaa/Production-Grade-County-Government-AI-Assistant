@@ -109,3 +109,9 @@ after merged PR #31. The [Ollama guide](OLLAMA_LOCAL_DEVELOPMENT.md) supersedes 
 P3-01-only provider/model-selection restrictions above for this new source. Fake
 remains the default, and P3-01 contracts are unchanged. No changed-source testing or
 live inference is authorized until the separate exposure checkpoint is satisfied.
+
+## P3-03 orchestration
+
+See [prompt orchestration and bilingual evaluation](PROMPT_ORCHESTRATION.md) for the
+versioned instruction boundary, synthetic fixtures, limits and pending authorization.
+Provider selection remains configuration-driven; no generation endpoint is added.

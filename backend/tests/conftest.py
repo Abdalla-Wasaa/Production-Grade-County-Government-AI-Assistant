@@ -16,7 +16,7 @@ from app.main import create_app
 def isolated_environment(monkeypatch: pytest.MonkeyPatch, request: pytest.FixtureRequest) -> None:
     for name in os.environ:
         if (name.startswith("COUNTY_") and not name.startswith("COUNTY_TEST_")) or name.startswith(
-            ("AI_", "OLLAMA_")
+            ("AI_", "OLLAMA_", "PROMPT_")
         ):
             monkeypatch.delenv(name)
 

@@ -13,19 +13,19 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope — P3-02 Ollama source implementation
+## Current scope — P3-03 prompt orchestration source implementation
 
-Owner-merged PR #31 is d66602dcd8c0ab46a33279ee7807b12954285ae8 with all seven
-PR checks passed. Updated issue #32 and owner authorization permit the local Ollama
-adapter, validated allowlisted model/endpoint configuration and mocked HTTP tests on
-feat/p3-02-ollama-adapter. Preserve P3-01 contracts and default fake/fake-v1.
-No generation API, frontend UI, RAG, model install/download or live inference.
+The owner authorizes P3-03 source implementation on
+feat/p3-03-prompt-orchestration after merged P3-02 PR #33. Implement only versioned
+English/Kiswahili prompts, bounded provider-neutral orchestration and reproducible
+synthetic evaluation. No generation API, frontend generation, RAG, tools or live
+county integrations. Default automated execution remains fake/mocked.
 
 Before executing changed application code, report exact commit/exposure and complete
 scan/dependency delta; stop for explicit isolated synthetic runtime authorization.
-Static validation and packaging-only scans may prepare this checkpoint. P3-01
+Static validation and packaging-only scans may prepare this checkpoint. Prior
 acceptance is not inherited. No security acceptance/baseline/inventory/snapshot edits
-without separate approval; no push/PR until the required decisions. Preserve all seven
+without separate approval; no push/PR until required decisions. Preserve all seven
 checks, full scans, branch protection, logging and domain authorization/privacy rules.
 Expiry remains 23 October 2026, 23:59 EAT. No real data/production deployment.
 The owner's actual CRITICAL review for 19 October is recorded separately; no invented
@@ -216,3 +216,33 @@ triggers, actual daily human CRITICAL reviews, complete scans, seven checks and 
 protection. The existing dated 19 October human review is not a future-day review.
 No privilege/network expansion, model install/download, live inference, real data,
 production deployment, expiry extension or automatic future-exposure acceptance.
+
+## Owner-approved P3-03 security/publication decision
+
+The owner explicitly approved reviewed commit
+572485e275252508f0b9d50dba05d1424030d36f and tested exposure
+95a4fcbaa568938334a96ba19eb10f868802c7f6ba26dfd20d4363b850b8bf00.
+This supersedes pending P3-03 publication statements for that exact exposure only.
+Previous P3-02 acceptance is preserved byte-for-byte in
+`docs/security/p3-03/p3-02-acceptance-snapshot.json`
+(SHA-256 c9bd2f9cdcb78e6b3e19476db8c06c5a7ea7e0e6ef4196326a477521d17b3063).
+All 115 HIGH/3 CRITICAL occurrences, base-image pins and dependency inventories remain
+unchanged. No baseline/inventory-policy update, finding suppression or control change.
+
+38 orchestration, 111 provider/Ollama and 128 backend regressions passed. The 100-case
+fake evaluation has 50/50 length compliance per language; zero claim flags does not
+prove factuality. Uncertainty signals are 0/36 per language because the unchanged
+fake provider returns fixed text. This measures fake response content, not semantic
+enforcement by orchestration: tests verify that the orchestrator sends the right
+instructions and bounds, but it does not enforce semantic abstention. Missing
+validation is separately authorized real-model evaluation and independent bilingual
+review against those instructions. Injection resistance and live Llama quality are
+not established. Do not present the model as safe for official county guidance.
+
+Acceptance remains isolated synthetic development only through 23 October 2026,
+23:59 EAT. All fix/new-finding/severity/KEV/exposure/dependency invalidation rules,
+actual daily human CRITICAL reviews, full scans, seven required checks, branch
+protection and normal PR review remain enforced. The dated 19 October review is not
+a future daily review. No expiry renewal, future-exposure authorization, public or
+production deployment, real citizen data, live inference or model downloads.
+Publish the branch/PR linked to #34 and run normal hosted CI. No automatic merge.
