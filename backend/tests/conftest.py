@@ -15,8 +15,13 @@ from app.main import create_app
 @pytest.fixture(autouse=True)
 def isolated_environment(monkeypatch: pytest.MonkeyPatch, request: pytest.FixtureRequest) -> None:
     for name in os.environ:
-        if name.startswith("COUNTY_") and not name.startswith("COUNTY_TEST_"):
+        if (name.startswith("COUNTY_") and not name.startswith("COUNTY_TEST_")) or name.startswith(
+            ("AI_", "OLLAMA_")
+        ):
             monkeypatch.delenv(name)
+
+    monkeypatch.setenv("AI_PROVIDER", "fake")
+    monkeypatch.setenv("AI_MODEL", "fake-v1")
 
     def deny_network(*args: object, **kwargs: object) -> None:
         raise AssertionError("Foundation tests must not contact external services")
