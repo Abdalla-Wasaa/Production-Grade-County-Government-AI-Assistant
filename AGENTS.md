@@ -216,3 +216,33 @@ triggers, actual daily human CRITICAL reviews, complete scans, seven checks and 
 protection. The existing dated 19 October human review is not a future-day review.
 No privilege/network expansion, model install/download, live inference, real data,
 production deployment, expiry extension or automatic future-exposure acceptance.
+
+## Owner-approved P3-03 security/publication decision
+
+The owner explicitly approved reviewed commit
+572485e275252508f0b9d50dba05d1424030d36f and tested exposure
+95a4fcbaa568938334a96ba19eb10f868802c7f6ba26dfd20d4363b850b8bf00.
+This supersedes pending P3-03 publication statements for that exact exposure only.
+Previous P3-02 acceptance is preserved byte-for-byte in
+`docs/security/p3-03/p3-02-acceptance-snapshot.json`
+(SHA-256 c9bd2f9cdcb78e6b3e19476db8c06c5a7ea7e0e6ef4196326a477521d17b3063).
+All 115 HIGH/3 CRITICAL occurrences, base-image pins and dependency inventories remain
+unchanged. No baseline/inventory-policy update, finding suppression or control change.
+
+38 orchestration, 111 provider/Ollama and 128 backend regressions passed. The 100-case
+fake evaluation has 50/50 length compliance per language; zero claim flags does not
+prove factuality. Uncertainty signals are 0/36 per language because the unchanged
+fake provider returns fixed text. This measures fake response content, not semantic
+enforcement by orchestration: tests verify that the orchestrator sends the right
+instructions and bounds, but it does not enforce semantic abstention. Missing
+validation is separately authorized real-model evaluation and independent bilingual
+review against those instructions. Injection resistance and live Llama quality are
+not established. Do not present the model as safe for official county guidance.
+
+Acceptance remains isolated synthetic development only through 23 October 2026,
+23:59 EAT. All fix/new-finding/severity/KEV/exposure/dependency invalidation rules,
+actual daily human CRITICAL reviews, full scans, seven required checks, branch
+protection and normal PR review remain enforced. The dated 19 October review is not
+a future daily review. No expiry renewal, future-exposure authorization, public or
+production deployment, real citizen data, live inference or model downloads.
+Publish the branch/PR linked to #34 and run normal hosted CI. No automatic merge.

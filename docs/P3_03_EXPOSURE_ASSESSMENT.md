@@ -1,4 +1,4 @@
-# P3-03 focused exposure assessment — publication decision pending
+# P3-03 focused exposure assessment — owner-approved publication decision
 
 Tracking: [issue #34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34).
 Implementation: `feat/p3-03-prompt-orchestration`. Source commit `98891ad`;
@@ -129,11 +129,12 @@ security acceptance, baseline, inventory, snapshot, CI workflow or GitHub settin
 has changed. Ruleset 25222082 was fetched directly and remains active, strict, with
 all seven checks bound to Actions app 15368, resolved review conversations required,
 zero mandatory approvals, no bypass actors, force pushes or branch deletion.
-The normal gates remain blocked until a separate scoped publication decision.
+The owner has now explicitly approved the scoped five-file publication update.
+Normal policy and hosted checks must still be run; no passing result is assumed.
 
-## Exact publication update requiring separate owner approval
+## Exact owner-approved five-file publication update
 
-Authorized tests passed. Request this separate exact five-file decision:
+Authorized tests passed. The owner explicitly approved exactly this five-file update:
 
 1. `.github/security-risk-acceptances.json`: bind each unchanged inherited occurrence
    to the tested P3-03 exposure with explicit owner evidence; no expanded scope.
@@ -148,4 +149,34 @@ are unchanged. Preserve expiry **23 October 2026, 23:59 EAT**, synthetic/local s
 actual daily CRITICAL review, all fix/new-finding/severity/KEV/exposure/dependency
 invalidation rules, complete scanning, seven required checks and protected PR review.
 No automatic future-exposure approval, expiry renewal, merge, real citizen data,
-live inference or production deployment. Nothing in this proposal changes acceptance.
+live inference or production deployment. The active decision now binds only the exact reviewed P3-03 exposure.
+
+## Owner-approved P3-03 security/publication decision
+
+The owner explicitly approved reviewed commit
+572485e275252508f0b9d50dba05d1424030d36f and tested exposure
+95a4fcbaa568938334a96ba19eb10f868802c7f6ba26dfd20d4363b850b8bf00.
+This supersedes pending P3-03 publication statements for that exact exposure only.
+Previous P3-02 acceptance is preserved byte-for-byte in
+`docs/security/p3-03/p3-02-acceptance-snapshot.json`
+(SHA-256 c9bd2f9cdcb78e6b3e19476db8c06c5a7ea7e0e6ef4196326a477521d17b3063).
+All 115 HIGH/3 CRITICAL occurrences, base-image pins and dependency inventories remain
+unchanged. No baseline/inventory-policy update, finding suppression or control change.
+
+38 orchestration, 111 provider/Ollama and 128 backend regressions passed. The 100-case
+fake evaluation has 50/50 length compliance per language; zero claim flags does not
+prove factuality. Uncertainty signals are 0/36 per language because the unchanged
+fake provider returns fixed text. This measures fake response content, not semantic
+enforcement by orchestration: tests verify that the orchestrator sends the right
+instructions and bounds, but it does not enforce semantic abstention. Missing
+validation is separately authorized real-model evaluation and independent bilingual
+review against those instructions. Injection resistance and live Llama quality are
+not established. Do not present the model as safe for official county guidance.
+
+Acceptance remains isolated synthetic development only through 23 October 2026,
+23:59 EAT. All fix/new-finding/severity/KEV/exposure/dependency invalidation rules,
+actual daily human CRITICAL reviews, full scans, seven required checks, branch
+protection and normal PR review remain enforced. The dated 19 October review is not
+a future daily review. No expiry renewal, future-exposure authorization, public or
+production deployment, real citizen data, live inference or model downloads.
+Publish the branch/PR linked to #34 and run normal hosted CI. No automatic merge.

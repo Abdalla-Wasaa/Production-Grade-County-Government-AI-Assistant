@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "production_allowed": false,
+  "decisions": [
+    {
+      "scope": "synthetic-local-development",
+      "approved_by": "Abdalla-Wasaa (repository owner)",
+      "approval_reference": "Explicit owner P3-02 FINALIZE SECURITY RECORDS AND PUBLISH PR: approve 9b399b7be1cf76f98bdb24f502dbea876e7f54eb and exposure 8e1fa66f0928b01552045590813ad04f971c29a3c443dd92358721ccdc27a41d; exact seven-file proposal, unchanged expiry/controls/history; authorize push and PR linked to #32 with seven hosted checks, no merge or live inference.",
+      "approved_at": "2026-10-19T16:50:00.583020+00:00",
+      "expires_at": "2026-10-23T20:59:00+00:00",
+      "baseline_sha256": "6616a2032aade6d2f0d4876c676601e1952abc51c2ddcfeb88447ff8cf8d85c8",
+      "reason": "Separate exact P3-02 synthetic-local-development acceptance of reviewed commit 9b399b7be1cf76f98bdb24f502dbea876e7f54eb, runtime-tested affcabe9503e009c9b2e613e9e9318b2d61e80d4 and unchanged tested exposure. Bind all 118 unchanged individually enumerated inherited occurrences: backend 44 HIGH, PostgreSQL 71 HIGH/3 CRITICAL, web zero. No added/removed findings, reclassification, suppression, reported fixes or KEV matches. Only backend report provenance/inventory changes: runtime httpx 0.28.1, httpcore 1.0.9, certifi 2026.7.22; 122 packages, inventory 3b313e4e52f23217faa9d0af79c3e339d2c4477aba1e6d66146dc1457c844aae. Other inventories/pins unchanged; dependency audits zero advisories. Source delta is the reviewed numeric-loopback Ollama adapter, explicit model allowlist and safe bounded HTTP/error/resource handling, with fake default; no domain API, privilege or Compose network expansion. 68 mocked Ollama, 43 provider and 128 backend regressions passed; static checks passed. Previous P3-01 policy bytes preserved in docs/security/p3-02/p3-01-policy-snapshot.json with individual hashes and raw UTF-8 reconstruction. Synthetic local development only through unchanged 23 October 2026, 23:59 EAT. Daily actual human CRITICAL reviews remain required; dated 19 October confirmation is separate, no future review fabricated. Immediate invalidation on fixes/new findings/escalation/KEV/exposure/dependency changes; all seven CI checks, full scans, exact inventories, branch protection and owner PR review preserved. No automatic renewal, future acceptance, live inference/model downloads, production credentials, real citizen/county data or public/production deployment. No automatic merge.",
+      "exposure_sha256": "8e1fa66f0928b01552045590813ad04f971c29a3c443dd92358721ccdc27a41d"
+    }
+  ]
+}
