@@ -1,0 +1,85 @@
+{
+  "source_commit": "426f486",
+  "exposure_sha256": "8e1fa66f0928b01552045590813ad04f971c29a3c443dd92358721ccdc27a41d",
+  "scanned_at": "2026-10-19T16:33:44.027857+00:00",
+  "trivy_database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-20T13:35:30.519058502Z",
+    "UpdatedAt": "2026-10-19T13:35:30.519058742Z",
+    "DownloadedAt": "2026-10-19T14:57:11.869447656Z"
+  },
+  "images": {
+    "web": {
+      "image_id": "sha256:94f581526212b1a4007b8f5fdd312d61db2c7da3c1e8f781a2e2e3e0fb0a9c99",
+      "report_sha256": "07de8e82173e6de2a4951fe1d70fb449d2a75bc78fd76d0239e8e23857d25f63",
+      "counts": {},
+      "fixable": 0,
+      "kev_matches": [],
+      "new_findings": [],
+      "removed_findings": [],
+      "inventory": {
+        "packages": 21,
+        "sha256": "e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443"
+      },
+      "inventory_unchanged": true,
+      "added_packages": [],
+      "removed_packages": []
+    },
+    "backend": {
+      "image_id": "sha256:7a99f7540bbce74f866f4e037141dbcdf18ae841505f9e90a89ab28415dac3e5",
+      "report_sha256": "2440274bab03a5bf3794e35a63be14096baa939848e74cb36c5d4efbcba78ce5",
+      "counts": {
+        "HIGH": 44
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "new_findings": [],
+      "removed_findings": [],
+      "inventory": {
+        "packages": 122,
+        "sha256": "3b313e4e52f23217faa9d0af79c3e339d2c4477aba1e6d66146dc1457c844aae"
+      },
+      "inventory_unchanged": false,
+      "added_packages": [
+        [
+          "certifi",
+          "2026.7.22"
+        ],
+        [
+          "httpcore",
+          "1.0.9"
+        ],
+        [
+          "httpx",
+          "0.28.1"
+        ]
+      ],
+      "removed_packages": []
+    },
+    "db": {
+      "image_id": "sha256:2eb9ede2cdc2a6716a6ea07c61e9ce77cd7dec4ce40ddf84ab4b9efe4de7cada",
+      "report_sha256": "423a492bfeb012036263a5908900f66a36895e85366252823764117418c3fa0c",
+      "counts": {
+        "HIGH": 71,
+        "CRITICAL": 3
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "new_findings": [],
+      "removed_findings": [],
+      "inventory": {
+        "packages": 144,
+        "sha256": "f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288"
+      },
+      "inventory_unchanged": true,
+      "added_packages": [],
+      "removed_packages": []
+    }
+  },
+  "runtime_tests_executed": false,
+  "policy_passed": false,
+  "expected_policy_blockers": [
+    "Changed application exposure requires owner decision",
+    "Backend complete inventory differs by three promoted HTTP runtime dependencies"
+  ]
+}
