@@ -1,0 +1,15 @@
+{
+  "images": [
+    "county-p205-review-web:local",
+    "county-p205-review-backend:local",
+    "county-p205-review-db:local"
+  ],
+  "image_ids": {
+    "web": "sha256:a18af780cabd5f19c1e8537931819f21d4ca2964da80a23c2343ad3d8d3aaa87",
+    "backend": "sha256:b3af4fd6aef0e24cdebe3adda941f718f367ad50718f8203d34dbfdc31e725fc",
+    "db": "sha256:f07f41a3892b913dfccf9b6bb1807fb809434c84c2d2e06ab79e5289c7b4d50d"
+  },
+  "source_commit": "969535e2abbbfc94573c47bb579332502382c23b",
+  "exposure_sha256": "c7fad27da4122a52b07efb3fd1efa6fcbfbb2c3f884f24b0c7c9257853626e90",
+  "application_runtime_executed": false
+}

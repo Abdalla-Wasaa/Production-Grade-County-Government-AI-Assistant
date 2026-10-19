@@ -248,3 +248,41 @@ migration or schema creation is introduced. Downgrade to 0004 is deliberately
 destructive for conversation history, preserves identity, and is tested only on
 disposable databases after runtime authorization. Forward repair/restore is preferred
 for retained data. Tests compare actual schema and model metadata before completion.
+
+## P2-05 privacy controls (migration 0006_privacy_lifecycle)
+
+Owner-approved synthetic engineering policy, 19 October 2026; runtime validation
+pending. Existing expiry/sequence/message schema and their retention constraints
+are unchanged. New tables hold control metadata, never copies of conversation bodies:
+
+| Table | Keys and controls |
+| --- | --- |
+| privacy_operators | Authenticated PostgreSQL role PK; enabled and explicit hold/request/maintenance capabilities; empty by default; only reviewed DB-owner enrollment |
+| privacy_holds | UUID PK; account/conversation target UUIDs; fixed reason and case reference; immutable issuer/creation/scope; pseudonymous audit subject; 30-day review deadline; audited explicit release |
+| privacy_deletion_requests | UUID retry key; canonical unique live user FK SET NULL; target digest/case reference; actual receipt/acceptance and service dates; accepted/held/completed; completion requires the user FK be NULL |
+| privacy_deletion_ledger | Unique kind/UUID; physical deletion time; 37-day expiry matching backup-window-plus-seven-day proposal |
+| privacy_maintenance_state | Singleton daily/success/hold-alert timestamps and enrolled audit-key fingerprint; no secrets |
+
+Released hold metadata uses durable UUID references without cascade FKs so physical
+purge cannot erase hold review evidence. Creation validates the locked real target;
+released evidence expires after the existing 90-day minimal audit window. Completed
+request metadata likewise expires after 90 days. These are synthetic audit/control
+metadata choices, not a statutory records schedule.
+
+The account-to-conversation-to-message and session-to-refresh-token FKs still cascade.
+Database triggers prevent deleting held parents or held account identities/audits,
+including cascade paths. Physical account/conversation deletion writes a minimal
+ledger and mandatory audit in the same transaction. Hold and accepted-request
+mutations have mandatory database audits. Runtime cannot alter those controls.
+
+Official privacy paths acquire the shared privacy gate before account-first row
+locks; HTTP conversation operations already lock the account first and do not need
+the global privacy gate. Maintenance uses a nonblocking advisory gate and SKIP LOCKED
+rows with bounded batches. Holds/audit purge share the gate to close retention races.
+Audit/configuration failure rolls back affected mutations; target dates never reset.
+
+The existing auth HMAC key is fingerprint-pinned for correlation with existing user
+audits. Separate maintenance credentials require that key but no JWT/CSRF secret.
+Do not rotate it or restore a backup around the guards; follow the reviewed migration
+and deletion-ledger replay procedure in [the runbook](PRIVACY_LIFECYCLE.md).
+Downgrade is allowed only when no retained privacy controls/evidence still require it.

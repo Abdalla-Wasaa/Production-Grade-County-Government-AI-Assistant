@@ -1,0 +1,16 @@
+# User unit TEMPLATE: replace WorkingDirectory and ExecStart with your reviewed checkout.
+[Unit]
+Description=County assistant synthetic privacy maintenance
+OnFailure=county-privacy-alert.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Production-Grade-County-Government-AI-Assistant/backend
+EnvironmentFile=%h/.config/county-assistant/privacy.env
+ExecStart=%h/Production-Grade-County-Government-AI-Assistant/backend/.venv/bin/python -m app.modules.privacy.operator tick
+UMask=0077
+TimeoutStartSec=300
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only

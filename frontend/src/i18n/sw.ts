@@ -111,6 +111,7 @@ export const sw = {
   revokeCurrent: 'Futa kikao hiki',
   revokeOther: 'Futa kikao kingine',
   navConversations: 'Mazungumzo yangu',
+  history_restricted: 'Ufutaji umezuiwa kwa sasa. Wasiliana na mhudumu aliyeidhinishwa.',
   historyTitle: 'Mazungumzo yako yaliyohifadhiwa',
   historyIntro:
     'Hifadhi maswali ya kubuni na uone historia yako tu. Hakuna majibu ya AI yanayotolewa. Usiingize taarifa binafsi.',

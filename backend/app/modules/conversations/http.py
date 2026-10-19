@@ -5,6 +5,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, Query, Request, Response
 
+from app.core.errors import ErrorResponse
 from app.modules.conversations.schemas import (
     AddMessage,
     ConversationItem,
@@ -64,7 +65,7 @@ async def update(
     return ConversationItem.model_validate(row)
 
 
-@router.delete("/{id}", status_code=204)
+@router.delete("/{id}", status_code=204, responses={409: {"model": ErrorResponse}})
 async def delete(id: UUID, store: Store) -> Response:
     await store.delete(await store.owned(id))
     return Response(status_code=204)

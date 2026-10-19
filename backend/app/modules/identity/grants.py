@@ -2,8 +2,11 @@
 
 import argparse
 import asyncio
+import base64
+import hashlib
 import re
 import sys
+from pathlib import Path
 
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
@@ -11,6 +14,7 @@ from sqlalchemy.pool import NullPool
 
 from app.db.migrate import MigrationSettings
 from app.db.session import protect_engine_logging
+from app.modules.privacy.settings import private_value
 
 RUNTIME_GRANTS = (
     "SELECT, INSERT ON users",
@@ -25,6 +29,8 @@ RUNTIME_GRANTS = (
     "UPDATE(title,language,next_sequence,version,last_activity_at,updated_at,expires_at) "
     "ON conversations",
     "SELECT, INSERT ON messages",
+    "EXECUTE ON FUNCTION public.privacy_is_held(UUID,UUID)",
+    "EXECUTE ON FUNCTION public.privacy_audit_key_matches(TEXT)",
 )
 OPERATOR_GRANTS = (
     "SELECT ON users",
@@ -42,7 +48,31 @@ MAINTENANCE_GRANTS = (
 )
 
 
-async def grant(runtime: str, operator: str, maintenance: str) -> None:
+PRIVACY_OPERATOR_GRANTS = (
+    "SELECT ON privacy_operators,privacy_maintenance_state,privacy_holds,privacy_deletion_requests",
+    "SELECT(id,user_id) ON conversations",
+    "INSERT,UPDATE ON privacy_holds",
+    "INSERT ON privacy_deletion_requests",
+)
+PRIVACY_MAINTENANCE_GRANTS = (
+    "SELECT ON privacy_operators,privacy_maintenance_state,privacy_holds,privacy_deletion_requests",
+    "UPDATE ON privacy_maintenance_state",
+    "UPDATE(status,completed_at) ON privacy_deletion_requests",
+    "DELETE ON privacy_holds,privacy_deletion_requests,privacy_deletion_ledger",
+    "SELECT ON privacy_deletion_ledger",
+    "SELECT(id,status,email_normalized) ON users",
+    "UPDATE(updated_at) ON users",
+    "DELETE ON users",
+    "SELECT(id,user_id,expires_at) ON conversations",
+    "UPDATE(updated_at) ON conversations",
+    "DELETE ON conversations",
+    "EXECUTE ON FUNCTION public.privacy_is_held(UUID,UUID)",
+)
+
+
+async def grant(
+    runtime: str, operator: str, maintenance: str, privacy_key: bytes | None = None
+) -> None:
     roles = (runtime, operator, maintenance)
     if len(set(roles)) != 3 or any(
         not re.fullmatch(r"[a-z][a-z0-9_]{0,62}", role) for role in roles
@@ -92,6 +122,42 @@ async def grant(runtime: str, operator: str, maintenance: str) -> None:
                 await connection.execute(text(f'GRANT USAGE ON SCHEMA public TO "{role}"'))
                 for statement in statements:
                     await connection.execute(text(f'GRANT {statement} TO "{role}"'))
+            if privacy_key is not None:
+                if len(privacy_key) < 32 or len(set(privacy_key)) < 16:
+                    raise ValueError("Invalid privacy audit key")
+                fingerprint = hashlib.sha256(privacy_key).hexdigest()
+                matched = await connection.scalar(
+                    text("""UPDATE privacy_maintenance_state
+                    SET audit_key_sha256=:key WHERE id=1
+                    AND (audit_key_sha256 IS NULL OR audit_key_sha256=:key) RETURNING id"""),
+                    {"key": fingerprint},
+                )
+                if matched is None:
+                    raise ValueError("Audit key change requires a reviewed migration")
+                for role, hold, request, maintain, grants in (
+                    (operator, True, True, False, PRIVACY_OPERATOR_GRANTS),
+                    (maintenance, False, False, True, PRIVACY_MAINTENANCE_GRANTS),
+                ):
+                    for statement in grants:
+                        await connection.execute(text(f'GRANT {statement} TO "{role}"'))
+                    await connection.execute(
+                        text("""INSERT INTO privacy_operators
+                        (role_name,enabled,can_hold,can_request,can_maintain)
+                        VALUES(:role,true,:hold,:request,:maintain) ON CONFLICT(role_name)
+                        DO UPDATE SET enabled=true,can_hold=:hold,can_request=:request,
+                                      can_maintain=:maintain"""),
+                        {"role": role, "hold": hold, "request": request, "maintain": maintain},
+                    )
+                    await connection.execute(
+                        text("""INSERT INTO auth_audit_events
+                        (id,occurred_at,actor,subject,action,outcome,request_id)
+                        VALUES(gen_random_uuid(),clock_timestamp(),
+                          encode(sha256(convert_to(session_user::text,'UTF8')),'hex'),
+                          encode(sha256(convert_to(:role,'UTF8')),'hex'),
+                          'privacy_role_grant','success',gen_random_uuid())"""),
+                        {"role": role},
+                    )
+
     finally:
         await engine.dispose()
 
@@ -101,9 +167,15 @@ def main() -> int:
     parser.add_argument("--runtime-role", required=True)
     parser.add_argument("--operator-role", required=True)
     parser.add_argument("--maintenance-role", required=True)
+    parser.add_argument("--privacy-audit-key-file", type=Path)
     args = parser.parse_args()
     try:
-        asyncio.run(grant(args.runtime_role, args.operator_role, args.maintenance_role))
+        key = (
+            base64.b64decode(private_value(args.privacy_audit_key_file), validate=True)
+            if args.privacy_audit_key_file
+            else None
+        )
+        asyncio.run(grant(args.runtime_role, args.operator_role, args.maintenance_role, key))
     except Exception:
         print(
             "Identity grant operation failed; review role setup without printing credentials.",

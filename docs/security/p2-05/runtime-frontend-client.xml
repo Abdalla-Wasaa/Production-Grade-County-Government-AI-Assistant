@@ -1,0 +1,13 @@
+<testsuite tests="11" failures="0" skipped="0">
+  <testcase name="authenticated persistence transport &gt; uses bearer only, no-store and no redirects without exposing tokens" classname="src/features/conversations/client.test.ts" time="0.010100373" />
+  <testcase name="authenticated persistence transport &gt; persists once after a lost acknowledgement by reusing the exact key" classname="src/features/conversations/client.test.ts" time="0.004558932" />
+  <testcase name="authenticated persistence transport &gt; coalesces concurrent duplicate submissions" classname="src/features/conversations/client.test.ts" time="0.002327374" />
+  <testcase name="authenticated persistence transport &gt; does not clear a valid session after history is unavailable" classname="src/features/conversations/client.test.ts" time="0.001448518" />
+  <testcase name="authenticated persistence transport &gt; invalidates session and uncertain state on 401" classname="src/features/conversations/client.test.ts" time="0.001454671" />
+  <testcase name="authenticated persistence transport &gt; rejects late old-account responses after sign-out" classname="src/features/conversations/client.test.ts" time="0.053868475" />
+  <testcase name="authenticated persistence transport &gt; keeps metadata ETags, paginates and maps stale writes without replay" classname="src/features/conversations/client.test.ts" time="0.005587572" />
+  <testcase name="authenticated persistence transport &gt; refreshes expired access through the existing serialized auth manager" classname="src/features/conversations/client.test.ts" time="0.001692956" />
+  <testcase name="authenticated persistence transport &gt; discards a delayed old-account response body without clearing the new account" classname="src/features/conversations/client.test.ts" time="0.053938555" />
+  <testcase name="authenticated persistence transport &gt; keeps a held conversation and maps safe deletion restriction" classname="src/features/conversations/client.test.ts" time="0.001563588" />
+  <testcase name="authenticated persistence transport &gt; does not allow bearer requests outside the conversation family" classname="src/features/conversations/client.test.ts" time="0.000962908" />
+</testsuite>

@@ -1,0 +1,36 @@
+<testsuite tests="28" failures="3" skipped="0">
+  <testcase name="test_hold_changes_are_authorized_idempotent_and_content_free" classname="tests.integration.test_privacy" time="2.990" />
+  <testcase name="test_runtime_and_maintenance_cannot_issue_holds" classname="tests.integration.test_privacy" time="1.906" />
+  <testcase name="test_revoked_operator_fails_closed" classname="tests.integration.test_privacy" time="2.283" />
+  <testcase name="test_hold_conflicting_retry_is_not_silently_reused" classname="tests.integration.test_privacy" time="1.706" />
+  <testcase name="test_held_conversation_delete_returns_safe_409_and_other_user_404" classname="tests.integration.test_privacy" time="2.317" />
+  <testcase name="test_database_delete_guard_blocks_cascade_bypass" classname="tests.integration.test_privacy" time="1.642" />
+  <testcase name="test_expired_held_history_is_hidden_but_not_physically_purged" classname="tests.integration.test_privacy" time="1.650" />
+  <testcase name="test_request_acceptance_immediately_disables_and_revokes" classname="tests.integration.test_privacy" time="2.508" />
+  <testcase name="test_account_completion_cascades_and_retry_after_deletion_is_safe" classname="tests.integration.test_privacy" time="2.018">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="test_held_request_preserves_only_held_conversations_then_completes" classname="tests.integration.test_privacy" time="2.305">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="test_missed_daily_run_catches_up_and_repeat_is_idle" classname="tests.integration.test_privacy" time="2.073" />
+  <testcase name="test_batch_backlog_does_not_silently_stamp_daily_completion" classname="tests.integration.test_privacy" time="2.353" />
+  <testcase name="test_concurrent_maintenance_is_idempotent_and_nonblocking" classname="tests.integration.test_privacy" time="2.528" />
+  <testcase name="test_existing_maintenance_lock_returns_busy" classname="tests.integration.test_privacy" time="2.504" />
+  <testcase name="test_overdue_hold_alerts_and_never_automatically_releases" classname="tests.integration.test_privacy" time="2.609" />
+  <testcase name="test_hold_preserves_correlated_old_audits_until_release" classname="tests.integration.test_privacy" time="2.652" />
+  <testcase name="test_mandatory_audit_failure_rolls_back_control_and_revocation[privacy_hold_created]" classname="tests.integration.test_privacy" time="3.286" />
+  <testcase name="test_mandatory_audit_failure_rolls_back_control_and_revocation[privacy_delete_accepted]" classname="tests.integration.test_privacy" time="2.584" />
+  <testcase name="test_wrong_pseudonym_key_fails_closed_without_mutation" classname="tests.integration.test_privacy" time="2.247" />
+  <testcase name="test_privacy_revision_pristine_downgrade_and_upgrade" classname="tests.integration.test_privacy" time="3.689" />
+  <testcase name="test_retained_hold_evidence_blocks_downgrade" classname="tests.integration.test_privacy" time="4.492" />
+  <testcase name="test_twenty_three_hour_catchup_does_not_wait_for_next_daily_run" classname="tests.integration.test_privacy" time="2.167" />
+  <testcase name="test_exact_retention_boundary_is_invisible_and_cannot_be_resurrected" classname="tests.integration.test_privacy" time="1.934" />
+  <testcase name="test_identity_batch_backlog_is_reported_and_catches_up" classname="tests.integration.test_privacy" time="2.053" />
+  <testcase name="test_conflicting_deletion_key_never_disables_another_account" classname="tests.integration.test_privacy" time="1.876" />
+  <testcase name="test_physical_deletion_and_ledger_roll_back_when_audit_fails" classname="tests.integration.test_privacy" time="2.004" />
+  <testcase name="test_fully_held_request_does_not_starve_later_eligible_account" classname="tests.integration.test_privacy" time="2.373">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="test_documented_parent_batch_capacity_with_synthetic_cascades" classname="tests.integration.test_privacy" time="2.050" />
+</testsuite>

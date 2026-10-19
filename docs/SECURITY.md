@@ -385,3 +385,54 @@ KEV/exposure/dependency invalidation triggers, all seven checks, complete scans,
 branch protection and owner PR review remain mandatory. After this explicit record
 approval, publish the branch/PR linked to issue #20 and run normal hosted CI.
 No automatic renewal, future exposure approval, merge or P2-05 implementation.
+
+## P2-05 source preparation and engineering policy — 19 October 2026
+
+The owner approved implementing the existing 30-day inactivity/90-day absolute
+expiry, daily 02:00 Nairobi maintenance with catch-up, authorized audited 30-day
+hold reviews, verified operator-managed account deletion with immediate revocation,
+and synthetic two-working-day acknowledgement/seven-calendar-day eligible completion
+targets. These are engineering targets, not legal deadlines or real records authority.
+[Privacy runbook](PRIVACY_LIFECYCLE.md) defines hold restrictions, authorization,
+conditional purge availability/capacity assumptions, failure alerts and recovery.
+
+An owned held conversation DELETE is explicitly 409 deletion_restricted, not a false
+204. Expired/other-user IDs remain 404. Operators authenticate as explicitly enrolled
+PostgreSQL roles, not claimed names/JWT admin roles. No public admin API is added.
+Audit records contain only fixed actions, bounded pseudonyms/correlation IDs; no
+body, email, IP, credentials or free-form legal documentation. Holds never auto-release.
+
+This engineering authorization is not a P2-05 vulnerability acceptance or permission
+to execute changed code. Before running it, record the exact commit/exposure, compare
+complete inventories/findings, and obtain explicit isolated synthetic authorization.
+The P2-04 exception does not cover this changed exposure. Its existing expiry remains
+23 October 2026, 23:59 EAT. All seven checks, scans, exposure/inventory gates and branch
+protection remain active. Today's actual human CRITICAL review is unconfirmed.
+No real data, production credentials/deployment, automatic renewal or merge.
+
+
+## Owner-approved P2-05 exact security-record decision
+
+The owner explicitly approved reviewed commit aa2f491a9899e2a6bc712feb28c993911e3d2743
+and tested exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d
+in PHASE 2 FINALIZE P2-05 AND ACCELERATE P2-06. This supersedes earlier pending
+record-decision statements for this exact exposure only. The active decision binds
+all 118 unchanged individually enumerated OS occurrences: 115 HIGH/3 CRITICAL.
+Previous P2-04 approval bytes are preserved at
+docs/security/p2-05/p2-04-acceptance-snapshot.json (SHA-256
+70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e).
+No baseline, inventory-policy or finding suppression changed. Evidence is consolidated
+in docs/P2_05_EXPOSURE_ASSESSMENT.md and docs/security/p2-05/final-validation-summary.json.
+
+Only isolated synthetic development through 23 October 2026, 23:59 EAT is accepted.
+All fix/new-finding/severity/KEV/exposure/dependency invalidation triggers, complete
+scans, seven mandatory checks and branch protection remain enforced. No real data,
+production credentials/deployment, automatic renewal, future-exposure approval or
+merge. Daily actual human CRITICAL review remains required and unconfirmed. This
+owner decision does not record review completion.
+
+The proposed bounded iterative-testing clause is NOT approved or implemented.
+Current runtime authorization rules remain unchanged; any proposal must be considered
+separately. Publish P2-05 through its feature-branch PR linked to #21 and normal CI.
+Prepare P2-06 separately; final acceptance PR/validation follows reviewed P2-05 merge.
+No automatic Phase 2 closure, P2-06 merge or Phase 3 implementation is authorized.
