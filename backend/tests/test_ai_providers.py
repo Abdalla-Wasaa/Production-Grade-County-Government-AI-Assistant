@@ -258,7 +258,7 @@ async def test_context_exception_still_closes_provider() -> None:
 
 async def test_factory_rejects_bypassed_unsupported_selection() -> None:
     # Defense in depth if an internal caller bypasses normal settings validation.
-    invalid = AISettings.model_construct(provider="ollama", model="llama3.2:3b")
+    invalid = AISettings.model_construct(provider="unsupported", model="unsupported-v1")
     with pytest.raises(ConfigurationError, match="Unsupported AI provider"):
         async with provider_context(invalid):
             pytest.fail("Unsupported adapter must not be constructed")

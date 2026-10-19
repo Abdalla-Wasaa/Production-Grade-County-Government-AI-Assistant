@@ -1,0 +1,20 @@
+{
+  "resolved_package_versions_changed": false,
+  "runtime_packages_added": {
+    "httpx": "0.28.1",
+    "httpcore": "1.0.9",
+    "certifi": "2026.7.22"
+  },
+  "audits": {
+    "backend": {
+      "dependencies": 45,
+      "advisories": 0,
+      "report_sha256": "3189ad04b9997fec3a56940d4957b543a4147af9c60ca8415fc5bf3b4e0f118c"
+    },
+    "tooling": {
+      "dependencies": 34,
+      "advisories": 0,
+      "report_sha256": "d023f933160b47b23cd8c56f34957ed4f752438e09223e3da2e26efa704cbdca"
+    }
+  }
+}

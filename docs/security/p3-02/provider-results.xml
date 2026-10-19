@@ -1,0 +1,45 @@
+<testsuite tests="43" failures="0" skipped="0">
+  <testcase name="test_shared_contract_determinism_and_private_logging[en-[Synthetic fake response]]" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_shared_contract_determinism_and_private_logging[sw-[Jibu bandia la majaribio]]" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_simulated_failures_are_normalized[provider_unavailable]" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_simulated_failures_are_normalized[provider_timeout]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_simulated_failures_are_normalized[model_not_found]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_simulated_failures_are_normalized[provider_rate_limited]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_simulated_failures_are_normalized[provider_request_rejected]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_simulated_failures_are_normalized[invalid_provider_response]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_simulated_failures_are_normalized[invalid_provider_request]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_simulated_timeout_and_cancellation_release_admission" classname="tests.test_ai_providers" time="0.024" />
+  <testcase name="test_unknown_adapter_failure_never_exposes_exception_text" classname="tests.test_ai_providers" time="0.004" />
+  <testcase name="test_future_adapter_model_mismatch_rejected" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_output_limit_rejected_before_provider_call" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_concurrency_bound_and_admission_deadline" classname="tests.test_ai_providers" time="0.103" />
+  <testcase name="test_invalid_configuration[values0]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_configuration[values1]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_configuration[values2]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_invalid_configuration[values3]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_configuration[values4]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_invalid_configuration[values5]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_configuration[values6]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_configuration[values7]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_configuration[values8]" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_invalid_configuration[values9]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_invalid_configuration[values10]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_invalid_configuration[values11]" classname="tests.test_ai_providers" time="0.003" />
+  <testcase name="test_request_bounds[values0]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_request_bounds[values1]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_request_bounds[values2]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_request_bounds[values3]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_request_bounds[values4]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_request_bounds[values5]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_request_bounds[values6]" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_request_bounds[values7]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_messages[values0]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_messages[values1]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_messages[values2]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_invalid_messages[values3]" classname="tests.test_ai_providers" time="0.001" />
+  <testcase name="test_safe_startup_validation" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_lifespan_health_and_shutdown_are_provider_independent" classname="tests.test_ai_providers" time="0.013" />
+  <testcase name="test_environment_defaults_and_selection" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_context_exception_still_closes_provider" classname="tests.test_ai_providers" time="0.002" />
+  <testcase name="test_factory_rejects_bypassed_unsupported_selection" classname="tests.test_ai_providers" time="0.001" />
+</testsuite>

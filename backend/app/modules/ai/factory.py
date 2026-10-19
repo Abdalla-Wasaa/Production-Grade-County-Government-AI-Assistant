@@ -14,6 +14,7 @@ from app.modules.ai.contracts import (
     ProviderError,
 )
 from app.modules.ai.fake import FakeProvider
+from app.modules.ai.ollama import OllamaProvider
 from app.modules.ai.settings import AISettings
 
 
@@ -55,7 +56,10 @@ def _fake(_: AISettings) -> AIProvider:
     return FakeProvider()
 
 
-_BUILDERS: dict[str, Callable[[AISettings], AIProvider]] = {"fake": _fake}
+_BUILDERS: dict[str, Callable[[AISettings], AIProvider]] = {
+    "fake": _fake,
+    "ollama": OllamaProvider,
+}
 
 
 @asynccontextmanager

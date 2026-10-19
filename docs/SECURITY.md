@@ -464,3 +464,23 @@ No live inference, real data, production deployment, automatic renewal or future
 exposure approval. Preserve all seven checks, scanning, exact inventories, historical
 records and branch protection. Publish the P3-01 branch/PR linked to #30 and run
 normal hosted CI. No automatic merge or P3-02 implementation before reviewed merge.
+
+## Owner-approved P3-02 exact security/inventory decision
+
+The owner approved 9b399b7be1cf76f98bdb24f502dbea876e7f54eb and tested exposure
+8e1fa66f0928b01552045590813ad04f971c29a3c443dd92358721ccdc27a41d under the exact
+seven-file proposal in docs/P3_02_EXPOSURE_ASSESSMENT.md. This supersedes pending
+P3-02 record/publication statements for that exact exposure only. Backend inventory
+is 122 packages: httpx 0.28.1, httpcore 1.0.9 and certifi 2026.7.22 are promoted from
+existing locked development packages. Only backend report provenance/inventory and
+active acceptance binding change; all 115 HIGH/3 CRITICAL occurrence rows, severities,
+pins and other inventories remain unchanged. Prior P3-01 policy bytes are preserved
+in docs/security/p3-02/p3-01-policy-snapshot.json with exact reconstruction hashes.
+
+68 mocked Ollama, 43 provider and 128 backend regression tests passed. Publication
+and seven normal hosted checks are authorized; no automatic merge. Acceptance stays
+synthetic/local only through 23 October 2026, 23:59 EAT. Preserve all invalidation
+triggers, actual daily human CRITICAL reviews, complete scans, seven checks and branch
+protection. The existing dated 19 October human review is not a future-day review.
+No privilege/network expansion, model install/download, live inference, real data,
+production deployment, expiry extension or automatic future-exposure acceptance.

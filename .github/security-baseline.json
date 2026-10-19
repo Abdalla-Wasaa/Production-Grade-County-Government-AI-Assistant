@@ -401,7 +401,7 @@
         }
       ],
       "image_id": "sha256:008ab22a737e148330729eb20ef01de16879c87a916fdf91043eaf4aad551387",
-      "report_sha256": "28f237cfdf1608a45a5020be5bc978279ee40f6693671fcc711f4dc01bc0d0c0"
+      "report_sha256": "2440274bab03a5bf3794e35a63be14096baa939848e74cb36c5d4efbcba78ce5"
     },
     "db": {
       "base_digest": "sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
