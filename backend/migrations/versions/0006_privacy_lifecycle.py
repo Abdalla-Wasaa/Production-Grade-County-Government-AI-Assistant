@@ -191,13 +191,16 @@ def upgrade() -> None:
           IF blocked THEN
             RAISE EXCEPTION 'Deletion restricted' USING ERRCODE='23514';
           END IF;
-          IF kind_name='account' AND NOT EXISTS(
-            SELECT FROM pg_roles WHERE rolname=session_user AND rolsuper)
-            AND NOT EXISTS(SELECT FROM pg_class c JOIN pg_roles r ON r.oid=c.relowner
-              WHERE c.oid='public.users'::regclass AND r.rolname=session_user)
-            AND (OLD.status<>'disabled' OR NOT EXISTS(SELECT FROM public.privacy_deletion_requests
-              WHERE user_id=OLD.id AND status IN ('accepted','held'))) THEN
-            RAISE EXCEPTION 'Verified deletion request required' USING ERRCODE='42501';
+          -- OLD has the triggering table's row type. Keep user-only fields in
+          -- a separate statement so PostgreSQL never resolves them for other tables.
+          IF kind_name='account' THEN
+            IF NOT EXISTS(SELECT FROM pg_roles WHERE rolname=session_user AND rolsuper)
+              AND NOT EXISTS(SELECT FROM pg_class c JOIN pg_roles r ON r.oid=c.relowner
+                WHERE c.oid='public.users'::regclass AND r.rolname=session_user)
+              AND (OLD.status<>'disabled' OR NOT EXISTS(SELECT FROM public.privacy_deletion_requests
+                WHERE user_id=OLD.id AND status IN ('accepted','held'))) THEN
+              RAISE EXCEPTION 'Verified deletion request required' USING ERRCODE='42501';
+            END IF;
           END IF;
           IF kind_name IS NOT NULL THEN
             INSERT INTO public.privacy_deletion_ledger(kind,target_id,deleted_at,expires_at)

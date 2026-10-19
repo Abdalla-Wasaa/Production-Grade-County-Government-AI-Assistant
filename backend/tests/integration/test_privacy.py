@@ -8,6 +8,7 @@ import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime, timedelta
+from time import perf_counter
 from uuid import UUID, uuid4
 
 import psycopg
@@ -18,6 +19,7 @@ from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.pool import NullPool
 from test_authentication import account
+from test_authentication import auth as auth_fixture
 from test_conversations import create, send
 from test_conversations import history as history_fixture
 
@@ -26,6 +28,7 @@ from app.modules.identity.security import AuthFailure, Tokens
 from app.modules.privacy.schemas import DeleteAccountCommand, HoldCommand
 from app.modules.privacy.service import MAINTENANCE_LOCK, Privacy
 
+auth = auth_fixture
 history = history_fixture
 pytestmark = pytest.mark.integration
 
@@ -583,3 +586,44 @@ def test_fully_held_request_does_not_starve_later_eligible_account(lifecycle):
     assert report.accounts == 1
     assert operate(lambda s: s.request_status(first.id)).status == "held"
     assert operate(lambda s: s.request_status(second.id)).status == "completed"
+
+
+def test_documented_parent_batch_capacity_with_synthetic_cascades(lifecycle, record_property):
+    history, operate, _urls, _key = lifecycle
+    row = create(history)
+    now = datetime.now(UTC)
+    with psycopg.connect(history[0].admin) as db:
+        db.execute(
+            "UPDATE conversations SET created_at=%s,last_activity_at=%s,"
+            "updated_at=%s,expires_at=%s WHERE id=%s",
+            (
+                now - timedelta(days=40),
+                now - timedelta(days=31),
+                now - timedelta(days=31),
+                now - timedelta(hours=23, minutes=30),
+                row["id"],
+            ),
+        )
+        db.execute(
+            "INSERT INTO conversations SELECT gen_random_uuid(),user_id,title,language,"
+            "6,1,created_at,updated_at,last_activity_at,expires_at "
+            "FROM conversations CROSS JOIN generate_series(1,99) WHERE id=%s",
+            (row["id"],),
+        )
+        db.execute(
+            "INSERT INTO messages SELECT gen_random_uuid(),c.id,n,'user',"
+            "'Synthetic capacity fixture','en',gen_random_uuid(),repeat('0',64),c.last_activity_at "
+            "FROM conversations c CROSS JOIN generate_series(1,5) n"
+        )
+        # Exercise the urgent catch-up path rather than claiming the daily timer ran.
+        db.execute("UPDATE privacy_maintenance_state SET last_daily_at=%s", (now,))
+    started = perf_counter()
+    result = operate(lambda s: s.maintenance(limit=100), maintenance=True, clock=lambda: now)
+    elapsed = perf_counter() - started
+    record_property("synthetic_purge_seconds", elapsed)
+    assert result.conversations == 100 and not result.backlog
+    assert not result.deadline_breached and elapsed < 300
+    with psycopg.connect(history[0].admin) as db:
+        assert db.execute("SELECT count(*) FROM messages").fetchone()[0] == 0
+        assert db.execute("SELECT count(*) FROM conversations").fetchone()[0] == 0
+        assert db.execute("SELECT count(*) FROM privacy_deletion_ledger").fetchone()[0] == 100

@@ -102,7 +102,7 @@ def test_symlink_secret_is_rejected(tmp_path):
 def test_secret_config_has_no_jwt_signing_dependency(tmp_path):
     db = tmp_path / "url"
     key = tmp_path / "key"
-    db.write_text("postgresql+psycopg://synthetic@127.0.0.1/synthetic")
+    db.write_text("postgresql+psycopg://synthetic:synthetic-test-only@127.0.0.1/synthetic")
     key.write_text(base64.b64encode(bytes(range(32))).decode())
     db.chmod(0o600)
     key.chmod(0o600)

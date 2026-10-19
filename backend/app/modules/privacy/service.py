@@ -123,9 +123,11 @@ class Privacy:
         if (
             conversation_id
             and await self.db.scalar(
-                select(Conversation.id)
-                .where(Conversation.id == conversation_id, Conversation.user_id == user_id)
-                .with_for_update()
+                # The account lock above and the database hold/delete guards
+                # serialize this target; no extra conversation UPDATE grant needed.
+                select(Conversation.id).where(
+                    Conversation.id == conversation_id, Conversation.user_id == user_id
+                )
             )
             is None
         ):
