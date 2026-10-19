@@ -89,8 +89,9 @@ uv run --locked mypy
 uv run --locked pytest -q -m "not integration" --junitxml=.artifacts/unit.xml
 ```
 
-No test has executed for this exposure until the checkpoint in
-[P3-01 assessment](P3_01_EXPOSURE_ASSESSMENT.md) is explicitly authorized. Runtime
+Owner-authorized testing passed 43 provider cases and 128 backend regressions;
+see the [P3-01 assessment](P3_01_EXPOSURE_ASSESSMENT.md) for exact provenance and
+the separate security-record approval still needed before publication. Runtime
 packages and locks are unchanged from Phase 2. All seven checks, complete scans,
 exact exposure/inventory enforcement and branch protection remain mandatory.
 Synthetic local development only; no real citizen data or production deployment.

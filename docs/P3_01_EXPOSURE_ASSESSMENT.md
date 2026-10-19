@@ -1,12 +1,13 @@
-# P3-01 focused exposure assessment — runtime approval pending
+# P3-01 focused exposure assessment — validation passed; acceptance pending
 
 ## Scope and prerequisites
 
 The latest owner authorization and updated issue #30 explicitly defer Ollama to
 P3-02. Current source is fake-only; the superseded, unpushed Ollama preparation was
 removed and its HTTP runtime dependency promotion reversed. Final dependency files
-are byte-identical to main. No model install, live inference or application test has
-executed for this source. Packaging-only image builds/scans and static checks ran.
+are byte-identical to main. No model install or live inference has executed. After the owner authorized
+b7827d8 / the exact exposure below, provider and backend tests ran with synthetic
+inputs only; the dated results below supersede the initial testing checkpoint.
 
 PR #29 is owner-merged at `379a43957e65b3acb2c5e19b5fdea90d70f878f7`, with all seven
 mandatory checks passing. Issue #22 records Phase 2 COMPLETE for restricted synthetic
@@ -75,27 +76,81 @@ All three raw reports and inventory checks are valid; this is an owner-decision
 failure, not missing backend scan evidence. Do not manufacture a passing decision,
 edit inventories or reinterpret this as acceptance.
 
-## Prepared validation and exact next decision
+## Authorized validation results and exact next decision
 
-Static checks passed: Ruff lint/format, strict Mypy, dependency audit and secret scan.
-Repository documentation/link validation follows this assessment addition. The normal
-workflow-policy checker correctly rejects the new exposure. No application tests,
-Pytest collection, application server or provider generation ran.
+The owner explicitly authorized isolated synthetic testing of commit
+`b7827d8ce4346d0f1ef8f987a2f7931945d869ff` and exposure
+`54a7c2e7d075593f17107dd652edf035b28b7a399611f700c095bc5f1b04ecc4`.
+Actual results on 19 October 2026:
 
-There are 43 prepared provider cases (static AST count, not runtime results):
-determinism, English/Kiswahili, fixed failures, timeout, admission/concurrency,
-cancellation, invalid settings/requests, metadata mismatch, sensitive-error/logging
-protection, health/lifecycle closure and unsupported factory choices. Retain valid
-Phase 2 PostgreSQL/browser/infrastructure evidence where unaffected; run the full
-existing non-integration backend suite because composition and test fixtures changed.
+| Execution | Passed | Failed / skipped | Duration |
+| --- | --- | --- | --- |
+| Provider contracts, fake determinism, bilingual inputs, invalid settings/requests, fixed failures, timeout, cancellation, concurrency, model identity, lifecycle and private logging | 43 | 0 / 0 | 0.36 seconds |
+| Existing non-integration backend regressions, including auth/conversation/privacy contracts and logging | 128 | 0 / 0 | 3.02 seconds |
 
-**Requested decision:** authorize isolated synthetic-only execution of the exact
-P3-01 exposure above, its 43 provider cases and existing non-integration backend
-regressions, with no network/model/provider downloads. Any correction changing
-exposure must follow the current exact-hash authorization procedure before execution.
-This is testing-only: no risk-acceptance/baseline/inventory edits, push, PR, merge,
-expiry extension or live inference. After actual results, request any separately
-required security-record decision before publication/hosted CI.
+These were two invocations, not a newly claimed single combined suite. The existing
+79 PostgreSQL cases were explicitly deselected; retain their passing merged-main
+provenance for unchanged identity/conversation/privacy SQL and migrations. No schema,
+grant, SQL, frontend or network-source change requires repeating those suites here.
+No correction was needed, so tested source/exposure is unchanged. A pre-existing
+Starlette TestClient/httpx deprecation warning is recorded; no dependency was added
+or upgraded to silence it.
+
+[Validation summary](security/p3-01/validation-results.json),
+[sanitized provider report](security/p3-01/provider-results.xml) and
+[sanitized regression report](security/p3-01/backend-regression-results.xml)
+record actual evidence. The repository report validator accepted both reports;
+none of their cases failed or skipped. Existing socket denial remained active for
+all executed cases; the fake requires no network client or credentials. Tests verify
+private prompt representations, safe exception text and no content in captured logs.
+Ruff lint/format and strict Mypy also pass. No application source changed after tests.
+
+Fresh immutable image scans from 19 October remain valid for this exact source and
+unchanged inventories; no rebuild is needed for evidence-only documentation changes.
+Raw report hashes/KEV/scanner freshness are rechecked rather than rerunning unchanged
+images unnecessarily. They show exactly the same 115 HIGH/3 CRITICAL occurrences,
+no added/removed reviewed findings, no reported fixes and no retrieved KEV match.
+Dependency audit reports no advisories and dependency files remain byte-identical
+to merged main. This is not proof that the new code has no vulnerabilities.
+
+### Proposed minimum separate owner decision — not applied
+
+Testing authorization is not security acceptance. The normal exposure-policy gate
+still correctly rejects the changed hash. No risk-acceptance, inventory, baseline or
+historical snapshot file has been modified. To publish through normal hosted CI,
+request a separate, narrowly scoped P3-01 synthetic-development acceptance binding
+this tested exposure and the exact same 118 individually enumerated baseline
+occurrences, with all existing invalidation rules and daily human CRITICAL review.
+
+Only these five files would change after explicit approval:
+
+1. `.github/security-risk-acceptances.json`: bind the separate P3-01 decision to this
+   reviewed/tested exposure and unchanged baseline; no new findings or future exposure.
+2. `docs/security/p3-01/p2-05-acceptance-snapshot.json`: preserve current Phase 2/P2-05
+   acceptance JSON bytes exactly before updating the active decision. Current bytes
+   have SHA-256 d7e62ed76852a7646cc6cdf5908bad210b33ea2cc989521007988b8aade46c3e.
+3. `docs/P3_01_EXPOSURE_ASSESSMENT.md`: record the exact owner decision and its scope.
+4. `docs/SECURITY.md`: document the current restricted-development decision.
+5. `AGENTS.md`: record the exact authorized scope without altering permanent rules.
+
+No baseline or inventory-policy update is needed or proposed. The decision must
+preserve expiry 23 October 2026, 23:59 EAT, daily actual human CRITICAL reviews and
+invalidation on fixes/new findings/escalation/KEV/exposure/dependency changes.
+Request publication authorization explicitly alongside that five-file decision:
+commit/push this branch, open the PR linked to #30 and run all seven normal hosted
+checks. No automatic merge or live inference. A draft PR description is prepared
+outside tracked application files; no PR has been opened.
+
+### P3-02 handover
+
+The async protocol, typed provider/model identity, managed deadline/cancellation,
+factory registry and mocked adapter tests provide the boundary for a later Ollama
+HTTP adapter and configuration-driven model selection without changes to identity,
+privacy, conversation business logic or frontend code. P3-01 deliberately rejects
+Ollama selection today. P3-02 must add its own validated endpoint/model settings,
+HTTP transport/error handling, safe resource cleanup, mocked HTTP contracts and
+separate local Llama 3.2 3B installation/inference authorization. No P3-02 source
+or live model integration has begun.
 
 Existing expiry remains **23 October 2026, 23:59 EAT**. No production deployment or
 real citizen/county data. All seven required checks, complete scanning, historical
