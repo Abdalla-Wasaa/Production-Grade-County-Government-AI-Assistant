@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "production_allowed": false,
+  "decisions": [
+    {
+      "scope": "synthetic-local-development",
+      "approved_by": "Abdalla-Wasaa (repository owner)",
+      "approval_reference": "Explicit owner approval in P2-04 FINAL SECURITY APPROVAL AND PR COMPLETION, 19 October 2026: approve 95f5ed0c57bc9ca72abf457ecc99f09b63e2d3b1 and exposure 2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996, exact five-file synthetic-development record update; retain 115 HIGH/3 CRITICAL and unchanged inventories; authorize push, PR linked to issue #20 and seven normal hosted CI checks. Today actual human CRITICAL review explicitly unconfirmed; no merge.",
+      "approved_at": "2026-10-19T05:21:49.854959+00:00",
+      "expires_at": "2026-10-23T20:59:00+00:00",
+      "baseline_sha256": "0f48571f3b819b906b4aa78ce06c0beb4afd517283f78aad4e35c186d6056acf",
+      "reason": "Separate narrowly scoped P2-04 synthetic-local-development acceptance for reviewed commit 95f5ed0c57bc9ca72abf457ecc99f09b63e2d3b1 and exposure 2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996. Bind exactly the unchanged 118 OS package/CVE occurrences individually enumerated in the baseline: backend 44 HIGH, PostgreSQL 71 HIGH/3 CRITICAL, web zero. Inventories and dependencies unchanged. Preserve previous P2-03 approval byte-for-byte in docs/security/p2-04/p2-03-acceptance-snapshot.json (SHA-256 cc17ab3f70fe52220d57dba875f846c09daa9c77a0b8226412c5c47e50b3aa11). Private stored-content rendering and authenticated conversation mutations reviewed with account-scope invalidation, plain-text rendering, bounded pagination, ETag protection and in-memory idempotent retries. Daily actual human CRITICAL review remains required and pending; this acceptance does not perform or substitute it. Immediate invalidation on any available fix, new finding, severity increase, KEV listing or further application/infrastructure/dependency exposure change. Synthetic isolated local development only; no real citizen/county data, production credentials or public/production deployment. No automatic future acceptance, renewal or expansion. Expiry unchanged: 23 October 2026, 23:59 EAT. All seven CI checks, complete scans, branch protection and normal owner PR review remain enforced. Publish the P2-04 branch/PR linked to issue #20 and run ordinary hosted CI only after explicit approval; no merge authorization.",
+      "exposure_sha256": "2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996"
+    }
+  ]
+}

@@ -364,3 +364,30 @@ requires a new owner decision before runtime. No automatic acceptance-record upd
 CI bypass, merge, production use or human-review substitution is permitted. Final CI
 exception acceptance remains separately exact-hash and owner-approved. This clause
 reduces testing interruptions, not the final risk-acceptance requirements.
+
+
+## Owner-approved P2-05 exact security-record decision
+
+The owner explicitly approved reviewed commit aa2f491a9899e2a6bc712feb28c993911e3d2743
+and tested exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d
+in PHASE 2 FINALIZE P2-05 AND ACCELERATE P2-06. This supersedes earlier pending
+record-decision statements for this exact exposure only. The active decision binds
+all 118 unchanged individually enumerated OS occurrences: 115 HIGH/3 CRITICAL.
+Previous P2-04 approval bytes are preserved at
+docs/security/p2-05/p2-04-acceptance-snapshot.json (SHA-256
+70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e).
+No baseline, inventory-policy or finding suppression changed. Evidence is consolidated
+in docs/P2_05_EXPOSURE_ASSESSMENT.md and docs/security/p2-05/final-validation-summary.json.
+
+Only isolated synthetic development through 23 October 2026, 23:59 EAT is accepted.
+All fix/new-finding/severity/KEV/exposure/dependency invalidation triggers, complete
+scans, seven mandatory checks and branch protection remain enforced. No real data,
+production credentials/deployment, automatic renewal, future-exposure approval or
+merge. Daily actual human CRITICAL review remains required and unconfirmed. This
+owner decision does not record review completion.
+
+The proposed bounded iterative-testing clause is NOT approved or implemented.
+Current runtime authorization rules remain unchanged; any proposal must be considered
+separately. Publish P2-05 through its feature-branch PR linked to #21 and normal CI.
+Prepare P2-06 separately; final acceptance PR/validation follows reviewed P2-05 merge.
+No automatic Phase 2 closure, P2-06 merge or Phase 3 implementation is authorized.
