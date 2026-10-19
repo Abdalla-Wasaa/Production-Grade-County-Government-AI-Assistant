@@ -82,6 +82,11 @@ export class ConversationClient {
         signal: AbortSignal.any([controller.signal, ...(options.signal ? [options.signal] : [])]),
       });
       this.check(lifecycle);
+      if (response.status === 409 && options.method === 'DELETE') {
+        // A hold is a deletion restriction, not a stale metadata version. Never
+        // expose its reason or echo an untrusted server message.
+        throw new HistoryError('restricted');
+      }
       if (!response.ok)
         throw new HistoryError(
           response.status === 404

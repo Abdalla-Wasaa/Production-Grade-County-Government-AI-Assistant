@@ -1,0 +1,72 @@
+{
+  "authorized_commit": "095aa6594463a4ca7e645935f359c06cf67483f3",
+  "authorized_exposure": "13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1",
+  "results": {
+    "privacy": {
+      "tests": 28,
+      "passed": 25,
+      "failed": 3,
+      "skipped": 0,
+      "report": "runtime-approved-privacy.xml",
+      "sha256": "4531267d91f4458cc4ac78c9a44036fa941a14a5d5ebb59fb96a2c1c1bba80ec"
+    },
+    "regressions": {
+      "tests": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "report": "runtime-approved-regressions.xml",
+      "sha256": "b83662d37466cfd2a4ab39e3689fa67cfa486f40927bcd937d6e825151243a78"
+    }
+  },
+  "measurements": {
+    "test_missed_daily_run_catches_up_and_repeat_is_idle": {
+      "passed": true,
+      "entire_case_seconds": 2.073,
+      "properties": {}
+    },
+    "test_batch_backlog_does_not_silently_stamp_daily_completion": {
+      "passed": true,
+      "entire_case_seconds": 2.353,
+      "properties": {}
+    },
+    "test_concurrent_maintenance_is_idempotent_and_nonblocking": {
+      "passed": true,
+      "entire_case_seconds": 2.528,
+      "properties": {}
+    },
+    "test_twenty_three_hour_catchup_does_not_wait_for_next_daily_run": {
+      "passed": true,
+      "entire_case_seconds": 2.167,
+      "properties": {}
+    },
+    "test_identity_batch_backlog_is_reported_and_catches_up": {
+      "passed": true,
+      "entire_case_seconds": 2.053,
+      "properties": {}
+    },
+    "test_documented_parent_batch_capacity_with_synthetic_cascades": {
+      "passed": true,
+      "entire_case_seconds": 2.05,
+      "properties": {
+        "synthetic_purge_seconds": "0.2047377709823195"
+      }
+    }
+  },
+  "remaining_failure": "Three account-completion cases fail because EXISTS SELECT * exceeds maintenance column SELECT permissions. Prepared fix projects Conversation.id, without granting more privileges.",
+  "corrected_source_commit": "a21cb89d042c3878b01f69463b21e3a9fea29244",
+  "corrected_exposure_pending_execution": "e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d",
+  "corrected_application_executed": false,
+  "audit_fault_assertion": "Strengthened physical-deletion rollback case to require synthetic audit failure; prepared, not executed. Previous broad DBAPIError match did not prove the intended fault was reached.",
+  "systemd_template_verify_exit": 0,
+  "systemd_installed_or_enabled": false,
+  "cleanup": {
+    "test_databases_remaining_before_removal": 0,
+    "test_roles_remaining_before_removal": 0,
+    "owned_disposable_container_removed": true,
+    "tmpfs_and_password_file_removed": true,
+    "unrelated_containers_untouched": true
+  },
+  "security_records_modified": false,
+  "human_critical_review": "unconfirmed"
+}

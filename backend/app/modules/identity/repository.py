@@ -1,6 +1,8 @@
 """Parameterized identity queries; caller owns commit and lock ordering."""
 
-from datetime import timedelta
+from collections.abc import Callable
+from datetime import datetime, timedelta
+from typing import Protocol
 from uuid import UUID
 
 from sqlalchemy import select, update
@@ -11,9 +13,15 @@ from app.modules.identity.models import AuthAudit, AuthRateLimit, AuthSession, U
 from app.modules.identity.security import AuthFailure, Tokens
 
 
+class AuditContext(Protocol):
+    clock: Callable[[], datetime]
+
+    def pseudonym(self, value: str) -> str: ...
+
+
 async def audit(
     db: AsyncSession,
-    tokens: Tokens,
+    tokens: AuditContext,
     action: str,
     outcome: str,
     request_id: UUID,
@@ -68,7 +76,7 @@ async def lock_user(db: AsyncSession, user_id: UUID) -> User | None:
     ).scalar_one_or_none()
 
 
-async def revoke_all(db: AsyncSession, user: User, tokens: Tokens, reason: str) -> None:
+async def revoke_all(db: AsyncSession, user: User, tokens: AuditContext, reason: str) -> None:
     user.token_version += 1
     user.updated_at = tokens.clock()
     await db.execute(

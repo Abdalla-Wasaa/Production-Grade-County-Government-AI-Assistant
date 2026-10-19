@@ -177,7 +177,7 @@ async def verify():
     try:
         async with engine.connect() as c:
             names=(await c.execute(text("SELECT tablename FROM pg_tables WHERE schemaname='public'"))).scalars().all()
-            assert set(names)=={'alembic_version','users','invitations','auth_sessions','refresh_tokens','auth_audit_events','auth_rate_limits','conversations','messages'}
+            assert set(names)=={'alembic_version','users','invitations','auth_sessions','refresh_tokens','auth_audit_events','auth_rate_limits','conversations','messages','privacy_operators','privacy_holds','privacy_deletion_requests','privacy_deletion_ledger','privacy_maintenance_state'}
             for statement in ["CREATE TABLE forbidden(id integer)","UPDATE public.alembic_version SET version_num='forbidden'"]:
                 try:
                     await c.execute(text(statement))

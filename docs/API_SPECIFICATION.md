@@ -129,7 +129,7 @@ remain unchanged and are outside P2-01 implementation.
 | `GET /conversations` | `limit`, `cursor` | 200 ConversationList | 422 |
 | `GET /conversations/{id}` | UUID | 200 Conversation | 404 |
 | `PATCH /conversations/{id}` | At least one of title/language; `If-Match` required | 200 updated Conversation | 404; 428 missing version; 412 stale version; 409 pending turn |
-| `DELETE /conversations/{id}` | UUID, bearer | 204 atomic removal and cache invalidation | 404 (including repeated deletion); 503 DB unavailable |
+| `DELETE /conversations/{id}` | UUID, bearer | 204 actual atomic removal and cache invalidation | 404 (including repeated deletion); 409 deletion_restricted for an owned live held record; 503 DB unavailable |
 | `GET /conversations/{id}/messages` | `limit`, sequence cursor | 200 MessageList | 404; 422 |
 | `POST /conversations/{id}/messages` | `{ "content": "Synthetic service question" }` + required `Idempotency-Key` UUID header | 201 persisted user Message; 200 identical replay | 404; 409 conflicting key; 422; 429; 503 |
 
@@ -257,3 +257,25 @@ Nginx preserves these paths and error statuses; unknown API paths must not fall
 through to SPA HTML. The historical Phase 1 shell issued no backend requests; P2-02 adds auth requests
 only. Conversation history UI is outside P2-03.
 Actual P1-06 evidence belongs in [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md).
+
+## P2-05 approved synthetic privacy operator contract
+
+The 19 October 2026 owner approval preserves the existing 30-day inactivity/90-day
+absolute conversation expiry. Holds never restore or extend expired history.
+Owned live conversation DELETE under a durable hold returns fixed 409
+`deletion_restricted`, with no case/hold reason disclosed. Cross-user/expired/unknown
+IDs remain 404. A 409 does not mean a completed or queued deletion. The frontend
+renders a fixed English/Kiswahili restriction message instead of a stale-version hint.
+
+There is no new HTTP admin/account-deletion endpoint. The authenticated database-role
+operator API and strict UUID-only hold/request contracts are described in
+[the privacy runbook](PRIVACY_LIFECYCLE.md). Operator capability is an explicit DB
+allowlist, never inferred from citizen/staff/admin JWT roles or a caller name.
+Verified account-request acceptance atomically disables the account/revokes sessions,
+returns request status after commit, and preserves the original service dates on
+retry. Holds defer physical deletion and retain disabled access until release;
+requests are not falsely completed. Actual verification is an operator obligation.
+
+All new code is source-prepared only until the separate exposure/runtime checkpoint.
+No new exception acceptance, real-data/legal approval or public deployment follows
+from approval of these engineering contracts.

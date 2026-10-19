@@ -1,0 +1,57 @@
+<testsuite tests="51" failures="2" skipped="0">
+  <testcase name="test_activation_login_current_user_and_digest_only_storage" classname="tests.integration.test_authentication" time="1.835" />
+  <testcase name="test_invalid_invitations_and_no_partial_user[expired]" classname="tests.integration.test_authentication" time="1.427" />
+  <testcase name="test_invalid_invitations_and_no_partial_user[revoked]" classname="tests.integration.test_authentication" time="1.431" />
+  <testcase name="test_parallel_activation_consumes_once" classname="tests.integration.test_authentication" time="1.888" />
+  <testcase name="test_rotation_reuse_commits_family_revocation" classname="tests.integration.test_authentication" time="1.827" />
+  <testcase name="test_parallel_refresh_has_one_successor_and_revokes_on_replay" classname="tests.integration.test_authentication" time="1.710" />
+  <testcase name="test_csrf_rejects_before_login[headers0]" classname="tests.integration.test_authentication" time="1.135" />
+  <testcase name="test_csrf_rejects_before_login[headers1]" classname="tests.integration.test_authentication" time="1.139" />
+  <testcase name="test_csrf_rejects_before_login[headers2]" classname="tests.integration.test_authentication" time="1.154" />
+  <testcase name="test_shared_failure_limits_and_audit" classname="tests.integration.test_authentication" time="3.560" />
+  <testcase name="test_logout_all_revocation_and_disabled_account" classname="tests.integration.test_authentication" time="2.088" />
+  <testcase name="test_own_session_listing_revoke_and_unknown_access" classname="tests.integration.test_authentication" time="1.870" />
+  <testcase name="test_operator_reset_revokes_sessions_and_rejects_replay" classname="tests.integration.test_authentication" time="2.667" />
+  <testcase name="test_no_public_role_escalation_and_runtime_permissions" classname="tests.integration.test_authentication" time="1.616" />
+  <testcase name="test_other_user_session_is_concealed_even_from_admin_role" classname="tests.integration.test_authentication" time="2.038" />
+  <testcase name="test_audit_failure_rolls_back_logout" classname="tests.integration.test_authentication" time="1.624" />
+  <testcase name="test_expired_family_and_logout_idempotency" classname="tests.integration.test_authentication" time="1.822" />
+  <testcase name="test_authentication_database_outage_and_recovery" classname="tests.integration.test_authentication" time="1.671" />
+  <testcase name="test_explicit_operator_and_maintenance_grants" classname="tests.integration.test_authentication" time="3.112" />
+  <testcase name="test_create_ordered_unanswered_messages_and_idempotent_replay" classname="tests.integration.test_conversations" time="1.739" />
+  <testcase name="test_pagination_is_scoped_and_bounded" classname="tests.integration.test_conversations" time="1.762" />
+  <testcase name="test_metadata_preconditions_retention_and_language_snapshot" classname="tests.integration.test_conversations" time="1.902" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[get]" classname="tests.integration.test_conversations" time="2.240" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[patch]" classname="tests.integration.test_conversations" time="2.434" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[delete]" classname="tests.integration.test_conversations" time="2.169" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[messages]" classname="tests.integration.test_conversations" time="1.949" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[send]" classname="tests.integration.test_conversations" time="2.239" />
+  <testcase name="test_unauthenticated_revoked_and_invalid_identifiers" classname="tests.integration.test_conversations" time="2.558" />
+  <testcase name="test_concurrent_replays_distinct_writes_and_deletion" classname="tests.integration.test_conversations" time="1.481">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="test_transaction_failure_rolls_back_and_never_logs_content" classname="tests.integration.test_conversations" time="1.510" />
+  <testcase name="test_role_injection_chunked_body_cap_and_missing_key" classname="tests.integration.test_conversations" time="1.394" />
+  <testcase name="test_migration_downgrade_upgrade_and_immutable_message_grants" classname="tests.integration.test_conversations" time="2.942" />
+  <testcase name="test_concurrent_metadata_uses_version_precondition" classname="tests.integration.test_conversations" time="1.401" />
+  <testcase name="test_message_page_continues_after_new_write_and_key_is_conversation_scoped" classname="tests.integration.test_conversations" time="1.559" />
+  <testcase name="test_message_cap_preserves_replay_and_never_changes_history" classname="tests.integration.test_conversations" time="1.422" />
+  <testcase name="test_database_constraints_and_account_cascade" classname="tests.integration.test_conversations" time="1.418">
+    <failure message="Details omitted from shared artifact; inspect CI test step" />
+  </testcase>
+  <testcase name="test_conversation_cap_is_atomic_for_concurrent_creation" classname="tests.integration.test_conversations" time="1.370" />
+  <testcase name="test_same_key_different_content_race_stores_exactly_one_message" classname="tests.integration.test_conversations" time="1.372" />
+  <testcase name="test_idempotent_replay_after_metadata_change_keeps_original_snapshot" classname="tests.integration.test_conversations" time="1.378" />
+  <testcase name="test_baseline_repeat_schema_and_readiness" classname="tests.integration.test_postgresql" time="2.180" />
+  <testcase name="test_bad_revisions_and_recovery[revisions0]" classname="tests.integration.test_postgresql" time="1.480" />
+  <testcase name="test_bad_revisions_and_recovery[revisions1]" classname="tests.integration.test_postgresql" time="1.501" />
+  <testcase name="test_bad_revisions_and_recovery[revisions2]" classname="tests.integration.test_postgresql" time="1.581" />
+  <testcase name="test_bad_revisions_and_recovery[revisions3]" classname="tests.integration.test_postgresql" time="1.516" />
+  <testcase name="test_credentials_permissions_and_safe_logs" classname="tests.integration.test_postgresql" time="0.855" />
+  <testcase name="test_unavailable_and_recovery" classname="tests.integration.test_postgresql" time="0.846" />
+  <testcase name="test_query_deadline_and_cleanup" classname="tests.integration.test_postgresql" time="1.022" />
+  <testcase name="test_sessions_rollback_isolation_cancellation_and_disposal" classname="tests.integration.test_postgresql" time="0.929" />
+  <testcase name="test_pool_checkout_deadline" classname="tests.integration.test_postgresql" time="0.911" />
+  <testcase name="test_migration_failure_safe" classname="tests.integration.test_postgresql" time="0.763" />
+  <testcase name="test_connection_handshake_deadline" classname="tests.integration.test_postgresql" time="0.211" />
+</testsuite>

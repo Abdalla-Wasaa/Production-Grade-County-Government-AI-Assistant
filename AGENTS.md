@@ -15,24 +15,21 @@
 
 ## Current scope
 
-The owner authorizes issue #20 P2-04 on feat/p2-04-conversation-history-ui from
-merged PR #26 (main a61aa13b1fcede64ce210e43d24c0c248d6ef3c6). Implement only
-private bilingual conversation history, CRUD and user-message persistence UI using
-the approved P2-03 APIs. No generated assistant replies, LLM, RAG or unrelated work.
+The owner explicitly approved P2-05 engineering policy and source implementation
+on feat/p2-05-privacy-lifecycle after merged PR #27 (main a7902700e10dcd6fc71ebf582ba84fada1d93254).
+Preserve existing retention, add audited authorized holds, verified operator account
+requests, bounded purge/catch-up and focused tests. No new public admin API,
+LLM/RAG/payment work, real data or production deployment.
 
-Before executing changed application code, stop with the exact commit, exposure
-hash, dependency delta and vulnerability evidence for explicit isolated synthetic
-runtime authorization. Static checks and image build/scan do not authorize runtime
-validation. Do not dispatch changed-runtime hosted CI or reuse the P2-03 acceptance.
-Do not modify security acceptance, baseline, inventory or historical snapshots
-without a separate explicit owner decision. Preserve all seven checks, scanning,
-branch protection, invalidation triggers and normal PR review.
-
-The existing acceptance expires 23 October 2026, 23:59 EAT. No extension, real data
-or production deployment. Daily actual human CRITICAL review remains mandatory;
-today's review is unconfirmed. Never fabricate review or passing test evidence.
-No push or PR before the required security decisions and validation; no automatic
-merge. Coursework outside this official repository remains strictly read-only.
+Prepare the implementation/tests before the runtime checkpoint. Before executing
+changed application code, report exact commit/exposure, complete dependency/scan
+delta and stop for explicit isolated synthetic authorization. The P2-04 acceptance
+is not inherited. Do not modify security-risk/baseline/inventory records or snapshots
+without separate explicit approval. Preserve all seven checks, scanning, branch
+protection, expiry 23 October 2026 at 23:59 EAT and all invalidation triggers.
+Today's actual human CRITICAL review remains unconfirmed. No fabricated reviews.
+No push/PR until authorized testing and any separate security-record decision;
+no automatic merge or Phase 2 closure. Prior pending statements below are historical.
 
 ## Historical acceptance
 
@@ -97,3 +94,76 @@ KEV/exposure/dependency invalidation triggers, all seven checks, complete scans,
 branch protection and owner PR review remain mandatory. After this explicit record
 approval, publish the branch/PR linked to issue #20 and run normal hosted CI.
 No automatic renewal, future exposure approval, merge or P2-05 implementation.
+
+## P2-05 authorized testing and corrected-source checkpoint
+
+The owner authorized f3fbf77 / exposure c7fad27da4122a52b07efb3fd1efa6fcbfbb2c3f884f24b0c7c9257853626e90.
+Actual results: privacy contracts 22 pass, frontend client 11 pass, auth/conversation/
+logging unit 49 pass; privacy PG 14 pass/13 fail and existing integration 49 pass/2 fail.
+Test fixture corrections did not change exposure. Two source corrections are now
+prepared: remove redundant conversation child locking without granting more rights;
+separate users-only OLD.status access in the shared DB trigger. Corrected exposure
+13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1
+has NOT executed. Stop for fresh explicit synthetic runtime authorization before
+running corrected app/migrations/tests. A 100-parent/500-message capacity case is
+prepared, not run; the 24h capacity/recovery bound is unproven. No security acceptance
+records, inventory/baseline, snapshots or expiry changed; no push/PR. Human CRITICAL
+review remains unconfirmed. See docs/P2_05_EXPOSURE_ASSESSMENT.md and its sanitized
+runtime evidence. Existing unrelated passing evidence should be reused where valid.
+
+## P2-05 second authorized validation and column-projection checkpoint
+
+Owner authorization covered 095aa659 / 13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1.
+Actual results: privacy PG 25 pass/3 fail; targeted regressions 14/14 pass. Capacity
+100 conversations/500 messages passed in 0.204737771 seconds for the maintenance call;
+catch-up/backlog/concurrency passed. This is bounded synthetic evidence, not a deadline
+guarantee. Temporary systemd unit verification passed; no timer was installed.
+Remaining account-completion failures require SELECT of one authorized column rather
+than EXISTS SELECT *. Correction source 50f4724 and stronger rollback assertion a21cb89
+are prepared, NOT executed. New exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d
+requires fresh explicit runtime authorization before corrected app/tests/migrations
+execute. Rebuild/scans may inspect packaging without executing the app. No grants,
+security acceptance, expiry, baseline/inventory or historical snapshots changed.
+No push/PR. Human CRITICAL review remains unconfirmed. Reuse unaffected passing evidence.
+
+## P2-05 final functional evidence; security-record decision pending
+
+The owner authorized bd6dd2b / e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d.
+The three account-completion cases and strengthened audit rollback now passed 4/4;
+no new source correction was needed. All 28 privacy cases have passing provenance
+(24 unaffected retained +4 reruns), not a claim of another full 28-case run. Reuse
+14 targeted regressions, 22 contracts, 49 unit and 11 frontend results where valid.
+Final image scans have this same exposure and exact unchanged inventories/findings:
+115 HIGH/3 CRITICAL, no reported fixes/KEV matches. Human review is still unconfirmed.
+The exact five-file P2-05 acceptance/snapshot/docs update is only PROPOSED in the
+exposure assessment, not approved or applied. No push/PR until that explicit approval;
+no merge, expiry extension, production/real data, or automatic future acceptance.
+The optional bounded iterative-testing clause is also a PROPOSAL ONLY. It is not an
+implemented exception; retain exact-hash CI enforcement and current runtime gates.
+
+
+## Owner-approved P2-05 exact security-record decision
+
+The owner explicitly approved reviewed commit aa2f491a9899e2a6bc712feb28c993911e3d2743
+and tested exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d
+in PHASE 2 FINALIZE P2-05 AND ACCELERATE P2-06. This supersedes earlier pending
+record-decision statements for this exact exposure only. The active decision binds
+all 118 unchanged individually enumerated OS occurrences: 115 HIGH/3 CRITICAL.
+Previous P2-04 approval bytes are preserved at
+docs/security/p2-05/p2-04-acceptance-snapshot.json (SHA-256
+70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e).
+No baseline, inventory-policy or finding suppression changed. Evidence is consolidated
+in docs/P2_05_EXPOSURE_ASSESSMENT.md and docs/security/p2-05/final-validation-summary.json.
+
+Only isolated synthetic development through 23 October 2026, 23:59 EAT is accepted.
+All fix/new-finding/severity/KEV/exposure/dependency invalidation triggers, complete
+scans, seven mandatory checks and branch protection remain enforced. No real data,
+production credentials/deployment, automatic renewal, future-exposure approval or
+merge. Daily actual human CRITICAL review remains required and unconfirmed. This
+owner decision does not record review completion.
+
+The proposed bounded iterative-testing clause is NOT approved or implemented.
+Current runtime authorization rules remain unchanged; any proposal must be considered
+separately. Publish P2-05 through its feature-branch PR linked to #21 and normal CI.
+Prepare P2-06 separately; final acceptance PR/validation follows reviewed P2-05 merge.
+No automatic Phase 2 closure, P2-06 merge or Phase 3 implementation is authorized.

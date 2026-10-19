@@ -1,0 +1,14 @@
+# The application selects the 02:00 daily pass; catch-up ticks protect the 24h bound.
+[Unit]
+Description=County synthetic privacy daily and catch-up checks
+
+[Timer]
+OnCalendar=*-*-* *:0/15:00 Africa/Nairobi
+OnBootSec=2min
+Persistent=true
+AccuracySec=1min
+RandomizedDelaySec=0
+Unit=county-privacy.service
+
+[Install]
+WantedBy=timers.target

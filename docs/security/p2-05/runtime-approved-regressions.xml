@@ -1,0 +1,16 @@
+<testsuite tests="14" failures="0" skipped="0">
+  <testcase name="test_concurrent_replays_distinct_writes_and_deletion" classname="tests.integration.test_conversations" time="2.106" />
+  <testcase name="test_database_constraints_and_account_cascade" classname="tests.integration.test_conversations" time="1.843" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[get]" classname="tests.integration.test_conversations" time="2.438" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[patch]" classname="tests.integration.test_conversations" time="2.332" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[delete]" classname="tests.integration.test_conversations" time="2.442" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[messages]" classname="tests.integration.test_conversations" time="3.116" />
+  <testcase name="test_cross_user_and_expired_resource_concealment[send]" classname="tests.integration.test_conversations" time="3.078" />
+  <testcase name="test_unauthenticated_revoked_and_invalid_identifiers" classname="tests.integration.test_conversations" time="3.247" />
+  <testcase name="test_metadata_preconditions_retention_and_language_snapshot" classname="tests.integration.test_conversations" time="3.212" />
+  <testcase name="test_logout_all_revocation_and_disabled_account" classname="tests.integration.test_authentication" time="3.177" />
+  <testcase name="test_own_session_listing_revoke_and_unknown_access" classname="tests.integration.test_authentication" time="2.285" />
+  <testcase name="test_no_public_role_escalation_and_runtime_permissions" classname="tests.integration.test_authentication" time="2.091" />
+  <testcase name="test_explicit_operator_and_maintenance_grants" classname="tests.integration.test_authentication" time="4.195" />
+  <testcase name="test_authentication_database_outage_and_recovery" classname="tests.integration.test_authentication" time="2.130" />
+</testsuite>

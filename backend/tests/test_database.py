@@ -15,6 +15,7 @@ from app.db.session import Database
 from app.main import create_app
 from app.modules.conversations import models as conversation_models  # noqa: F401
 from app.modules.identity import models  # noqa: F401 -- reviewed metadata
+from app.modules.privacy import models as privacy_models  # noqa: F401 -- reviewed metadata
 
 
 @pytest.mark.parametrize(
@@ -70,6 +71,11 @@ def test_valid_settings_hide_secret():
         "refresh_tokens",
         "auth_audit_events",
         "auth_rate_limits",
+        "privacy_operators",
+        "privacy_holds",
+        "privacy_deletion_requests",
+        "privacy_deletion_ledger",
+        "privacy_maintenance_state",
     }
 
 

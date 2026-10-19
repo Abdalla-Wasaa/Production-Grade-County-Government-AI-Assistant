@@ -37,6 +37,7 @@ MESSAGES = {
         "rate_limited": "Please wait before trying again.",
         "request_too_large": "Request is too large.",
         "storage_limit": "Storage limit reached.",
+        "deletion_restricted": "Deletion is currently restricted. Contact the authorized operator.",
         "version_required": "A current version is required.",
         "version_conflict": "Refresh the resource before updating it.",
         "idempotency_conflict": "This request key has already been used for different content.",
@@ -49,6 +50,7 @@ MESSAGES = {
         "cors_rejected": "Cross-origin request not allowed.",
     },
     "sw": {
+        "deletion_restricted": "Ufutaji umezuiwa kwa sasa. Wasiliana na mhudumu aliyeidhinishwa.",
         "invalid_credentials": "Uthibitishaji haukufaulu.",
         "invitation_invalid": "Mwaliko huu hauwezi kutumika.",
         "csrf_rejected": "Uhakiki wa ombi haukufaulu.",

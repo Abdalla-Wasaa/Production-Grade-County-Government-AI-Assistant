@@ -1,0 +1,6 @@
+<testsuite tests="4" failures="0" skipped="0">
+  <testcase name="test_account_completion_cascades_and_retry_after_deletion_is_safe" classname="tests.integration.test_privacy" time="1.771" />
+  <testcase name="test_held_request_preserves_only_held_conversations_then_completes" classname="tests.integration.test_privacy" time="1.735" />
+  <testcase name="test_fully_held_request_does_not_starve_later_eligible_account" classname="tests.integration.test_privacy" time="2.051" />
+  <testcase name="test_physical_deletion_and_ledger_roll_back_when_audit_fails" classname="tests.integration.test_privacy" time="1.614" />
+</testsuite>

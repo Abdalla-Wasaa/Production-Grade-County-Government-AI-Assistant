@@ -188,3 +188,12 @@ validated with synthetic unit, real PostgreSQL and actual Nginx/Compose tests.
 Changed-exposure/inventory policy approval still blocks CI acceptance; no production
 or general deployment approval is granted. See [identity operations](../docs/AUTHENTICATION_OPERATIONS.md)
 and [exposure assessment](../docs/P2_01_EXPOSURE_ASSESSMENT.md) before executing it.
+
+## P2-05 privacy lifecycle source
+
+The owner-approved synthetic engineering contract and operator/maintenance command
+reference are in [the privacy runbook](../docs/PRIVACY_LIFECYCLE.md). Migration 0006
+adds durable hold/request/ledger controls, not a public administrator API. Runtime
+execution and the changed security exposure still require explicit authorization.
+No scheduler or new role was installed during preparation; do not use the old
+identity purge flag to bypass the durable holds.

@@ -165,6 +165,14 @@ describe('authenticated persistence transport', () => {
     expect(auth.getSnapshot().user?.id).toBe('00000000-0000-4000-8000-000000000099');
     expect(client.pending(firstId)).toBeUndefined();
   });
+  it('keeps a held conversation and maps safe deletion restriction', async () => {
+    const { client, server } = await setup();
+    server.fetcher.mockResolvedValueOnce(
+      server.response(409, { error: { code: 'deletion_restricted' } }),
+    );
+    await expect(client.remove(firstId)).rejects.toMatchObject({ issue: 'restricted' });
+    expect(server.records.has(firstId)).toBe(true);
+  });
   it('does not allow bearer requests outside the conversation family', async () => {
     const { auth } = await setup();
     await expect(

@@ -1,0 +1,8 @@
+# Local visible journal alert only; configure a staffed delivery channel before any pilot.
+[Unit]
+Description=County synthetic privacy maintenance failure alert
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/logger --priority user.err --tag county-privacy Privacy-maintenance-needs-operator-review
+NoNewPrivileges=true

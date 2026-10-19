@@ -1,0 +1,71 @@
+{
+  "authorized_commit": "f3fbf77c8986a2490d1f758b4df7dd8432fe500b",
+  "authorized_exposure": "c7fad27da4122a52b07efb3fd1efa6fcbfbb2c3f884f24b0c7c9257853626e90",
+  "corrected_source_commit": "a3b5d808d0ced39c1fa90c898f565eca86ab85a8",
+  "corrected_exposure_pending_execution": "13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1",
+  "corrected_application_executed": false,
+  "results": {
+    "contracts": {
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "report": "runtime-contracts.xml",
+      "sha256": "b24c7d7208645e5f41158893e1c07cf5cda4058d74f9fd6295ec159f845d9744"
+    },
+    "privacy-postgresql": {
+      "tests": 27,
+      "passed": 14,
+      "failed": 13,
+      "skipped": 0,
+      "report": "runtime-privacy-postgresql.xml",
+      "sha256": "70a45ef0429d0a3bc155a7505107a75adf942df27d8da2eb652692cd725f0cea"
+    },
+    "frontend-client": {
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "report": "runtime-frontend-client.xml",
+      "sha256": "198b54f9c00674e82cfde019470385049d79ab8bc2685cd0e93dabb361a5a777"
+    },
+    "existing-integration": {
+      "tests": 51,
+      "passed": 49,
+      "failed": 2,
+      "skipped": 0,
+      "report": "runtime-existing-integration.xml",
+      "sha256": "8b51a6100199a64e9482742a5e0f50998823df9f7df47794a0033a1fa5b13c8b"
+    },
+    "auth-conversation-logging-unit": {
+      "tests": 49,
+      "passed": 49,
+      "failed": 0,
+      "skipped": 0,
+      "report": "runtime-auth-conversation-logging-unit.xml",
+      "sha256": "30bf9b4327fb5a9da17ad604d966c1cbde81d13c97f06a884a639c8857dc0aa1"
+    }
+  },
+  "initial_fixture_failures": {
+    "contracts": "21 passed / 1 failed; URL missing required synthetic password; corrected fixture then 22 passed",
+    "privacy-postgresql": "1 passed / 26 setup errors; transitive auth fixture not imported; fixed fixture then 14 passed / 13 failed"
+  },
+  "confirmed_application_defects": [
+    "operator conversation FOR UPDATE requires an unnecessary UPDATE privilege; removed redundant child lock while preserving account lock and delete guards",
+    "shared trigger resolves OLD.status for tables without a status column; users-only condition now a separate nested statement"
+  ],
+  "capacity_and_recovery": "Catch-up/concurrency/purge tests blocked by delete trigger defect. Added a 100-parent/500-message capacity regression, prepared not executed; no 24h operational claim.",
+  "prepared_privacy_pg_cases_after_correction": 28,
+  "cleanup": {
+    "remaining_test_databases_before_container_removal": 0,
+    "remaining_test_roles_before_container_removal": 0,
+    "disposable_container_removed": true,
+    "tmpfs_storage_removed": true,
+    "private_password_file_removed": true,
+    "unrelated_containers_untouched": true
+  },
+  "security_records_modified": false,
+  "human_critical_review": "unconfirmed",
+  "acceptance_expiry": "2026-10-23T20:59:00+00:00",
+  "production_prohibited": true
+}

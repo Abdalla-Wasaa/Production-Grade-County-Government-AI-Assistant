@@ -20,6 +20,7 @@ from app.modules.conversations.schemas import (
 from app.modules.identity.models import User
 from app.modules.identity.security import AuthFailure
 from app.modules.identity.service import Identity
+from app.modules.privacy.service import conversation_held
 
 
 class Conversations:
@@ -138,6 +139,9 @@ class Conversations:
         await self.db.flush()
 
     async def delete(self, row: Conversation) -> None:
+        if await conversation_held(self.db, self.user.id, row.id):
+            await self.identity.event("privacy_delete_denied", "denied", str(self.user.id))
+            raise AuthFailure(409, "deletion_restricted")
         await self.db.delete(row)
         await self.event("conversation_deleted")
         await self.db.flush()
