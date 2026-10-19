@@ -48,6 +48,8 @@ class Target:
             "GRANT UPDATE(consumed_at,accepted_user_id) ON invitations TO {}",
             "GRANT SELECT, INSERT, UPDATE ON auth_sessions,refresh_tokens,auth_rate_limits TO {}",
             "GRANT INSERT ON auth_audit_events TO {}",
+            "GRANT EXECUTE ON FUNCTION public.privacy_is_held(UUID,UUID) TO {}",
+            "GRANT EXECUTE ON FUNCTION public.privacy_audit_key_matches(TEXT) TO {}",
         ]
         with psycopg.connect(self.admin, autocommit=True) as connection:
             for statement in statements:
