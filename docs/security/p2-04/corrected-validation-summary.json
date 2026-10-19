@@ -1,0 +1,49 @@
+{
+  "tested_commit": "ea2e8425f8d7a89652cda0ded89eabaadff77e15",
+  "tested_exposure": "656bd3b5fc48def5402e6e06db69b9a49715b45c69bfea6d96cfcc1a40de7a7a",
+  "unit_component": {
+    "passed": 32,
+    "failed": 2,
+    "skipped": 0
+  },
+  "browser_by_engine": {
+    "chromium": {
+      "passed": 3,
+      "failed": 0
+    },
+    "firefox": {
+      "passed": 3,
+      "failed": 0
+    },
+    "webkit": {
+      "passed": 3,
+      "failed": 0
+    }
+  },
+  "axe": {
+    "engines": 3,
+    "reported_violations": 0
+  },
+  "compose_browser": {
+    "passed": 2,
+    "failed": 0
+  },
+  "postgresql_reused": {
+    "passed": 51,
+    "reexecuted": false,
+    "source_commit": "c34436487b8bd107fb4f910d3d6a17da1e291d6c",
+    "verified_unchanged_paths": [
+      "backend",
+      "scripts",
+      "compose.yaml",
+      "frontend/Dockerfile",
+      "infra"
+    ],
+    "test_image_id": "sha256:d0d41dcc87164721705f13daa1776b358675d4bb3bb7721e691dc7d461ba80de",
+    "previous_log_sha256": "dec10115e96684786119c2d547df9d443eae961add788ce513d3cbf11ce20558"
+  },
+  "local_reuse_driver_sha256": "beb869cd43e94512c8049d031ef60b46552718a8aa60ca760748478559f12f37",
+  "compose_log_sha256": "1301e1b0a4b1e1351ec5b9421b1dfbd0ea843bf49c68bc67b66277eebb6a10a4",
+  "cleanup_completed": true,
+  "pending_test_only_exposure": "2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996"
+}

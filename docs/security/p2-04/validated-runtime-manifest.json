@@ -1,0 +1,22 @@
+{
+  "authentication_checks": [
+    "nine OpenAPI routes",
+    "activation without auto-login",
+    "login/current user",
+    "own session listing/revocation",
+    "rotating refresh/reuse revocation",
+    "logout/logout-all",
+    "CSRF rejection",
+    "non-root secret-file configuration"
+  ],
+  "image_ids": {
+    "web": "sha256:c554f989d117e60de8e3effea99bbeb29e1fa311d3f20f69945fff3aa18863a8",
+    "backend": "sha256:e11862418adea6dace43fd43c6e9d355552e8322a49e8dabb76bce6c06266e6b",
+    "db": "sha256:5ab8aec3927f353ee68d1d482f52bcdbe30ee1597515f402300ae5cc5ccf664d"
+  },
+  "images": [
+    "county-test-e5bd023aff46-web:local",
+    "county-test-e5bd023aff46-backend:local",
+    "county-test-e5bd023aff46-db:local"
+  ]
+}

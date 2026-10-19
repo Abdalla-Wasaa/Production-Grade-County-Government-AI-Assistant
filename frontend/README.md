@@ -49,7 +49,7 @@ the 404 page within a successful SPA document response, not an HTTP 404 status.
 - `src/styles.css`: Tailwind entry, layout, colour/focus and responsive styles.
 
 React context owns language and memory-only authentication state. Native Fetch uses
-same-origin cookies, no-store and redirect rejection. Only account routes are guarded;
+same-origin cookies, no-store and redirect rejection. Account and conversation routes are guarded;
 these guards provide UX, while backend authorization remains authoritative.
 Web Locks serialize cookie-changing operations across tabs, with fresh CSRF inside
 the lock before each mutation. BroadcastChannel carries only invalidation markers.
@@ -184,3 +184,54 @@ workflow/check/ruleset changes are introduced. These cases were executed under t
 owner's isolated validation grant; the first clock-fixture failure, test-only fix and
 passing rerun are recorded in the assessment. Manual screen-reader and fluent
 Kiswahili review remain required; automated axe is not WCAG certification.
+
+## P2-04 conversation history source
+
+Protected `/conversations` and `/conversations/:id` use the existing memory-only
+authentication client. Users can list and paginate private conversations, create,
+open, rename with an ETag, confirm deletion, and save user messages. Messages are
+shown in ascending sequence, with explicit pagination. No assistant reply is
+invented. New conversations use the selected interface language; changing the
+interface does not rewrite the stored message language. Use synthetic content only.
+
+The `features/conversations` module contains strict public DTO parsers, a bounded
+API client, a session-scoped provider and accessible page/detail/dialog components.
+Bearer requests omit cookies; backend ownership remains authoritative. Account or
+session changes invalidate requests, clear pending data and remount the workspace.
+Response bodies are checked again after decoding to reject late account responses.
+No history, draft, access token or idempotency key is written to browser storage.
+
+An ambiguous message submission retains its content and UUID key **in memory** for
+an explicit identical retry; double submission shares one request. Navigation within
+the authenticated application preserves an uncertain submission. Reload/closing the
+tab loses the key, so the browser warns while a submission is pending. After reload,
+inspect saved history before sending again; a new key can create another message.
+Creation is not automatically retried. Stale rename versions require a reload.
+Expired sessions return to sign-in; network outages do not erase a valid identity.
+
+Prepared tests are `contracts.test.ts`, `client.test.ts` and `pages.test.tsx` in that
+module, `e2e/history.spec.ts`, and the extended real-backend
+`e2e/auth-compose.spec.ts`. Initial execution on c344364 produced 25 passing unit/client cases, nine component
+setup failures and six passing/three failing browser cases. The real-backend
+Compose history flow passed. Two corrections now await authorization to execute
+the revised exposure; no passing result is claimed for the corrected source.
+Runtime commands below require the owner's separate synthetic-validation approval:
+
+```bash
+npm run test:ci
+npm run build
+npm run test:e2e
+```
+
+The existing root `python scripts/compose_smoke.py --browser` also requires that
+approval and runs the actual PostgreSQL/backend/Nginx authentication/history flow.
+See [the P2-04 assessment](../docs/P2_04_EXPOSURE_ASSESSMENT.md) for static results,
+scan evidence and the outstanding runtime/security decisions. Existing P2-03 green
+CI is prerequisite evidence, not a passing result for this changed application.
+
+The corrected ea2e842 validation passed all nine browser cases and the actual
+Compose authentication/history flow; 32/34 focused unit/component cases passed.
+Two remaining fixture corrections affect only `pages.test.tsx` and await the
+owner's explicit test-inclusive exposure authorization before execution. Production
+UI code is unchanged from that passing browser/Compose run. See the assessment for
+exact source hashes, retained failures and PostgreSQL evidence reuse.

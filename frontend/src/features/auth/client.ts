@@ -257,6 +257,67 @@ export class AuthClient {
       this.failed(error, error instanceof AuthError && error.issue === 'expired');
     }
   };
+  // Opaque lifecycle key, never a credential. Refresh does not change ownership.
+  getSessionScope = (): string => `${this.generation}:${this.state.user?.id ?? 'guest'}`;
+  isSessionScope = (scope: string): boolean =>
+    this.state.status === 'authenticated' && this.getSessionScope() === scope;
+
+  conversationRequest = async (
+    scope: string,
+    path: string,
+    options: {
+      method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+      body?: unknown;
+      headers?: { 'Idempotency-Key'?: string; 'If-Match'?: string };
+      signal?: AbortSignal;
+    } = {},
+  ): Promise<Response> => {
+    // Callers cannot redirect credentials to an origin or another API family.
+    if (!/^\/conversations(?:\/[a-f\d-]{36}(?:\/messages)?)?(?:\?[^#]*)?$/i.test(path))
+      throw new AuthError('invalid');
+    const current = () => {
+      if (!this.isSessionScope(scope)) throw new AuthError('expired');
+    };
+    return this.serialized(async () => {
+      current();
+      try {
+        await this.ensureAccess();
+      } catch (error) {
+        // A late old-account request must never clear a newer account's session.
+        if (this.isSessionScope(scope)) this.failed(error);
+        throw error;
+      }
+      current();
+      const headers = new Headers({ Accept: 'application/json', ...options.headers });
+      headers.set('Authorization', `Bearer ${this.access}`);
+      if (options.body !== undefined) headers.set('Content-Type', 'application/json');
+      let response: Response;
+      try {
+        response = await fetch(this.base.slice(0, -5) + path, {
+          method: options.method ?? 'GET',
+          headers,
+          credentials: 'omit',
+          cache: 'no-store',
+          redirect: 'error',
+          referrerPolicy: 'no-referrer',
+          signal: AbortSignal.any([
+            AbortSignal.timeout(TIMEOUT),
+            ...(options.signal ? [options.signal] : []),
+          ]),
+          ...(options.body === undefined ? {} : { body: JSON.stringify(options.body) }),
+        });
+      } catch {
+        current();
+        throw new AuthError('unavailable');
+      }
+      current();
+      if (response.status === 401) {
+        this.clear('expired', true);
+        throw new AuthError('expired');
+      }
+      return response;
+    });
+  };
   sessions = async (cursor?: string): Promise<SessionPage> => {
     try {
       return await this.serialized(async () => {

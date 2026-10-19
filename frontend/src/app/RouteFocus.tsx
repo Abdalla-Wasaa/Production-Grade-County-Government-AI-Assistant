@@ -16,9 +16,11 @@ export function RouteFocus() {
             ? 'loginTitle'
             : pathname === '/activate'
               ? 'activationTitle'
-              : pathname === '/account'
-                ? 'accountTitle'
-                : 'notFoundPageTitle';
+              : pathname === '/conversations' || pathname.startsWith('/conversations/')
+                ? 'historyTitle'
+                : pathname === '/account'
+                  ? 'accountTitle'
+                  : 'notFoundPageTitle';
     document.title = `${t(title)} · ${t('appName')}`;
     // A language change updates titles without taking focus from its selector.
     if (previousPath.current !== pathname) {

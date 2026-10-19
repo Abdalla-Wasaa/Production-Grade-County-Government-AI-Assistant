@@ -35,6 +35,9 @@ export function AppLayout() {
           <NavLink to="/assistant">
             <Text message="navAssistant" />
           </NavLink>
+          <NavLink to="/conversations">
+            <Text message="navConversations" />
+          </NavLink>
           <NavLink to="/account">
             <Text message="navAccount" />
           </NavLink>

@@ -1,0 +1,55 @@
+{
+  "validated_commit": "c34436487b8bd107fb4f910d3d6a17da1e291d6c",
+  "validated_exposure": "cd2fd44345bb3b6c09fe05dad6ea0cbe762c866feb8992c6c41c70910ce6f951",
+  "corrected_source_exposure_pending_execution": "656bd3b5fc48def5402e6e06db69b9a49715b45c69bfea6d96cfcc1a40de7a7a",
+  "kev_release": "2026-10-16T17:15:48.8752Z",
+  "images": {
+    "web": {
+      "image_id": "sha256:c554f989d117e60de8e3effea99bbeb29e1fa311d3f20f69945fff3aa18863a8",
+      "report_sha256": "76153774742fe84c8d70ece770b736e1b08e0ad087f6fb5b78f3d9d5dc5fee6d",
+      "inventory": {
+        "packages": 21,
+        "sha256": "e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443"
+      },
+      "counts": {},
+      "fixable": 0,
+      "kev_matches": [],
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "backend": {
+      "image_id": "sha256:e11862418adea6dace43fd43c6e9d355552e8322a49e8dabb76bce6c06266e6b",
+      "report_sha256": "667ae2cecd3fe6a9bc53959032c1f383d445ef73adfe762068a6b4bf8cefa5a2",
+      "inventory": {
+        "packages": 119,
+        "sha256": "7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e"
+      },
+      "counts": {
+        "HIGH": 44
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    "db": {
+      "image_id": "sha256:5ab8aec3927f353ee68d1d482f52bcdbe30ee1597515f402300ae5cc5ccf664d",
+      "report_sha256": "ea74be0ed5bf05c960be1c555a06e760054d4f82cfc92409996b587acfcab07c",
+      "inventory": {
+        "packages": 144,
+        "sha256": "f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288"
+      },
+      "counts": {
+        "HIGH": 71,
+        "CRITICAL": 3
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "added": [],
+      "removed": [],
+      "changed": []
+    }
+  }
+}

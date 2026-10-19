@@ -1,0 +1,85 @@
+{
+  "exposure_sha256": "cd2fd44345bb3b6c09fe05dad6ea0cbe762c866feb8992c6c41c70910ce6f951",
+  "previous_exposure_sha256": "88669fbe4cfafc7dc45e6775546e44e6ca8bcbec1dcacfb0f89a36c702af19b4",
+  "images": {
+    "web": {
+      "image_id": "sha256:5d5290b2212e66f6eaa60a466a1379b0de772ca5924ac26269cbfca3710b0a29",
+      "report_sha256": "35a0b62d99a89de7ccf53b47f7045ecadd00a7f9b27599cde5260ff720f6baca",
+      "inventory": {
+        "packages": 21,
+        "sha256": "e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443"
+      },
+      "counts": {},
+      "fixable": 0,
+      "kev_matches": [],
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "critical": []
+    },
+    "backend": {
+      "image_id": "sha256:4b8a0d2d0ccca3b8a9f0b7836837e554574613d8d249bd4ab95314a95e32df08",
+      "report_sha256": "5c802b56e3af11ed81f16e72aebec6804c1a4ec8cd83537488f8a6f35d073dd1",
+      "inventory": {
+        "packages": 119,
+        "sha256": "7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e"
+      },
+      "counts": {
+        "HIGH": 44
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "critical": []
+    },
+    "db": {
+      "image_id": "sha256:a2c349c6634be2c75fed54068e58f2a1e618b188b83b5e72a1066c5603a2420e",
+      "report_sha256": "6180c4290e4da2b3931e44ca4c551e8073e96aa109f6a7d326a231ffeecb5539",
+      "inventory": {
+        "packages": 144,
+        "sha256": "f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288"
+      },
+      "counts": {
+        "HIGH": 71,
+        "CRITICAL": 3
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "critical": [
+        {
+          "class": "os-pkgs",
+          "cve": "CVE-2025-7458",
+          "package": "libsqlite3-0",
+          "version": "3.40.1-2+deb12u2",
+          "severity": "CRITICAL",
+          "fixed_version": "",
+          "status": "affected"
+        },
+        {
+          "class": "os-pkgs",
+          "cve": "CVE-2026-6653",
+          "package": "libxml2",
+          "version": "2.9.14+dfsg-1.3~deb12u6",
+          "severity": "CRITICAL",
+          "fixed_version": "",
+          "status": "fix_deferred"
+        },
+        {
+          "class": "os-pkgs",
+          "cve": "CVE-2023-45853",
+          "package": "zlib1g",
+          "version": "1:1.2.13.dfsg-1",
+          "severity": "CRITICAL",
+          "fixed_version": "",
+          "status": "will_not_fix"
+        }
+      ]
+    }
+  },
+  "kev_release": "2026-10-16T17:15:48.8752Z"
+}

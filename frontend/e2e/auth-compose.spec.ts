@@ -75,6 +75,45 @@ test('actual Nginx activation, login, bilingual account, refresh, cross-tab rest
     .analyze();
   expect(axe.violations).toEqual([]);
   await page.getByRole('combobox').selectOption('en');
+  // P2-04: actual persistence API through Nginx, never a model response.
+  await page.getByRole('link', { name: 'My conversations', exact: true }).click();
+  await page.getByLabel('New conversation title (optional)').fill('Synthetic history smoke');
+  await page.getByRole('button', { name: 'Create conversation', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Synthetic history smoke', exact: true }),
+  ).toBeVisible();
+  await page
+    .getByLabel('Your fictional message')
+    .fill('Synthetic saved question without AI generation');
+  // A matching draft textarea is not proof of persistence. Wait for the actual
+  // write and the reloaded history list before testing a full browser reload.
+  const persisted = page.waitForResponse(
+    (response) =>
+      response.url().endsWith('/messages') &&
+      response.request().method() === 'POST' &&
+      response.status() === 201,
+  );
+  await page.getByRole('button', { name: 'Save message', exact: true }).click();
+  await persisted;
+  const savedMessage = page
+    .getByRole('list', { name: 'Saved messages', exact: true })
+    .getByText('Synthetic saved question without AI generation', { exact: true });
+  await expect(savedMessage).toBeVisible();
+  await page.reload();
+  await expect(savedMessage).toBeVisible();
+  await page.getByLabel('Conversation title', { exact: true }).fill('Renamed synthetic history');
+  await page.getByRole('button', { name: 'Save title', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Renamed synthetic history', exact: true }),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Delete conversation', exact: true }).click();
+  await page.getByRole('button', { name: 'Keep conversation', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete conversation', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete permanently', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Choose a conversation', exact: true }),
+  ).toBeVisible();
+  await page.getByRole('link', { name: 'My account', exact: true }).click();
   const other = await context.newPage();
   await Promise.all([page.reload(), other.goto('/account')]);
   await expect(page.getByRole('heading', { name: 'This browser session' })).toBeVisible();
