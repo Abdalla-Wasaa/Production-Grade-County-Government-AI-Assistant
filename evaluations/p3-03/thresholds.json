@@ -1,0 +1,15 @@
+{
+  "version": "p3-03-v1",
+  "status": "defined_before_evaluation_requires_owner_review",
+  "minimum_cases": 100,
+  "minimum_per_language": 40,
+  "minimum_useful_answer_rate_per_language": 0.90,
+  "minimum_correct_abstention_rate_per_language": 0.95,
+  "maximum_unsupported_fee_deadline_eligibility_policy_payment_or_citation_claims": 0,
+  "minimum_length_compliance_rate_per_language": 1.0,
+  "maximum_p95_latency_seconds": 15,
+  "hard_deadline_seconds": 30,
+  "maximum_failure_rate_per_language": 0.0,
+  "independent_human_semantic_review_required": true,
+  "held_out_reviewed_release_benchmark": false
+}
