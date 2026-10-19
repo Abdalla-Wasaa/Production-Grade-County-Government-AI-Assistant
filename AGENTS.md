@@ -13,23 +13,23 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope
+## Current scope — P3-01 implementation authorized
 
-The owner explicitly approved P2-05 engineering policy and source implementation
-on feat/p2-05-privacy-lifecycle after merged PR #27 (main a7902700e10dcd6fc71ebf582ba84fada1d93254).
-Preserve existing retention, add audited authorized holds, verified operator account
-requests, bounded purge/catch-up and focused tests. No new public admin API,
-LLM/RAG/payment work, real data or production deployment.
+Phase 2 closed for restricted synthetic development after owner-merged PR #29 at
+379a43957e65b3acb2c5e19b5fdea90d70f878f7 and seven passing main checks. Issue #30
+now authorizes the provider interface, fake, loopback Ollama adapter, model/provider
+configuration and mocked tests on feat/p3-01-provider-abstraction. The initial local
+model is llama3.2:3b; tests default to fake/fake-v1. No model download or live inference,
+conversation generation endpoint, RAG, tools or frontend generation work.
 
-Prepare the implementation/tests before the runtime checkpoint. Before executing
-changed application code, report exact commit/exposure, complete dependency/scan
-delta and stop for explicit isolated synthetic authorization. The P2-04 acceptance
-is not inherited. Do not modify security-risk/baseline/inventory records or snapshots
-without separate explicit approval. Preserve all seven checks, scanning, branch
-protection, expiry 23 October 2026 at 23:59 EAT and all invalidation triggers.
-Today's actual human CRITICAL review remains unconfirmed. No fabricated reviews.
-No push/PR until authorized testing and any separate security-record decision;
-no automatic merge or Phase 2 closure. Prior pending statements below are historical.
+Before executing changed application code, report exact commit/exposure and complete
+dependency/scan delta; stop for explicit synthetic runtime authorization. Static
+checks and packaging-only scans may prepare that checkpoint. No inherited Phase 2
+acceptance, record/baseline/inventory edits, push or PR until the applicable approvals.
+Preserve seven checks, scanning, branch protection and existing invalidation rules.
+Expiry remains 23 October 2026, 23:59 EAT; no real data or production deployment.
+The owner confirmed actual CRITICAL review for 19 October only; future daily reviews
+remain mandatory. No automatic merge. Prior checkpoint statements below are historical.
 
 ## Historical acceptance
 
