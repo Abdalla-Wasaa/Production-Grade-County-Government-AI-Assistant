@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "production_allowed": false,
+  "decisions": [
+    {
+      "scope": "synthetic-local-development",
+      "approved_by": "Abdalla-Wasaa (repository owner)",
+      "approval_reference": "Explicit owner approval in PHASE 2 FINALIZE P2-05 AND ACCELERATE P2-06: approve aa2f491a9899e2a6bc712feb28c993911e3d2743 and exact tested exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d; only the five proposed record files, byte-preserved P2-04 snapshot, unchanged expiry and controls; authorize push, PR linked to #21 and seven hosted checks. Human CRITICAL review remains unconfirmed. Bounded-testing clause is not approved; no merge.",
+      "approved_at": "2026-10-19T11:06:33.478315+00:00",
+      "expires_at": "2026-10-23T20:59:00+00:00",
+      "baseline_sha256": "0f48571f3b819b906b4aa78ce06c0beb4afd517283f78aad4e35c186d6056acf",
+      "reason": "Separate exact P2-05 synthetic-local-development acceptance of reviewed commit aa2f491a9899e2a6bc712feb28c993911e3d2743 and tested exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d. Bind exactly all 118 inherited OS package/CVE occurrences individually enumerated in the unchanged baseline: backend 44 HIGH, PostgreSQL 71 HIGH/3 CRITICAL, web zero. Complete inventories and dependencies unchanged; no reported fixes or KEV matches. Preserve P2-04 bytes at docs/security/p2-05/p2-04-acceptance-snapshot.json SHA-256 70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e. Reviewed delta: authorized DB-role privacy holds, verified operator account disable/revocation, audited hold-aware cascade deletion, bounded scheduled maintenance/catch-up, deletion ledger and fixed bilingual held-delete error; no privilege/network expansion during corrections. Privacy coverage 28 unique passing cases (24 unaffected retained plus four final reruns), 14 targeted regressions and bounded 100-parent/500-message purge measurement; no unconditional deadline or production assurance. Daily actual human CRITICAL review remains required and unconfirmed; this acceptance neither performs nor substitutes it. Immediate invalidation on any available fix, new finding, severity increase, KEV listing or further application/infrastructure/dependency exposure change. Synthetic isolated local development only; no real citizen/county data, production credentials or public/production deployment. No automatic future acceptance, iterative-testing exception, renewal or expansion. Expiry unchanged: 23 October 2026, 23:59 EAT. All seven checks, complete scans, branch protection and owner PR review remain enforced; no automatic merge.",
+      "exposure_sha256": "e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# P3-01 focused exposure assessment — validation passed; acceptance pending
+# P3-01 focused exposure assessment — validation passed; owner acceptance applied
 
 ## Scope and prerequisites
 
@@ -70,8 +70,8 @@ same exact resolved package versions and reports zero backend/tooling advisories
 Existing remediated Nginx pin and its reviewed/deferred tag-drift disposition remain
 unchanged; this milestone does not change the image pin or suppress its monitor.
 
-The normal policy scan exits nonzero: the active acceptance cannot bind the changed
-exposure. Inherited findings therefore lack applicable P3-01 acceptance in this run.
+Before the separate owner approval below, the normal policy scan exited nonzero:
+the Phase 2 acceptance could not bind the changed exposure. Inherited findings therefore lacked applicable P3-01 acceptance in that initial run.
 All three raw reports and inventory checks are valid; this is an owner-decision
 failure, not missing backend scan evidence. Do not manufacture a passing decision,
 edit inventories or reinterpret this as acceptance.
@@ -113,16 +113,16 @@ no added/removed reviewed findings, no reported fixes and no retrieved KEV match
 Dependency audit reports no advisories and dependency files remain byte-identical
 to merged main. This is not proof that the new code has no vulnerabilities.
 
-### Proposed minimum separate owner decision — not applied
+### Owner-approved five-file decision
 
-Testing authorization is not security acceptance. The normal exposure-policy gate
-still correctly rejects the changed hash. No risk-acceptance, inventory, baseline or
-historical snapshot file has been modified. To publish through normal hosted CI,
-request a separate, narrowly scoped P3-01 synthetic-development acceptance binding
-this tested exposure and the exact same 118 individually enumerated baseline
-occurrences, with all existing invalidation rules and daily human CRITICAL review.
+Testing authorization was separate from security acceptance. The owner subsequently
+approved the narrowly scoped P3-01 decision binding this tested exposure and the
+exact same 118 individually enumerated baseline occurrences, with all existing
+invalidation rules and daily human CRITICAL review. Baseline/inventory records
+remain unchanged; the active acceptance and historical snapshot now reflect only
+the explicitly authorized five-file update.
 
-Only these five files would change after explicit approval:
+Only these five files changed under the explicit approval:
 
 1. `.github/security-risk-acceptances.json`: bind the separate P3-01 decision to this
    reviewed/tested exposure and unchanged baseline; no new findings or future exposure.
@@ -136,7 +136,7 @@ Only these five files would change after explicit approval:
 No baseline or inventory-policy update is needed or proposed. The decision must
 preserve expiry 23 October 2026, 23:59 EAT, daily actual human CRITICAL reviews and
 invalidation on fixes/new findings/escalation/KEV/exposure/dependency changes.
-Request publication authorization explicitly alongside that five-file decision:
+The owner explicitly authorized publication alongside that five-file decision:
 commit/push this branch, open the PR linked to #30 and run all seven normal hosted
 checks. No automatic merge or live inference. A draft PR description is prepared
 outside tracked application files; no PR has been opened.
@@ -156,3 +156,13 @@ Existing expiry remains **23 October 2026, 23:59 EAT**. No production deployment
 real citizen/county data. All seven required checks, complete scanning, historical
 records, logging protections and branch protection remain unchanged. No automatic
 inheritance of Phase 2 acceptance or iterative-testing policy exception.
+
+## Final owner decision applied
+
+The owner explicitly approved f53e4aa6f904c8640d12cdca59ef177044ef498b and the exact
+tested exposure above in P3-01 FINAL SECURITY APPROVAL AND PR PUBLICATION. The five
+listed files are now updated; earlier proposal/pending language describes the prior
+checkpoint. Phase 2 bytes are preserved with the recorded snapshot hash. Active
+acceptance binds the unchanged baseline and expiry; no baseline/inventory, finding,
+privilege/network, CI or ruleset changes. Publication and seven hosted checks are
+authorized; no automatic merge, P3-02 source, live inference or production use.
