@@ -13,23 +13,23 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope — P3-01 fake-only foundation
+## Current scope — P3-02 Ollama source implementation
 
-Phase 2 closed through owner-merged PR #29 at
-379a43957e65b3acb2c5e19b5fdea90d70f878f7 and seven passing main checks.
-The latest owner authorization and updated issue #30 limit P3-01 to the typed async
-provider boundary, deterministic fake, validated settings/factory and mocked tests.
-Default fake/fake-v1. Ollama and Meta Llama integration are deferred to P3-02; no
-adapter, inference HTTP dependency, model download, live call or generation endpoint.
+Owner-merged PR #31 is d66602dcd8c0ab46a33279ee7807b12954285ae8 with all seven
+PR checks passed. Updated issue #32 and owner authorization permit the local Ollama
+adapter, validated allowlisted model/endpoint configuration and mocked HTTP tests on
+feat/p3-02-ollama-adapter. Preserve P3-01 contracts and default fake/fake-v1.
+No generation API, frontend UI, RAG, model install/download or live inference.
 
 Before executing changed application code, report exact commit/exposure and complete
-dependency/scan delta; stop for explicit synthetic runtime authorization. Static
-checks and packaging-only scans may prepare that checkpoint. No inherited Phase 2
-acceptance, security-record/baseline/inventory edits, push or PR until required
-approvals. Preserve seven checks, scanning, branch protection, invalidation rules,
-23 October 2026 23:59 EAT expiry and synthetic-only scope. No real data/production.
-The owner confirmed actual CRITICAL review for 19 October only; future daily reviews
-remain required. No automatic merge. Prior checkpoint statements are historical.
+scan/dependency delta; stop for explicit isolated synthetic runtime authorization.
+Static validation and packaging-only scans may prepare this checkpoint. P3-01
+acceptance is not inherited. No security acceptance/baseline/inventory/snapshot edits
+without separate approval; no push/PR until the required decisions. Preserve all seven
+checks, full scans, branch protection, logging and domain authorization/privacy rules.
+Expiry remains 23 October 2026, 23:59 EAT. No real data/production deployment.
+The owner's actual CRITICAL review for 19 October is recorded separately; no invented
+future daily reviews or automatic merge. Earlier pending-scope statements are historical.
 
 ## Historical acceptance
 

@@ -101,3 +101,11 @@ cover P3-01. No acceptance records or historical approvals are modified here.
 P3-02 can add the local Ollama adapter, reviewed model settings, safe HTTP behavior
 and mocked transport tests in its own branch/PR after this boundary is reviewed.
 Model installation and live synthetic inference need separate authorization.
+
+## P3-02 source checkpoint
+
+The owner now authorized local Ollama source integration on its separate branch
+after merged PR #31. The [Ollama guide](OLLAMA_LOCAL_DEVELOPMENT.md) supersedes the
+P3-01-only provider/model-selection restrictions above for this new source. Fake
+remains the default, and P3-01 contracts are unchanged. No changed-source testing or
+live inference is authorized until the separate exposure checkpoint is satisfied.

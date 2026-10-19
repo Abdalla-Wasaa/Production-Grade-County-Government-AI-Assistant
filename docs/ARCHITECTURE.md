@@ -353,3 +353,13 @@ OpenAI, Azure and Bedrock remain future adapters. See [provider contracts](AI_PR
 No generation endpoint, network client, provider call during startup, prompt
 orchestration or frontend integration is introduced. The existing exposure/runtime
 approval procedure applies before tests execute changed source.
+
+## P3-02 local adapter source amendment
+
+After owner-merged PR #31, issue #32 authorizes an isolated asynchronous Ollama
+HTTP adapter using the existing typed port. Configured model allowlisting and numeric
+loopback endpoints keep vendor/network details outside conversation logic. Fake
+remains the automated default. No public generation endpoint, Compose networking
+change or provider call during startup/health checks. See the
+[local adapter guide](OLLAMA_LOCAL_DEVELOPMENT.md); runtime/security acceptance is
+separate and does not inherit P3-01 approval.
