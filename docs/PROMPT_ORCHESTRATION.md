@@ -1,6 +1,7 @@
 # P3-03 prompt orchestration and bilingual evaluation
 
 Status: source and tests prepared; changed-exposure runtime authorization pending.
+Tracked in [issue #34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34).
 No model evaluation or semantic acceptance is claimed. See the
 [requirements](REQUIREMENTS.md), [provider port](AI_PROVIDERS.md) and
 [security contract](SECURITY.md). No application endpoint or domain table changes.
@@ -121,3 +122,16 @@ uncertainty (small samples are not proof of population performance). General-que
 quality must be reviewed too; blanket abstention cannot pass usefulness criteria.
 Owner-approved release evidence requires the independently reviewed holdout, not
 this development fixture. No legal/production/model-quality approval is implied.
+
+## Recorded live-smoke baseline (prior P3-02 source)
+
+| Language | Approximate latency | Observed defect |
+| --- | --- | --- |
+| English | 45.1 seconds | Exceeded the requested two-sentence limit |
+| Kiswahili | 77.6 seconds | Invented a fee-related claim despite an instruction not to invent fees |
+
+These are single synthetic smoke observations, not p95 estimates or a representative
+quality benchmark. Both exceed the 30-second application deadline. This implementation
+has not yet been evaluated against Llama; no improvement is claimed. Compare a future
+separately authorized run using recorded model/weight identity, hardware and the
+versioned dataset and thresholds. Do not tune answers to individual benchmark questions.

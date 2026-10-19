@@ -1,5 +1,6 @@
 # P3-03 focused exposure assessment — runtime decision pending
 
+Tracking: [issue #34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34).
 Implementation: `feat/p3-03-prompt-orchestration`. Source commit `98891ad`;
 prepared tests/fixtures commit `3eb4fe6`; the final documentation commit is reported
 separately. Exact exposure:
