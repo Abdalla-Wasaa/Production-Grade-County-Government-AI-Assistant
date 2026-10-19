@@ -1,0 +1,35 @@
+{
+  "scanned_at": "2026-10-19T11:32:31.612320+00:00",
+  "images": [
+    {
+      "role": "web",
+      "id": "sha256:94f581526212b1a4007b8f5fdd312d61db2c7da3c1e8f781a2e2e3e0fb0a9c99",
+      "base_digest": "sha256:4ac59c85c8c46d9e91eaabd2122cda4923ba380cf11f4138e389f069bcdc77a3",
+      "counts": {}
+    },
+    {
+      "role": "backend",
+      "id": "sha256:29e93cac376a836bd9ef4b977a6328ae47d64ef114962697728f06817fef1ef2",
+      "base_digest": "sha256:a6e34c598f2467ed0e9a8d349809fcd8b5c603269512df273a0bb1784edc11b1",
+      "counts": {
+        "HIGH": 44
+      }
+    },
+    {
+      "role": "db",
+      "id": "sha256:2eb9ede2cdc2a6716a6ea07c61e9ce77cd7dec4ce40ddf84ab4b9efe4de7cada",
+      "base_digest": "sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+      "counts": {
+        "HIGH": 71,
+        "CRITICAL": 3
+      }
+    }
+  ],
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-19T13:11:41.355239192Z",
+    "UpdatedAt": "2026-10-18T13:11:41.355239553Z",
+    "DownloadedAt": "2026-10-18T16:46:05.669521241Z"
+  },
+  "policy_failures": []
+}

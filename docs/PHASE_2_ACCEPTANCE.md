@@ -1,51 +1,44 @@
-# Phase 2 acceptance candidate
+# Phase 2 final verification and restricted-development acceptance candidate
 
-Status: **not accepted**. P2-05 [PR #28](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/pull/28)
-has all seven required checks passing at head 1302d9826daaf4c204f1724a8a15662eeda34ff9
-and is awaiting owner review/merge. This document is prepared on
-`docs/p2-06-acceptance` from main, separately from P2-05. Final clean-checkout and
-operational verification must follow reviewed P2-05 merge; no acceptance PR is open.
+Status: **technical verification passed; owner review/merge and formal closure pending**.
+P2-05 [PR #28](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/pull/28)
+was merged on 19 October 2026 at 11:22:11 UTC, commit
+`75f5006130b1e5e72cf9f9602e2eab4e5419af42`. All seven checks passed on both its
+reviewed head and merged main. This separate `docs/p2-06-acceptance` branch includes
+that main without rewriting history. No application, workflow or acceptance-policy
+code changes are part of this milestone.
 
-Scope is the existing [roadmap](ROADMAP.md) Phase 2: invite-only identity, private
-ordered conversations, bilingual history and tested privacy retention. No public
-registration, provider dispatch, real data, production approval or automatic Phase 3.
-The CLOSED state of trackers #21/#22 does not establish that their unchecked exit
-criteria have passed. Record actual evidence and obtain the owner's closure decision.
+## Roadmap exit criteria and evidence
 
-## Existing evidence to retain
+The existing [roadmap](ROADMAP.md) defines Phase 2 as invite-only identity,
+private ordered conversations, bilingual history and tested privacy retention.
+[Issue #22](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/22)
+tracker state alone is not acceptance. The following maps its actual exit criteria.
 
-| Existing exit criterion | Verified evidence and reuse | Remaining final verification |
+| Criterion | Automated and retained evidence | Final clean-checkout replay |
 | --- | --- | --- |
-| Identity/API contracts and access controls | [Authentication](AUTHENTICATION.md), [operations](AUTHENTICATION_OPERATIONS.md), [P2-01](P2_01_EXPOSURE_ASSESSMENT.md), [P2-02](P2_02_EXPOSURE_ASSESSMENT.md); current P2-05 targeted auth/ownership/revocation/outage regressions 14/14 | Clean-checkout synthetic provisioning/activation/session verification; match final merged source; no public signup |
-| Ordered private history and safe mutations | [P2-03](P2_03_EXPOSURE_ASSESSMENT.md), [P2-04](P2_04_EXPOSURE_ASSESSMENT.md); existing ownership/concurrency/CSRF/history cases and browser/axe evidence | Reuse unaffected reports with source provenance; verify final onboarding flow and record manual language/accessibility status honestly |
-| Privacy retention, holds and deletion | P2-05 final-validation-summary.json maps all 28 privacy cases to passing provenance; 24 unaffected retained plus four final reruns; strict injected audit rollback passed | P2-05 reviewed merge; clean-checkout operator/maintenance runbook replay and final permissions verification |
-| Migration and cascade integrity | P2-05 migration 0006 pristine upgrade/downgrade, retained-hold downgrade rejection, account deletion and message/session cascade tests | Fresh-checkout explicit upgrade/check/readiness to 0006; no forced downgrade through retained controls |
-| Bounded daily maintenance and recovery | 100 conversations/500 messages purged in 0.204737771 seconds; catch-up/backlog/concurrency passed; temporary systemd user-unit verification passed | Verify operator commands and chosen runner operationally; record scheduler installation/run status; preserve documented capacity/availability assumptions |
-| Seven protected CI checks | Existing pinned workflows and ruleset 25222082; no controls changed by P2-05 | All seven latest-head contexts pass, sanitized artifacts downloadable, required checks/app binding and protection still enforced |
-| Restricted development security | P2-05 approved exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d; fresh scans 115 HIGH/3 CRITICAL, exact inventories unchanged, no reported fixes/KEV matches | Verify active decision and byte-preserved P2-04 snapshot; current scans/audits/secret checks; actual daily human review status |
+| API contracts, roles and ownership | [Authentication](AUTHENTICATION.md), ADR 0002, P2-01/02 assessments; merged-main backend 128 unit and 79 PostgreSQL cases, including unauthorized/cross-user rejection | Synthetic invitation CLI, activation/login, current user, CSRF/refresh/session revocation and bilingual browser flow passed |
+| Ordered private conversations | [P2-03](P2_03_EXPOSURE_ASSESSMENT.md), [P2-04](P2_04_EXPOSURE_ASSESSMENT.md); concurrency/idempotency/ownership/history cases, 88 frontend unit and 87 browser cases in hosted evidence | Creation/history/message persistence/rename/delete and session restoration passed through Nginx and real backend |
+| Cascades, holds and retention | [P2-05](P2_05_EXPOSURE_ASSESSMENT.md); all 28 privacy PG cases pass in hosted 79-case suite, rollback/concurrency/catch-up retained | Operator hold create/review/release, held DELETE 409, immediate access revocation, account/message cascade, ledger and idempotent completion passed |
+| Explicit migrations and least privilege | Existing migration upgrade/downgrade and held-record downgrade-rejection tests | Fresh explicit upgrade/check through `0006_privacy_lifecycle`; ready 503 before migration then 200; runtime DDL/revision-write denial and dedicated restricted operator/maintenance grants verified |
+| Retention job and recovery | 30-day inactivity/90-day maximum contract; bounded purge/catch-up tests; measured 100 conversations/500 messages in 0.204737771 seconds | CLI failure/recovery and actual hardened service, timer dispatch, dependency-failure alert and recovery passed |
+| Protected workflow/security | Seven merged-main contexts SUCCESS; complete scans/audits/secret checks; ruleset 25222082 active | Independent fresh image scans pass unchanged policy; exact exposure/inventories retained; actual owner CRITICAL review confirmed 19 October |
 
-P2-05 evidence paths, available after that merge:
-`docs/P2_05_EXPOSURE_ASSESSMENT.md`, `docs/PRIVACY_LIFECYCLE.md`,
-`docs/security/p2-05/final-validation-summary.json`, `final-scan-summary.json`,
-`final-image-manifest.json` and the linked sanitized JUnit reports. Do not relabel
-retained results as a new full-suite execution. Explicitly supersede any historical
-failure only with the matching corrected test/source evidence.
+Existing P2-01 through P2-05 assessments and
+[final P2-05 evidence](security/p2-05/final-validation-summary.json) retain exact
+source/test provenance. They are reused, not relabelled as new full local-suite runs.
+No provider dispatch, public registration, fabricated AI responses or production
+approval is introduced.
 
-## Clean-checkout reproduction instructions — not executed yet
+## Clean-checkout reproduction and operational results
 
-Use an approved Linux host/daemon, synthetic records and an exact merged candidate.
-Ordinary `county-dev` onboarding needs a genuinely isolated Docker daemon/host with
-its own socket/data root and no existing state. A different checkout or project name
-on the shared daemon is not equivalent. The Phase 1 isolated-daemon procedure in
-[existing acceptance](PHASE_1_ACCEPTANCE.md) can be reused; never stop/prune coursework
-containers. If the daemon cannot start, report the affected evidence unavailable.
+A new clone from the official GitHub origin at the merge above started with clean
+tracked files, no copied configuration and a separate empty Docker daemon (no images,
+containers or volumes). [Initial proof](security/p2-06/clean-start.json) records the
+commit and daemon identity. Locked `uv sync --locked` with Python 3.12.3 and `npm ci`
+with Node 24.22.0 succeeded; dependencies were not regenerated.
 
-After P2-05 is merged, make an ordinary clean clone of the official repository and
-record the exact SHA, initial `git status --porcelain`, tool versions, daemon identity
-and empty initial container/volume state. Explicitly select the isolated Docker socket
-through `DOCKER_HOST`. Never copy old `.env`, secret files or PostgreSQL volumes.
-
-From the new checkout, following [Compose development](COMPOSE_DEVELOPMENT.md):
+Following [Compose development](COMPOSE_DEVELOPMENT.md), executed:
 
 ```bash
 python3 scripts/dev.py setup
@@ -53,142 +46,123 @@ python3 scripts/dev.py setup
 docker compose config --quiet
 docker compose build
 docker compose up -d
-docker compose ps
-curl -i http://127.0.0.1:8080/proxy-health
-curl -i http://127.0.0.1:8080/health/live
-curl -i http://127.0.0.1:8080/health/ready
-docker compose --profile maintenance run --rm migrate upgrade
-docker compose --profile maintenance run --rm migrate check
-curl -i http://127.0.0.1:8080/health/ready
+docker compose --profile maintenance run --rm -T migrate upgrade
+docker compose --profile maintenance run --rm -T migrate check
 ```
 
-Expect setup reuse without overwriting credentials, proxy/live 200, ready 503 before
-explicit migration and 200 only with reachable current schema. Ordinary Compose
-still defaults to auth disabled; do not imply that health-only startup proves
-bilingual authentication/history. Use the existing synthetic authenticated smoke
-harness and documented host/operator setup for those paths; do not introduce raw
-secret environment values into Compose configuration or credentials in argv/logs.
+Fresh vendor-pinned builds, safe setup reuse, Nginx SPA/API routing, non-root/read-only
+containers, internal database networking and mounted secret-file configuration passed.
+`/proxy-health` and `/health/live` returned 200; readiness returned safe 503 before
+migration or during DB outage and 200 after current-schema/reachable-DB recovery.
+Shutdown/restart retained data and revocations. The existing synthetic authenticated
+browser harness was exercised against this ordinary `county-dev` stack, including
+English/Kiswahili history. Its single browser case passed; this is additional final
+onboarding evidence, not a claim to rerun all 87 hosted browser cases locally.
 
-For reproducible locked tooling, use the existing commands in
-[Contributing](../CONTRIBUTING.md) and Phase 1 acceptance: Python 3.12, uv/uv.lock,
-Node 24/npm lock; hash-verified repository tooling. No lock regeneration or dependency
-upgrades. Run only the mandatory replay/checks still needed for this candidate;
-retain valid prior suites instead of repeating unrelated tests.
+The [operational proof](security/p2-06/clean-checkout-operations.json) records actual
+stages. Identity/privileged maintenance commands followed
+[authentication operations](AUTHENTICATION_OPERATIONS.md) and
+[privacy lifecycle](PRIVACY_LIFECYCLE.md): private URL/key files, existing HMAC pin,
+dedicated restricted roles, synthetic UUID case references and safe outputs.
+Hold/revocation/deletion and ledger checks passed without broadening database grants.
+The clone's tracked tree remained clean after verification.
 
-With the approved frontend/browser environment, from the clone root:
+### Scheduler and recovery
 
-```bash
-python3 scripts/compose_smoke.py --browser --report .artifacts/compose-images.json --cleanup-manifest .artifacts/compose-cleanup.json --diagnostics .artifacts/compose-diagnostics.json
-```
+[Runner evidence](security/p2-06/runner-verification.json) records actual service
+execution, timer dispatch, visible PostgreSQL-outage failure/OnFailure alert and
+successful recovery. Temporary owned units used the shipped protections unchanged,
+with checkout/env paths substituted, a read-only bind for the temporary checkout and
+the isolated network namespace. A test-only two-second timer trigger supplemented
+the original calendar to verify dispatch without waiting until 02:00. This does not
+claim observation of an overnight deadline or permanent scheduler installation.
 
-Record actual auth/history/migration/integration/browser outcomes and report counts.
-The harness uses owned random projects, not the ordinary county-dev resources. Preserve
-immutable runtime IDs for scanning; sanitize reports with the existing report checker.
-Use existing audit/scanner/secret commands and seven required checks unchanged.
-A missing/all-skipped/malformed/failed report cannot be counted as a passing result.
+The user-level systemd manager could not join the isolated network namespace; its
+initial harness run failed safely. The corrected disposable harness used system-level
+runtime units, preserving sandbox controls; all four stages passed. All owned units
+were removed. Operators must install and monitor their chosen supported runner in
+their own environment; unattended production operation is not established here.
 
-## Privacy runbook and recovery verification — pending final replay
+Existing bounded batches/locking/catch-up and injected audit-rollback tests are
+retained. The small purge benchmark supports only its documented workload and host
+conditions. The 24-hour target depends on scheduling, monitoring, availability and
+capacity assumptions; it is not a guarantee under arbitrary load or host outage.
+Backup restoration with deletion-ledger replay, production RPO/RTO and real erasure
+assurance remain later operational gates.
 
-After migration 0006, provision only dedicated unprivileged operator/maintenance
-roles; use the existing explicit grant command with `--privacy-audit-key-file` to
-pin the existing auth HMAC key. Follow the merged privacy runbook for file paths,
-UUID-only case references, actual operator verification and safe outputs. Do not
-reuse the removed legacy purge bypass or grant broad SELECT/UPDATE to clear a test.
+## Hosted CI and branch protection
 
-Verify synthetic hold create/review/release, held DELETE 409, immediate account
-disable/session revocation, idempotent request status/completion, eligible cascade
-removal, mandatory audit failure rollback and ledger preservation. Reuse the 28-case
-PG evidence where unchanged; record the clean-checkout operator-command proof rather
-than rerunning every unrelated case. Confirm actual role privileges, key mismatch
-rejection and content/credential-free output. Human verification is never supplied
-by an automated fixture outside the synthetic test exercise.
+[Exact merged-main checks](security/p2-06/merged-main-checks.json) record seven
+SUCCESS contexts from GitHub Actions app 15368:
 
-Verify the chosen runner's bounded `tick` command, explicit missed-run catch-up,
-nonblocking overlap and visible failure/attention exit codes. Unit templates must
-use this checkout's actual paths and private files. Record whether a scheduler was
-actually installed/exercised; syntax checks are not evidence of unattended execution.
-The existing 02:00 Nairobi daily target uses 15-minute catch-up checks and a 23-hour
-urgency threshold under the runbook's availability/capacity assumptions. The measured
-100-parent/500-message case is not proof for unbounded cascades or unavailable hosts.
-A missed assumption requires an owner capacity/policy decision, not deadline relaxation.
+| Required context | Merged-main run |
+| --- | --- |
+| backend-quality | [Backend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39244135443) |
+| postgresql-integration | Same backend run |
+| python-dependency-audit | Same backend run |
+| frontend-quality | [Frontend](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39244135473) |
+| repository-quality | [Repository](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39244135341) |
+| secret-scan | Same repository run |
+| compose-integration | [Compose](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39244135391) |
 
-Use controlled dependency stop/start only in the owned isolated stack. Confirm ready
-503/live 200 during database outage and recovery to ready 200; confirm persistence
-across ordinary shutdown/start. Use existing ownership-checked reset for disposable
-cleanup, not global pruning. Backup restore/ledger replay remains an explicit
-operational limitation; do not claim production backup or erasure assurance.
+Downloaded P2-05 hosted artifacts validate 128 backend unit, 79 PostgreSQL, 88 frontend
+unit, 87 browser and 41 tooling cases (including policy negative checks), plus both
+Compose browser reports. The fresh merged-main Compose artifacts were downloaded;
+complete scan decision has no policy failures. Required final P2-06 PR checks must
+also pass before review/merge; use GitHub's latest-head results rather than this table
+as a claim about a future PR commit.
 
-## CI, security and honest acceptance record
+Ruleset 25222082 was read back unchanged: active on default main, all seven contexts
+bound to app 15368, strict synchronization, resolved conversations, zero mandatory
+external approvals, blocked deletion/force pushes and no bypass actors. Controlled
+merge-blocking evidence from PR #15 is retained; no settings changed or bypass used.
 
-Required context names are exactly `backend-quality`, `postgresql-integration`,
-`python-dependency-audit`, `frontend-quality`, `compose-integration`,
-`repository-quality`, `secret-scan`. Verify GitHub Actions app 15368 and ruleset
-25222082 on main, strict synchronization, resolved conversations, zero external
-approval requirement, blocked force-push/deletion and no bypass actors. Read settings;
-do not alter them. Reuse the existing controlled enforcement evidence unless a
-configuration change or unresolved concern requires another safe test.
+## Security decision and human review
 
-For every final check, record commit, run/job URL, actual conclusion and artifact
-integrity. Fresh final image findings/inventories must match the exact active owner
-decision; no new fixable, KEV-listed, escalated or newly discovered finding is
-implicitly accepted. Production stays prohibited, with no real county/citizen data.
-The existing expiry is 23 October 2026, 23:59 EAT; no extension or automatic renewal.
-Daily actual human review of the three CRITICAL findings remains **unconfirmed**.
-Record actual dated evidence only when provided, not an agent claim or CI result.
-
-Manual fluent Kiswahili and screen-reader review status must also be explicit.
-Automated bilingual tests/axe are evidence, not language or WCAG certification.
-Keep legal/pilot/privacy/provider approval gates intact. P2-06 documentation does not
-change application exposure policy, accept new findings or authorize production.
-
-## Remaining acceptance gates and decision
-
-- P2-05 latest-head CI: seven passed; owner-reviewed merge remains pending.
-- Clean isolated-checkout onboarding/migration/operator/runner/recovery replay: pending.
-- Final seven-check/artifact/security/ruleset verification: pending.
-- Actual human CRITICAL-review evidence: unconfirmed; no fabricated completion.
-- Manual language/accessibility status and operational limitations: record honestly.
-- Separate P2-06 PR and explicit restricted-development closure decision: pending.
-
-Only after actual criteria are satisfied should this candidate become an acceptance
-report. Do not infer closure from a tracker status or automatically merge either PR.
-After separate Phase 3 approval, the first implementation task is the AI provider
-interface and OpenAI adapter with mocked contracts and bounded timeout/error handling;
-no live-provider calls or conversation-generation endpoint is approved by this report.
-
-
-## Verified P2-05 hosted handover
-
-PR #28 head `1302d9826daaf4c204f1724a8a15662eeda34ff9` has all seven SUCCESS check
-runs bound to GitHub Actions app 15368; GitHub reports CLEAN / MERGEABLE and zero
-unresolved review threads. These are P2-05 results, not P2-06 final acceptance.
-
-| Context | Run evidence | Result |
-| --- | --- | --- |
-| backend-quality | [Backend run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616707) | SUCCESS; 128 unit cases |
-| postgresql-integration | Same backend run; postgresql-results artifact | SUCCESS; 79 PG cases including all 28 privacy cases |
-| python-dependency-audit | Same backend run; python-dependency-reports artifact | SUCCESS |
-| frontend-quality | [Frontend run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616684) | SUCCESS; 88 unit and 87 browser cases |
-| repository-quality | [Repository run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616731) | SUCCESS; 41 tooling cases |
-| secret-scan | Same repository run | SUCCESS |
-| compose-integration | [Compose run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39242616660) | SUCCESS; both retained browser reports pass, complete image policy passes |
-
-Artifacts from all four runs were downloaded and their JUnit reports validated.
-Compose image decision has zero policy failures: backend 44 HIGH, PostgreSQL
-71 HIGH/3 CRITICAL, web zero. No findings were removed from the baseline and no
-security control was bypassed. Current exact exposure is
+Application exposure remains
 `e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d`.
+[Fresh local image decision](security/p2-06/image-scan-decision.json), scanned
+19 October 2026 11:32 UTC, matches the complete accepted inventories:
 
-The approved five-file decision preserves prior P2-04 bytes at
-`docs/security/p2-05/p2-04-acceptance-snapshot.json`, SHA-256
+| Image | HIGH | CRITICAL | Inventory SHA-256 |
+| --- | --- | --- | --- |
+| Backend | 44 | 0 | 7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e |
+| PostgreSQL | 71 | 3 | f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288 |
+| Web | 0 | 0 | e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443 |
+
+Total **115 HIGH/3 CRITICAL**, no reported fixes or KEV matches in the retrieved
+snapshot; these scanner facts are not proof of vulnerability-free code.
+[Image manifest](security/p2-06/image-manifest.json) binds immutable runtime image IDs.
+CVE-2026-77214 remains absent from the remediated web image.
+
+The owner explicitly confirmed on **19 October 2026**: “I reviewed all three today;
+continue restricted acceptance”. [Dated review evidence](security/p2-06/human-critical-review.json)
+records CVE-2025-7458 (SQLite crafted SQL prerequisite), CVE-2026-6653 (libxml2,
+authenticated SQL/XML plausible path) and CVE-2023-45853 (zlib MiniZip excluded per
+Debian assessment, scanner finding retained). See [register](VULNERABILITY_REGISTER.md)
+for the individual assessments. This supersedes older pending-review statements for
+that date only; future daily human reviews are not completed by this record.
+
+Active acceptance, baseline and inventory policy records remain unchanged. The P2-04
+snapshot SHA-256 remains
 `70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e`.
-Expiry, all invalidation rules, isolated synthetic scope and production prohibition
-remain unchanged. No bounded-testing policy amendment was implemented. Actual daily
-human CRITICAL review remains unconfirmed. Do not relabel these CI results as that
-review, a clean-checkout operational replay or formal Phase 2 acceptance.
+Acceptance expires **23 October 2026, 23:59 EAT**; no automatic renewal/expansion.
+All fix/new-finding/escalation/KEV/exposure/dependency invalidation rules, scanning,
+seven checks and branch protections remain active. No bounded-testing policy exception
+was introduced. Only isolated synthetic local development is accepted: no real
+citizen/county data, production credentials, public or production deployment.
 
-The P2-06 documentation candidate was statically checked in a separate independent
-validation clone because the current repository checker deliberately rejects linked
-worktrees. That document-only check is not the final runtime reproduction. After
-reviewed P2-05 merge, incorporate main without rewriting published history, perform
-only the remaining mandatory final checks above, then open the separate P2-06 PR.
+## Manual limitations and closure decision
+
+Automated bilingual/browser/axe evidence is passing. Independent fluent Kiswahili
+and manual screen-reader/WCAG 2.2 AA assessment have **not** been completed; do not
+claim accessibility certification or pilot language approval. Those, county/pilot/
+legal/provider approvals and production backup/restore/security gates remain explicit
+limitations and later release gates.
+
+This report supports restricted-development technical acceptance only. The separate
+P2-06 PR still requires all seven final checks and owner review/merge/closure decision.
+No automatic tracker closure, merge, production security approval or Phase 3 start.
+The [Phase 3 plan](PHASE_3_PLAN.md) proposes the provider interface and deterministic
+fake with mocked contract tests first, then an OpenAI adapter. Separate authorization
+is required; no live provider calls or application changes have begun.

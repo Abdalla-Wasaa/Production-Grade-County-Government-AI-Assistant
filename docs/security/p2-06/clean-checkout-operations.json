@@ -1,0 +1,17 @@
+{
+  "commit": "75f5006130b1e5e72cf9f9602e2eab4e5419af42",
+  "stages": {
+    "fresh health routing": true,
+    "explicit migration 0006": true,
+    "real bilingual auth/history browser": true,
+    "database outage and volume recovery": true,
+    "private operator provisioning": true,
+    "operator invitation and active account": true,
+    "hold review and immediate revocation": true,
+    "hold release completion and idempotency": true,
+    "maintenance failure recovery": true,
+    "runtime unit inputs prepared": true
+  },
+  "scheduler_installed": false,
+  "tracked_tree_clean": true
+}

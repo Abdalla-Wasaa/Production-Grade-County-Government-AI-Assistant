@@ -436,3 +436,13 @@ Current runtime authorization rules remain unchanged; any proposal must be consi
 separately. Publish P2-05 through its feature-branch PR linked to #21 and normal CI.
 Prepare P2-06 separately; final acceptance PR/validation follows reviewed P2-05 merge.
 No automatic Phase 2 closure, P2-06 merge or Phase 3 implementation is authorized.
+
+## Dated P2-06 human review status — 19 October 2026
+
+The owner explicitly confirmed personal review of the three existing CRITICAL
+assessments on 19 October: “I reviewed all three today; continue restricted acceptance”.
+See [dated evidence](security/p2-06/human-critical-review.json) and
+[Phase 2 verification](PHASE_2_ACCEPTANCE.md). This supersedes older pending-review
+statements for that day only; daily review remains necessary on subsequent days.
+No active acceptance or historical snapshot changed; scope, invalidation rules and
+23 October 2026, 23:59 EAT expiry remain unchanged. Production stays prohibited.

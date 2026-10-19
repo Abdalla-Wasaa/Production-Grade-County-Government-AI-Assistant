@@ -167,3 +167,14 @@ Current runtime authorization rules remain unchanged; any proposal must be consi
 separately. Publish P2-05 through its feature-branch PR linked to #21 and normal CI.
 Prepare P2-06 separately; final acceptance PR/validation follows reviewed P2-05 merge.
 No automatic Phase 2 closure, P2-06 merge or Phase 3 implementation is authorized.
+
+## P2-06 final verification — 19 October 2026
+
+PR #28 is merged at 75f5006130b1e5e72cf9f9602e2eab4e5419af42. P2-06 is
+documentation/evidence only; see docs/PHASE_2_ACCEPTANCE.md. On 19 October the owner
+explicitly confirmed personal review of all three existing CRITICAL assessments:
+“I reviewed all three today; continue restricted acceptance”. This supersedes earlier
+unconfirmed status for that date only. Future daily reviews remain required.
+No acceptance/baseline/inventory record or authorization rule changes. Preserve the
+23 October 2026 23:59 EAT expiry, synthetic-only scope and production prohibition.
+No automatic merge, formal closure or Phase 3 implementation.

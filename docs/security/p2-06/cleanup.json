@@ -1,0 +1,9 @@
+{
+  "owned_compose_containers_remaining": 0,
+  "owned_compose_volumes_remaining": 0,
+  "ownership_checked_reset_passed": true,
+  "owned_runtime_units_removed": true,
+  "private_daemon_shutdown_requested": true,
+  "owned_veth_and_firewall_rules_removed": true,
+  "unrelated_daemons_or_coursework_resources_modified": false
+}
