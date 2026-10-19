@@ -143,3 +143,56 @@ must be tested; if it cannot be met, stop for the owner's policy/capacity decisi
 Issues #21/#22 are open because source preparation is not acceptance. P2-06 still
 requires P2-05 runtime evidence and merge, a clean-checkout replay, seven hosted checks,
 fresh final audits/scans, operational handover and explicit human-review status.
+
+## Authorized runtime attempt and correction checkpoint — 19 October 2026
+
+The owner subsequently authorized synthetic testing of final documentation commit
+`f3fbf77c8986a2490d1f758b4df7dd8432fe500b`, with the exact exposure above. This supersedes
+only the earlier pending runtime status for that exposure; no acceptance update,
+push, PR or human CRITICAL review was granted. Actual sanitized evidence is in
+[runtime summary](security/p2-05/runtime-attempt-summary.json).
+
+| Executed suite, approved application exposure | Passed | Failed |
+| --- | ---: | ---: |
+| Privacy backend contracts | 22 | 0 |
+| Privacy PostgreSQL | 14 | 13 |
+| Frontend client, including the new held-delete case | 11 | 0 |
+| Existing auth/conversation/PostgreSQL integration | 49 | 2 |
+| Existing auth/conversation/logging unit regressions | 49 | 0 |
+
+Initial test-only fixture defects (a missing synthetic URL password and an unimported
+transitive auth fixture) were corrected and rerun without changing exposure. Failures
+above are actual application failures, not suppressed/skipped cases. The two confirmed
+root causes are an unnecessary child-row lock without an operator UPDATE grant, and
+PostgreSQL resolving `OLD.status` on non-user table records in the shared guard.
+
+Prepared correction commit `a3b5d808d0ced39c1fa90c898f565eca86ab85a8` removes only the
+redundant child lock (account-first locking/DB guards remain) and nests users-only
+record access in a separate trigger statement. No permission is broadened or hold
+check removed. Ruff, formatting and strict Mypy pass. A new 100-parent/500-message
+capacity case is prepared; the focused PostgreSQL suite now contains 28 cases.
+
+Corrected exposure, **not executed**:
+`13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1`.
+
+Stop before executing that corrected source. Request isolated synthetic authorization
+for its 28 PostgreSQL cases, affected regression failures and maintenance/capacity/
+recovery verification. No corrected passing result, capacity measurement, scheduler
+installation or sub-24h operational guarantee is claimed. Existing passing unrelated
+unit/frontend evidence can be reused; a pristine migration case passed, but this does
+not validate the corrected delete paths.
+
+No manifest/lock/image-pin or security-policy/acceptance/snapshot changes occurred.
+The previous fresh image scans remain evidence for unchanged dependency inventories
+and the authorized pre-correction images, **not a scan of a corrected rebuilt image**.
+Residual observed findings remain 115 HIGH/3 CRITICAL, no reported fixes or KEV matches;
+no new dependency or scanner finding is inferred from these two source-only fixes.
+Do not mistake that for proof of vulnerability-free code. Any final image rebuild
+must retain fresh complete scans before review. Daily human review remains unconfirmed
+and expiry remains 23 October 2026, 23:59 EAT.
+
+Disposable PostgreSQL used fresh databases/roles and tmpfs storage. Zero test databases
+or roles remained before removing the owned container and private password file.
+Unrelated containers/coursework were untouched. P2-06 still needs passing P2-05
+runtime/capacity evidence, separately approved security records, reviewed merge,
+clean-checkout reproduction, seven hosted checks and operational/manual review status.

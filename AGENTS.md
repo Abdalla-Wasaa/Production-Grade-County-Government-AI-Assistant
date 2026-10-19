@@ -94,3 +94,19 @@ KEV/exposure/dependency invalidation triggers, all seven checks, complete scans,
 branch protection and owner PR review remain mandatory. After this explicit record
 approval, publish the branch/PR linked to issue #20 and run normal hosted CI.
 No automatic renewal, future exposure approval, merge or P2-05 implementation.
+
+## P2-05 authorized testing and corrected-source checkpoint
+
+The owner authorized f3fbf77 / exposure c7fad27da4122a52b07efb3fd1efa6fcbfbb2c3f884f24b0c7c9257853626e90.
+Actual results: privacy contracts 22 pass, frontend client 11 pass, auth/conversation/
+logging unit 49 pass; privacy PG 14 pass/13 fail and existing integration 49 pass/2 fail.
+Test fixture corrections did not change exposure. Two source corrections are now
+prepared: remove redundant conversation child locking without granting more rights;
+separate users-only OLD.status access in the shared DB trigger. Corrected exposure
+13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1
+has NOT executed. Stop for fresh explicit synthetic runtime authorization before
+running corrected app/migrations/tests. A 100-parent/500-message capacity case is
+prepared, not run; the 24h capacity/recovery bound is unproven. No security acceptance
+records, inventory/baseline, snapshots or expiry changed; no push/PR. Human CRITICAL
+review remains unconfirmed. See docs/P2_05_EXPOSURE_ASSESSMENT.md and its sanitized
+runtime evidence. Existing unrelated passing evidence should be reused where valid.
