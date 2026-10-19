@@ -1,0 +1,2441 @@
+{
+  "purpose": "fake_plumbing_not_model_quality_acceptance",
+  "created_at": "2026-10-19T18:54:59.574246+00:00",
+  "dataset_sha256": "e1f02f9515bf8e12df05edd4f7375f32af908898aee83e941d36ab1da6e666c1",
+  "thresholds_sha256": "6cfca4a9f90d904f200115501bb943ddde39f7878c0d39308c03b33cf269b166",
+  "hardware": {
+    "architecture": "x86_64",
+    "python": "3.12.3"
+  },
+  "configuration": {
+    "timeout_seconds": 30.0,
+    "max_output_tokens": 256,
+    "max_output_characters": 1200
+  },
+  "rows": [
+    {
+      "case_id": "en-fee-01",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 6.906100315973163e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-01",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.705901326611638e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-02",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.2279011318460107e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-02",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.0938000893220305e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-03",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.1042011212557554e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-03",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.830398105084896e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-04",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7479003872722387e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-04",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8619000911712646e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-05",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6878009773790836e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-05",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6740988940000534e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-06",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8790015019476414e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-06",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7531972844153643e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-07",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7094018403440714e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-07",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8001010175794363e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-08",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7273996490985155e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-08",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6557984054088593e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-01",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.846998929977417e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-01",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7031008610501885e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-02",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6892008716240525e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-02",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6694015357643366e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-03",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.698400592431426e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-03",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7166021279990673e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-04",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8144986825063825e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-04",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.691799843683839e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-05",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8888007616624236e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-05",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.838302705436945e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-06",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.769300433807075e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-06",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8708000425249338e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-07",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8950988305732608e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-07",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6628997400403023e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-08",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.68370024766773e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-08",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.645998706109822e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-01",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7140002455562353e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-01",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6467995010316372e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-02",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8910999642685056e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-02",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.67829857673496e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-03",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6525998944416642e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-03",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8143997294828296e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-04",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6618025256320834e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-04",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.610899926163256e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-05",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7398997442796826e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-05",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7607002519071102e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-06",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8911989172920585e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-06",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.6443012757226825e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-07",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8586026271805167e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-07",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.782798790372908e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-08",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.9047001842409372e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-08",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.668499317020178e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-01",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.706500188447535e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-01",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.73519947566092e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-02",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.8512015230953693e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-02",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.694800448603928e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-03",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.450202009640634e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-03",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.8513004761189222e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-04",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.7444981494918466e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-04",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.732198870740831e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-05",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.7230981029570103e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-05",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.7359008779749274e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-06",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.01159855350852e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-06",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.867100945673883e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-01",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8082006135955453e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-01",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7004000255838037e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-02",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.1688989363610744e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-02",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.0175997633486986e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-03",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8952996470034122e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-03",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7844984540715814e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-04",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.720900763757527e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-04",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7279991880059242e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-05",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7243000911548734e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-05",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7293001292273402e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-06",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.890098792500794e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-06",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.6906997188925743e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-07",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.674200757406652e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-07",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.8831982742995024e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-08",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.751398667693138e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-08",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.009398303925991e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-01",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.8988997908309102e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-01",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.7348997062072158e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-02",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.750400406308472e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-02",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.7799990018829703e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-03",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.704602618701756e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-03",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.6951002180576324e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-04",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.8883991288021207e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-04",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.676499960012734e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-05",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 1.9177008653059602e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-05",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 8.059001993387938e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-06",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.7507019694894552e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-06",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.375399344600737e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-01",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.6919005904346704e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-01",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.598800347186625e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-02",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.7868023607879877e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-02",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 2.0982988644391298e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-03",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.796201104298234e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-03",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 8.84059991221875e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-04",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.6162975700572133e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-04",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": false,
+      "elapsed_seconds": 2.0549981854856014e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-09",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7664977349340916e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-09",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7615006072446704e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-09",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.0014984076842666e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-09",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v1",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "expect_uncertainty": true,
+      "elapsed_seconds": 1.7740996554493904e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    }
+  ],
+  "summary": {
+    "languages": {
+      "en": {
+        "attempted": 50,
+        "failures": 0,
+        "length_compliant": 50,
+        "uncertainty_signals": 0,
+        "flagged_responses": 0,
+        "p95_seconds": 2.7868023607879877e-05,
+        "unknown_usage": 50
+      },
+      "sw": {
+        "attempted": 50,
+        "failures": 0,
+        "length_compliant": 50,
+        "uncertainty_signals": 0,
+        "flagged_responses": 0,
+        "p95_seconds": 4.645998706109822e-05,
+        "unknown_usage": 50
+      }
+    },
+    "errors": {},
+    "semantic_acceptance": "pending_human_review"
+  }
+}

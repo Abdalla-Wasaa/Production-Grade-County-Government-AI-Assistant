@@ -1,8 +1,8 @@
 # P3-03 prompt orchestration and bilingual evaluation
 
-Status: source and tests prepared; changed-exposure runtime authorization pending.
+Status: authorized synthetic tests and fake-provider evaluation passed; publication/security-record approval pending.
 Tracked in [issue #34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34).
-No model evaluation or semantic acceptance is claimed. See the
+No live-model evaluation or semantic acceptance is claimed. See the
 [requirements](REQUIREMENTS.md), [provider port](AI_PROVIDERS.md) and
 [security contract](SECURITY.md). No application endpoint or domain table changes.
 

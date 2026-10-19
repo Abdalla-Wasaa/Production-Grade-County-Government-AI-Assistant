@@ -1,4 +1,4 @@
-# P3-03 focused exposure assessment — runtime decision pending
+# P3-03 focused exposure assessment — publication decision pending
 
 Tracking: [issue #34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34).
 Implementation: `feat/p3-03-prompt-orchestration`. Source commit `98891ad`;
@@ -71,21 +71,69 @@ responses, invalid configuration/input, bounds, cancellation/timeout cleanup,
 normalized private errors, review signals, report privacy/identity, dataset coverage
 and fake-only evaluation. Existing 43 provider, 68 Ollama and backend regressions
 will be reused or rerun only where the new path/configuration isolation affects them.
-**No new runtime tests or evaluations have run.**
+Owner authorization explicitly covered tested commit
+`d00171e7da399cfb0c6a72a207f358b9e99cff4d` and this exact exposure. Actual isolated
+synthetic validation now passed; no application source correction was needed:
+
+- 38 orchestration tests, 43 existing provider and 68 mocked Ollama tests: **149 passed**.
+- Relevant non-integration backend regressions: **128 passed**, 79 integration cases
+  deliberately deselected because they require PostgreSQL and were outside this run.
+- Fake-provider evaluation: 100/100 completed, 50 English and 50 Kiswahili.
+- Ruff, formatting, strict Mypy, repository validation and sanitized-report checks passed.
+- Existing TestClient emits one dependency deprecation warning per pytest invocation;
+  no package addition or unrelated migration is warranted for this task.
+
+[Provider test evidence](security/p3-03/provider-tests.xml),
+[backend regressions](security/p3-03/backend-regressions.xml), and
+[fake evaluation report](security/p3-03/fake-evaluation.json) contain actual sanitized
+results. The fake run explicitly chose fake/fake-v1, not Ollama. Unit tests retained
+socket-denial protections; mocked Ollama tests exercised transport contracts only.
+No model downloads, live inference or external AI services were used.
 
 The normal workflow-policy and image gates correctly reject changed exposure with
 owner review required. Complete image reports exist; this is not a clean-policy pass
 or missing-scan workaround. All seven checks and branch protection remain unchanged.
 
-Required now: authorize isolated synthetic execution of this exact commit/exposure's
-prepared orchestration tests, fake-only 100-case evaluation, existing provider tests
-and relevant non-integration backend regressions. No network/model calls, downloads,
-real data, public deployment or acceptance changes. Any corrected exposure must
-follow the existing authorization procedure before executing changed code.
+## Bilingual evaluation outcome — plumbing, not model-quality approval
 
-## Proposed later publication update — not applied or approved
+| Metric | English | Kiswahili |
+| --- | --- | --- |
+| Cases attempted / successful execution / failed execution | 50 / 50 / 0 | 50 / 50 / 0 |
+| Character-limit compliance | 50/50 | 50/50 |
+| Automated unsupported-claim flags | 0/50 | 0/50 |
+| Uncertainty phrase signals on expected-abstention cases | 0/36 | 0/36 |
+| Injection fixtures completed / claim flags | 8/8 / 0 | 8/8 / 0 |
+| Approximate fake p95 | 0.028 ms | 0.046 ms |
+| Unknown token usage | 50/50 | 50/50 |
+| Semantic instruction-following / correctness | Not established | Not established |
 
-Only after authorized tests pass, request a separate exact five-file decision:
+The fake returns fixed language-specific synthetic text; it is not designed to
+answer county questions or express case-specific uncertainty. Thus the 100 execution
+passes are **not 100 semantic acceptance passes**. No appropriate-abstention pass can
+be claimed from the zero uncertainty signals. Likewise zero lexical flags is not
+proof of zero unsupported claims. Injection cases show safe fixed-output plumbing,
+not real-model injection resistance. Semantic pass/fail counts and real Llama
+improvement remain unassessed, with acceptance marked pending human review.
+The mocked safe English/Kiswahili uncertainty responses and unsafe-claim fixtures
+verify reporting and prompt construction, not learned model behavior.
+
+The 45.1/77.6-second prior live smoke observations remain the only live baseline;
+no new live latency measurement or accuracy comparison exists. Current fake timings
+measure framework overhead on this machine only. Dataset, threshold and response
+hashes preserve reproducibility; machine timings need not be bit-for-bit identical.
+Use the reviewed semantic rubric before claiming any bilingual quality threshold.
+
+No implementation/test defects occurred. Final source exposure is unchanged; only
+validation documentation/evidence is added after the tested implementation. No
+security acceptance, baseline, inventory, snapshot, CI workflow or GitHub setting
+has changed. Ruleset 25222082 was fetched directly and remains active, strict, with
+all seven checks bound to Actions app 15368, resolved review conversations required,
+zero mandatory approvals, no bypass actors, force pushes or branch deletion.
+The normal gates remain blocked until a separate scoped publication decision.
+
+## Exact publication update requiring separate owner approval
+
+Authorized tests passed. Request this separate exact five-file decision:
 
 1. `.github/security-risk-acceptances.json`: bind each unchanged inherited occurrence
    to the tested P3-03 exposure with explicit owner evidence; no expanded scope.
