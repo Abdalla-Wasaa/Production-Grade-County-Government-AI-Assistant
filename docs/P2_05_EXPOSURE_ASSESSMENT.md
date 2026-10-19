@@ -196,3 +196,89 @@ or roles remained before removing the owned container and private password file.
 Unrelated containers/coursework were untouched. P2-06 still needs passing P2-05
 runtime/capacity evidence, separately approved security records, reviewed merge,
 clean-checkout reproduction, seven hosted checks and operational/manual review status.
+
+## Corrected-source authorized validation — 19 October 2026
+
+The owner authorized `095aa6594463a4ca7e645935f359c06cf67483f3` / exposure
+`13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1`.
+Actual [corrected runtime evidence](security/p2-05/corrected-runtime-summary.json):
+privacy PostgreSQL **25 passed / 3 failed**, selected existing regressions **14/14 passed**
+(including both formerly failing cases, ownership/expired concealment, revocation,
+authorization and outage/recovery). Existing unaffected 22 contract, 49 unit and
+11 frontend results are reused; they were not unnecessarily rerun.
+
+The three remaining account-completion failures share one root cause: SQLAlchemy's
+`exists().where(...)` emits `SELECT *`, which exceeds maintenance's column-level
+conversation SELECT grant. Prepared source correction `50f4724` explicitly selects
+`Conversation.id`; no privilege or hold protection changes. Test-only follow-up
+`a21cb89` strengthens physical-deletion audit rollback to require the injected
+`synthetic audit failure`, rather than accepting any DBAPIError. Its earlier pass
+must not be claimed as proof that the intended audit fault was reached.
+
+New exposure, **not executed**:
+`e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d`.
+Stop before executing it. The minimum next authorization is synthetic validation
+of the three account-completion failures plus strengthened physical-deletion rollback;
+reuse unaffected results. A security-record approval is premature until those pass.
+
+### Measured capacity, recovery and limits
+
+The capacity case passed: 100 expired conversation parents / 500 synthetic messages
+were physically deleted with 100 ledger entries, no eligible backlog and no deadline
+breach. Maintenance invocation measured **0.204737771 seconds** on this local disposable
+PostgreSQL instance; whole case including setup/teardown was 2.050 seconds.
+Missed-run catch-up/repeated idle, bounded batch backlog, nonblocking concurrent
+maintenance and the 23-hour urgency path all passed. Entire-case durations were
+respectively 2.073, 2.353, 2.528 and 2.167 seconds; these are not isolated maintenance
+latency measurements. Exact property/timing evidence is retained in the summary.
+
+This supports only the tested 100-parent/500-message workload and the runbook's
+conditional bound: accurate clocks, available PostgreSQL/runner, ticks no more than
+16 minutes apart, eligible workload clearing within five minutes and no sustained
+capacity excess. It is not a guarantee for unbounded message cascades, unavailable
+hosts, larger backlogs or unmeasured hardware. A failure of these assumptions needs
+the owner's policy/capacity decision, not silent deadline relaxation. Account deletion
+completion remains blocked by the identified query defect and is not accepted.
+
+The three user-unit templates passed `systemd-analyze --user verify` using temporary
+copies with this checkout's actual paths. Calendar syntax was previously verified.
+No host timer was installed/enabled, no real scheduled execution was claimed, and
+local journal failure visibility does not establish a staffed response. Actual host
+scheduler/operational recovery remains a final acceptance verification item.
+
+Disposable databases/roles were all removed; zero remained before removal of the
+owned tmpfs PostgreSQL container and private password file. No unrelated resources,
+coursework, CI workflows or security acceptance records were changed. Human CRITICAL
+review remains unconfirmed and the expiry remains 23 October 2026, 23:59 EAT.
+Fresh final-image evidence is recorded separately once the permitted rebuild/scan
+finishes; image construction/scanning does not execute the corrected application.
+
+### Final corrected image rebuild and scan evidence
+
+The final backend runtime image was rebuilt from the new column-projection source;
+all three immutable images were freshly scanned. See
+[final manifest](security/p2-05/final-image-manifest.json) and
+[final scan summary](security/p2-05/final-scan-summary.json).
+Backend 44 HIGH/0 CRITICAL, PostgreSQL 71 HIGH/3 CRITICAL and web 0/0 remain:
+115 HIGH/3 CRITICAL total, zero reported fixes or retrieved KEV matches. All complete
+inventories match exactly (backend 119 packages, PostgreSQL 144, web 21); zero added,
+removed or changed HIGH/CRITICAL occurrences. No package manifest/lock/pin changed.
+The fresh scan of corrected packaged source is not execution or functional validation
+of the remaining corrected account-deletion path, nor proof of vulnerability-free code.
+
+The unchanged policy still rejects the new application exposure and its inherited
+118 occurrences without an approved current decision: 119 reported failures, consisting
+of the invalid exposure-bound risk decision plus each individually unaccepted finding.
+The repository policy independently reports owner review required. All scan reports
+exist and inventories validate; missing evidence is not being treated as a clean scan.
+No acceptance, inventory/baseline or snapshot was changed to turn these gates green.
+
+Next decision: authorize isolated synthetic execution of this exact new exposure for
+three account-completion cases plus the strengthened physical-deletion audit rollback.
+Do not repeat unaffected passing suites. Only after those pass can the separate minimum
+five-file security-record proposal be finalized: active acceptance, byte-for-byte P2-04
+snapshot at docs/security/p2-05/p2-04-acceptance-snapshot.json, this exposure assessment,
+docs/SECURITY.md and AGENTS.md. No baseline/inventory-policy update is needed if the
+fresh exact inventories/findings remain unchanged. Do not create that snapshot or alter
+those acceptance records before explicit approval. Keep expiry/invalidation, daily
+human reviews, all seven checks, scanning, branch protection and production prohibition.

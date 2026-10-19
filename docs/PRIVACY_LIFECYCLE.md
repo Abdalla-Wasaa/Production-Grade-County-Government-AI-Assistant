@@ -1,9 +1,10 @@
 # Synthetic privacy lifecycle and operator runbook
 
-Status: P2-05 source prepared under the owner's 19 October 2026 engineering policy
-approval. Runtime tests, installation and security acceptance remain unapproved for
-this changed exposure. Do not execute these commands until the explicit security
-checkpoint is cleared. This is a fictional local environment, not legal advice,
+Status: P2-05 engineering policy approved on 19 October 2026. Two explicitly
+authorized synthetic test attempts are recorded in [the exposure assessment](P2_05_EXPOSURE_ASSESSMENT.md).
+The latest account-deletion query correction still needs fresh runtime authorization;
+installation and changed-exposure security acceptance remain pending. Do not execute
+these commands against that corrected source until its checkpoint is cleared. This is a fictional local environment, not legal advice,
 a county records schedule, a production service or authority to use real data.
 
 ## Policy and scope
@@ -207,7 +208,8 @@ Focused tests live in `backend/tests/test_privacy_contracts.py`,
 They cover clock boundaries, catch-up/backlog, concurrency, direct-cascade guards,
 operator/cross-user denial, holds/review/release, immediate revocation, idempotent
 account deletion, audit rollback, fingerprint mismatch and guarded migrations.
-They are prepared, not executed before the security checkpoint.
+See the exposure assessment for actual passing/failing results and the exact next
+checkpoint; no later correction is automatically covered by earlier testing.
 
 P2-06 must reuse valid prior authentication/history evidence, add actual P2-05 test
 and capacity/timer/recovery results, perform the required clean-checkout replay,

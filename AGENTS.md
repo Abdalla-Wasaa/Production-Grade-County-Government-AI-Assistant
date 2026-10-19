@@ -110,3 +110,18 @@ prepared, not run; the 24h capacity/recovery bound is unproven. No security acce
 records, inventory/baseline, snapshots or expiry changed; no push/PR. Human CRITICAL
 review remains unconfirmed. See docs/P2_05_EXPOSURE_ASSESSMENT.md and its sanitized
 runtime evidence. Existing unrelated passing evidence should be reused where valid.
+
+## P2-05 second authorized validation and column-projection checkpoint
+
+Owner authorization covered 095aa659 / 13e5dbf0a8e35918ef4c61d4787f544d08c0c3459d382cc3a4825b9876c688c1.
+Actual results: privacy PG 25 pass/3 fail; targeted regressions 14/14 pass. Capacity
+100 conversations/500 messages passed in 0.204737771 seconds for the maintenance call;
+catch-up/backlog/concurrency passed. This is bounded synthetic evidence, not a deadline
+guarantee. Temporary systemd unit verification passed; no timer was installed.
+Remaining account-completion failures require SELECT of one authorized column rather
+than EXISTS SELECT *. Correction source 50f4724 and stronger rollback assertion a21cb89
+are prepared, NOT executed. New exposure e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d
+requires fresh explicit runtime authorization before corrected app/tests/migrations
+execute. Rebuild/scans may inspect packaging without executing the app. No grants,
+security acceptance, expiry, baseline/inventory or historical snapshots changed.
+No push/PR. Human CRITICAL review remains unconfirmed. Reuse unaffected passing evidence.

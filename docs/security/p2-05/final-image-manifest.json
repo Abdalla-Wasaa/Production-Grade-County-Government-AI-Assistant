@@ -1,0 +1,15 @@
+{
+  "images": [
+    "county-p205-final-web:local",
+    "county-p205-final-backend:local",
+    "county-p205-final-db:local"
+  ],
+  "image_ids": {
+    "web": "sha256:a18af780cabd5f19c1e8537931819f21d4ca2964da80a23c2343ad3d8d3aaa87",
+    "backend": "sha256:77c667e535990daf6ef84d81e1b9f5441e64f5fde2bbfda745e749272d9fe7f3",
+    "db": "sha256:f07f41a3892b913dfccf9b6bb1807fb809434c84c2d2e06ab79e5289c7b4d50d"
+  },
+  "source_commit": "a21cb89d042c3878b01f69463b21e3a9fea29244",
+  "exposure_sha256": "e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d",
+  "corrected_app_runtime_executed": false
+}
