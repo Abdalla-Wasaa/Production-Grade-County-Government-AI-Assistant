@@ -166,3 +166,22 @@ No automatic tracker closure, merge, production security approval or Phase 3 sta
 The [Phase 3 plan](PHASE_3_PLAN.md) proposes the provider interface and deterministic
 fake with mocked contract tests first, then an OpenAI adapter. Separate authorization
 is required; no live provider calls or application changes have begun.
+
+## Newly observed scheduled-monitor follow-up
+
+[Scheduled monitor run](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/actions/runs/39245723445)
+completed during this audit with 14/15 stages passing. Its single failure is
+`registry_1`: the upstream `nginxinc/nginx-unprivileged:stable-alpine-slim` tag now
+resolves to `sha256:5d8bb9437d74a600ec5dbf90c035451c724dc33eac8d3a71078f6f8612c345f6`,
+while the reviewed runtime remains pinned to
+`sha256:4ac59c85c8c46d9e91eaabd2122cda4923ba380cf11f4138e389f069bcdc77a3`.
+[Registry evidence](security/p2-06/scheduled-monitor-registry.json) and
+[stage results](security/p2-06/scheduled-monitor-status.json) preserve the alert.
+All dependency audits, builds and current pinned-image scan-policy stages passed.
+This is an upstream tag-change alert, not evidence of a new CVE or a failed scan
+of the pinned image. No automatic pin/policy update was made.
+
+Owner disposition of this visible maintenance alert remains a closure follow-up:
+review the changed vendor image in a separate scoped update if warranted. The
+replacement image has not been assessed or approved here. Do not treat seven green
+PR contexts as proof that the separate daily monitor is green.
