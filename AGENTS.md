@@ -15,24 +15,21 @@
 
 ## Current scope
 
-The owner authorizes issue #20 P2-04 on feat/p2-04-conversation-history-ui from
-merged PR #26 (main a61aa13b1fcede64ce210e43d24c0c248d6ef3c6). Implement only
-private bilingual conversation history, CRUD and user-message persistence UI using
-the approved P2-03 APIs. No generated assistant replies, LLM, RAG or unrelated work.
+The owner explicitly approved P2-05 engineering policy and source implementation
+on feat/p2-05-privacy-lifecycle after merged PR #27 (main a7902700e10dcd6fc71ebf582ba84fada1d93254).
+Preserve existing retention, add audited authorized holds, verified operator account
+requests, bounded purge/catch-up and focused tests. No new public admin API,
+LLM/RAG/payment work, real data or production deployment.
 
-Before executing changed application code, stop with the exact commit, exposure
-hash, dependency delta and vulnerability evidence for explicit isolated synthetic
-runtime authorization. Static checks and image build/scan do not authorize runtime
-validation. Do not dispatch changed-runtime hosted CI or reuse the P2-03 acceptance.
-Do not modify security acceptance, baseline, inventory or historical snapshots
-without a separate explicit owner decision. Preserve all seven checks, scanning,
-branch protection, invalidation triggers and normal PR review.
-
-The existing acceptance expires 23 October 2026, 23:59 EAT. No extension, real data
-or production deployment. Daily actual human CRITICAL review remains mandatory;
-today's review is unconfirmed. Never fabricate review or passing test evidence.
-No push or PR before the required security decisions and validation; no automatic
-merge. Coursework outside this official repository remains strictly read-only.
+Prepare the implementation/tests before the runtime checkpoint. Before executing
+changed application code, report exact commit/exposure, complete dependency/scan
+delta and stop for explicit isolated synthetic authorization. The P2-04 acceptance
+is not inherited. Do not modify security-risk/baseline/inventory records or snapshots
+without separate explicit approval. Preserve all seven checks, scanning, branch
+protection, expiry 23 October 2026 at 23:59 EAT and all invalidation triggers.
+Today's actual human CRITICAL review remains unconfirmed. No fabricated reviews.
+No push/PR until authorized testing and any separate security-record decision;
+no automatic merge or Phase 2 closure. Prior pending statements below are historical.
 
 ## Historical acceptance
 

@@ -385,3 +385,27 @@ KEV/exposure/dependency invalidation triggers, all seven checks, complete scans,
 branch protection and owner PR review remain mandatory. After this explicit record
 approval, publish the branch/PR linked to issue #20 and run normal hosted CI.
 No automatic renewal, future exposure approval, merge or P2-05 implementation.
+
+## P2-05 source preparation and engineering policy — 19 October 2026
+
+The owner approved implementing the existing 30-day inactivity/90-day absolute
+expiry, daily 02:00 Nairobi maintenance with catch-up, authorized audited 30-day
+hold reviews, verified operator-managed account deletion with immediate revocation,
+and synthetic two-working-day acknowledgement/seven-calendar-day eligible completion
+targets. These are engineering targets, not legal deadlines or real records authority.
+[Privacy runbook](PRIVACY_LIFECYCLE.md) defines hold restrictions, authorization,
+conditional purge availability/capacity assumptions, failure alerts and recovery.
+
+An owned held conversation DELETE is explicitly 409 deletion_restricted, not a false
+204. Expired/other-user IDs remain 404. Operators authenticate as explicitly enrolled
+PostgreSQL roles, not claimed names/JWT admin roles. No public admin API is added.
+Audit records contain only fixed actions, bounded pseudonyms/correlation IDs; no
+body, email, IP, credentials or free-form legal documentation. Holds never auto-release.
+
+This engineering authorization is not a P2-05 vulnerability acceptance or permission
+to execute changed code. Before running it, record the exact commit/exposure, compare
+complete inventories/findings, and obtain explicit isolated synthetic authorization.
+The P2-04 exception does not cover this changed exposure. Its existing expiry remains
+23 October 2026, 23:59 EAT. All seven checks, scans, exposure/inventory gates and branch
+protection remain active. Today's actual human CRITICAL review is unconfirmed.
+No real data, production credentials/deployment, automatic renewal or merge.

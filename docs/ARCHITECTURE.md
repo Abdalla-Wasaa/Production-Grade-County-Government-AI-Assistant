@@ -331,3 +331,15 @@ and conversation-bound with immutable ascending sequence. Lists are best-effort
 under concurrent metadata changes, as already specified. No content caches exist
 to invalidate; DELETE cascades in the same database transaction. Physical expiry
 purge remains P2-05. Source/static/scanner evidence does not grant runtime approval.
+
+## P2-05 privacy lifecycle boundary
+
+Owner-approved engineering scope adds a small `modules/privacy` operator service,
+explicit migration/control tables and an external maintenance timer. It reuses
+identity revocation and audit infrastructure. Only explicitly enrolled database
+operators can issue/release holds or accept verified account requests; unattended
+maintenance has a separate capability. No public administrator API or in-process
+web-worker scheduler is introduced. Hold-aware deletion remains transactional and
+logical conversation expiry is unchanged. See [ADR 0004](DECISIONS/0004-operator-privacy-lifecycle.md)
+and [the runbook](PRIVACY_LIFECYCLE.md) for capabilities, conditional target and
+backup/hold limits. Runtime approval for the changed exposure remains pending.
