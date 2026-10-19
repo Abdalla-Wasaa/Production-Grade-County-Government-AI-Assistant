@@ -346,10 +346,10 @@ backup/hold limits. Runtime approval for the changed exposure remains pending.
 
 ## P3-01 provider boundary amendment
 
-The owner-approved updated issue #30 selects local Ollama with Meta Llama 3.2 3B
-Instruct (`llama3.2:3b`) as the first inference adapter, with fake/fake-v1 as the
-automated default. This supersedes the earlier OpenAI-first ordering only; OpenAI,
-Azure and Bedrock remain future adapters behind the same typed async port.
-See [provider contracts and configuration](AI_PROVIDERS.md). P3-01 adds no generation
-endpoint, prompt orchestration, provider calls during startup or frontend integration.
-Runtime/exposure approval remains required before testing changed source.
+The latest owner authorization and updated issue #30 establish the typed async
+provider interface, deterministic fake and configuration boundary only. Ollama with
+Meta Llama 3.2 3B Instruct is the preferred first real adapter, deferred to P3-02;
+OpenAI, Azure and Bedrock remain future adapters. See [provider contracts](AI_PROVIDERS.md).
+No generation endpoint, network client, provider call during startup, prompt
+orchestration or frontend integration is introduced. The existing exposure/runtime
+approval procedure applies before tests execute changed source.

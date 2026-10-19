@@ -13,23 +13,23 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope — P3-01 implementation authorized
+## Current scope — P3-01 fake-only foundation
 
-Phase 2 closed for restricted synthetic development after owner-merged PR #29 at
-379a43957e65b3acb2c5e19b5fdea90d70f878f7 and seven passing main checks. Issue #30
-now authorizes the provider interface, fake, loopback Ollama adapter, model/provider
-configuration and mocked tests on feat/p3-01-provider-abstraction. The initial local
-model is llama3.2:3b; tests default to fake/fake-v1. No model download or live inference,
-conversation generation endpoint, RAG, tools or frontend generation work.
+Phase 2 closed through owner-merged PR #29 at
+379a43957e65b3acb2c5e19b5fdea90d70f878f7 and seven passing main checks.
+The latest owner authorization and updated issue #30 limit P3-01 to the typed async
+provider boundary, deterministic fake, validated settings/factory and mocked tests.
+Default fake/fake-v1. Ollama and Meta Llama integration are deferred to P3-02; no
+adapter, inference HTTP dependency, model download, live call or generation endpoint.
 
 Before executing changed application code, report exact commit/exposure and complete
 dependency/scan delta; stop for explicit synthetic runtime authorization. Static
 checks and packaging-only scans may prepare that checkpoint. No inherited Phase 2
-acceptance, record/baseline/inventory edits, push or PR until the applicable approvals.
-Preserve seven checks, scanning, branch protection and existing invalidation rules.
-Expiry remains 23 October 2026, 23:59 EAT; no real data or production deployment.
+acceptance, security-record/baseline/inventory edits, push or PR until required
+approvals. Preserve seven checks, scanning, branch protection, invalidation rules,
+23 October 2026 23:59 EAT expiry and synthetic-only scope. No real data/production.
 The owner confirmed actual CRITICAL review for 19 October only; future daily reviews
-remain mandatory. No automatic merge. Prior checkpoint statements below are historical.
+remain required. No automatic merge. Prior checkpoint statements are historical.
 
 ## Historical acceptance
 

@@ -41,10 +41,14 @@ class Usage(Contract):
     output_tokens: int | None = Field(default=None, ge=0)
 
 
+class ModelIdentity(Contract):
+    provider: str = Field(pattern=r"^[a-z][a-z0-9_-]{0,31}$")
+    model: str = Field(min_length=1, max_length=128)
+
+
 class GenerationResult(Contract):
     content: str = Field(min_length=1, max_length=16000, repr=False)
-    provider: Literal["fake", "ollama"]
-    model: str = Field(min_length=1, max_length=128)
+    identity: ModelIdentity
     usage: Usage
     finish_reason: Literal["stop", "length"]
     synthetic: bool
