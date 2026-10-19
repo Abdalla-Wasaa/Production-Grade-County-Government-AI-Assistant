@@ -1,11 +1,12 @@
 # P2-05 source checkpoint and focused exposure assessment
 
-Status: source prepared on 19 October 2026, **runtime authorization pending**.
+Status: authorized/reused functional coverage is complete; **separate P2-05 security-record approval pending**.
+Intermediate checkpoints below are retained chronologically; the final section is current.
 Implementation and prepared-test commit: `969535e` (documentation-only follow-up
 commits do not change the exposure). Branch: `feat/p2-05-privacy-lifecycle`.
 Base: merged P2-04 PR #27, `a7902700e10dcd6fc71ebf582ba84fada1d93254`.
-This document records evidence and requests testing permission. It is not a security
-acceptance, a human CRITICAL review or a passing application-test report.
+This document records exact runtime evidence and pending decisions. It is not a
+security acceptance or a human CRITICAL review.
 
 ## Exact exposure and dependency delta
 
@@ -282,3 +283,84 @@ docs/SECURITY.md and AGENTS.md. No baseline/inventory-policy update is needed if
 fresh exact inventories/findings remain unchanged. Do not create that snapshot or alter
 those acceptance records before explicit approval. Keep expiry/invalidation, daily
 human reviews, all seven checks, scanning, branch protection and production prohibition.
+
+## Final four-test authorization and consolidated record proposal
+
+The owner authorized isolated testing of `bd6dd2b84da130225d8ffe115598329bc099721c`
+with exposure `e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d`.
+The three account-completion cases and strengthened physical-deletion audit rollback
+all passed: **4/4 in 7.32 seconds**, no skips. No source correction was needed.
+[Final validation evidence](security/p2-05/final-validation-summary.json) maps all
+**28 privacy cases** to actual reports: 24 unaffected results retained plus four
+fresh reruns, not a claim that one new 28-case run happened. Account cascade/retry,
+held partial deletion/release, queue fairness and the intended injected audit fault
+are now verified. Existing 14/14 targeted regressions, 22 contract, 49 unit and
+11 frontend results are reused with their stated boundaries.
+
+Migration 0006 pristine upgrade/downgrade and active-hold downgrade protection are
+covered by the retained migration cases. The measured purge/catch-up/concurrency
+and systemd-template evidence above remains valid. No unconditional deadline or
+actual unattended host installation is claimed. All disposable test resources were
+removed, with zero temporary test databases/roles left before container removal.
+
+The final fresh image scan above has exactly this tested exposure. No code, package,
+lockfile, network or privilege change followed that scan. Inventories and all 118
+inherited occurrences are unchanged, with zero scanner-reported fixes/KEV matches.
+The current strict CI risk gate still rejects the P2-05 exposure; functional success
+is not an exception acceptance. No owner risk decision or human review is fabricated.
+
+### One consolidated security-record approval requested
+
+Approve a separate, narrowly scoped P2-05 synthetic-local-development acceptance for
+tested source `bd6dd2b84da130225d8ffe115598329bc099721c` and the exact exposure above,
+binding the existing baseline SHA-256
+`0f48571f3b819b906b4aa78ce06c0beb4afd517283f78aad4e35c186d6056acf` and its individually
+enumerated 118 occurrences: backend 44 HIGH; PostgreSQL 71 HIGH/3 CRITICAL; web 0/0.
+The operator/deletion/security delta is the one reviewed above; no grants or network
+exposure were broadened during corrections. This is not a production approval.
+
+Only these five acceptance/documentation files would change after explicit approval:
+
+1. `.github/security-risk-acceptances.json`: replace the active P2-04 decision with the
+   explicitly approved P2-05 exact-exposure decision. Use the actual owner approval
+   reference/time; preserve expiry, production=false and every invalidation condition.
+2. `docs/security/p2-05/p2-04-acceptance-snapshot.json`: preserve existing active P2-04
+   bytes exactly; expected SHA-256
+   `70a67aaac3b95c86782534965cc1078fc7b24d7e6f45f6a28e6fcb24da90bc6e`.
+   The file has not been created or approved yet; final-validation-summary independently
+   records the actual source-byte digest for verification before any write.
+3. `docs/P2_05_EXPOSURE_ASSESSMENT.md`: record the actual, separately granted decision.
+4. `docs/SECURITY.md`: link the P2-05 exception, controls, evidence and limitations.
+5. `AGENTS.md`: record the actual exact owner decision and permitted next workflow.
+
+No baseline or inventory-policy update is necessary or proposed. Expiry stays
+**23 October 2026, 23:59 EAT**; no renewal, suppression, broader finding acceptance,
+production/real county or citizen data, automatic merge or future-exposure acceptance.
+Daily actual human CRITICAL review remains mandatory and **unconfirmed**. That review
+is separate from accepting the engineering exception and is not completed by tests.
+All seven checks, complete scans, strict exposure binding and branch protection remain.
+
+After explicit record approval only: apply those exact updates, verify byte integrity
+and consistency, commit/push the feature branch, open the issue #21 PR and run normal
+hosted checks. No merge is authorized. Keep P2-06 in a separate later branch/PR.
+
+### Smallest optional iterative-runtime-testing amendment (proposal only)
+
+Current AGENTS instructions require fresh explicit authorization whenever exposure
+changes. The CI policy independently binds exception acceptance to an exact exposure;
+neither currently grants automatic iterative execution. Ordinary backend test-only
+changes outside that hash can proceed under the approved runtime scope, as already
+demonstrated. No exception or policy amendment has been implemented here.
+
+If the owner approves, add only this testing-only clause to AGENTS within the five-file
+update: until the existing expiry, permit isolated synthetic test-driven corrections
+limited to P2-05 defects and directly affected tests, **without expanding dependencies,
+database privileges, listeners/network exposure, data classes or feature scope**.
+Before execution, commit each correction, record its exact new commit/exposure and
+security delta, rerun relevant static checks and obtain fresh complete dependency/
+image-vulnerability evidence. Any new finding, fix availability, severity escalation,
+KEV match, material exposure/privilege/network change or expired/revoked approval
+requires a new owner decision before runtime. No automatic acceptance-record update,
+CI bypass, merge, production use or human-review substitution is permitted. Final CI
+exception acceptance remains separately exact-hash and owner-approved. This clause
+reduces testing interruptions, not the final risk-acceptance requirements.

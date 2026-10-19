@@ -2,9 +2,10 @@
 
 Status: P2-05 engineering policy approved on 19 October 2026. Two explicitly
 authorized synthetic test attempts are recorded in [the exposure assessment](P2_05_EXPOSURE_ASSESSMENT.md).
-The latest account-deletion query correction still needs fresh runtime authorization;
-installation and changed-exposure security acceptance remain pending. Do not execute
-these commands against that corrected source until its checkpoint is cleared. This is a fictional local environment, not legal advice,
+Authorized functional coverage is complete, including the final account-deletion
+correction. Installation and separate changed-exposure security acceptance remain
+pending. The old P2-04 exception is not approval for continuing operation; use only
+the exact explicit testing grants until the final record checkpoint is cleared. This is a fictional local environment, not legal advice,
 a county records schedule, a production service or authority to use real data.
 
 ## Policy and scope

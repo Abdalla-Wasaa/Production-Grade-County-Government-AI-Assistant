@@ -125,3 +125,18 @@ requires fresh explicit runtime authorization before corrected app/tests/migrati
 execute. Rebuild/scans may inspect packaging without executing the app. No grants,
 security acceptance, expiry, baseline/inventory or historical snapshots changed.
 No push/PR. Human CRITICAL review remains unconfirmed. Reuse unaffected passing evidence.
+
+## P2-05 final functional evidence; security-record decision pending
+
+The owner authorized bd6dd2b / e363174d230cc0732e221d1bae835b0bc95bb6cc0921ef029c34b7a589ea797d.
+The three account-completion cases and strengthened audit rollback now passed 4/4;
+no new source correction was needed. All 28 privacy cases have passing provenance
+(24 unaffected retained +4 reruns), not a claim of another full 28-case run. Reuse
+14 targeted regressions, 22 contracts, 49 unit and 11 frontend results where valid.
+Final image scans have this same exposure and exact unchanged inventories/findings:
+115 HIGH/3 CRITICAL, no reported fixes/KEV matches. Human review is still unconfirmed.
+The exact five-file P2-05 acceptance/snapshot/docs update is only PROPOSED in the
+exposure assessment, not approved or applied. No push/PR until that explicit approval;
+no merge, expiry extension, production/real data, or automatic future acceptance.
+The optional bounded iterative-testing clause is also a PROPOSAL ONLY. It is not an
+implemented exception; retain exact-hash CI enforcement and current runtime gates.
