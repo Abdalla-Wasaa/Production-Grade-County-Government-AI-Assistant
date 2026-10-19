@@ -23,7 +23,7 @@ from app.modules.ai.prompts import PROMPT_VERSION, SYSTEM_PROMPTS
 from app.modules.ai.settings import AISettings
 
 IDENTITY = ModelIdentity(provider="fake", model="fake-v1")
-ROOT = Path(__file__).resolve().parents[2]
+FIXTURES = Path(__file__).resolve().parent / "fixtures/prompt-evaluation"
 
 
 def result(content: str = "I cannot verify county fees.") -> GenerationResult:
@@ -201,9 +201,9 @@ async def test_evaluation_failure_counts_and_no_content_in_report():
 
 
 async def test_all_synthetic_cases_and_thresholds_fake_plumbing_only():
-    raw = json.loads((ROOT / "evaluations/p3-03/cases.json").read_text())
+    raw = json.loads((FIXTURES / "cases.json").read_text())
     cases = [EvaluationCase.model_validate(value) for value in raw]
-    thresholds = json.loads((ROOT / "evaluations/p3-03/thresholds.json").read_text())
+    thresholds = json.loads((FIXTURES / "thresholds.json").read_text())
     assert len(cases) >= thresholds["minimum_cases"]
     assert len({value.id for value in cases}) == len(cases)
     rows = []

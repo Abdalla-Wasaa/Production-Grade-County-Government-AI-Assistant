@@ -180,3 +180,16 @@ protection and normal PR review remain enforced. The dated 19 October review is 
 a future daily review. No expiry renewal, future-exposure authorization, public or
 production deployment, real citizen data, live inference or model downloads.
 Publish the branch/PR linked to #34 and run normal hosted CI. No automatic merge.
+
+## Container fixture portability correction during publication
+
+Hosted backend/repository checks passed initially. Inspection of the backend Docker
+`test` target found that root-level evaluation fixtures are outside its build context.
+Move the unchanged canonical JSON files into `backend/tests/fixtures/prompt-evaluation`
+and resolve them relative to the test module. Update only test/runner/documentation
+references; no Dockerfile, application, policy or dependency changes are needed.
+All 100 case bytes and threshold bytes/hashes are unchanged. The focused rerun passed
+38/38 and the relocated fake evaluation completed 100/100. Evidence:
+[fixture correction](security/p3-03/fixture-correction.xml). Existing provider/backend
+results remain applicable; normal hosted CI validates the final head. Exposure is
+still the exact owner-approved hash. This preserves full validation without skips.

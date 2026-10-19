@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 async def main() -> None:
-    raw = (ROOT / "evaluations/p3-03/cases.json").read_bytes()
+    raw = (ROOT / "backend/tests/fixtures/prompt-evaluation/cases.json").read_bytes()
     cases = [EvaluationCase.model_validate(value) for value in json.loads(raw)]
     if len({case.id for case in cases}) != len(cases):
         raise ValueError("Duplicate dataset IDs")
@@ -43,7 +43,10 @@ async def main() -> None:
                 "created_at": datetime.now(UTC).isoformat(),
                 "dataset_sha256": hashlib.sha256(raw).hexdigest(),
                 "thresholds_sha256": hashlib.sha256(
-                    (ROOT / "evaluations/p3-03/thresholds.json").read_bytes()
+                    (
+                        ROOT
+                        / "backend/tests/fixtures/prompt-evaluation/thresholds.json"
+                    ).read_bytes()
                 ).hexdigest(),
                 "hardware": {
                     "architecture": platform.machine(),

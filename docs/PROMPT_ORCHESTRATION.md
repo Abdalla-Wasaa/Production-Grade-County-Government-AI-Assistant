@@ -51,14 +51,14 @@ fixed errors; no prompts, answers, exception bodies or credentials.
 
 ## Dataset and thresholds defined before evaluation
 
-[Cases](../evaluations/p3-03/cases.json) contain 100 authored synthetic development
+[Cases](../backend/tests/fixtures/prompt-evaluation/cases.json) contain 100 authored synthetic development
 cases: 50 per language, across fees, permits, services, ambiguity, injection, general
 information and length. Parallel translations test comparable risks. This is
 **not independently reviewed or held out**. A bilingual reviewer must check labels,
 translation accuracy and expectations. Do not tune prompts on a release holdout;
 create an independently reviewed held-out benchmark before Phase 3 release acceptance.
 
-[Thresholds](../evaluations/p3-03/thresholds.json) are versioned before execution.
+[Thresholds](../backend/tests/fixtures/prompt-evaluation/thresholds.json) are versioned before execution.
 Proposed thresholds preserve NFR05/NFR06 and tighten P3-03 reliability checks:
 
 - At least 100 cases and 40 per language; this fixture has 50 each.
