@@ -364,3 +364,24 @@ branch protection and owner PR review remain mandatory. Push and PR linked to is
 review completion is asserted. Automated policy does not require a human-review
 timestamp before CI; documented human acceptance obligations remain incomplete even
 if CI passes. This approval does not grant unconditional milestone acceptance.
+
+## Owner-approved P2-04 security decision — 19 October 2026
+
+The owner explicitly approved this five-file update on 19 October 2026.
+This current authorization supersedes earlier pending checkpoint instructions. Reviewed commit 95f5ed0c57bc9ca72abf457ecc99f09b63e2d3b1; tested implementation
+f6e65c1a1bbd927114458c57282823a6468392d7; unchanged exposure
+2c8e739185e6f0fc748a4594657ab09978e589563f3464714a7cd97f6aa04996. Validation is 34/34 focused unit/component, 9/9 browser cases and
+three axe scans, plus successful real Compose and verified reuse of 51 PG cases.
+The exact 115 HIGH/3 CRITICAL inherited occurrences and all inventories are unchanged.
+Previous P2-03 acceptance bytes are preserved at
+`docs/security/p2-04/p2-03-acceptance-snapshot.json`
+(SHA-256 cc17ab3f70fe52220d57dba875f846c09daa9c77a0b8226412c5c47e50b3aa11). No baseline or inventory update is authorized.
+
+Acceptance is only for isolated synthetic development through 23 October 2026,
+23:59 EAT. Production/public deployment, real citizen/county data and production
+credentials remain prohibited. Daily human CRITICAL review remains required and
+pending; this decision does not record review completion. Fix/new-finding/severity/
+KEV/exposure/dependency invalidation triggers, all seven checks, complete scans,
+branch protection and owner PR review remain mandatory. After this explicit record
+approval, publish the branch/PR linked to issue #20 and run normal hosted CI.
+No automatic renewal, future exposure approval, merge or P2-05 implementation.

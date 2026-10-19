@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "production_allowed": false,
+  "decisions": [
+    {
+      "scope": "synthetic-local-development",
+      "approved_by": "Abdalla-Wasaa (repository owner)",
+      "approval_reference": "Explicit owner approval in P2-03 security record update and final CI session, 18 October 2026: approved f9520eb932341a150f26ea1d977b8fff67a51c7d and exposure 88669fbe4cfafc7dc45e6775546e44e6ca8bcbec1dcacfb0f89a36c702af19b4; acknowledge backend 44 HIGH, PostgreSQL 71 HIGH/3 CRITICAL, web zero; authorize exact seven-file update, push, PR and normal CI. Human CRITICAL review remains explicitly unconfirmed.",
+      "approved_at": "2026-10-18T18:22:26.950857+00:00",
+      "expires_at": "2026-10-23T20:59:00+00:00",
+      "baseline_sha256": "0f48571f3b819b906b4aa78ce06c0beb4afd517283f78aad4e35c186d6056acf",
+      "reason": "Separate owner-approved P2-03 isolated synthetic-local-development decision for the exact reviewed conversation persistence exposure and slim web inventory (21 packages), binding all 118 inherited OS package/CVE occurrences individually enumerated in the baseline. CVE-2026-77214 absent. Previous P2-02 policy preserved unchanged in docs/security/p2-03/p2-02-policy-snapshot.json. Production/public deployment, real citizen/county data and production credentials prohibited. Daily actual human CRITICAL review remains required and currently pending; this decision does not fabricate or substitute that review or grant unconditional milestone acceptance. Immediate invalidation on any available fix, new finding, severity increase, KEV listing or further application/infrastructure/dependency exposure change. No automatic future acceptance, renewal or expansion. Expiry unchanged: 23 October 2026, 23:59 EAT. All seven CI checks, complete scans, branch protection and normal owner PR review remain enforced. No merge authorization.",
+      "exposure_sha256": "88669fbe4cfafc7dc45e6775546e44e6ca8bcbec1dcacfb0f89a36c702af19b4"
+    }
+  ]
+}
