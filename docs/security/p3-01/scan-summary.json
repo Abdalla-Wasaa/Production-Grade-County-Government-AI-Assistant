@@ -1,0 +1,65 @@
+{
+  "source_commit": "62e8e3ae78b53085b779ae350599c6c3a1d8e63f",
+  "exposure_sha256": "54a7c2e7d075593f17107dd652edf035b28b7a399611f700c095bc5f1b04ecc4",
+  "scanned_at": "2026-10-19T14:55:39.457852+00:00",
+  "trivy_database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-20T13:35:30.519058502Z",
+    "UpdatedAt": "2026-10-19T13:35:30.519058742Z",
+    "DownloadedAt": "2026-10-19T14:57:11.869447656Z"
+  },
+  "images": {
+    "web": {
+      "image_id": "sha256:94f581526212b1a4007b8f5fdd312d61db2c7da3c1e8f781a2e2e3e0fb0a9c99",
+      "severity": {},
+      "fixable": 0,
+      "kev_matches": [],
+      "new_findings": [],
+      "removed_findings": [],
+      "inventory": {
+        "packages": 21,
+        "sha256": "e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443"
+      },
+      "inventory_unchanged": true
+    },
+    "backend": {
+      "image_id": "sha256:2a2c2dc50662cd6cfa64fc684b99c806f60c0ebdbb99df10c5b7cf40d7af7a6f",
+      "severity": {
+        "HIGH": 44
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "new_findings": [],
+      "removed_findings": [],
+      "inventory": {
+        "packages": 119,
+        "sha256": "7c9d236e62e9b96b9dfe7ca03dd92b1d999c6bacfb7fb8f67949a9790d88274e"
+      },
+      "inventory_unchanged": true
+    },
+    "db": {
+      "image_id": "sha256:2eb9ede2cdc2a6716a6ea07c61e9ce77cd7dec4ce40ddf84ab4b9efe4de7cada",
+      "severity": {
+        "HIGH": 71,
+        "CRITICAL": 3
+      },
+      "fixable": 0,
+      "kev_matches": [],
+      "new_findings": [],
+      "removed_findings": [],
+      "inventory": {
+        "packages": 144,
+        "sha256": "f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288"
+      },
+      "inventory_unchanged": true
+    }
+  },
+  "runtime_tests_executed": false,
+  "policy_passed": false,
+  "reason": "Changed exposure requires owner decision; no acceptance inherited",
+  "report_sha256": {
+    "image-0.json": "48986c21d33b05fcdff4555762d5a240bd765591ad2a947d564f4fb0b6bc1bbf",
+    "image-1.json": "f4bc83c3aa9153d8407116e8269330af9d44fc1cfedb90b1a15f553423dec16e",
+    "image-2.json": "1693886ab0ec2ec312a1c66265e095b56fdb00c04ea18deecf6f992f7d2840d4"
+  }
+}

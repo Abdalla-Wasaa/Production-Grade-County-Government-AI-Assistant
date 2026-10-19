@@ -446,3 +446,21 @@ See [dated evidence](security/p2-06/human-critical-review.json) and
 statements for that day only; daily review remains necessary on subsequent days.
 No active acceptance or historical snapshot changed; scope, invalidation rules and
 23 October 2026, 23:59 EAT expiry remain unchanged. Production stays prohibited.
+
+## Owner-approved P3-01 security decision
+
+The owner explicitly approved f53e4aa6f904c8640d12cdca59ef177044ef498b and tested
+exposure 54a7c2e7d075593f17107dd652edf035b28b7a399611f700c095bc5f1b04ecc4.
+This supersedes prior pending P3-01 acceptance/publication statements for that exact
+exposure only. 43 provider and 128 backend regressions passed; inventories unchanged,
+115 HIGH/3 CRITICAL remain individually tracked, no reported fixes/KEV matches.
+Previous Phase 2 acceptance is preserved byte-for-byte in
+`docs/security/p3-01/p2-05-acceptance-snapshot.json` (SHA-256
+d7e62ed76852a7646cc6cdf5908bad210b33ea2cc989521007988b8aade46c3e).
+Only synthetic isolated local development through 23 October 2026, 23:59 EAT.
+Daily actual human CRITICAL reviews and all existing invalidation triggers remain
+mandatory; the dated 19 October confirmation is not a future daily review.
+No live inference, real data, production deployment, automatic renewal or future
+exposure approval. Preserve all seven checks, scanning, exact inventories, historical
+records and branch protection. Publish the P3-01 branch/PR linked to #30 and run
+normal hosted CI. No automatic merge or P3-02 implementation before reviewed merge.

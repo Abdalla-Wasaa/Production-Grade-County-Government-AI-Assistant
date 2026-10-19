@@ -1,0 +1,16 @@
+{
+  "resolved_versions_changed": false,
+  "pyproject_and_lock_unchanged_from_main": true,
+  "audits": {
+    "backend": {
+      "dependencies": 45,
+      "advisories": 0,
+      "source_report_sha256": "3189ad04b9997fec3a56940d4957b543a4147af9c60ca8415fc5bf3b4e0f118c"
+    },
+    "tooling": {
+      "dependencies": 34,
+      "advisories": 0,
+      "source_report_sha256": "d023f933160b47b23cd8c56f34957ed4f752438e09223e3da2e26efa704cbdca"
+    }
+  }
+}

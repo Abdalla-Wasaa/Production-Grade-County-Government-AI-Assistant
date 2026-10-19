@@ -13,23 +13,23 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope
+## Current scope — P3-01 fake-only foundation
 
-The owner explicitly approved P2-05 engineering policy and source implementation
-on feat/p2-05-privacy-lifecycle after merged PR #27 (main a7902700e10dcd6fc71ebf582ba84fada1d93254).
-Preserve existing retention, add audited authorized holds, verified operator account
-requests, bounded purge/catch-up and focused tests. No new public admin API,
-LLM/RAG/payment work, real data or production deployment.
+Phase 2 closed through owner-merged PR #29 at
+379a43957e65b3acb2c5e19b5fdea90d70f878f7 and seven passing main checks.
+The latest owner authorization and updated issue #30 limit P3-01 to the typed async
+provider boundary, deterministic fake, validated settings/factory and mocked tests.
+Default fake/fake-v1. Ollama and Meta Llama integration are deferred to P3-02; no
+adapter, inference HTTP dependency, model download, live call or generation endpoint.
 
-Prepare the implementation/tests before the runtime checkpoint. Before executing
-changed application code, report exact commit/exposure, complete dependency/scan
-delta and stop for explicit isolated synthetic authorization. The P2-04 acceptance
-is not inherited. Do not modify security-risk/baseline/inventory records or snapshots
-without separate explicit approval. Preserve all seven checks, scanning, branch
-protection, expiry 23 October 2026 at 23:59 EAT and all invalidation triggers.
-Today's actual human CRITICAL review remains unconfirmed. No fabricated reviews.
-No push/PR until authorized testing and any separate security-record decision;
-no automatic merge or Phase 2 closure. Prior pending statements below are historical.
+Before executing changed application code, report exact commit/exposure and complete
+dependency/scan delta; stop for explicit synthetic runtime authorization. Static
+checks and packaging-only scans may prepare that checkpoint. No inherited Phase 2
+acceptance, security-record/baseline/inventory edits, push or PR until required
+approvals. Preserve seven checks, scanning, branch protection, invalidation rules,
+23 October 2026 23:59 EAT expiry and synthetic-only scope. No real data/production.
+The owner confirmed actual CRITICAL review for 19 October only; future daily reviews
+remain required. No automatic merge. Prior checkpoint statements are historical.
 
 ## Historical acceptance
 
@@ -178,3 +178,21 @@ unconfirmed status for that date only. Future daily reviews remain required.
 No acceptance/baseline/inventory record or authorization rule changes. Preserve the
 23 October 2026 23:59 EAT expiry, synthetic-only scope and production prohibition.
 No automatic merge, formal closure or Phase 3 implementation.
+
+## Owner-approved P3-01 security decision
+
+The owner explicitly approved f53e4aa6f904c8640d12cdca59ef177044ef498b and tested
+exposure 54a7c2e7d075593f17107dd652edf035b28b7a399611f700c095bc5f1b04ecc4.
+This supersedes prior pending P3-01 acceptance/publication statements for that exact
+exposure only. 43 provider and 128 backend regressions passed; inventories unchanged,
+115 HIGH/3 CRITICAL remain individually tracked, no reported fixes/KEV matches.
+Previous Phase 2 acceptance is preserved byte-for-byte in
+`docs/security/p3-01/p2-05-acceptance-snapshot.json` (SHA-256
+d7e62ed76852a7646cc6cdf5908bad210b33ea2cc989521007988b8aade46c3e).
+Only synthetic isolated local development through 23 October 2026, 23:59 EAT.
+Daily actual human CRITICAL reviews and all existing invalidation triggers remain
+mandatory; the dated 19 October confirmation is not a future daily review.
+No live inference, real data, production deployment, automatic renewal or future
+exposure approval. Preserve all seven checks, scanning, exact inventories, historical
+records and branch protection. Publish the P3-01 branch/PR linked to #30 and run
+normal hosted CI. No automatic merge or P3-02 implementation before reviewed merge.

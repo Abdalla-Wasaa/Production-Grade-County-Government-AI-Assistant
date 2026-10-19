@@ -1,0 +1,12 @@
+{
+  "images": [
+    "county-p301-web:local",
+    "county-p301-backend:local",
+    "county-p301-db:local"
+  ],
+  "image_ids": {
+    "web": "sha256:94f581526212b1a4007b8f5fdd312d61db2c7da3c1e8f781a2e2e3e0fb0a9c99",
+    "backend": "sha256:2a2c2dc50662cd6cfa64fc684b99c806f60c0ebdbb99df10c5b7cf40d7af7a6f",
+    "db": "sha256:2eb9ede2cdc2a6716a6ea07c61e9ce77cd7dec4ce40ddf84ab4b9efe4de7cada"
+  }
+}

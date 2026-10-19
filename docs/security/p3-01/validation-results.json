@@ -1,0 +1,26 @@
+{
+  "tested_commit": "b7827d8ce4346d0f1ef8f987a2f7931945d869ff",
+  "exposure_sha256": "54a7c2e7d075593f17107dd652edf035b28b7a399611f700c095bc5f1b04ecc4",
+  "provider_cases": {
+    "passed": 43,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 0.36
+  },
+  "backend_regressions": {
+    "passed": 128,
+    "failed": 0,
+    "skipped": 0,
+    "integration_cases_deselected": 79,
+    "seconds": 3.02
+  },
+  "corrections_required": false,
+  "live_model_calls": false,
+  "static_checks": {
+    "ruff": "passed",
+    "format": "passed",
+    "mypy": "passed"
+  },
+  "warning": "Existing Starlette TestClient/httpx deprecation; no dependency changes made",
+  "security_acceptance_modified": false
+}

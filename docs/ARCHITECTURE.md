@@ -343,3 +343,13 @@ web-worker scheduler is introduced. Hold-aware deletion remains transactional an
 logical conversation expiry is unchanged. See [ADR 0004](DECISIONS/0004-operator-privacy-lifecycle.md)
 and [the runbook](PRIVACY_LIFECYCLE.md) for capabilities, conditional target and
 backup/hold limits. Runtime approval for the changed exposure remains pending.
+
+## P3-01 provider boundary amendment
+
+The latest owner authorization and updated issue #30 establish the typed async
+provider interface, deterministic fake and configuration boundary only. Ollama with
+Meta Llama 3.2 3B Instruct is the preferred first real adapter, deferred to P3-02;
+OpenAI, Azure and Bedrock remain future adapters. See [provider contracts](AI_PROVIDERS.md).
+No generation endpoint, network client, provider call during startup, prompt
+orchestration or frontend integration is introduced. The existing exposure/runtime
+approval procedure applies before tests execute changed source.

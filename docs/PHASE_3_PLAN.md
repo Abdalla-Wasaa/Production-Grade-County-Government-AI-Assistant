@@ -1,7 +1,10 @@
 # Phase 3 implementation plan — approval pending
 
-This is planning only. Phase 2 must finish its acceptance PR and owner closure
-before separately authorized Phase 3 application work. Follow the existing
+Phase 2 closed through owner-merged PR #29. Updated issue #30 now authorizes
+P3-01 source implementation: provider contracts, fake and configuration only.
+Ollama and local Meta Llama 3.2 3B integration are deferred to P3-02.
+Runtime validation remains subject to its exact-exposure checkpoint. Subsequent
+Phase 3 work in this plan still requires separate owner approval. Follow the existing
 [roadmap](ROADMAP.md), [architecture](ARCHITECTURE.md),
 [API specification](API_SPECIFICATION.md) and [security requirements](SECURITY.md).
 No new milestone identifiers are assigned here; Phase 3 tracking/PR scope requires
@@ -14,7 +17,7 @@ The existing exception does not automatically cover Phase 3 exposure or survive
 | Order | Scope and dependency | Tests and completion evidence |
 | --- | --- | --- |
 | 1 | Define the backend provider interface: typed request/result/usage/error contracts and a deterministic fake. Reuse existing module/config/logging boundaries; no SDK/network dependency required. | Shared mocked contract tests cover English/Kiswahili requests, cancellation, normalized errors, usage and safe outputs. No live calls. |
-| 2 | Add an OpenAI adapter behind that interface. Verify a stable compatible SDK before adding/locking it. Model/provider choice stays server-configured and allowlisted; leave Azure OpenAI/Bedrock as future adapters. | Mock the SDK/transport for success, malformed results, timeout, rate limit, transient failure and authentication failure; run the same contracts against fake and adapter. No real key or live request in CI. |
+| 2 | P3-02 will add the local Ollama adapter with initial llama3.2:3b and mocked transport tests; see [AI providers](AI_PROVIDERS.md). Add an OpenAI adapter in a subsequent approved milestone. Verify a stable compatible SDK before adding/locking it. Model/provider choice stays server-configured and allowlisted; leave Azure OpenAI/Bedrock as future adapters. | Mock the SDK/transport for success, malformed results, timeout, rate limit, transient failure and authentication failure; run the same contracts against fake and adapter. No real key or live request in CI. |
 | 3 | Add versioned prompt/response orchestration with reviewed synthetic service context, language choice, uncertainty/abstention and bounded conversation memory. Define exact model/output/context/deadline caps in the reviewed contract before code. | Prompt construction and isolation tests; exclude other users' history, expired/held-inaccessible content and secrets; enforce bounded input/output and safe plain-text responses. Do not treat model output as instructions. |
 | 4 | Approve the separate generation API and durable attempt/retry schema before implementation. Reuse authenticated owned conversations and persisted user messages; preserve unanswered messages on failures. | Ownership/role/CSRF tests where applicable; idempotency, concurrent duplicate generation, cancellation/recovery, retention/deletion and no fabricated assistant messages. Do not overload the Phase 2 persistence-only endpoint. |
 | 5 | Enforce per-user concurrency/rate/token/spend limits, overall deadlines, bounded retries and durable usage reservation/reconciliation. Reuse PostgreSQL transaction patterns and privacy-safe observability. | Exhausted quota, concurrent reservations, provider timeout/ambiguous completion and recovery tests; bounded Retry-After handling, no unbounded retry or double charge/write. Verify configured limits and sanitized metrics. |
@@ -41,5 +44,6 @@ content, held-out bilingual cases, per-language gates and load/budget evidence. 
 remain Phase 3 exit criteria, not claims satisfied by mocked adapter tests.
 
 **First implementation task after approval:** add the typed provider interface and
-deterministic fake with shared contract tests. The OpenAI adapter is the next small
-PR; live-provider execution requires a separate explicit gate.
+deterministic fake with shared contract tests. P3-01 is fake-only; the Ollama adapter with mocked tests is deferred to P3-02.
+An OpenAI adapter remains future work; live-provider execution requires a separate
+explicit gate.
