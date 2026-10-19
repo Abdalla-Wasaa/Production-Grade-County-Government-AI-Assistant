@@ -1,0 +1,62 @@
+{
+  "python": {
+    "code": 0,
+    "status": "passed"
+  },
+  "frontend": {
+    "code": 0,
+    "status": "passed"
+  },
+  "registry_inputs": {
+    "code": 0,
+    "status": "passed"
+  },
+  "registry_0": {
+    "code": 0,
+    "status": "passed"
+  },
+  "registry_1": {
+    "code": 1,
+    "status": "failed"
+  },
+  "registry_2": {
+    "code": 0,
+    "status": "passed"
+  },
+  "registry_3": {
+    "code": 0,
+    "status": "passed"
+  },
+  "registry_4": {
+    "code": 0,
+    "status": "passed"
+  },
+  "build_web": {
+    "code": 0,
+    "status": "passed"
+  },
+  "identity_web": {
+    "code": 0,
+    "status": "passed"
+  },
+  "build_backend": {
+    "code": 0,
+    "status": "passed"
+  },
+  "identity_backend": {
+    "code": 0,
+    "status": "passed"
+  },
+  "build_db": {
+    "code": 0,
+    "status": "passed"
+  },
+  "identity_db": {
+    "code": 0,
+    "status": "passed"
+  },
+  "images": {
+    "code": 0,
+    "status": "passed"
+  }
+}

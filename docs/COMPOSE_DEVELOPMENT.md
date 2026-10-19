@@ -1,8 +1,11 @@
 # Local Compose development
 
-P1-04 provides a synthetic-only local environment. It is not a production deployment
-or permission to use citizen data, county systems, credentials or documents. The
-frontend remains a bilingual placeholder. No domain tables are created.
+This guide began with P1-04 and remains synthetic-only. It does not authorize
+production or real county/citizen data, credentials or documents. Current main includes
+Phase 2 authentication/private history and domain migrations. P2-05 PR #28 adds
+privacy migration 0006; final Phase 2 replay requires its reviewed merge. Ordinary
+Compose still defaults to auth disabled. See [the acceptance candidate](PHASE_2_ACCEPTANCE.md)
+for the separate authenticated/operator replay and pending operational evidence.
 
 ## Prerequisites and first start
 
@@ -197,7 +200,7 @@ installed, run from the checkout root:
 python3 scripts/compose_smoke.py --browser --report .artifacts/compose-images.json --cleanup-manifest .artifacts/compose-cleanup.json --diagnostics .artifacts/compose-diagnostics.json
 ```
 
-This runs the 12 existing real-PostgreSQL integration tests and the actual Nginx
-browser smoke. Retain safe reports only, never raw logs, secrets or inspect dumps.
+This runs the currently collected real-PostgreSQL integration suite and actual Nginx
+browser smoke; record actual JUnit counts rather than assuming the historical Phase 1 count. Retain safe reports only, never raw logs, secrets or inspect dumps.
 Normal shutdown preserves storage; persistence is not a tested production backup
 or restore guarantee. See [Phase 1 acceptance](PHASE_1_ACCEPTANCE.md).

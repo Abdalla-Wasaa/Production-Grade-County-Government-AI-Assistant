@@ -3,8 +3,11 @@
 The owner authorized isolated synthetic validation, including bounded P2-01 fixes.
 Backend, real PostgreSQL/operator and Nginx/Compose behavior has been exercised; see
 the exact [validation/exposure record](P2_01_EXPOSURE_ASSESSMENT.md). This does not
-authorize general deployment or replace the blocked machine-policy acceptance. Contracts remain
-in [AUTHENTICATION.md](AUTHENTICATION.md). No frontend authentication is implemented.
+authorize general deployment or automatically cover changed exposure. The current
+exact owner decision and expiry are in the security policy records. Contracts remain
+in [AUTHENTICATION.md](AUTHENTICATION.md); frontend authentication/history are now
+implemented. Final clean-checkout verification is tracked in
+[the Phase 2 acceptance candidate](PHASE_2_ACCEPTANCE.md).
 
 ## Explicit enablement and secrets
 
@@ -47,8 +50,10 @@ uv run --locked python -m app.db.migrate upgrade
 uv run --locked python -m app.db.migrate check
 ```
 
-Revisions are 0002_identity_accounts, 0003_identity_sessions and 0004_auth_controls.
-No startup migrations or seeded accounts/passwords. Backup/forward repair is preferred;
+Identity revisions are 0002_identity_accounts, 0003_identity_sessions and
+0004_auth_controls, followed by 0005_conversation_persistence. P2-05 PR #28 adds
+0006_privacy_lifecycle; final Phase 2 replay requires its reviewed merge and current
+head verification. No startup migrations or seeded accounts/passwords. Backup/forward repair is preferred;
 downgrades destroy identity/session data and are not normal recovery commands.
 
 A trusted DB administrator must provision separate unprivileged LOGIN roles for
@@ -94,32 +99,36 @@ The same operator module supports revoke-invitation --id, disable --id and set-r
 not public endpoints. Reissuing invalidates old invitations; consumed/expired/revoked
 secrets cannot activate. Disabled users cannot recover into active state.
 
-Retention uses the maintenance URL and explicit verified absence of incident hold:
+After reviewed P2-05 merge, use the hold-aware privacy maintenance operator and the
+merged `docs/PRIVACY_LIFECYCLE.md` runbook. The legacy identity purge command with
+`--no-incident-hold` is deliberately refused; a caller assertion cannot bypass durable
+holds. Explicitly enroll the dedicated maintenance principal and pin the existing
+HMAC audit key via `--privacy-audit-key-file`, never by broadening runtime grants.
 
-```bash
-uv run --locked python -m app.modules.identity.operator purge --operator synthetic-retention --no-incident-hold
-```
-
-Session families/refresh lineage and invitations purge 24 hours after expiry; counters
-expire; audit retention is 90 days. These are proposed synthetic schedules, not legal
-approval. No automatic scheduler exists; document an operational owner before pilot.
+Eligible expired session families/invitations/counters are purged in bounded batches;
+minimal audits retain the existing 90-day window, subject to active holds. The old
+extra 24-hour post-expiry delay is removed. Daily 02:00 Nairobi and catch-up templates
+are provided, but installation and operational evidence must be recorded; templates
+alone are not an active scheduler. Synthetic targets are not a statutory schedule.
 
 ## Browser, key lifecycle and testing
 
-The access JWT is 15 minutes and never persistently stored by the later browser UI.
+The access JWT is 15 minutes and never persistently stored by the browser UI.
 Refresh cookies are host-only/HttpOnly/SameSite=Strict on /api/v1/auth, Secure by
 default, with a seven-day absolute family lifetime. Fetch /csrf before unsafe auth
 operations and again after login binds a family. Missing/foreign Origin/Referer,
 signature, expiry, binding or cookie/header mismatch fails closed. Replay revokes
 an entire family, including a previously issued successor. Do not automatically
-retry ambiguous refreshes; later UI must serialize refresh across tabs.
+retry ambiguous refreshes; the frontend must serialize refresh across tabs.
 
 Key rotation requires explicitly managed new secrets and revocation/version updates
 for affected sessions; never accept token-supplied algorithms/JWKS locations. Source
 implements one active signing key, not federation or unattended rotation. CSRF-key
 rotation invalidates CSRF/cursors; clients must obtain fresh state. No key material
 belongs in Vite/browser config. IP/account throttle keys and audit identities are
-pseudonymous but can still be linkable; they are not a privacy exemption.
+pseudonymous but can still be linkable; they are not a privacy exemption. With P2-05
+privacy enrollment, the HMAC key is fingerprint-pinned for holds/audit correlation;
+rotation requires a separately reviewed binding migration and fails closed on mismatch.
 
 Within the approved isolated synthetic validation scope:
 

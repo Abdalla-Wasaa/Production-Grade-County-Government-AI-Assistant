@@ -1,0 +1,12 @@
+{
+  "source_templates_unchanged": true,
+  "controlled_timer_trigger": "OnActiveSec=2s test-only drop-in; original calendar retained",
+  "stages": {
+    "hardened service execution": true,
+    "timer dispatch": true,
+    "visible dependency failure": true,
+    "runner recovery": true
+  },
+  "timer_last_trigger": "Mon 2026-10-19 14:36:41 EAT",
+  "owned_runtime_units_removed": true
+}
