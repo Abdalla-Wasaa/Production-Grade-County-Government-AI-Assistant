@@ -1,4 +1,4 @@
-# P3-02 focused exposure assessment — authorized validation passed; security-record approval pending
+# P3-02 focused exposure assessment — authorized validation passed; owner records applied
 
 ## Prerequisites and exact source
 
@@ -98,8 +98,7 @@ The unmodified normal policy scan correctly exits nonzero. Two distinct gates ap
 changed application exposure lacks an owner decision, and the backend inventory no
 longer matches its approved 119-package reference. The scanner produced valid backend
 JSON with a matching immutable image ID; the script's generic backend-evidence failure
-label is caused by inventory validation, not a missing scan. No checker was weakened
-or approved inventory/baseline/acceptance record changed. Raw reports remain outside
+label is caused by inventory validation, not a missing scan. No checker was weakened. Those initial policy failures preceded the separately approved record update below. Raw reports remain outside
 source control with hashes in the summary.
 
 ## Authorized validation results
@@ -135,14 +134,14 @@ hashes, complete inventories, exact inherited rows and retrieved KEV evidence ar
 rechecked rather than repeating unchanged images for documentation-only updates.
 No new HIGH/CRITICAL occurrence or reported fix is present. The three new runtime
 packages and the loopback HTTP capability remain genuine reviewed deltas even when
-scanner counts do not increase. No security records have changed.
+scanner counts do not increase. No security records changed during testing; only the subsequently approved seven-file update below changes the active bindings.
 
-## Proposed minimum seven-file acceptance/publication update — not applied
+## Owner-approved seven-file acceptance/publication update
 
-Testing approval does not authorize policy records. Separate owner approval is
-required to bind this tested exposure, exact new 122-package backend inventory and
+Testing approval did not authorize policy records. The owner subsequently approved
+the separate exact decision binding this tested exposure, exact new 122-package backend inventory and
 the unchanged 118 individually enumerated inherited baseline occurrences.
-Only the following seven files are proposed:
+Only the following seven files change under that explicit approval:
 
 1. `.github/security-baseline.json`: update **only** backend `report_sha256` to
    `2440274bab03a5bf3794e35a63be14096baa939848e74cb36c5d4efbcba78ce5`,
@@ -178,9 +177,10 @@ No suppression, reclassification, privilege/network expansion, CI/ruleset weaken
 automatic renewal or future exposure approval. Existing dated human review remains
 honest and is not extended to later days.
 
-Request explicit authorization for this seven-file update **and** subsequent normal
+The owner explicitly authorized this seven-file update **and** subsequent normal
 commit/push, PR linked to #32 and all seven hosted checks. No automatic merge. The
-PR description is prepared outside tracked application code; no push or PR is made.
+prepared PR description records exact test provenance; hosted checks must pass before
+merge readiness is reported.
 Live model installation, download or inference is a different approval boundary and
 is not included in this proposal. See the local guide for its prepared procedure.
 
@@ -188,3 +188,14 @@ Current expiry remains **23 October 2026, 23:59 EAT**. No real citizen/county da
 production credentials or production deployment. See the
 [local guide](OLLAMA_LOCAL_DEVELOPMENT.md) for the separate server/version/model,
 licence, resource and cloud-disabled prerequisites for future local Llama smoke tests.
+
+## Owner decision application
+
+Explicit P3-02 FINALIZE SECURITY RECORDS AND PUBLISH PR approval binds reviewed
+commit 9b399b7be1cf76f98bdb24f502dbea876e7f54eb and the exact exposure above.
+The complete seven-file diff was prepared and inspected before application. Old
+policy bytes round-trip from the historical snapshot; only backend report provenance
+and its three-package inventory delta change in the baseline/inventory records.
+All inherited finding rows and severities, pins, other image inventories, expiry,
+production prohibition and enforcement remain intact. This is not live-model
+installation/inference approval. No automatic merge or future-exposure approval.
