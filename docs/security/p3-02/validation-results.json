@@ -1,0 +1,31 @@
+{
+  "tested_commit": "affcabe9503e009c9b2e613e9e9318b2d61e80d4",
+  "exposure_sha256": "8e1fa66f0928b01552045590813ad04f971c29a3c443dd92358721ccdc27a41d",
+  "results": {
+    "ollama": {
+      "passed": 68,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.56
+    },
+    "provider": {
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.27
+    },
+    "backend_regressions": {
+      "passed": 128,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 3.05,
+      "integration_cases_deselected": 79
+    }
+  },
+  "corrections_required": false,
+  "model_downloaded": false,
+  "live_inference": false,
+  "network_behavior": "MockTransport/synthetic streams; existing socket-denial guard active",
+  "warning": "Pre-existing Starlette TestClient/httpx deprecation warning retained",
+  "security_records_changed": false
+}

@@ -1,7 +1,8 @@
 # Ollama adapter — P3-02
 
-Status: implementation and mocked tests prepared; exact-exposure runtime approval is
-still required. No Ollama installation, model download, live inference, generation
+Status: owner-authorized mocked validation passed (68 Ollama, 43 provider and
+128 backend regression cases); separate security-record/publication approval remains
+required. No Ollama installation, model download, live inference, generation
 HTTP endpoint or conversation dispatch has run or been added by this milestone.
 P3-01 merged in PR #31; its provider contracts are unchanged.
 
@@ -84,9 +85,8 @@ errors, model switching, cancellation, stream/client cleanup and no sensitive lo
 The existing socket guard and fake-default fixture remain enabled. There is no model
 server, model download or inference CI service; all seven CI workflows are unchanged.
 
-Tests have not yet executed for this changed exposure. After explicit authorization,
-run the focused Ollama cases, all existing fake-provider tests and the relevant backend
-non-integration regressions. Preserve prior PG/frontend evidence where unaffected.
+The authorized focused Ollama cases, existing fake-provider tests and backend
+non-integration regressions passed; see exact reports and provenance in the assessment. Preserve prior PG/frontend evidence where unaffected.
 See [exposure assessment](P3_02_EXPOSURE_ASSESSMENT.md) for the exact next decision.
 
 ## Local model/server gate — not executed
@@ -118,3 +118,39 @@ immediate server/GPU resource release. Monitor server resource limits separately
 Current development acceptance expires 23 October 2026, 23:59 EAT and is not inherited
 for this new exposure. No acceptance, baseline, inventory policy or historical record
 is changed. No real citizen/county data, production credentials or deployment.
+
+## Prepared live smoke-test checklist — separate approval required
+
+Do not execute this checklist under mocked-test authorization. Obtain explicit
+permission for the selected server installation, model downloads and bounded local
+inference, with exact application commit/exposure and synthetic-only scope.
+
+1. Review a supported Ollama release and its verified installation artifact/method;
+   record version and licence. No server version is asserted installed here. Reserve
+   disk for the roughly 2 GB initial model plus server/cache overhead; check available
+   RAM/VRAM, approved context/concurrency, and monitor actual resources.
+2. Install/start only that reviewed server with cloud disabled and loopback binding,
+   following the vendor guide. Confirm localhost port 11434 is not publicly exposed;
+   do not alter Compose networks or disable endpoint validation.
+3. Download only the explicitly authorized llama3.2:3b model. Record its actual
+   manifest/digest and licence. An alternative model download, such as llama3.2:1b,
+   needs inclusion in the same explicit approval or a separate grant.
+4. Verify loopback server connectivity/version and installed model identity before
+   generation. Then configure the host backend with the example above, not a frontend
+   setting or URL/credential in request input. Use the existing provider context and
+   bounded GenerationRequest; no new public generation endpoint is needed.
+5. Send synthetic English text: "For the fictional Example County, explain that
+   service details must be checked with an authorized officer. Do not invent fees."
+   Send synthetic Kiswahili text: "Kwa Kaunti ya Mfano ya kubuni, eleza kuwa taarifa
+   za huduma zithibitishwe na afisa aliyeidhinishwa. Usibuni ada." Check output language,
+   uncertainty and absence of invented county facts; these two cases are smoke tests,
+   not a bilingual quality benchmark or fluent-review certification.
+6. Record provider/model identity, available token usage, elapsed time and resource
+   measurements without raw prompt/credential logging. Confirm normal context exit
+   closes the client; check server unload/recovery separately.
+7. If an approved alternative is installed, allowlist both model tags, change only
+   AI_MODEL, repeat a bounded synthetic request and verify the returned exact model
+   identity changes. Confirm unallowlisted selection fails before transport.
+8. Return configuration to fake/fake-v1 and stop only owned disposable resources.
+   Record failures honestly; no live-model success, install or download has occurred
+   merely because this procedure is documented.
