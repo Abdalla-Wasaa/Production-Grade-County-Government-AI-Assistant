@@ -1,5 +1,9 @@
 # P3-03 prompt orchestration and bilingual evaluation
 
+Historical v1 behavior below is superseded by the pending
+[P3-03A remediation](P3_03A_REMEDIATION.md), including the new server-owned policy
+default and completion status. Do not treat policy answers as model evaluation.
+
 Status: authorized synthetic tests and fake-provider evaluation passed; publication/security-record approval pending.
 Tracked in [issue #34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34).
 No live-model evaluation or semantic acceptance is claimed. See the

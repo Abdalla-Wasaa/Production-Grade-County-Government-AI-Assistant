@@ -13,23 +13,24 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope — P3-03 prompt orchestration source implementation
+## Current scope — P3-03A source remediation; runtime authorization pending
 
-The owner authorizes P3-03 source implementation on
-feat/p3-03-prompt-orchestration after merged P3-02 PR #33. Implement only versioned
-English/Kiswahili prompts, bounded provider-neutral orchestration and reproducible
-synthetic evaluation. No generation API, frontend generation, RAG, tools or live
-county integrations. Default automated execution remains fake/mocked.
+The owner authorizes issue #36 on feat/p3-03a-model-quality-remediation: compact
+versioned bilingual prompts, server-owned unverified-county abstention, completion
+status/timing and honest evaluation metrics with offline tests. No P3-04, generation
+API, frontend generation, RAG or new live-model grant. PR #35 is merged; source changes
+are not covered automatically by its exact-exposure acceptance.
 
-Before executing changed application code, report exact commit/exposure and complete
+Before executing changed application code, report exact commit/exposure and fresh
 scan/dependency delta; stop for explicit isolated synthetic runtime authorization.
-Static validation and packaging-only scans may prepare this checkpoint. Prior
-acceptance is not inherited. No security acceptance/baseline/inventory/snapshot edits
-without separate approval; no push/PR until required decisions. Preserve all seven
-checks, full scans, branch protection, logging and domain authorization/privacy rules.
-Expiry remains 23 October 2026, 23:59 EAT. No real data/production deployment.
-The owner's actual CRITICAL review for 19 October is recorded separately; no invented
-future daily reviews or automatic merge. Earlier pending-scope statements are historical.
+Static validation and packaging-only scans may prepare that checkpoint. No security
+acceptance/baseline/inventory/snapshot edit, push or PR until the required separate
+decisions. Preserve seven checks, full scans, branch protection, domain privacy and
+logging controls. Never treat policy fallback responses as Llama quality evidence.
+Expiry stays 23 October 2026, 23:59 EAT. No real data or public/production deployment.
+Only the 19 October actual human CRITICAL review is confirmed; 20 October review is
+not confirmed. No invented future reviews, automatic renewal or merge. Earlier
+approval statements below remain historical and exact-exposure scoped.
 
 ## Historical acceptance
 
