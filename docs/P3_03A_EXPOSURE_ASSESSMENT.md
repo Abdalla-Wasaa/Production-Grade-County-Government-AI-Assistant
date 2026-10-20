@@ -176,3 +176,34 @@ all seven contexts bound to Actions app 15368, no bypass actors; deletion/force 
 remain blocked. No workflow, ruleset, historical acceptance or privacy control changed.
 The normal exposure policy still correctly rejects the old acceptance for this hash;
 its rejection must be resolved only by the separately approved record update.
+
+## Owner-approved P3-03A exact security/publication decision
+
+The owner explicitly approved reviewed commit
+bd8b0d848b5ac36dd513f9f4535e728c75e61e46 and tested exposure
+dc3e34e2151091e03e21d1929f28a6d6e0b0e0208604663dabef98b55d623780.
+This supersedes pending P3-03A runtime/record/publication statements for this exact
+exposure only. The owner personally confirmed review of SQLite CVE-2025-7458,
+libxml2 CVE-2026-6653 and zlib1g CVE-2023-45853 assessments dated 20 October 2026:
+“I have personally reviewed the three CRITICAL findings”. Confirmation was recorded
+at 2026-10-20T16:29:11.959671+00:00; this is not a claim about the minute the review was performed.
+Future daily actual reviews remain required; no future review is inferred.
+
+Previous P3-03 acceptance is preserved byte-for-byte at
+`docs/security/p3-03a/p3-03-acceptance-snapshot.json` (SHA-256
+9aae9dd0b4ebb7bcafc07206d4042611f49c3076d558dfccca6c2c9571f6a016).
+All 115 HIGH/3 CRITICAL finding rows, inventories, image pins, seven checks, full
+scanning, branch protection and invalidation triggers remain unchanged. No baseline
+or inventory-policy change, suppression or automatic future acceptance.
+
+313 tests passed: 36 remediation, 149 orchestration/provider, 128 regressions.
+Policy uncertainty signals were 36/36 per language; fake signals 0/36 and suspected
+incomplete fake markers 50/50 per language. No Llama inference occurred during this
+validation. Policy responses are not successful model answers; live accuracy and
+latency improvement remain unproven.
+
+Acceptance stays isolated synthetic development only through 23 October 2026,
+23:59 EAT. No real citizen/county data, public/production deployment, public Ollama,
+live inference, model downloads, renewal, future exposure authorization or automatic
+merge. The exact five-file decision and publication are now approved; publish the
+branch/PR linked to #36 through all seven normal hosted checks.
