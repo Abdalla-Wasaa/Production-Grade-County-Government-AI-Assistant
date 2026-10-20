@@ -1,0 +1,72 @@
+{
+  "exposure_sha256": "dc3e34e2151091e03e21d1929f28a6d6e0b0e0208604663dabef98b55d623780",
+  "scanned_at": "2026-10-20T14:43:11.987683+00:00",
+  "scanner": "Trivy 0.76.0",
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-10-21T13:14:22.737606156Z",
+    "UpdatedAt": "2026-10-20T13:14:22.737606427Z",
+    "DownloadedAt": "2026-10-20T14:44:26.745283481Z"
+  },
+  "runtime_application_executed": false,
+  "images": {
+    "web": {
+      "image_id": "sha256:94f581526212b1a4007b8f5fdd312d61db2c7da3c1e8f781a2e2e3e0fb0a9c99",
+      "report_sha256": "ea956caf56951793c16ac49270116f129933cc7f6d02d33d1b3a8ae453c03ad6",
+      "inventory": {
+        "packages": 21,
+        "sha256": "e9d19af8839b51cd311f6b527994b6cc624ee2b0491513c293f6fefa6cb60443"
+      },
+      "inventory_unchanged": true,
+      "high": 0,
+      "critical": 0,
+      "new_or_changed_findings": [],
+      "removed_or_changed_findings": [],
+      "fixable": 0,
+      "kev_matches": []
+    },
+    "backend": {
+      "image_id": "sha256:874b412bd4f7906651a2bb8525c4c0cfc9e99629af721d859617377ab1d51f40",
+      "report_sha256": "4ed9dee72e5fe7875848abbd0497b9fc0bd5fbac87230350683ad3443c6ec655",
+      "inventory": {
+        "packages": 122,
+        "sha256": "3b313e4e52f23217faa9d0af79c3e339d2c4477aba1e6d66146dc1457c844aae"
+      },
+      "inventory_unchanged": true,
+      "high": 44,
+      "critical": 0,
+      "new_or_changed_findings": [],
+      "removed_or_changed_findings": [],
+      "fixable": 0,
+      "kev_matches": []
+    },
+    "db": {
+      "image_id": "sha256:2eb9ede2cdc2a6716a6ea07c61e9ce77cd7dec4ce40ddf84ab4b9efe4de7cada",
+      "report_sha256": "9adf286835d0b932b7880d75b6922070f60329a3d6547182b9a9b19bd6e732b3",
+      "inventory": {
+        "packages": 144,
+        "sha256": "f0ff6951e8f3157a9f0e6d15387c68b6e4e591afd21d2d0da972c122ed1ad288"
+      },
+      "inventory_unchanged": true,
+      "high": 71,
+      "critical": 3,
+      "new_or_changed_findings": [],
+      "removed_or_changed_findings": [],
+      "fixable": 0,
+      "kev_matches": []
+    }
+  },
+  "dependency_audits": {
+    "backend": {
+      "report_sha256": "3189ad04b9997fec3a56940d4957b543a4147af9c60ca8415fc5bf3b4e0f118c",
+      "packages": 45,
+      "advisories": 0
+    },
+    "tooling": {
+      "report_sha256": "d023f933160b47b23cd8c56f34957ed4f752438e09223e3da2e26efa704cbdca",
+      "packages": 34,
+      "advisories": 0
+    }
+  },
+  "policy_status": "blocked_owner_review_required_for_changed_exposure"
+}

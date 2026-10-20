@@ -115,3 +115,7 @@ live inference is authorized until the separate exposure checkpoint is satisfied
 See [prompt orchestration and bilingual evaluation](PROMPT_ORCHESTRATION.md) for the
 versioned instruction boundary, synthetic fixtures, limits and pending authorization.
 Provider selection remains configuration-driven; no generation endpoint is added.
+
+See [P3-03A remediation](P3_03A_REMEDIATION.md) for additive completion/timing
+diagnostics and the separate non-model county abstention policy. Protocol methods
+and configured model selection remain unchanged.

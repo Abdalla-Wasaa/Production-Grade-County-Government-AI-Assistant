@@ -22,7 +22,7 @@ async def main() -> None:
     cases = [EvaluationCase.model_validate(value) for value in json.loads(raw)]
     if len({case.id for case in cases}) != len(cases):
         raise ValueError("Duplicate dataset IDs")
-    settings = PromptSettings()
+    settings = PromptSettings(response_policy="general_information")
     rows = []
     async with provider_context(
         AISettings(provider="fake", model="fake-v1")
@@ -39,6 +39,7 @@ async def main() -> None:
     print(
         json.dumps(
             {
+                "schema_version": "p3-03a-v1",
                 "purpose": "fake_plumbing_not_model_quality_acceptance",
                 "created_at": datetime.now(UTC).isoformat(),
                 "dataset_sha256": hashlib.sha256(raw).hexdigest(),

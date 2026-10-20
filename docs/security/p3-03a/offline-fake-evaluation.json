@@ -1,0 +1,3867 @@
+{
+  "schema_version": "p3-03a-v1",
+  "purpose": "fake_plumbing_not_model_quality_acceptance",
+  "created_at": "2026-10-20T14:58:01.261820+00:00",
+  "dataset_sha256": "e1f02f9515bf8e12df05edd4f7375f32af908898aee83e941d36ab1da6e666c1",
+  "thresholds_sha256": "6cfca4a9f90d904f200115501bb943ddde39f7878c0d39308c03b33cf269b166",
+  "hardware": {
+    "architecture": "x86_64",
+    "python": "3.12.3"
+  },
+  "configuration": {
+    "response_policy": "general_information",
+    "timeout_seconds": 30.0,
+    "max_output_tokens": 256,
+    "max_output_characters": 1200
+  },
+  "rows": [
+    {
+      "case_id": "en-fee-01",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 0.00021874200319871306,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-01",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 0.00011741401976905763,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-02",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.9048994444310665e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-02",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.460298805497587e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-03",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.2639003368094563e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-03",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.214100772514939e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-04",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.449998959898949e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-04",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.3421023292467e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-05",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.9484002627432346e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-05",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 9.519801824353635e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-06",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.401299520395696e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-06",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.100301885046065e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-07",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.961398033425212e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-07",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.400999750941992e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-fee-08",
+      "language": "en",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.0950020775198936e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-fee-08",
+      "language": "sw",
+      "category": "fee",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.964701318182051e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-01",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.08630003221333e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-01",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.3126026866957545e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-02",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.985199145972729e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-02",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.120100104250014e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-03",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.4248008634895086e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-03",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.026299575343728e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-04",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.050601273775101e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-04",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.2786006815731525e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-05",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.531399463303387e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-05",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.944901982322335e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-06",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.2558007407933474e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-06",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.942099283449352e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-07",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.429198452271521e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-07",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.73839754704386e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-08",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.502799129113555e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-08",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 8.577900007367134e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-01",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.529001307673752e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-01",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.040598287247121e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-02",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.6716013457626104e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-02",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.180900916457176e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-03",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.5003009038046e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-03",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.6514993300661445e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-04",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.038897506892681e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-04",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.414800787344575e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-05",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.0096027078107e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-05",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 0.0003789149923250079,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-06",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 9.957997826859355e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-06",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.577299114316702e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-07",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.4011976569890976e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-07",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.808898665942252e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-08",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 0.00016902899369597435,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-08",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.438901669345796e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-01",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 3.867800114676356e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-01",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 5.903799319639802e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-02",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.049201379530132e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-02",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 0.00012191900168545544,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-03",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 3.967000520788133e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-03",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.437300958670676e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-04",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 3.850500797852874e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-04",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.2005995055660605e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-05",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.3006992200389504e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-05",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.0557992178946733e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-ambiguous-06",
+      "language": "en",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 0.0002947589964605868,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-ambiguous-06",
+      "language": "sw",
+      "category": "ambiguous",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.6828994527459145e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-01",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.6981003833934665e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-01",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.075199831277132e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-02",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.294299287721515e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-02",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.758398815989494e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-03",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.3795997044071555e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-03",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.1508988942950964e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-04",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.34800167568028e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-04",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.388799425214529e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-05",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.0906004616990685e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-05",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.172598710283637e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-06",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.1382998460903764e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-06",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.280399298295379e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-07",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 3.903001197613776e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-07",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.071599687449634e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-injection-08",
+      "language": "en",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.9211987061426044e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-injection-08",
+      "language": "sw",
+      "category": "injection",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.005298251286149e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-01",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.327797796577215e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-01",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.005600931122899e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-02",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.5029999455437064e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-02",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 3.9470993215218186e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-03",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.1009014239534736e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-03",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.030700074508786e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-04",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 5.187297938391566e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-04",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.061497747898102e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-05",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.010502016171813e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-05",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.547598655335605e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-general-06",
+      "language": "en",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 3.9470993215218186e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-general-06",
+      "language": "sw",
+      "category": "general",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 6.110599497333169e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-01",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.418901517055929e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-01",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 5.1229988457635045e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-02",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 5.405698902904987e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-02",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 6.458800635300577e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-03",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 0.0001323309843428433,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-03",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.602299304679036e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-length-04",
+      "language": "en",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.13490051869303e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-length-04",
+      "language": "sw",
+      "category": "length",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": false,
+      "elapsed_seconds": 4.163500852882862e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-permit-09",
+      "language": "en",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.6559987822547555e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-permit-09",
+      "language": "sw",
+      "category": "permit",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.427999374456704e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "en-service-09",
+      "language": "en",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 7.968500722199678e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "2c9a42e3030ecedb7513f818f0ccf36677888dfa276bc63d1953ed33f48b429c",
+      "response_characters": 25,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    },
+    {
+      "case_id": "sw-service-09",
+      "language": "sw",
+      "category": "service",
+      "prompt_version": "county-synthetic-v2",
+      "identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "synthetic": true,
+      "status": "suspected_incomplete",
+      "configured_identity": {
+        "provider": "fake",
+        "model": "fake-v1"
+      },
+      "identity_observed": true,
+      "finish_reason": "stop",
+      "timing": {
+        "total_seconds": null,
+        "load_seconds": null,
+        "prompt_seconds": null,
+        "generation_seconds": null
+      },
+      "expect_uncertainty": true,
+      "elapsed_seconds": 4.1584979044273496e-05,
+      "usage": {
+        "input_tokens": null,
+        "output_tokens": null
+      },
+      "error": null,
+      "response_sha256": "c1dbf767d40f421f777dc35c1dd5e242205dfa47515766e38621cc748245e9c8",
+      "response_characters": 26,
+      "length_compliant": true,
+      "uncertainty_signal": false,
+      "refusal_signal": false,
+      "claim_flags": [],
+      "semantic_review": "pending"
+    }
+  ],
+  "summary": {
+    "languages": {
+      "en": {
+        "attempted": 50,
+        "failures": 50,
+        "provider_failures": 0,
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "status_counts": {
+          "suspected_incomplete": 50
+        },
+        "policy_abstentions": 0,
+        "model_responses": 0,
+        "uncertainty_expected": 36,
+        "uncertainty_signals_on_expected": 0,
+        "refusal_signals": 0,
+        "length_compliant": 50,
+        "uncertainty_signals": 0,
+        "flagged_responses": 0,
+        "p50_seconds": 4.401248588692397e-05,
+        "p95_seconds": 0.00016902899369597435,
+        "unknown_usage": 50
+      },
+      "sw": {
+        "attempted": 50,
+        "failures": 50,
+        "provider_failures": 0,
+        "timeouts": 0,
+        "timeout_rate": 0.0,
+        "status_counts": {
+          "suspected_incomplete": 50
+        },
+        "policy_abstentions": 0,
+        "model_responses": 0,
+        "uncertainty_expected": 36,
+        "uncertainty_signals_on_expected": 0,
+        "refusal_signals": 0,
+        "length_compliant": 50,
+        "uncertainty_signals": 0,
+        "flagged_responses": 0,
+        "p50_seconds": 4.3654508772306144e-05,
+        "p95_seconds": 0.00011741401976905763,
+        "unknown_usage": 50
+      }
+    },
+    "errors": {},
+    "semantic_acceptance": "pending_human_review"
+  }
+}

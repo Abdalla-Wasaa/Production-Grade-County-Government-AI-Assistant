@@ -13,23 +13,24 @@
   or pull request descriptions.
 - Require the user's explicit approval before merging or beginning another phase.
 
-## Current scope — P3-03 prompt orchestration source implementation
+## Current scope — P3-03A source remediation; runtime authorization pending
 
-The owner authorizes P3-03 source implementation on
-feat/p3-03-prompt-orchestration after merged P3-02 PR #33. Implement only versioned
-English/Kiswahili prompts, bounded provider-neutral orchestration and reproducible
-synthetic evaluation. No generation API, frontend generation, RAG, tools or live
-county integrations. Default automated execution remains fake/mocked.
+The owner authorizes issue #36 on feat/p3-03a-model-quality-remediation: compact
+versioned bilingual prompts, server-owned unverified-county abstention, completion
+status/timing and honest evaluation metrics with offline tests. No P3-04, generation
+API, frontend generation, RAG or new live-model grant. PR #35 is merged; source changes
+are not covered automatically by its exact-exposure acceptance.
 
-Before executing changed application code, report exact commit/exposure and complete
+Before executing changed application code, report exact commit/exposure and fresh
 scan/dependency delta; stop for explicit isolated synthetic runtime authorization.
-Static validation and packaging-only scans may prepare this checkpoint. Prior
-acceptance is not inherited. No security acceptance/baseline/inventory/snapshot edits
-without separate approval; no push/PR until required decisions. Preserve all seven
-checks, full scans, branch protection, logging and domain authorization/privacy rules.
-Expiry remains 23 October 2026, 23:59 EAT. No real data/production deployment.
-The owner's actual CRITICAL review for 19 October is recorded separately; no invented
-future daily reviews or automatic merge. Earlier pending-scope statements are historical.
+Static validation and packaging-only scans may prepare that checkpoint. No security
+acceptance/baseline/inventory/snapshot edit, push or PR until the required separate
+decisions. Preserve seven checks, full scans, branch protection, domain privacy and
+logging controls. Never treat policy fallback responses as Llama quality evidence.
+Expiry stays 23 October 2026, 23:59 EAT. No real data or public/production deployment.
+Only the 19 October actual human CRITICAL review is confirmed; 20 October review is
+not confirmed. No invented future reviews, automatic renewal or merge. Earlier
+approval statements below remain historical and exact-exposure scoped.
 
 ## Historical acceptance
 
@@ -246,3 +247,34 @@ protection and normal PR review remain enforced. The dated 19 October review is 
 a future daily review. No expiry renewal, future-exposure authorization, public or
 production deployment, real citizen data, live inference or model downloads.
 Publish the branch/PR linked to #34 and run normal hosted CI. No automatic merge.
+
+## Owner-approved P3-03A exact security/publication decision
+
+The owner explicitly approved reviewed commit
+bd8b0d848b5ac36dd513f9f4535e728c75e61e46 and tested exposure
+dc3e34e2151091e03e21d1929f28a6d6e0b0e0208604663dabef98b55d623780.
+This supersedes pending P3-03A runtime/record/publication statements for this exact
+exposure only. The owner personally confirmed review of SQLite CVE-2025-7458,
+libxml2 CVE-2026-6653 and zlib1g CVE-2023-45853 assessments dated 20 October 2026:
+“I have personally reviewed the three CRITICAL findings”. Confirmation was recorded
+at 2026-10-20T16:29:11.959671+00:00; this is not a claim about the minute the review was performed.
+Future daily actual reviews remain required; no future review is inferred.
+
+Previous P3-03 acceptance is preserved byte-for-byte at
+`docs/security/p3-03a/p3-03-acceptance-snapshot.json` (SHA-256
+9aae9dd0b4ebb7bcafc07206d4042611f49c3076d558dfccca6c2c9571f6a016).
+All 115 HIGH/3 CRITICAL finding rows, inventories, image pins, seven checks, full
+scanning, branch protection and invalidation triggers remain unchanged. No baseline
+or inventory-policy change, suppression or automatic future acceptance.
+
+313 tests passed: 36 remediation, 149 orchestration/provider, 128 regressions.
+Policy uncertainty signals were 36/36 per language; fake signals 0/36 and suspected
+incomplete fake markers 50/50 per language. No Llama inference occurred during this
+validation. Policy responses are not successful model answers; live accuracy and
+latency improvement remain unproven.
+
+Acceptance stays isolated synthetic development only through 23 October 2026,
+23:59 EAT. No real citizen/county data, public/production deployment, public Ollama,
+live inference, model downloads, renewal, future exposure authorization or automatic
+merge. The exact five-file decision and publication are now approved; publish the
+branch/PR linked to #36 through all seven normal hosted checks.

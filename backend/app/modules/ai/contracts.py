@@ -46,12 +46,21 @@ class ModelIdentity(Contract):
     model: str = Field(min_length=1, max_length=128)
 
 
+class GenerationTiming(Contract):
+    # Provider-reported diagnostics, not client wall time. Missing means unknown.
+    total_seconds: float | None = Field(default=None, ge=0, le=86400)
+    load_seconds: float | None = Field(default=None, ge=0, le=86400)
+    prompt_seconds: float | None = Field(default=None, ge=0, le=86400)
+    generation_seconds: float | None = Field(default=None, ge=0, le=86400)
+
+
 class GenerationResult(Contract):
     content: str = Field(min_length=1, max_length=16000, repr=False)
     identity: ModelIdentity
     usage: Usage
     finish_reason: Literal["stop", "length"]
     synthetic: bool
+    timing: GenerationTiming = Field(default_factory=GenerationTiming)
 
 
 class ErrorCode(StrEnum):

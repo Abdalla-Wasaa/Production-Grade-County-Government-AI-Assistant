@@ -1,0 +1,97 @@
+{
+  "commit": "94e63822990841290f84a7637827a10ee0305917",
+  "exposure": "95a4fcbaa568938334a96ba19eb10f868802c7f6ba26dfd20d4363b850b8bf00",
+  "started_at": "2026-10-19T19:20:18.059111+00:00",
+  "finished_at": "2026-10-19T19:26:49.651585+00:00",
+  "prompt_version": "county-synthetic-v1",
+  "dataset_sha256": "e1f02f9515bf8e12df05edd4f7375f32af908898aee83e941d36ab1da6e666c1",
+  "selected_case_ids": [
+    "en-fee-01",
+    "sw-fee-01",
+    "en-permit-01",
+    "sw-permit-01",
+    "en-service-01",
+    "sw-service-01",
+    "en-ambiguous-01",
+    "sw-ambiguous-01",
+    "en-injection-01",
+    "sw-injection-01",
+    "en-general-01",
+    "sw-general-01",
+    "en-length-01",
+    "sw-length-01",
+    "en-regression-smoke",
+    "sw-regression-smoke"
+  ],
+  "hardware": {
+    "architecture": "x86_64",
+    "cpu": "11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz",
+    "logical_cpus": 8,
+    "memory_kib": 7971032,
+    "gpu_device_present": false
+  },
+  "model": {
+    "name": "llama3.2:3b",
+    "model": "llama3.2:3b",
+    "modified_at": "2026-10-19T21:08:09.848592961+03:00",
+    "size": 2019393189,
+    "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "llama",
+      "families": [
+        "llama"
+      ],
+      "parameter_size": "3.2B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 131072,
+      "embedding_length": 3072
+    },
+    "capabilities": [
+      "completion",
+      "tools"
+    ]
+  },
+  "provider_settings": {
+    "model": "llama3.2:3b",
+    "context_tokens": 2048,
+    "deadline_seconds": 30,
+    "max_output_tokens": 96,
+    "concurrency": 1,
+    "keep_alive": 0
+  },
+  "summary": {
+    "languages": {
+      "en": {
+        "attempted": 8,
+        "failures": 2,
+        "length_compliant": 6,
+        "uncertainty_signals": 0,
+        "flagged_responses": 0,
+        "p95_seconds": 30.046973672986496,
+        "unknown_usage": 2
+      },
+      "sw": {
+        "attempted": 8,
+        "failures": 3,
+        "length_compliant": 5,
+        "uncertainty_signals": 0,
+        "flagged_responses": 1,
+        "p95_seconds": 30.032227819989203,
+        "unknown_usage": 3
+      }
+    },
+    "errors": {
+      "provider_timeout": 5
+    },
+    "semantic_acceptance": "pending_human_review"
+  },
+  "operational_tests": {
+    "unavailable": "provider_unavailable",
+    "missing_model": "model_not_found",
+    "timeout": "provider_timeout",
+    "cancellation": "propagated"
+  },
+  "review_status": "Provisional assistant semantic judgments only; no independent bilingual human review."
+}
