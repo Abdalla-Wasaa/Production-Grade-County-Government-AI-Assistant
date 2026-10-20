@@ -14,15 +14,19 @@ from app.modules.ai.contracts import (
     GenerationRequest,
     GenerationResult,
     Message,
+    ModelIdentity,
     ProviderError,
+    Usage,
 )
-from app.modules.ai.prompts import PROMPT_VERSION, SYSTEM_PROMPTS
+from app.modules.ai.prompts import ABSTENTIONS, POLICY_VERSION, PROMPT_VERSION, SYSTEM_PROMPTS
 
 
 class PromptSettings(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix="PROMPT_", env_file=None, extra="forbid", frozen=True, hide_input_in_errors=True
     )
+    # Server-owned routing, never inferred from words or client/provider claims.
+    response_policy: Literal["unverified_county", "general_information"] = "unverified_county"
     # Outer deadline includes provider admission. A shorter provider deadline still wins.
     timeout_seconds: float = Field(default=30, gt=0, le=30)
     max_output_tokens: int = Field(default=256, ge=1, le=1024)
@@ -44,6 +48,13 @@ class PromptInput(Contract):
 class PromptResult(Contract):
     generation: GenerationResult = Field(repr=False)
     prompt_version: str
+    status: Literal["complete", "abstained", "truncated", "suspected_incomplete"]
+
+    @property
+    def displayable_content(self) -> str | None:
+        # Completion is not factual approval. Raw partial text is private review data.
+        return self.generation.content if self.status in {"complete", "abstained"} else None
+
     elapsed_seconds: float = Field(ge=0)
 
 
@@ -58,8 +69,29 @@ class PromptOrchestrator:
         self._provider = provider
         self._settings = settings
 
+    @property
+    def response_policy(self) -> Literal["unverified_county", "general_information"]:
+        return self._settings.response_policy
+
     async def generate(self, value: PromptInput) -> PromptResult:
+        started = perf_counter()
         settings = self._settings
+        if settings.response_policy == "unverified_county":
+            content = ABSTENTIONS[value.language]
+            if len(content) > settings.max_output_characters:
+                raise ProviderError(ErrorCode.INVALID_REQUEST)
+            return PromptResult(
+                generation=GenerationResult(
+                    content=content,
+                    identity=ModelIdentity(provider="policy", model=POLICY_VERSION),
+                    usage=Usage(),
+                    finish_reason="stop",
+                    synthetic=True,
+                ),
+                prompt_version=PROMPT_VERSION,
+                status="abstained",
+                elapsed_seconds=perf_counter() - started,
+            )
         request = GenerationRequest(
             messages=(
                 Message(
@@ -75,7 +107,6 @@ class PromptOrchestrator:
             language=value.language,
             max_output_tokens=settings.max_output_tokens,
         )
-        started = perf_counter()
         try:
             async with asyncio.timeout(settings.timeout_seconds):
                 result = await self._provider.generate(request)
@@ -93,7 +124,18 @@ class PromptOrchestrator:
             raise
         except Exception:
             raise ProviderError(ErrorCode.UNAVAILABLE) from None
+        # Terminal punctuation is only a conservative completeness signal, not grammar
+        # or factual verification. Never repair, silently truncate or retry content.
+        terminal = result.content.rstrip().rstrip("\"'”’)]}»").rstrip()
+        status: Literal["complete", "abstained", "truncated", "suspected_incomplete"]
+        if result.finish_reason == "length":
+            status = "truncated"
+        elif not terminal or terminal[-1] not in ".!?…":
+            status = "suspected_incomplete"
+        else:
+            status = "complete"
         return PromptResult(
+            status=status,
             generation=result,
             prompt_version=PROMPT_VERSION,
             elapsed_seconds=perf_counter() - started,

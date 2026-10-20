@@ -11,6 +11,7 @@ from app.modules.ai.contracts import (
     ErrorCode,
     GenerationRequest,
     GenerationResult,
+    GenerationTiming,
     ModelIdentity,
     ProviderError,
     Usage,
@@ -33,6 +34,14 @@ class _Reply(BaseModel):
     done_reason: Literal["stop", "length"]
     prompt_eval_count: int | None = Field(default=None, ge=0)
     eval_count: int | None = Field(default=None, ge=0)
+    total_duration: int | None = Field(default=None, ge=0, le=86400000000000)
+    load_duration: int | None = Field(default=None, ge=0, le=86400000000000)
+    prompt_eval_duration: int | None = Field(default=None, ge=0, le=86400000000000)
+    eval_duration: int | None = Field(default=None, ge=0, le=86400000000000)
+
+
+def seconds(nanoseconds: int | None) -> float | None:
+    return None if nanoseconds is None else nanoseconds / 1_000_000_000
 
 
 class OllamaProvider:
@@ -123,6 +132,12 @@ class OllamaProvider:
                 usage=Usage(input_tokens=reply.prompt_eval_count, output_tokens=reply.eval_count),
                 finish_reason=reply.done_reason,
                 synthetic=False,
+                timing=GenerationTiming(
+                    total_seconds=seconds(reply.total_duration),
+                    load_seconds=seconds(reply.load_duration),
+                    prompt_seconds=seconds(reply.prompt_eval_duration),
+                    generation_seconds=seconds(reply.eval_duration),
+                ),
             )
         except (TimeoutError, httpx.TimeoutException):
             raise ProviderError(ErrorCode.TIMEOUT) from None
