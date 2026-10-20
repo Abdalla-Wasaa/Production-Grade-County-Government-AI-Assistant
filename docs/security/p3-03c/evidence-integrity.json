@@ -1,0 +1,46 @@
+{
+  "verified_original_manifest_entries": [
+    "report.json",
+    "synthetic-outputs.json",
+    "resources.jsonl",
+    "blinded-review.json",
+    "private-review-key.json",
+    "evaluate.py",
+    "start.sh",
+    "server.log",
+    "run.log"
+  ],
+  "original_manifest_sha256": "bd3a72a0f17285bd7236784f19a1be127910742a872858405cc89a98e2871591",
+  "preserved_copies": {
+    "baseline-metadata.json": {
+      "sha256": "a2b84aeb06c63bb60da75253fcc28a35e653299323fc8de4d0c3f57a38f47224",
+      "bytes": 14367
+    },
+    "baseline-synthetic-outputs.json": {
+      "sha256": "2b28cfdcb9d2bd48e395b291a89ef1b41b4b3b731c98291ce8c02d47d2dc3969",
+      "bytes": 6551
+    },
+    "development-cases.json": {
+      "sha256": "e1f02f9515bf8e12df05edd4f7375f32af908898aee83e941d36ab1da6e666c1",
+      "bytes": 19607
+    },
+    "resources.jsonl": {
+      "sha256": "fffcccc8a289f3ddeab955b03f02f83a9531f6278a47616bcbe4d7ea711a62d5",
+      "bytes": 1456887
+    },
+    "run.log": {
+      "sha256": "2921bc34fa982c69d382f2e7b10d40fecbf39f46a4927ec513233bb4d07d0609",
+      "bytes": 6880
+    },
+    "server.log": {
+      "sha256": "6c7caff05761df9d315eb70e839d4f284e6f137d3970b3d4905f64a7ad99de29",
+      "bytes": 1706517
+    },
+    "synthetic-outputs.json": {
+      "sha256": "d10babaf7d0ef1f955b2137eade07b0d7a6ce8fc712662174af20392a7b64d1f",
+      "bytes": 34101
+    }
+  },
+  "private_unblinding_key": "not distributed; local original hash remains bound by P3-03B manifest",
+  "review_status": "unsubmitted; no human scores assigned"
+}
