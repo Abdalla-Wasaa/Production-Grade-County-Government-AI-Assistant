@@ -32,15 +32,18 @@
       "sha256": "d10babaf7d0ef1f955b2137eade07b0d7a6ce8fc712662174af20392a7b64d1f",
       "bytes": 34101
     },
-    "server-log.txt": {
-      "sha256": "6c7caff05761df9d315eb70e839d4f284e6f137d3970b3d4905f64a7ad99de29",
-      "bytes": 1706517,
-      "original_name": "server.log"
-    },
     "run-log.txt": {
       "sha256": "2921bc34fa982c69d382f2e7b10d40fecbf39f46a4927ec513233bb4d07d0609",
       "bytes": 6880,
       "original_name": "run.log"
+    },
+    "server-log.json": {
+      "sha256": "2aad57b889db1c75a6c823a83cbb4e8380ea69566cc5848c30b8dafcd8c5d54d",
+      "bytes": 2275510,
+      "encoding": "base64-json",
+      "decoded_sha256": "6c7caff05761df9d315eb70e839d4f284e6f137d3970b3d4905f64a7ad99de29",
+      "decoded_bytes": 1706517,
+      "original_name": "server.log"
     }
   },
   "private_unblinding_key": "not distributed; local original hash remains bound by P3-03B manifest",

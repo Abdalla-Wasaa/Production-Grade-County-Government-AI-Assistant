@@ -22,7 +22,9 @@ Original metadata, harness and summaries were already tracked; raw resources,
 synthetic answers and logs depended on ephemeral /tmp storage. Byte-identical copies
 now live under docs/security/p3-03c/evidence, with original fixture and baseline
 inputs needed by the preserved harness. [Integrity record](security/p3-03c/evidence-integrity.json)
-binds those copies. Private unblinding key remains outside Git, hash-bound by the
+binds those copies. Server log is losslessly base64-wrapped in JSON because the
+original contains whitespace that repository text formatting rejects; decoding its
+data field reproduces the original hash exactly. The source log remains unchanged. Private unblinding key remains outside Git, hash-bound by the
 original manifest, with a 0600 durable coordinator copy at
 /root/.local/share/county-ai/review-keys/p3-03b-private-review-key.json. The parent
 directory is 0700. Owner-managed encrypted backup/access remains a handover task;
