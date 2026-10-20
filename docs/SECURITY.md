@@ -545,3 +545,17 @@ Acceptance stays isolated synthetic development only through 23 October 2026,
 live inference, model downloads, renewal, future exposure authorization or automatic
 merge. The exact five-file decision and publication are now approved; publish the
 branch/PR linked to #36 through all seven normal hosted checks.
+
+## Owner-approved P3-03B scoped exposure decision
+
+The owner explicitly authorized validated commit 9594dc339bd93939113817a6ba0a132ecc062ea3
+and exposure d015b5cadfa07781d0f2eb063bb11bbd7dea923a684bad94a78dbae3506f476d
+for isolated synthetic development and the conditional 96-scored/six-warm-up
+Llama/Qwen benchmark. See docs/P3_03B_EXPOSURE_ASSESSMENT.md (repository-relative).
+P3-03A approval bytes preserved in docs/security/p3-03b/p3-03a-acceptance-snapshot.json
+(SHA-256 9619c830542bb5495256e338b8c57d82ef5536b2d8bf6a3bba81928952545211). No baseline/inventory/control changes.
+115 HIGH/3 CRITICAL remain. Actual 20 October human review is confirmed; future
+daily reviews are not inferred. Expiry remains 23 October 2026, 23:59 EAT; all
+invalidation rules, scanning, seven checks and branch protection remain enforced.
+Require runtime resource and isolation prerequisites. No production/real data/public
+Ollama, additional models, automatic selection, publication, merge or P3-04.
