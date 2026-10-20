@@ -3,7 +3,7 @@
 [Issue #36](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/36)
 follows [#34](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/34)
 and merged [PR #35](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/pull/35).
-Source prepared; no changed-source execution, new model evaluation or quality claim.
+Authorized offline validation passed; no new live-model evaluation or model-quality claim.
 P3-04 stays blocked pending its prerequisites and approval.
 
 ## Evidence and root causes
@@ -105,7 +105,9 @@ call these an independently reviewed release holdout.
 
 ## Prepared validation and next experiments
 
-No changed-source test/evaluation has executed. Prepared tests cover default policy
+Owner-authorized synthetic validation passed: 36 new cases, 149 existing provider/
+orchestration cases and 128 backend regressions. No source correction was needed.
+Tests cover default policy
 on all 100 cases and unseen attacks, language/identity isolation, invalid routing,
 output caps, explicit length finishes, suspected incompleteness, optional/zero/invalid
 Ollama durations, mock no-network contracts, report privacy and correct timeout/
@@ -113,8 +115,9 @@ latency denominators. Existing 38 orchestration tests explicitly select general 
 to keep exercising provider behavior; retain 43 provider, 68 Ollama and 128 backend
 regressions. Fake runner remains offline and clearly labelled as plumbing evaluation.
 
-After exact runtime approval, run targeted tests and affected non-integration backend
-regressions. After separate live authorization, compare the fixed paired subset using
+Exact runtime authorization covered targeted tests and affected non-integration
+backend regressions; those runs passed as recorded below. After separate live
+authorization, compare the fixed paired subset using
 `PromptSettings(response_policy="general_information")`, the same weights and recorded
 hardware. Measure bounded budgets without removing deadlines, collect real duration
 metadata, and review output completeness/quality per language. Separately verify the
@@ -125,3 +128,23 @@ The current Llama model remains an experimental candidate only. If it cannot mee
 Kiswahili and latency gates, document that failure; a better-suited model or hardware
 comparison needs separate authorization. No P3-04 endpoint/UI rollout until quality
 and runtime/security gates are resolved.
+
+## Authorized offline outcome
+
+Both runs executed all 100 existing cases, 50 per language. The policy path returned
+50 labelled abstentions per language, 50/50 character compliance and 36/36 expected
+uncertainty signals, with zero provider calls. It abstains on general questions too;
+this is not useful-answer coverage or learned-model improvement.
+
+The explicit general-information fake-provider run returned 50 fixed markers per
+language, with zero policy responses, zero provider errors/timeouts and 50/50 length
+compliance. All 50 per language are flagged suspected-incomplete because the marker
+text is not sentence-terminated prose. These completion failures are retained, not
+suppressed or relabelled as semantic success. Uncertainty signals are 0/36 per language
+and claim flags zero. Known conservative false-positive behavior is documented;
+no application correction was made to hide it. Neither run evaluated Llama.
+
+See [validated exposure assessment](P3_03A_EXPOSURE_ASSESSMENT.md) for evidence and
+the exact next approval. Independent human semantic review remains pending, and the
+20 October actual human CRITICAL review remains unconfirmed. Nothing is production
+approved; no push/PR or acceptance update is authorized by runtime validation alone.

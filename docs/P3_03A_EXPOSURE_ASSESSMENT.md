@@ -1,4 +1,4 @@
-# P3-03A source exposure assessment — runtime approval pending
+# P3-03A source exposure assessment — publication approval pending
 
 [Issue #36](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/36),
 branch `feat/p3-03a-model-quality-remediation`, base main
@@ -16,7 +16,8 @@ Source adds compact prompts, a server-owned default county abstention path,
 completion classification, additive optional timing and honest report metrics.
 No protocol methods, domain routes, SQL privileges, authentication, privacy policy,
 provider allowlist, network bindings, dependencies or base-image pins change.
-No model inference, model downloads or new source/runtime tests have run.
+No live model inference or downloads occurred. The owner subsequently authorized
+exact-source synthetic runtime validation; actual results are recorded below.
 
 The default unverified-county policy does not call the model for any input; its
 fixed bilingual response is a policy notice, never learned/model-quality evidence.
@@ -51,17 +52,73 @@ uses explicit general mode, reports status including suspected-incomplete marker
 responses, and never silently substitutes policy output for model/fake evaluation.
 
 Ruff, formatting, strict Mypy and repository documentation checks passed; redacted
-secret scanning found no leaks. Runtime tests and live evaluation remain **unrun**.
+secret scanning found no leaks. Runtime validation is now complete under explicit owner authorization; live
+evaluation remains unrun.
 The ordinary policy checker correctly stops with changed exposure / owner review
 required; this is expected enforcement, not a reason to skip or weaken checks.
 
-## Exact next authorization
+## Authorized runtime outcome
 
-Authorize isolated synthetic-only execution for the final reported commit and exact
-exposure above: the 36 new cases, 38 existing orchestration cases, 111 provider/Ollama
-cases, relevant 128 backend regressions and offline fake/policy evaluation.
-Use mocks/fake only; no live Ollama calls/downloads, production or real data.
-Any corrected exposure follows the existing runtime authorization rule before execution.
+Owner authorization covered commit
+`1d1331d5542eb81d77cd4ccd33d2d0a9b19dc77c` and the exact exposure above.
+No application/test defect or source correction was encountered. Actual tests:
+
+- **185 passed**: 36 new remediation, 38 orchestration, 43 provider, 68 mocked Ollama.
+- **128 passed** existing non-integration backend regressions; 79 PostgreSQL cases
+  deliberately deselected and not claimed as newly run.
+- **313 total tests passed**, no failures or skips among selected cases.
+- Ruff, formatting, strict Mypy, documentation, sanitized report and secret checks passed.
+- Existing TestClient emits one dependency deprecation warning per pytest invocation;
+  no new dependency or unrelated change is warranted for that warning.
+
+[Provider tests](security/p3-03a/provider-tests.xml) and
+[backend regressions](security/p3-03a/backend-regressions.xml) are actual sanitized
+JUnit evidence. The report below records two separate offline runs, not 200 model
+inference calls. [Fake results](security/p3-03a/offline-fake-evaluation.json) and
+[policy results](security/p3-03a/offline-policy-evaluation.json) retain all case IDs.
+
+| Metric per language | Policy English | Policy Kiswahili | Fake English | Fake Kiswahili |
+| --- | --- | --- | --- | --- |
+| Cases executed | 50 | 50 | 50 | 50 |
+| Policy-handled | 50 | 50 | 0 | 0 |
+| Fixed fake responses | 0 | 0 | 50 | 50 |
+| Real-model responses | 0 | 0 | 0 | 0 |
+| Timeouts / provider errors | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 0 |
+| Suspected incomplete | 0 | 0 | 50 | 50 |
+| Claim flags | 0 | 0 | 0 | 0 |
+| Uncertainty signals on expected cases | 36/36 | 36/36 | 0/36 | 0/36 |
+| Character compliance | 50/50 | 50/50 | 50/50 | 50/50 |
+
+The fixed fake marker lacks terminal sentence punctuation, so the conservative
+completeness detector flags all fake outputs. Those completion failures are visible;
+there are zero provider/harness evaluation errors. Neither run constitutes semantic
+acceptance. The policy path intentionally abstains on general questions too and
+cannot establish useful-answer quality. Zero claim flags proves neither truth nor
+injection resistance. Fake/policy microsecond timings are implementation overhead,
+not evidence that Llama's CPU latency or Kiswahili capability improved. All model
+quality, human review and representative latency gates remain unmet/unverified.
+
+## Exact next approval — records and publication only
+
+Approve the narrowly scoped P3-03A synthetic-development decision for the final
+reported commit with unchanged exact exposure above, through 23 October 2026,
+23:59 EAT. Proposed changes are limited to these five files:
+
+1. `.github/security-risk-acceptances.json`: bind the unchanged individually listed
+   115 HIGH/3 CRITICAL occurrences and exact baseline to this tested source exposure;
+   retain every invalidation trigger and production prohibition.
+2. `docs/security/p3-03a/p3-03-acceptance-snapshot.json`: preserve the current P3-03
+   acceptance bytes and reconstruction hash unchanged before replacing active binding.
+3. `docs/P3_03A_EXPOSURE_ASSESSMENT.md`: record the actual owner decision/results.
+4. `docs/SECURITY.md`: document the exact new restricted development decision.
+5. `AGENTS.md`: supersede pending P3-03A record/publication statements for this hash only.
+
+No inventory or vulnerability-baseline update is needed: all exact packages/findings
+remain unchanged. No records or snapshots above have been altered. Publication
+approval should explicitly authorize pushing this branch, opening the prepared PR
+linked to #36, and running all seven hosted checks. It grants no model-quality
+acceptance, future exposure approval, expiry extension, live inference, public
+network exposure, real citizen data, production deployment or automatic merge.
 
 Actual human CRITICAL review is confirmed only for 19 October. The 20 October review
 remains unconfirmed; before a runtime action requiring that daily review, obtain real
@@ -71,9 +128,8 @@ source authorization or invent a future review. Expiry remains 23 October 2026,
 23:59 EAT; no extension, production, public Ollama or real citizen data.
 
 After offline validation, obtain separate exact security-record/publication approval.
-If findings/inventories remain unchanged, the anticipated minimum proposal is active
-risk acceptance, byte-preserved P3-03 acceptance snapshot, this assessment, SECURITY.md
-and AGENTS.md. None of those acceptance/snapshot updates is applied here. New findings,
+Findings/inventories are confirmed unchanged; the exact minimum proposal is listed
+above. None of those acceptance/snapshot updates is applied here. New findings,
 fixes, severity/vendor/KEV changes or inventory changes require their own disposition;
 never approve them from equal counts alone. Separate authorization is necessary for
 any later live model evaluation; no P3-04 or automatic push/PR/merge is authorized now.
@@ -107,3 +163,16 @@ path, no reproduced exploit), and zlib CVE-2023-45853 (Debian says vulnerable Mi
 is excluded; keep scanner finding). This module adds no SQL/XML, document parser,
 permissions or domain paths. All existing assessments and daily review requirements
 remain; no 20 October human review is asserted here.
+
+## Security evidence confirmation after validation
+
+Revalidated the complete existing packaging reports against immutable image IDs,
+full inventories and exact finding rows for unchanged source. The reports were
+scanned 20 October 2026 14:43 UTC using the database updated 20 October 13:14 UTC;
+no rebuild was needed because source/dependencies are unchanged. No reported fixes
+or KEV matches. Runtime/dev and tooling audit report hashes and zero-advisory results
+were verified. Ruleset 25222082 was fetched directly: active, strict synchronization,
+all seven contexts bound to Actions app 15368, no bypass actors; deletion/force pushes
+remain blocked. No workflow, ruleset, historical acceptance or privacy control changed.
+The normal exposure policy still correctly rejects the old acceptance for this hash;
+its rejection must be resolved only by the separately approved record update.
