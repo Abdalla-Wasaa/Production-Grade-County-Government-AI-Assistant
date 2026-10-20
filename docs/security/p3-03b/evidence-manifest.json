@@ -1,0 +1,47 @@
+{
+  "report.json": {
+    "sha256": "869c5406ab73576dcbd714e7f87df777e9bb684832bda57276e6a8883bbad5a6",
+    "bytes": 333458,
+    "local_path": "/tmp/county-p303b-benchmark/report.json"
+  },
+  "synthetic-outputs.json": {
+    "sha256": "d10babaf7d0ef1f955b2137eade07b0d7a6ce8fc712662174af20392a7b64d1f",
+    "bytes": 34101,
+    "local_path": "/tmp/county-p303b-benchmark/synthetic-outputs.json"
+  },
+  "resources.jsonl": {
+    "sha256": "fffcccc8a289f3ddeab955b03f02f83a9531f6278a47616bcbe4d7ea711a62d5",
+    "bytes": 1456887,
+    "local_path": "/tmp/county-p303b-benchmark/resources.jsonl"
+  },
+  "blinded-review.json": {
+    "sha256": "74d952c2ea36ed0c2c287610eeeb4b9ddc36ec2c1cd6c98dac1590bf9bdf00dd",
+    "bytes": 61483,
+    "local_path": "/tmp/county-p303b-benchmark/blinded-review.json"
+  },
+  "private-review-key.json": {
+    "sha256": "6a21a95fbc8278eaf6b8752f5fee2e54ae6072e476a507ba9364d540e03b4a6e",
+    "bytes": 11859,
+    "local_path": "/tmp/county-p303b-benchmark/private-review-key.json"
+  },
+  "evaluate.py": {
+    "sha256": "ef2d14f5d39e47087aa8cf8991bc2a59f8823fb6f0b07f453ed1dad170e16aaa",
+    "bytes": 8880,
+    "local_path": "/tmp/county-p303b-benchmark/evaluate.py"
+  },
+  "start.sh": {
+    "sha256": "57afad206dfa3a8bbfa6efacad1fc9b478c8d6eebe4a35f4f42be5ac635d8c3b",
+    "bytes": 623,
+    "local_path": "/tmp/county-p303b-benchmark/start.sh"
+  },
+  "server.log": {
+    "sha256": "6c7caff05761df9d315eb70e839d4f284e6f137d3970b3d4905f64a7ad99de29",
+    "bytes": 1706517,
+    "local_path": "/tmp/county-p303b-benchmark/server.log"
+  },
+  "run.log": {
+    "sha256": "2921bc34fa982c69d382f2e7b10d40fecbf39f46a4927ec513233bb4d07d0609",
+    "bytes": 6880,
+    "local_path": "/tmp/county-p303b-benchmark/run.log"
+  }
+}

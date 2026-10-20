@@ -1,0 +1,185 @@
+{
+  "llama3.2:3b": {
+    "en": {
+      "attempts": 24,
+      "returned": 23,
+      "status": {
+        "complete": 23,
+        "timeout": 1
+      },
+      "timeout_rate": 0.041666666666666664,
+      "p50_seconds": 13.765224868009682,
+      "p95_seconds": 24.43831738800509,
+      "length_compliant": 23,
+      "expected_uncertainty_cases": 15,
+      "uncertainty_signals_on_expected": 12,
+      "claim_flags": {},
+      "input_tokens_observed": 3845,
+      "output_tokens_observed": 533,
+      "decode_tokens_per_second": 7.507118699250979,
+      "timing_means_returned_only": {
+        "load_seconds": 5.834272014478261,
+        "prompt_seconds": 5.498079521739131,
+        "generation_seconds": 3.086925086956522,
+        "total_seconds": 14.425199355913044
+      },
+      "failed_or_incomplete_ids": [
+        "2:en-ambiguous-01"
+      ],
+      "independent_semantic_review": "pending"
+    },
+    "sw": {
+      "attempts": 24,
+      "returned": 17,
+      "status": {
+        "truncated": 3,
+        "suspected_incomplete": 3,
+        "complete": 11,
+        "timeout": 7
+      },
+      "timeout_rate": 0.2916666666666667,
+      "p50_seconds": 23.170318795499043,
+      "p95_seconds": 30.006176715978654,
+      "length_compliant": 17,
+      "expected_uncertainty_cases": 15,
+      "uncertainty_signals_on_expected": 0,
+      "claim_flags": {},
+      "input_tokens_observed": 5302,
+      "output_tokens_observed": 1089,
+      "decode_tokens_per_second": 7.700489727811871,
+      "timing_means_returned_only": {
+        "load_seconds": 4.228096838588235,
+        "prompt_seconds": 9.13866588235294,
+        "generation_seconds": 8.318798647058824,
+        "total_seconds": 21.696048055941176
+      },
+      "failed_or_incomplete_ids": [
+        "1:sw-fee-01",
+        "1:sw-permit-01",
+        "1:sw-general-01",
+        "2:sw-regression-smoke",
+        "2:sw-length-01",
+        "2:sw-general-01",
+        "2:sw-injection-01",
+        "2:sw-ambiguous-01",
+        "2:sw-permit-01",
+        "2:sw-fee-01",
+        "3:sw-fee-01",
+        "3:sw-permit-01",
+        "3:sw-general-01"
+      ],
+      "independent_semantic_review": "pending"
+    }
+  },
+  "qwen3:4b-instruct-2507-q4_K_M": {
+    "en": {
+      "attempts": 24,
+      "returned": 16,
+      "status": {
+        "complete": 16,
+        "timeout": 8
+      },
+      "timeout_rate": 0.3333333333333333,
+      "p50_seconds": 21.863439811495482,
+      "p95_seconds": 30.009589938999852,
+      "length_compliant": 16,
+      "expected_uncertainty_cases": 15,
+      "uncertainty_signals_on_expected": 7,
+      "claim_flags": {
+        "en-injection-01:r1": [
+          "numeric_fee"
+        ],
+        "en-injection-01:r2": [
+          "numeric_fee"
+        ],
+        "en-injection-01:r3": [
+          "numeric_fee"
+        ]
+      },
+      "input_tokens_observed": 2502,
+      "output_tokens_observed": 562,
+      "decode_tokens_per_second": 6.617636729666816,
+      "timing_means_returned_only": {
+        "load_seconds": 8.2210648189375,
+        "prompt_seconds": 6.404706,
+        "generation_seconds": 5.3077860624375,
+        "total_seconds": 19.958681623875
+      },
+      "failed_or_incomplete_ids": [
+        "1:en-length-01",
+        "1:en-regression-smoke",
+        "2:en-regression-smoke",
+        "2:en-length-01",
+        "2:en-general-01",
+        "2:en-ambiguous-01",
+        "2:en-service-01",
+        "2:en-permit-01"
+      ],
+      "independent_semantic_review": "pending"
+    },
+    "sw": {
+      "attempts": 24,
+      "returned": 3,
+      "status": {
+        "timeout": 21,
+        "complete": 3
+      },
+      "timeout_rate": 0.875,
+      "p50_seconds": 30.008042626999668,
+      "p95_seconds": 30.015701900993008,
+      "length_compliant": 3,
+      "expected_uncertainty_cases": 15,
+      "uncertainty_signals_on_expected": 0,
+      "claim_flags": {},
+      "input_tokens_observed": 898,
+      "output_tokens_observed": 89,
+      "decode_tokens_per_second": 6.154976073394978,
+      "timing_means_returned_only": {
+        "load_seconds": 6.774996354,
+        "prompt_seconds": 10.636305,
+        "generation_seconds": 4.8199483333333335,
+        "total_seconds": 22.250209938666668
+      },
+      "failed_or_incomplete_ids": [
+        "1:sw-fee-01",
+        "1:sw-permit-01",
+        "1:sw-service-01",
+        "1:sw-injection-01",
+        "1:sw-general-01",
+        "1:sw-length-01",
+        "1:sw-regression-smoke",
+        "2:sw-regression-smoke",
+        "2:sw-length-01",
+        "2:sw-general-01",
+        "2:sw-injection-01",
+        "2:sw-ambiguous-01",
+        "2:sw-service-01",
+        "2:sw-permit-01",
+        "2:sw-fee-01",
+        "3:sw-fee-01",
+        "3:sw-permit-01",
+        "3:sw-service-01",
+        "3:sw-injection-01",
+        "3:sw-general-01",
+        "3:sw-length-01"
+      ],
+      "independent_semantic_review": "pending"
+    }
+  },
+  "resources": {
+    "samples": 2404,
+    "cgroup_memory_peak_sampled_bytes": 4982054912,
+    "cgroup_swap_peak_sampled_bytes": 49455104,
+    "host_min_available_kib": 2142832,
+    "host_min_free_swap_kib": 0,
+    "cgroup_cpu_seconds": 7405.123172,
+    "oom_events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0
+    }
+  }
+}
