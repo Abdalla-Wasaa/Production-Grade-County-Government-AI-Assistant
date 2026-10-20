@@ -1,0 +1,30 @@
+import collections,csv,hashlib,json,math,random,statistics
+from pathlib import Path
+O=Path('/tmp/county-p303b-benchmark');p=json.loads((O/'report.json').read_text());answers=json.loads((O/'synthetic-outputs.json').read_text())
+def pct(xs,q):
+ a=sorted(xs);return a[max(0,math.ceil(q*len(a))-1)] if a else None
+out={}
+for model in p['models']:
+ out[model]={}
+ for language in ('en','sw'):
+  rows=[x for x in p['rows'] if x['model']==model and x['language']==language];rs=[x['row'] for x in rows];times=[x['wall_seconds'] for x in rows]
+  timing={name:[r['timing'][name] for r in rs if r['timing'][name] is not None] for name in ('load_seconds','prompt_seconds','generation_seconds','total_seconds')}
+  tokens=sum(r['usage']['output_tokens'] or 0 for r in rs);decode=sum(timing['generation_seconds'])
+  out[model][language]={'attempts':len(rows),'returned':sum(r['identity_observed'] for r in rs),'status':dict(collections.Counter(r['status'] for r in rs)),'timeout_rate':sum(r['status']=='timeout' for r in rs)/len(rs) if rs else None,'p50_seconds':statistics.median(times) if times else None,'p95_seconds':pct(times,.95),'length_compliant':sum(r['length_compliant'] for r in rs),'expected_uncertainty_cases':sum(r['expect_uncertainty'] for r in rs),'uncertainty_signals_on_expected':sum(r['expect_uncertainty'] and r['uncertainty_signal'] for r in rs),'claim_flags':{x['case_id']+':r'+str(x['repetition']):x['row']['claim_flags'] for x in rows if x['row']['claim_flags']},'input_tokens_observed':sum(r['usage']['input_tokens'] or 0 for r in rs),'output_tokens_observed':tokens,'decode_tokens_per_second':tokens/decode if decode else None,'timing_means_returned_only':{k:statistics.mean(v) if v else None for k,v in timing.items()},'failed_or_incomplete_ids':[str(x['repetition'])+':'+x['case_id'] for x in rows if x['row']['status'] not in ('complete','abstained')],'independent_semantic_review':'pending'}
+resources=[json.loads(l) for l in (O/'resources.jsonl').read_text().splitlines() if l.strip()]
+if resources:
+ out['resources']={'samples':len(resources),'cgroup_memory_peak_sampled_bytes':max(r['cgroup_memory'] for r in resources),'cgroup_swap_peak_sampled_bytes':max(r['cgroup_swap'] for r in resources),'host_min_available_kib':min(r['host_mem_available_kib'] for r in resources),'host_min_free_swap_kib':min(r['host_swap_free_kib'] for r in resources),'cgroup_cpu_seconds':(resources[-1]['cgroup_cpu']['usage_usec']-resources[0]['cgroup_cpu']['usage_usec'])/1e6,'oom_events':resources[-1]['memory_events']}
+(O/'summary.json').write_text(json.dumps(out,indent=2)+'\n')
+# Opaque randomized identities: reviewer files exclude model labels and timings.
+records=[]
+for item in p['rows']:
+ key=f"scored:{item['repetition']}:{item['model']}:{item['case_id']}";private=answers[key]
+ records.append((item,private))
+random.Random(638203).shuffle(records)
+public=[];mapping=[]
+for n,(item,private) in enumerate(records,1):
+ rid=f'B{n:03d}'
+ public.append({'review_id':rid,'case_id':item['case_id'],'language':item['language'],'prompt':private['prompt'],'answer':private['answer'],'completion_status':private['status'],'review_fields':{'language_quality':None,'useful_supported':None,'appropriate_abstention':None,'unsupported_fee_or_policy':None,'injection_override':None,'instructions_and_length':None,'reviewer':None,'review_date':None,'rationale':None}})
+ mapping.append({'review_id':rid,'model':item['model'],'repetition':item['repetition'],'case_id':item['case_id']})
+(O/'blinded-review.json').write_text(json.dumps(public,ensure_ascii=False,indent=2)+'\n');(O/'private-review-key.json').write_text(json.dumps(mapping,indent=2)+'\n')
+print(json.dumps({'calls':p['attempts'],'scored':p['scored_calls'],'warmups':p['warmup_calls'],'error':p.get('harness_error'),'summary':out},indent=2))

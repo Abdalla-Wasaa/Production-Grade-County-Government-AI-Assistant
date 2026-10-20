@@ -38,6 +38,26 @@ class AISettings(BaseSettings):
         default=8192, ge=2048, le=32768, validation_alias="OLLAMA_CONTEXT_TOKENS"
     )
 
+    # Server-owned sampling is explicit so model-file defaults cannot bias comparisons.
+    temperature: float = Field(default=0.7, ge=0, le=2, allow_inf_nan=False)
+    top_p: float = Field(default=0.8, gt=0, le=1, allow_inf_nan=False)
+    top_k: int = Field(default=20, ge=1, le=100, strict=True)
+    min_p: float = Field(default=0, ge=0, le=1, allow_inf_nan=False)
+    repeat_penalty: float = Field(default=1, ge=0.5, le=2, allow_inf_nan=False)
+    seed: int = Field(default=42, ge=0, le=2147483647, strict=True)
+
+    @field_validator(
+        "temperature", "top_p", "top_k", "min_p", "repeat_penalty", "seed", mode="before"
+    )
+    @classmethod
+    def numeric_sampling(cls, value: object) -> object:
+        if isinstance(value, bool):
+            raise ValueError("Sampling parameters must be numeric, not boolean")
+        # Environment values are strings; strict integer fields still reject fractions.
+        if isinstance(value, str) and re.fullmatch(r"[0-9]+", value):
+            return int(value)
+        return value
+
     @field_validator("ollama_base_url")
     @classmethod
     def loopback_only(cls, value: str) -> str:

@@ -1,0 +1,112 @@
+import asyncio, hashlib, io, json, logging, os, statistics, subprocess, sys, time, urllib.request
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+os.umask(0o077)
+ROOT=Path('/root/AIEngineeringClass/afyaplus-ai-week1/Production-Grade-County-Government-AI-Assistant')
+sys.path[:0]=[str(ROOT/'backend'),str(ROOT/'scripts')]
+from app.modules.ai.settings import AISettings
+from app.modules.ai.factory import provider_context
+from app.modules.ai.contracts import ModelIdentity
+from app.modules.ai.orchestration import PromptOrchestrator,PromptSettings
+from app.modules.ai.evaluation import EvaluationCase,evaluate_case
+from app.modules.ai.prompts import PROMPT_VERSION
+import security_policy
+OUT=Path('/tmp/county-p303b-benchmark');BASE=Path('/tmp/county-p303-live-evaluation')
+EXPOSURE='d015b5cadfa07781d0f2eb063bb11bbd7dea923a684bad94a78dbae3506f476d'
+MODELS={'llama3.2:3b':'a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72','qwen3:4b-instruct-2507-q4_K_M':'0edcdef34593eac1aa2be9c7d06c432dcf81945adca5eca2f27662c18f168ba0'}
+base=json.loads((BASE/'report.json').read_text());previous=json.loads((BASE/'synthetic-outputs.json').read_text());dataset=(ROOT/'backend/tests/fixtures/prompt-evaluation/cases.json').read_bytes();fixtures={c['id']:c for c in json.loads(dataset)}
+assert hashlib.sha256(dataset).hexdigest()==base['dataset_sha256']
+cases=[]
+for cid in base['selected_case_ids']:
+ if cid in fixtures:
+  assert fixtures[cid]['content']==previous[cid]['prompt'];cases.append(EvaluationCase.model_validate(fixtures[cid]))
+ else:cases.append(EvaluationCase(id=cid,language=cid[:2],category='length',content=previous[cid]['prompt'],expect_uncertainty=True))
+assert len(cases)==16
+CG=Path('/sys/fs/cgroup')/next(l.split('::',1)[1].lstrip('/') for l in Path('/proc/self/cgroup').read_text().splitlines() if '::' in l)
+http=urllib.request.build_opener(urllib.request.ProxyHandler({}))
+def get(path):
+ with http.open('http://127.0.0.1:11434'+path,timeout=5) as response:return json.load(response)
+def counters(path):return {r.split()[0]:int(r.split()[1]) for r in Path(path).read_text().splitlines()}
+def metrics():
+ mem={k:int(v.split()[0]) for k,v in (l.split(':',1) for l in Path('/proc/meminfo').read_text().splitlines())}
+ return {'at':datetime.now(timezone.utc).isoformat(),'cgroup_memory':int((CG/'memory.current').read_text()),'cgroup_swap':int((CG/'memory.swap.current').read_text()),'cgroup_cpu':counters(CG/'cpu.stat'),'memory_events':counters(CG/'memory.events'),'host_mem_available_kib':mem['MemAvailable'],'host_swap_free_kib':mem['SwapFree'],'host_cpu':Path('/proc/stat').read_text().splitlines()[0],'host_load':Path('/proc/loadavg').read_text().split()[:3],'host_swap_pages':{k:v for k,v in counters('/proc/vmstat').items() if k in ('pswpin','pswpout')}}
+proof={'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'exposure':security_policy.exposure_sha256(),'started_at':datetime.now(timezone.utc).isoformat(),'prompt_version':PROMPT_VERSION,'dataset_sha256':hashlib.sha256(dataset).hexdigest(),'case_ids':[c.id for c in cases],'models':MODELS,'rows':[],'warmups':[],'policy_rows':[],'attempts':0,'scored_calls':0,'warmup_calls':0,'human_review':'pending; blinded outputs will be prepared, no independent review claimed','sampling':{'temperature':.7,'top_p':.8,'top_k':20,'min_p':0.,'repeat_penalty':1.,'seed':42},'budgets':{'output_tokens':96,'context_tokens':2048,'deadline_seconds':30,'max_characters':1200,'concurrency':1,'keep_alive':0},'resource_limits':{'memory_max':int((CG/'memory.max').read_text()),'swap_max':int((CG/'memory.swap.max').read_text())},'hardware':{'cpu':next(l.split(':',1)[1].strip() for l in Path('/proc/cpuinfo').read_text().splitlines() if l.startswith('model name')),'logical_cpus':os.cpu_count()}}
+answers={};capture=io.StringIO();handler=logging.StreamHandler(capture);sensitive=[];monitor_problem=None
+
+def save():
+ (OUT/'report.json').write_text(json.dumps(proof,indent=2)+'\n')
+ (OUT/'synthetic-outputs.json').write_text(json.dumps(answers,ensure_ascii=False,indent=2)+'\n')
+
+def gate():
+ assert security_policy.exposure_sha256()==EXPOSURE
+ assert security_policy.load_policy()[1]
+ assert datetime.now(timezone(timedelta(hours=3))).date().isoformat()=='2026-10-20','Actual daily human review needed for new date'
+ assert monitor_problem is None,monitor_problem
+ m=metrics();assert m['memory_events'].get('oom_kill',0)==0,'OOM'
+
+async def monitor():
+ global monitor_problem
+ samples=[]
+ with (OUT/'resources.jsonl').open('a') as stream:
+  while True:
+   m=metrics();stream.write(json.dumps(m)+'\n');stream.flush();samples.append(m)
+   if m['memory_events'].get('oom_kill',0):monitor_problem='cgroup OOM'
+   if len(samples)>30:
+    old=samples[-31];delta=sum(m['host_swap_pages'].values())-sum(old['host_swap_pages'].values())
+    if delta>30*4096:monitor_problem='sustained host swap thrashing above 16 MiB/s for 30 s'
+   await asyncio.sleep(1)
+
+class Observed:
+ def __init__(self,p,warm):self.p=p;self.warm=warm
+ async def generate(self,req):
+  gate();proof['attempts']+=1;proof['warmup_calls' if self.warm else 'scored_calls']+=1
+  assert proof['scored_calls']<=96 and proof['warmup_calls']<=6
+  return await self.p.generate(req)
+ async def aclose(self):raise AssertionError('context owns provider')
+
+async def main():
+ gate();assert proof['resource_limits']=={'memory_max':5368709120,'swap_max':536870912}
+ assert not Path('/proc/net/route').read_text().splitlines()[1:],'Unexpected network route'
+ for _ in range(40):
+  try:version=get('/api/version');break
+  except OSError:await asyncio.sleep(.25)
+ else:raise AssertionError('server unavailable')
+ assert version['version']=='0.31.1';proof['server_version']=version['version']
+ actual={m['name']:m['digest'] for m in get('/api/tags')['models']};assert actual==MODELS
+ assert not get('/api/ps')['models']
+ Path('/tmp/county-p303b-benchmark/prerequisites.json').write_text(json.dumps({'accepted':True,'model_digests':actual,'resource_limits':proof['resource_limits'],'network_routes':Path('/proc/net/route').read_text(),'listening_sockets':subprocess.check_output(['ss','-ltn'],text=True),'initial_resources':metrics()},indent=2)+'\n')
+ task=asyncio.create_task(monitor());rootlog=logging.getLogger();oldlevel=rootlog.level;rootlog.addHandler(handler);rootlog.setLevel(logging.DEBUG)
+ try:
+  for rep in range(3):
+   order=list(MODELS) if rep%2==0 else list(reversed(MODELS))
+   ordered=cases if rep%2==0 else list(reversed(cases))
+   for name in order:
+    settings=AISettings(provider='ollama',model=name,allowed_models=tuple(MODELS),timeout_seconds=30,max_output_tokens=96,max_concurrency=1,ollama_context_tokens=2048)
+    ident=ModelIdentity(provider='ollama',model=name)
+    async with provider_context(settings) as provider:
+     for warm,group in [(True,[next(c for c in cases if c.id==('en-length-01' if rep%2==0 else 'sw-length-01'))]),(False,ordered)]:
+      orchestrator=PromptOrchestrator(Observed(provider,warm),PromptSettings(response_policy='general_information',timeout_seconds=30,max_output_tokens=96,max_output_characters=1200))
+      for case in group:
+       gate();assert not get('/api/ps')['models'],'Previous model still resident'
+       started=time.perf_counter();before=metrics();row,answer=await evaluate_case(orchestrator,case,ident,1200);wall=time.perf_counter()-started
+       item={'repetition':rep+1,'model':name,'case_id':case.id,'language':case.language,'wall_seconds':wall,'row':row.model_dump(mode='json'),'resources_before':before,'resources_after':metrics()}
+       proof['warmups' if warm else 'rows'].append(item)
+       key=f'{"warmup" if warm else "scored"}:{rep+1}:{name}:{case.id}'
+       answers[key]={'prompt':case.content,'answer':answer,'status':row.status,'error':row.error,'expect_uncertainty':case.expect_uncertainty}
+       sensitive.append(case.content)
+       if answer:sensitive.append(answer)
+       save();print('WARM' if warm else 'SCORE',proof['attempts'],name,case.id,row.status,row.error or '',round(wall,3),flush=True)
+       deadline=time.monotonic()+15
+       while get('/api/ps')['models'] and time.monotonic()<deadline:await asyncio.sleep(.5)
+       assert not get('/api/ps')['models'],'Model did not unload'
+  assert proof['scored_calls']==96 and proof['warmup_calls']==6
+  proof['logs_contain_content']=any(t in capture.getvalue() for t in sensitive);assert not proof['logs_contain_content']
+  proof['finished_at']=datetime.now(timezone.utc).isoformat();save()
+ finally:
+  task.cancel()
+  try:await task
+  except asyncio.CancelledError:pass
+  rootlog.removeHandler(handler);rootlog.setLevel(oldlevel);handler.close();save()
+try:asyncio.run(main())
+except BaseException as e:
+ proof['harness_error']=str(e) if isinstance(e,AssertionError) else type(e).__name__;save();print('STOP',proof['harness_error'],flush=True);raise SystemExit(1)

@@ -545,3 +545,33 @@ Acceptance stays isolated synthetic development only through 23 October 2026,
 live inference, model downloads, renewal, future exposure authorization or automatic
 merge. The exact five-file decision and publication are now approved; publish the
 branch/PR linked to #36 through all seven normal hosted checks.
+
+## Owner-approved P3-03B scoped exposure decision
+
+The owner explicitly authorized validated commit 9594dc339bd93939113817a6ba0a132ecc062ea3
+and exposure d015b5cadfa07781d0f2eb063bb11bbd7dea923a684bad94a78dbae3506f476d
+for isolated synthetic development and the conditional 96-scored/six-warm-up
+Llama/Qwen benchmark. See docs/P3_03B_EXPOSURE_ASSESSMENT.md (repository-relative).
+P3-03A approval bytes preserved in docs/security/p3-03b/p3-03a-acceptance-snapshot.json
+(SHA-256 9619c830542bb5495256e338b8c57d82ef5536b2d8bf6a3bba81928952545211). No baseline/inventory/control changes.
+115 HIGH/3 CRITICAL remain. Actual 20 October human review is confirmed; future
+daily reviews are not inferred. Expiry remains 23 October 2026, 23:59 EAT; all
+invalidation rules, scanning, seven checks and branch protection remain enforced.
+Require runtime resource and isolation prerequisites. No production/real data/public
+Ollama, additional models, automatic selection, publication, merge or P3-04.
+
+## Owner-approved certifi-only security-record decision
+
+Exact exposure 8fb62f79a81d7d1216126f0b4ff40fb38a9e3d01b625646b121bcb83e5b00c9f
+and backend inventory f508af45849f6d64bbf4f6cc65b4cd411e22da300492f630f479cc64f1be3de4
+are explicitly owner-approved for validated commit b585728899466618f28c6f34104a0ff5deb5a825. The new certifi
+2026.10.19 locks resolve GHSA-6q48-6c7w-9gw2; no unrelated package changes. Prior
+policy bytes are preserved byte-for-byte in docs/security/pr-40-certifi/p3-03b-policy-snapshot.json.
+All inherited 115 HIGH/3 CRITICAL findings and expiry 23 October 2026 23:59 EAT remain.
+No future human review is inferred from 20 October confirmation. Preserve all
+controls/invalidation, synthetic-only scope and production ban. No automatic
+merge, new model inference, P3-04 readiness or acceptance renewal.
+
+The owner authorizes pushing this branch to existing PR #40 and running all seven
+normal hosted checks. This supersedes earlier pending publication statements only
+for this exact remediation. No authorization requirement is weakened or bypassed.

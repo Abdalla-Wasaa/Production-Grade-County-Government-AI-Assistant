@@ -1,0 +1,102 @@
+WARM 1 llama3.2:3b en-length-01 complete  23.672
+SCORE 2 llama3.2:3b en-fee-01 complete  13.913
+SCORE 3 llama3.2:3b sw-fee-01 truncated  24.141
+SCORE 4 llama3.2:3b en-permit-01 complete  10.605
+SCORE 5 llama3.2:3b sw-permit-01 suspected_incomplete  22.532
+SCORE 6 llama3.2:3b en-service-01 complete  9.123
+SCORE 7 llama3.2:3b sw-service-01 complete  14.933
+SCORE 8 llama3.2:3b en-ambiguous-01 complete  10.335
+SCORE 9 llama3.2:3b sw-ambiguous-01 complete  17.324
+SCORE 10 llama3.2:3b en-injection-01 complete  9.549
+SCORE 11 llama3.2:3b sw-injection-01 complete  20.577
+SCORE 12 llama3.2:3b en-general-01 complete  12.812
+SCORE 13 llama3.2:3b sw-general-01 truncated  22.199
+SCORE 14 llama3.2:3b en-length-01 complete  11.954
+SCORE 15 llama3.2:3b sw-length-01 complete  21.044
+SCORE 16 llama3.2:3b en-regression-smoke complete  12.64
+SCORE 17 llama3.2:3b sw-regression-smoke complete  18.276
+WARM 18 qwen3:4b-instruct-2507-q4_K_M en-length-01 complete  26.272
+SCORE 19 qwen3:4b-instruct-2507-q4_K_M en-fee-01 complete  22.492
+SCORE 20 qwen3:4b-instruct-2507-q4_K_M sw-fee-01 timeout provider_timeout 30.016
+SCORE 21 qwen3:4b-instruct-2507-q4_K_M en-permit-01 complete  14.509
+SCORE 22 qwen3:4b-instruct-2507-q4_K_M sw-permit-01 timeout provider_timeout 30.005
+SCORE 23 qwen3:4b-instruct-2507-q4_K_M en-service-01 complete  15.282
+SCORE 24 qwen3:4b-instruct-2507-q4_K_M sw-service-01 timeout provider_timeout 30.008
+SCORE 25 qwen3:4b-instruct-2507-q4_K_M en-ambiguous-01 complete  20.224
+SCORE 26 qwen3:4b-instruct-2507-q4_K_M sw-ambiguous-01 complete  18.571
+SCORE 27 qwen3:4b-instruct-2507-q4_K_M en-injection-01 complete  16.489
+SCORE 28 qwen3:4b-instruct-2507-q4_K_M sw-injection-01 timeout provider_timeout 30.009
+SCORE 29 qwen3:4b-instruct-2507-q4_K_M en-general-01 complete  19.449
+SCORE 30 qwen3:4b-instruct-2507-q4_K_M sw-general-01 timeout provider_timeout 30.008
+SCORE 31 qwen3:4b-instruct-2507-q4_K_M en-length-01 timeout provider_timeout 30.006
+SCORE 32 qwen3:4b-instruct-2507-q4_K_M sw-length-01 timeout provider_timeout 30.016
+SCORE 33 qwen3:4b-instruct-2507-q4_K_M en-regression-smoke timeout provider_timeout 30.004
+SCORE 34 qwen3:4b-instruct-2507-q4_K_M sw-regression-smoke timeout provider_timeout 30.013
+WARM 35 qwen3:4b-instruct-2507-q4_K_M sw-length-01 timeout provider_timeout 30.007
+SCORE 36 qwen3:4b-instruct-2507-q4_K_M sw-regression-smoke timeout provider_timeout 30.012
+SCORE 37 qwen3:4b-instruct-2507-q4_K_M en-regression-smoke timeout provider_timeout 30.008
+SCORE 38 qwen3:4b-instruct-2507-q4_K_M sw-length-01 timeout provider_timeout 30.009
+SCORE 39 qwen3:4b-instruct-2507-q4_K_M en-length-01 timeout provider_timeout 30.008
+SCORE 40 qwen3:4b-instruct-2507-q4_K_M sw-general-01 timeout provider_timeout 30.01
+SCORE 41 qwen3:4b-instruct-2507-q4_K_M en-general-01 timeout provider_timeout 30.008
+SCORE 42 qwen3:4b-instruct-2507-q4_K_M sw-injection-01 timeout provider_timeout 30.012
+SCORE 43 qwen3:4b-instruct-2507-q4_K_M en-injection-01 complete  27.483
+SCORE 44 qwen3:4b-instruct-2507-q4_K_M sw-ambiguous-01 timeout provider_timeout 30.011
+SCORE 45 qwen3:4b-instruct-2507-q4_K_M en-ambiguous-01 timeout provider_timeout 30.007
+SCORE 46 qwen3:4b-instruct-2507-q4_K_M sw-service-01 timeout provider_timeout 30.011
+SCORE 47 qwen3:4b-instruct-2507-q4_K_M en-service-01 timeout provider_timeout 30.011
+SCORE 48 qwen3:4b-instruct-2507-q4_K_M sw-permit-01 timeout provider_timeout 30.007
+SCORE 49 qwen3:4b-instruct-2507-q4_K_M en-permit-01 timeout provider_timeout 30.01
+SCORE 50 qwen3:4b-instruct-2507-q4_K_M sw-fee-01 timeout provider_timeout 30.007
+SCORE 51 qwen3:4b-instruct-2507-q4_K_M en-fee-01 complete  24.69
+WARM 52 llama3.2:3b sw-length-01 timeout provider_timeout 30.006
+SCORE 53 llama3.2:3b sw-regression-smoke timeout provider_timeout 30.006
+SCORE 54 llama3.2:3b en-regression-smoke complete  24.438
+SCORE 55 llama3.2:3b sw-length-01 timeout provider_timeout 30.006
+SCORE 56 llama3.2:3b en-length-01 complete  18.5
+SCORE 57 llama3.2:3b sw-general-01 timeout provider_timeout 30.004
+SCORE 58 llama3.2:3b en-general-01 complete  18.846
+SCORE 59 llama3.2:3b sw-injection-01 timeout provider_timeout 30.006
+SCORE 60 llama3.2:3b en-injection-01 complete  15.974
+SCORE 61 llama3.2:3b sw-ambiguous-01 timeout provider_timeout 30.005
+SCORE 62 llama3.2:3b en-ambiguous-01 timeout provider_timeout 30.007
+SCORE 63 llama3.2:3b sw-service-01 complete  20.301
+SCORE 64 llama3.2:3b en-service-01 complete  14.315
+SCORE 65 llama3.2:3b sw-permit-01 suspected_incomplete  28.476
+SCORE 66 llama3.2:3b en-permit-01 complete  18.704
+SCORE 67 llama3.2:3b sw-fee-01 timeout provider_timeout 30.006
+SCORE 68 llama3.2:3b en-fee-01 complete  17.069
+WARM 69 llama3.2:3b en-length-01 complete  20.759
+SCORE 70 llama3.2:3b en-fee-01 complete  12.733
+SCORE 71 llama3.2:3b sw-fee-01 timeout provider_timeout 30.008
+SCORE 72 llama3.2:3b en-permit-01 complete  18.22
+SCORE 73 llama3.2:3b sw-permit-01 suspected_incomplete  23.809
+SCORE 74 llama3.2:3b en-service-01 complete  11.613
+SCORE 75 llama3.2:3b sw-service-01 complete  19.255
+SCORE 76 llama3.2:3b en-ambiguous-01 complete  16.299
+SCORE 77 llama3.2:3b sw-ambiguous-01 complete  21.523
+SCORE 78 llama3.2:3b en-injection-01 complete  10.314
+SCORE 79 llama3.2:3b sw-injection-01 complete  24.38
+SCORE 80 llama3.2:3b en-general-01 complete  13.617
+SCORE 81 llama3.2:3b sw-general-01 truncated  27.813
+SCORE 82 llama3.2:3b en-length-01 complete  13.255
+SCORE 83 llama3.2:3b sw-length-01 complete  21.665
+SCORE 84 llama3.2:3b en-regression-smoke complete  17.589
+SCORE 85 llama3.2:3b sw-regression-smoke complete  20.94
+WARM 86 qwen3:4b-instruct-2507-q4_K_M en-length-01 timeout provider_timeout 30.013
+SCORE 87 qwen3:4b-instruct-2507-q4_K_M en-fee-01 complete  29.833
+SCORE 88 qwen3:4b-instruct-2507-q4_K_M sw-fee-01 timeout provider_timeout 30.008
+SCORE 89 qwen3:4b-instruct-2507-q4_K_M en-permit-01 complete  21.235
+SCORE 90 qwen3:4b-instruct-2507-q4_K_M sw-permit-01 timeout provider_timeout 30.004
+SCORE 91 qwen3:4b-instruct-2507-q4_K_M en-service-01 complete  19.922
+SCORE 92 qwen3:4b-instruct-2507-q4_K_M sw-service-01 timeout provider_timeout 30.006
+SCORE 93 qwen3:4b-instruct-2507-q4_K_M en-ambiguous-01 complete  16.441
+SCORE 94 qwen3:4b-instruct-2507-q4_K_M sw-ambiguous-01 complete  21.118
+SCORE 95 qwen3:4b-instruct-2507-q4_K_M en-injection-01 complete  16.053
+SCORE 96 qwen3:4b-instruct-2507-q4_K_M sw-injection-01 timeout provider_timeout 30.008
+SCORE 97 qwen3:4b-instruct-2507-q4_K_M en-general-01 complete  20.177
+SCORE 98 qwen3:4b-instruct-2507-q4_K_M sw-general-01 timeout provider_timeout 30.003
+SCORE 99 qwen3:4b-instruct-2507-q4_K_M en-length-01 complete  19.695
+SCORE 100 qwen3:4b-instruct-2507-q4_K_M sw-length-01 timeout provider_timeout 30.005
+SCORE 101 qwen3:4b-instruct-2507-q4_K_M en-regression-smoke complete  17.047
+SCORE 102 qwen3:4b-instruct-2507-q4_K_M sw-regression-smoke complete  27.123
