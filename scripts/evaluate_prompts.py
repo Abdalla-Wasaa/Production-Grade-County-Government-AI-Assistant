@@ -39,6 +39,7 @@ async def main() -> None:
     print(
         json.dumps(
             {
+                "schema_version": "p3-03a-v1",
                 "purpose": "fake_plumbing_not_model_quality_acceptance",
                 "created_at": datetime.now(UTC).isoformat(),
                 "dataset_sha256": hashlib.sha256(raw).hexdigest(),
