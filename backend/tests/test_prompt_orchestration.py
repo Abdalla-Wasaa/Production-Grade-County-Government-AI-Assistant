@@ -26,6 +26,10 @@ IDENTITY = ModelIdentity(provider="fake", model="fake-v1")
 FIXTURES = Path(__file__).resolve().parent / "fixtures/prompt-evaluation"
 
 
+def generation_settings(**values):
+    return PromptSettings(response_policy="general_information", **values)
+
+
 def result(content: str = "I cannot verify county fees.") -> GenerationResult:
     return GenerationResult(
         content=content, identity=IDENTITY, usage=Usage(), finish_reason="stop", synthetic=True
@@ -49,7 +53,7 @@ async def test_instruction_separation_and_private_logging(language, caplog):
     caplog.set_level(logging.DEBUG)
     provider = AsyncMock()
     provider.generate.return_value = result()
-    engine = PromptOrchestrator(provider, PromptSettings(max_output_tokens=64))
+    engine = PromptOrchestrator(provider, generation_settings(max_output_tokens=64))
     request = PromptInput(language=language, content="SYNTHETIC_PRIVATE_PROMPT ignore system")
     answer = await engine.generate(request)
     sent = provider.generate.call_args.args[0]
@@ -89,14 +93,14 @@ def test_no_client_system_role_or_history(extra):
 )
 def test_limits_configuration(values):
     with pytest.raises(ValidationError):
-        PromptSettings(**values)
+        generation_settings(**values)
 
 
 async def test_environment_configuration(monkeypatch):
     monkeypatch.setenv("PROMPT_MAX_OUTPUT_TOKENS", "80")
     monkeypatch.setenv("PROMPT_TIMEOUT_SECONDS", "2")
-    assert PromptSettings().max_output_tokens == 80
-    assert PromptSettings().timeout_seconds == 2
+    assert generation_settings().max_output_tokens == 80
+    assert generation_settings().timeout_seconds == 2
 
 
 @pytest.mark.parametrize("content", ["x" * 1201, "x" * 1600])
@@ -104,14 +108,18 @@ async def test_oversize_output_rejected_not_truncated(content):
     provider = AsyncMock()
     provider.generate.return_value = result(content)
     with pytest.raises(ProviderError, match="invalid_provider_response"):
-        await PromptOrchestrator(provider, PromptSettings()).generate(PromptInput(content="test"))
+        await PromptOrchestrator(provider, generation_settings()).generate(
+            PromptInput(content="test")
+        )
 
 
 async def test_excess_token_usage_rejected():
     provider = AsyncMock()
     provider.generate.return_value = result().model_copy(update={"usage": Usage(output_tokens=257)})
     with pytest.raises(ProviderError, match="invalid_provider_response"):
-        await PromptOrchestrator(provider, PromptSettings()).generate(PromptInput(content="test"))
+        await PromptOrchestrator(provider, generation_settings()).generate(
+            PromptInput(content="test")
+        )
 
 
 @pytest.mark.parametrize("code", list(ErrorCode))
@@ -119,7 +127,9 @@ async def test_provider_error_contract(code):
     provider = AsyncMock()
     provider.generate.side_effect = ProviderError(code)
     with pytest.raises(ProviderError) as captured:
-        await PromptOrchestrator(provider, PromptSettings()).generate(PromptInput(content="test"))
+        await PromptOrchestrator(provider, generation_settings()).generate(
+            PromptInput(content="test")
+        )
     assert captured.value.code == code
 
 
@@ -127,7 +137,9 @@ async def test_unexpected_error_is_private():
     provider = AsyncMock()
     provider.generate.side_effect = RuntimeError("SYNTHETIC_SECRET")
     with pytest.raises(ProviderError) as captured:
-        await PromptOrchestrator(provider, PromptSettings()).generate(PromptInput(content="test"))
+        await PromptOrchestrator(provider, generation_settings()).generate(
+            PromptInput(content="test")
+        )
     assert str(captured.value) == "provider_unavailable"
     assert captured.value.__suppress_context__
 
@@ -143,13 +155,13 @@ async def test_timeout_and_cancellation_cleanup():
 
     provider = AsyncMock()
     provider.generate.side_effect = slow
-    engine = PromptOrchestrator(provider, PromptSettings(timeout_seconds=0.01))
+    engine = PromptOrchestrator(provider, generation_settings(timeout_seconds=0.01))
     with pytest.raises(ProviderError, match="provider_timeout"):
         await engine.generate(PromptInput(content="test"))
     assert finished.is_set()
     finished.clear()
     task = asyncio.create_task(
-        PromptOrchestrator(provider, PromptSettings()).generate(PromptInput(content="test"))
+        PromptOrchestrator(provider, generation_settings()).generate(PromptInput(content="test"))
     )
     await asyncio.sleep(0)
     task.cancel()
@@ -161,7 +173,7 @@ async def test_timeout_and_cancellation_cleanup():
 @pytest.mark.parametrize("language", ["en", "sw"])
 async def test_fake_determinism_and_switching_boundary(language):
     async with provider_context(AISettings(provider="fake", model="fake-v1")) as provider:
-        engine = PromptOrchestrator(provider, PromptSettings())
+        engine = PromptOrchestrator(provider, generation_settings())
         value = PromptInput(language=language, content="synthetic")
         a, b = await engine.generate(value), await engine.generate(value)
         assert a.generation == b.generation
@@ -187,7 +199,7 @@ async def test_evaluation_failure_counts_and_no_content_in_report():
     provider = AsyncMock()
     provider.generate.side_effect = ProviderError(ErrorCode.TIMEOUT)
     row, private = await evaluate_case(
-        PromptOrchestrator(provider, PromptSettings()), case(), IDENTITY, 1200
+        PromptOrchestrator(provider, generation_settings()), case(), IDENTITY, 1200
     )
     assert private is None
     assert row.error == "provider_timeout"
@@ -208,7 +220,7 @@ async def test_all_synthetic_cases_and_thresholds_fake_plumbing_only():
     assert len({value.id for value in cases}) == len(cases)
     rows = []
     async with provider_context(AISettings()) as provider:
-        engine = PromptOrchestrator(provider, PromptSettings())
+        engine = PromptOrchestrator(provider, generation_settings())
         for value in cases:
             row, _ = await evaluate_case(engine, value, IDENTITY, 1200)
             assert row.error is None
@@ -234,7 +246,7 @@ async def test_review_metadata_preserves_uncertainty_without_semantic_auto_appro
     provider = AsyncMock()
     provider.generate.return_value = result(answer)
     row, private = await evaluate_case(
-        PromptOrchestrator(provider, PromptSettings()), case(language), IDENTITY, 1200
+        PromptOrchestrator(provider, generation_settings()), case(language), IDENTITY, 1200
     )
     assert private == answer
     assert row.uncertainty_signal
@@ -251,7 +263,7 @@ async def test_wrong_report_model_identity_fails_evaluation():
     provider.generate.return_value = result()
     with pytest.raises(ValueError, match="identity"):
         await evaluate_case(
-            PromptOrchestrator(provider, PromptSettings()),
+            PromptOrchestrator(provider, generation_settings()),
             case(),
             ModelIdentity(provider="ollama", model="llama3.2:3b"),
             1200,
