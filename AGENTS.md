@@ -292,3 +292,19 @@ daily reviews are not inferred. Expiry remains 23 October 2026, 23:59 EAT; all
 invalidation rules, scanning, seven checks and branch protection remain enforced.
 Require runtime resource and isolation prerequisites. No production/real data/public
 Ollama, additional models, automatic selection, publication, merge or P3-04.
+
+## Owner-approved certifi-only security-record decision
+
+Exact exposure 8fb62f79a81d7d1216126f0b4ff40fb38a9e3d01b625646b121bcb83e5b00c9f
+and backend inventory f508af45849f6d64bbf4f6cc65b4cd411e22da300492f630f479cc64f1be3de4
+are explicitly owner-approved for validated commit b585728899466618f28c6f34104a0ff5deb5a825. The new certifi
+2026.10.19 locks resolve GHSA-6q48-6c7w-9gw2; no unrelated package changes. Prior
+policy bytes are preserved byte-for-byte in docs/security/pr-40-certifi/p3-03b-policy-snapshot.json.
+All inherited 115 HIGH/3 CRITICAL findings and expiry 23 October 2026 23:59 EAT remain.
+No future human review is inferred from 20 October confirmation. Preserve all
+controls/invalidation, synthetic-only scope and production ban. No automatic
+merge, new model inference, P3-04 readiness or acceptance renewal.
+
+The owner authorizes pushing this branch to existing PR #40 and running all seven
+normal hosted checks. This supersedes earlier pending publication statements only
+for this exact remediation. No authorization requirement is weakened or bypassed.

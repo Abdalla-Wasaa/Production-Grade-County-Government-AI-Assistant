@@ -1,7 +1,7 @@
 # PR #40 certifi remediation and runtime checkpoint
 
-Status: owner-authorized synthetic validation passed; security-record updates remain
-unapproved. No push or hosted rerun yet.
+Status: owner-authorized synthetic validation passed; the exact security-record
+update is approved and applied. Publication and hosted checks follow below.
 
 ## Confirmed cause and selected release
 
@@ -127,3 +127,14 @@ No finding rows, other image records, expiry or controls change. Proposed approv
 timestamp is intentionally invalid until actual owner approval; do not apply it as
 an effective decision. Owner must explicitly approve the exact record update before
 pushing this branch to PR #40 and executing normal seven-check hosted CI.
+
+## Owner-approved publication decision
+
+The owner explicitly approved applying only the seven-file policy/provenance/snapshot
+update, retain the fixed expiry and all inherited finding rows, then publish to
+PR #40 and run seven normal checks. No future exposure, inference or renewal grant.
+
+Owner approval now supersedes earlier pending security-record/publication statements
+for the exact validated remediation. Approval timestamp records this decision, not a
+new CRITICAL review. Historical snapshot reconstructs all three previous policy files
+byte-for-byte. Existing expiry and security controls are unchanged.
