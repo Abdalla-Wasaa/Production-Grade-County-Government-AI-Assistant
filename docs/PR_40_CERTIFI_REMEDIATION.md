@@ -1,7 +1,7 @@
 # PR #40 certifi remediation and runtime checkpoint
 
-Status: targeted lockfile correction prepared; changed application execution and
-security-record updates remain unapproved. No push or hosted rerun yet.
+Status: owner-authorized synthetic validation passed; security-record updates remain
+unapproved. No push or hosted rerun yet.
 
 ## Confirmed cause and selected release
 
@@ -96,3 +96,34 @@ The existing expiry remains 23 October 2026, 23:59 EAT. Actual 20 October human
 CRITICAL review is historical, not a future review. No acceptance extension or
 invented human confirmation. Historical records and all seven checks/branch rules
 remain unchanged. No automatic merge or P3-04 readiness approval.
+
+## Authorized validation completed — 20 October 2026
+
+Owner explicitly authorized commit 4657574ee56ddc68d7b06fe19c9d1ba42d43a683 and
+exposure 8fb62f79a81d7d1216126f0b4ff40fb38a9e3d01b625646b121bcb83e5b00c9f.
+This supersedes earlier unexecuted-test statements for that exact source only.
+336/336 backend/provider/orchestration regressions passed; 79/79 PostgreSQL cases
+passed on disposable PostgreSQL 17 with synthetic records. No skips or failures.
+The first disposable harness could not publish a port on an internal network and
+stopped before tests; a dedicated bridge with loopback-only published port fixed
+that external harness issue. No repository application correction or exposure change.
+Temporary container/network cleanup completed and tmpfs data was discarded.
+Existing Starlette/httpx and xunit2 record_property warnings are not test failures.
+
+Locked sync installed certifi 2026.10.19. Backend audit: 45 dependencies/zero
+advisories; tooling audit: 34/zero. Fresh Trivy scan of the rebuilt immutable backend
+retains 44 HIGH/0 CRITICAL, unchanged findings and the exact proposed 122-package
+inventory. Ruff lint/format, Mypy, lock consistency, documentation and secret checks
+pass. No Llama/Qwen inference, model changes, benchmark edits or unrelated upgrades.
+[Validation evidence](security/pr-40-certifi-validation/validation-summary.json)
+binds test reports and audits. Audits are retained alongside the summary; XML reports
+remain local and hash-bound. Prior six-pass/one-fail hosted status is not a new run.
+
+The seven-file security-record proposal is prepared, not applied, at
+/tmp/county-certifi-security-record-proposal/PROPOSED.diff. It changes only backend
+scan provenance and certifi inventory, rebinds the reviewed exposure, preserves all
+prior policy bytes in a combined snapshot and updates this assessment/SECURITY/AGENTS.
+No finding rows, other image records, expiry or controls change. Proposed approval
+timestamp is intentionally invalid until actual owner approval; do not apply it as
+an effective decision. Owner must explicitly approve the exact record update before
+pushing this branch to PR #40 and executing normal seven-check hosted CI.

@@ -1,0 +1,59 @@
+{
+  "tested_commit": "4657574ee56ddc68d7b06fe19c9d1ba42d43a683",
+  "exposure_sha256": "8fb62f79a81d7d1216126f0b4ff40fb38a9e3d01b625646b121bcb83e5b00c9f",
+  "runtime_scope": "explicit owner isolated synthetic-only testing; no live inference",
+  "security_records_applied": false,
+  "reports": {
+    "backend": {
+      "local_path": "/tmp/county-certifi-authorized-tests.xml",
+      "sha256": "7353760f6be322d484f4e49d7a3750d1637d2f000bf756a44b30ca0fca4535ef",
+      "tests": 336,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "postgresql": {
+      "local_path": "/tmp/county-certifi-authorized-postgresql.xml",
+      "sha256": "b8c16b212c95582d0f29781ae19a9335685c75ce4165ff643c9bac597cc3fbb3",
+      "tests": 79,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "backend-audit": {
+      "sha256": "3aaaf26323397811cdd7a439aa092b4e9a4277cae97c359b8afe0fed36be2887",
+      "dependencies": 45,
+      "advisories": 0
+    },
+    "tooling-audit": {
+      "sha256": "9c7d31248ee59197e950271398b13b5e059af814739acf13e00825704cd891c3",
+      "dependencies": 34,
+      "advisories": 0
+    }
+  },
+  "image_evidence": {
+    "image_id": "sha256:1752d1f6bdda54dc8be85d864fd6a132a43642e9ecc74c25ff79acfe1a208148",
+    "counts": {
+      "HIGH": 44
+    },
+    "inventory": {
+      "packages": 122,
+      "sha256": "f508af45849f6d64bbf4f6cc65b4cd411e22da300492f630f479cc64f1be3de4"
+    },
+    "inventory_changes": [
+      [
+        [
+          "lang-pkgs",
+          "python-pkg",
+          "certifi"
+        ],
+        "2026.7.22",
+        "2026.10.19"
+      ]
+    ],
+    "fixable": [],
+    "kev_matches": [],
+    "finding_rows_unchanged": true
+  },
+  "fresh_authorized_scan_sha256": "0eb89ae9a01f5f69d9dd77f2a4123a2a9fcedadf499846cfc613073aeb82eb1e"
+}
