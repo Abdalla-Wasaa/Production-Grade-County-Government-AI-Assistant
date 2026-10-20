@@ -55,7 +55,16 @@ async def test_shared_success_contract(language: str, caplog: pytest.LogCaptureF
         assert req.method == "POST" and req.url == "http://127.0.0.1:11434/api/chat"
         assert payload["model"] == "llama3.2:3b" and payload["stream"] is False
         assert payload["keep_alive"] == 0
-        assert payload["options"] == {"num_predict": 256, "num_ctx": 8192}
+        assert payload["options"] == {
+            "num_predict": 256,
+            "num_ctx": 8192,
+            "temperature": 0.7,
+            "top_p": 0.8,
+            "top_k": 20,
+            "min_p": 0.0,
+            "repeat_penalty": 1.0,
+            "seed": 42,
+        }
         assert payload["messages"][0]["content"] == request(language).messages[0].content
         assert req.headers["accept-encoding"] == "identity"
         return httpx.Response(200, json=reply())

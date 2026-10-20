@@ -80,6 +80,12 @@ class OllamaProvider:
             "options": {
                 "num_predict": request.max_output_tokens,
                 "num_ctx": self._settings.ollama_context_tokens,
+                "temperature": self._settings.temperature,
+                "top_p": self._settings.top_p,
+                "top_k": self._settings.top_k,
+                "min_p": self._settings.min_p,
+                "repeat_penalty": self._settings.repeat_penalty,
+                "seed": self._settings.seed,
             },
         }
         try:
