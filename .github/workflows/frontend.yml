@@ -30,11 +30,12 @@ jobs:
       - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-p105-${{ hashFiles('backend/uv.lock', 'requirements-ci.lock', 'frontend/package-lock.json', '.github/uv-bootstrap.txt') }}
+          key: ${{ runner.os }}-npm-p105-${{ hashFiles('backend/uv.lock', 'requirements-ci.lock', 'frontend/package-lock.json', 'frontend/docker/npm-toolchain.env', '.github/uv-bootstrap.txt') }}
       - name: Install and verify approved frontend toolchain
         run: |
           test "$(node --version)" = v24.22.0
-          test "$(npm --version)" = 11.19.1
+          sh frontend/docker/bootstrap-npm.sh
+          test "$(npm --version)" = 11.21.1
           npm --prefix frontend ci
           npm --prefix frontend ls --all
       - name: Frontend quality build and unit tests
@@ -68,7 +69,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-p105-${{ hashFiles('backend/uv.lock', 'requirements-ci.lock', 'frontend/package-lock.json', '.github/uv-bootstrap.txt') }}
+          key: ${{ runner.os }}-npm-p105-${{ hashFiles('backend/uv.lock', 'requirements-ci.lock', 'frontend/package-lock.json', 'frontend/docker/npm-toolchain.env', '.github/uv-bootstrap.txt') }}
       - name: Job summary
         if: always()
         run: |

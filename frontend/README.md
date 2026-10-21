@@ -16,12 +16,13 @@ for production, future source changes or silently reusing the P2-01 acceptance.
 
 ## Local setup
 
-Use Node 24.22.0 with bundled npm 11.19.1. `.nvmrc`, package engines, `.npmrc` and
-`packageManager` record the tested toolchain. Activate an isolated Node environment
+Use Node 24.22.0 with checksum-pinned npm 11.21.1. `.nvmrc`, package engines, `.npmrc` and
+`packageManager` record the pinned toolchain (P3-03D runtime validation pending). Activate an isolated Node environment
 if your host is older; do not install into coursework or change its environments.
 From the repository root:
 
 ```bash
+sh frontend/docker/bootstrap-npm.sh
 cd frontend
 node --version
 npm --version
@@ -145,7 +146,7 @@ for repeat installs without lock changes. Metadata was checked before installati
 and compatibility was validated by strict engine enforcement, `npm ls`, type/lint,
 component tests, builds and browser execution. No force/legacy-peer install flags.
 
-Node 24.22.0/npm 11.19.1; React/DOM 19.3.1; Router 8.4.0; Vite 8.3.4/React plugin
+Node 24.22.0/npm 11.21.1; React/DOM 19.3.1; Router 8.4.0; Vite 8.3.4/React plugin
 6.1.2; TypeScript 6.0.3; Tailwind/Vite plugin 4.3.3; Vitest 5.0.5/jsdom 30.1.3;
 Testing Library 16.3.3; ESLint 10.12.0/typescript-eslint 8.71.2; Playwright 1.64.1;
 axe integration 4.14.0. Prettier 3.9.10 provides reproducible formatting.
