@@ -324,3 +324,24 @@ seven checks, full scans and branch protection. Expiry stays 23 October 2026,
 only this reviewed exposure and normal branch publication/CI; never bypass
 future exposure/runtime authorization. No renewal, production, real data, public
 Ollama, inference or automatic merge.
+
+## Owner-approved restricted-development renewal — 21 October 2026
+
+Owner approved the exact five-file proposal for merged commit
+2fc0ecfd895739eef3f026c2961c286c0a1397a8 and unchanged exposure
+015755bffa0f038986d719624979b317cb5e5527dceed76447fd207d09747ab1.
+The owner explicitly confirmed: “I personally completed this review on 21 October
+and acknowledge the residual risks”, covering SQLite, libxml2 and zlib in both
+PostgreSQL and the Node builder. This records the date actually confirmed, not the
+minute review was performed; future daily reviews remain due and are not inferred.
+See docs/SECURITY_RENEWAL_2026_10_21.md. Preserve the previous approval bytes in
+docs/security/renewal-2026-10-21/p3-03d-acceptance-snapshot.json. Runtime 115 HIGH/
+3 CRITICAL and separately disclosed builder 56 HIGH/1 CRITICAL remain tracked.
+New end is 30 October 2026, 23:59 EAT, effective only after this renewal PR is
+reviewed/merged and repository-policy conditions pass. Until then main's existing
+23 October expiry remains authoritative. The owner authorizes this focused branch,
+PR and all seven normal hosted checks; no automatic merge. Keep daily actual
+CRITICAL reviews, daily scans, all invalidation rules, seven app-bound checks,
+strict protected PRs and least privilege. No future-exposure/runtime authorization,
+live inference, new models, public Ollama, real data, production or automatic future
+renewal is granted. Issue #39 and P3-04 readiness remain unresolved independently.
