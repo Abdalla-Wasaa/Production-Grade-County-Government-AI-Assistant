@@ -308,3 +308,19 @@ merge, new model inference, P3-04 readiness or acceptance renewal.
 The owner authorizes pushing this branch to existing PR #40 and running all seven
 normal hosted checks. This supersedes earlier pending publication statements only
 for this exact remediation. No authorization requirement is weakened or bypassed.
+
+## Owner-approved P3-03D exact-exposure security/publication decision
+
+Explicit owner approval of the exact five-file proposal for tested source
+bb1f88d4896d3f579fd21a441629190db7d19d4d and unchanged exposure
+015755bffa0f038986d719624979b317cb5e5527dceed76447fd207d09747ab1.
+See docs/P3_03D_EXPOSURE_ASSESSMENT.md. Runtime 115 HIGH/3 CRITICAL and complete
+inventories remain unchanged; builder residual 56 HIGH/1 CRITICAL is separately
+disclosed, including duplicate zlib CVE. Preserve PR #40 approval bytes in
+docs/security/p3-03d/pr-40-acceptance-snapshot.json. No 21 October human review is
+inferred; actual daily confirmation remains required. Keep all invalidation rules,
+seven checks, full scans and branch protection. Expiry stays 23 October 2026,
+23:59 EAT. The owner explicitly authorizes
+only this reviewed exposure and normal branch publication/CI; never bypass
+future exposure/runtime authorization. No renewal, production, real data, public
+Ollama, inference or automatic merge.

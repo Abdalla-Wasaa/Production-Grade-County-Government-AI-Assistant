@@ -208,3 +208,15 @@ The proposal uses a visibly pending confirmation timestamp; only actual owner
 confirmation can fill it. It does not assert today's human CRITICAL review.
 Technical remediation is ready for hosted CI, pending exact-exposure acceptance,
 required human review and publication approval. No PR has been pushed or opened.
+
+## Owner-approved exact security/publication decision — 21 October 2026
+
+The owner explicitly approved the reviewed five-file proposal and publication.
+Rebind only this exact exposure for isolated synthetic development and a normal
+PR linked to issue #41 with all seven hosted checks. Preserve previous acceptance
+bytes at `docs/security/p3-03d/pr-40-acceptance-snapshot.json` (SHA-256 `b716c5dcc0360bfb453ac5dbee9f447881081340f7825e197b0f8dc1f204a4b7`).
+Runtime findings/inventories remain unchanged; builder 56 HIGH/1 CRITICAL is
+separately disclosed for explicit review. The owner explicitly states the 21 October human CRITICAL review is not confirmed;
+this security/publication decision does not record its completion. All invalidation rules, seven checks
+and branch protection stay enforced. Expiry remains 23 October 2026 23:59 EAT.
+No production, real data, public Ollama, inference, renewal or automatic merge.
