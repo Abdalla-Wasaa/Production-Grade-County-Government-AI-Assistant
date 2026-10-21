@@ -195,3 +195,28 @@ conversations and later issues are not started. [Actual evidence](P2_01_EXPOSURE
 records 112 backend tests and the real-proxy flow, not Phase 2 completion. The
 unchanged exposure and complete-package inventory gates still reject new code.
 No policy-record/expiry change or merge is authorized; seven-check enforcement remains.
+
+## Phase 4 planning — 21 October 2026
+
+PR #45 conditionally closed the amended Phase3 research scope at
+`d3a6b06e9a4a40b1141f30938e7d1fcd4b89b24a`; original assistant-MVP work remains
+in OPEN issues #39 and #44. The owner authorizes planning and this documentation PR
+only. The existing Phase4 row/Recall@5 gate is unchanged. See the
+[implementation plan](PHASE_4_PLAN.md), [RAG architecture](RAG_ARCHITECTURE.md) and
+[evaluation plan](RAG_EVALUATION.md) for proposed contracts, security, dependencies
+and reviewable defaults. No implementation, document ingestion, embedding-model
+download, inference, runtime-image/dependency change or production is authorized.
+
+- [P4-01 — Public-document RAG contracts and architecture](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/46)
+- [P4-02 — Sandboxed document ingestion and validation](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/47)
+- [P4-03 — Embedding spaces and PostgreSQL vector storage](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/48)
+- [P4-04 — Exact retrieval and source lifecycle filtering](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/49)
+- [P4-05 — Citation-aware grounded orchestration contracts](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/50)
+- [P4-06 — RAG evaluation and adversarial security evidence](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/51)
+- [P4-07 — Public-document RAG acceptance and handover](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/52)
+
+These issues are planned work, not execution permission. Exact source/model/image,
+contract and security decisions precede each implementation/runtime boundary.
+Retrieval can be tested independently with approved synthetic fixtures; live
+conversation generation remains blocked by #39/#44 and separate authorization.
+Security expiry remains30October2026 23:59EAT with daily actual CRITICAL reviews.
