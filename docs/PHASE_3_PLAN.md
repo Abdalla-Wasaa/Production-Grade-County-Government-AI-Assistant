@@ -1,4 +1,9 @@
-# Phase 3 implementation plan — approval pending
+# Phase 3 implementation plan — amended closure scope
+
+## Historical implementation plan
+
+The following plan preserves the original sequence and gates. Its historical pending
+authorizations and expiry are superseded only by the dated decisions below.
 
 Phase 2 closed through owner-merged PR #29. Updated issue #30 now authorizes
 P3-01 source implementation: provider contracts, fake and configuration only.
@@ -47,3 +52,32 @@ remain Phase 3 exit criteria, not claims satisfied by mocked adapter tests.
 deterministic fake with shared contract tests. P3-01 is fake-only; the Ollama adapter with mocked tests is deferred to P3-02.
 An OpenAI adapter remains future work; live-provider execution requires a separate
 explicit gate.
+
+## Owner-approved scope amendment — 21 October 2026
+
+The owner explicitly narrowed Phase 3 closure to the delivered AI provider,
+bilingual orchestration, benchmarking and evaluation-research foundation and
+approved CONDITIONALLY ACCEPTED status for restricted synthetic development only.
+See [ADR 0005](DECISIONS/0005-phase-3-research-scope.md) and the
+[acceptance report](PHASE_3_ACCEPTANCE.md). Repository closeout remains subject to
+owner review and merge of the documentation PR; the original assistant MVP has not
+passed acceptance.
+
+The sequence above remains traceable: steps 1/2 and the prompt/evaluation portion
+of step 3 are delivered; catalogue/context portions of step 3 and steps 4/5/6 remain
+mandatory deferred MVP work in [issue #44](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/44).
+[Issue #39](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/39)
+remains OPEN for independent bilingual review and performance acceptance. The
+>=100 held-out cases, per-language quality, safety, ten-user load and recovery gates
+are unchanged. Neither a fake-provider test nor a policy abstention establishes
+model quality. The eight-call diagnostic has not run and is not needed just to close
+the amended research scope; latency acceptance remains mandatory.
+
+Fake/Ollama are the approved implemented providers; OpenAI remains separately
+approved future work, not an implicit external-provider activation. Model switching
+remains configuration driven. No P3-04 implementation/live generation is authorized.
+Security renewal PR #43 sets the current exact-exposure development expiry to
+30 October 2026, 23:59 EAT; earlier dates above are historical. Daily actual CRITICAL
+review and all invalidation rules remain. Phase 4 planning may begin after reviewed
+conditional closure; RAG implementation requires separate approval. No new runtime,
+live inference, real data, public Ollama or production permission follows.

@@ -16,6 +16,30 @@ review can extend elapsed time. Estimates are effort windows, not calendar promi
 [security](SECURITY.md) and [ADR 0001](DECISIONS/0001-modular-monolith.md) define
 the proposed implementation baseline. Coursework stays read-only.
 
+## Phase 3 scope amendment — owner approved 21 October 2026
+
+Phase 3 is CONDITIONALLY ACCEPTED for the delivered provider, bilingual prompt,
+benchmark and evaluation-research foundation only. Documentation closeout awaits
+owner review/merge. [ADR 0005](DECISIONS/0005-phase-3-research-scope.md) and the
+[acceptance report](PHASE_3_ACCEPTANCE.md) record the explicit scope change.
+The original Phase 3 row below is preserved as the deferred assistant-MVP baseline;
+its exit criteria have not passed. Mandatory generation/recovery, bounded context,
+catalogue/source controls, quotas and generation UI are tracked in
+[issue #44](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/44).
+Independent bilingual review and latency remain in OPEN
+[issue #39](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/39).
+No mandatory live-generation safety requirement becomes optional. The later approved
+local fake/Ollama provider choice supersedes the original initial-OpenAI assumption;
+an OpenAI adapter remains future separately approved scope, not a required addition
+for this amended research closure.
+
+After owner-reviewed conditional closure, Phase 4 planning may proceed independently
+of unresolved live-generation readiness. This limited exception amends the dependency
+arrow below for planning only. Phase 4 implementation/RAG, P3-04 live generation,
+real-data processing and production remain unauthorized. Security renewal PR #43 is
+effective through 30 October 2026, 23:59 EAT for the unchanged accepted exposure;
+historical expiry statements below do not renew or override that decision.
+
 ## Milestones and acceptance criteria
 
 | Phase / effort estimate | Deliverables | Exit criteria and evidence |
