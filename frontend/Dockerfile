@@ -1,4 +1,7 @@
-FROM node:24.22.0-bookworm-slim@sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5 AS dependencies
+FROM node:24.22.0-bookworm-slim@sha256:91acba91b842bec0bf7ea6f5e09c644c7ccad72c4996ed9616d861d1c7cd60d4 AS dependencies
+COPY docker/bootstrap-npm.sh docker/npm-toolchain.env /opt/npm-toolchain/
+ADD --checksum=sha256:dd77c48eb845f4856c2cdba347cfb52bd877a2655a1ea48ff0c4796e3df9dd7b https://registry.npmjs.org/npm/-/npm-11.21.1.tgz /tmp/npm-toolchain.tgz
+RUN sh /opt/npm-toolchain/bootstrap-npm.sh /usr/local /tmp/npm-toolchain.tgz && rm /tmp/npm-toolchain.tgz
 WORKDIR /app
 RUN chown node:node /app
 USER node

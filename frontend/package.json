@@ -5,9 +5,9 @@
   "type": "module",
   "engines": {
     "node": ">=24.22.0 <25",
-    "npm": ">=11.19.1 <12"
+    "npm": ">=11.21.1 <12"
   },
-  "packageManager": "npm@11.19.1",
+  "packageManager": "npm@11.21.1",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5173 --strictPort",
     "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",

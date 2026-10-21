@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "production_allowed": false,
+  "decisions": [
+    {
+      "scope": "synthetic-local-development",
+      "approved_by": "Abdalla-Wasaa (repository owner)",
+      "approval_reference": "Explicit owner FINAL AUTHORIZATION COMPLETE PR #40 AND CLOSE P3-03B/P3-03C: approve exact seven-file proposal for validated commit b585728899466618f28c6f34104a0ff5deb5a825 and exposure 8fb62f79a81d7d1216126f0b4ff40fb38a9e3d01b625646b121bcb83e5b00c9f; preserve prior policy bytes, all finding rows, existing expiry and controls; authorize existing PR publication/seven hosted checks, no merge or renewal.",
+      "approved_at": "2026-10-20T20:37:14.930977+00:00",
+      "expires_at": "2026-10-23T20:59:00+00:00",
+      "baseline_sha256": "34efb70dd698501c4b6e55f8c48dc5614ec8475906fbcbb5c9897122c72a60bd",
+      "reason": "Owner-approved certifi remediation. Certifi-only locked security update verified against maintainer advisory and PyPI artifacts. Backend/tooling audits zero advisories. Backend inventory remains 122 packages with only certifi version changed; backend 44 HIGH/0 CRITICAL finding rows unchanged and no reported fixes/KEV matches. Preserve all 115 HIGH/3 CRITICAL inherited rows, historical pre-certifi policy snapshot, seven CI checks, branch protection, daily actual human reviews and fix/new-finding/severity/KEV/exposure/dependency invalidation. Expiry remains 23 October 2026 23:59 EAT. Synthetic local development only; no production, real data, public Ollama, new models/live inference, expiry extension or automatic future-exposure approval. Owner authorizes publication to existing PR #40 and normal seven-check CI; no automatic merge. Actual 20 October CRITICAL review is retained historically, with no new or future human review inferred.",
+      "exposure_sha256": "8fb62f79a81d7d1216126f0b4ff40fb38a9e3d01b625646b121bcb83e5b00c9f"
+    }
+  ]
+}

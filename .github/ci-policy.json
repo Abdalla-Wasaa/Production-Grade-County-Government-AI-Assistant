@@ -40,10 +40,14 @@
           "v24.22.0"
         ],
         [
+          "sh",
+          "frontend/docker/bootstrap-npm.sh"
+        ],
+        [
           "test",
           "$(npm --version)",
           "=",
-          "11.19.1"
+          "11.21.1"
         ],
         [
           "npm",
@@ -393,10 +397,14 @@
           "v24.22.0"
         ],
         [
+          "sh",
+          "frontend/docker/bootstrap-npm.sh"
+        ],
+        [
           "test",
           "$(npm --version)",
           "=",
-          "11.19.1"
+          "11.21.1"
         ],
         [
           "npm",
@@ -666,10 +674,14 @@
           "v24.22.0"
         ],
         [
+          "sh",
+          "frontend/docker/bootstrap-npm.sh"
+        ],
+        [
           "test",
           "$(npm --version)",
           "=",
-          "11.19.1"
+          "11.21.1"
         ],
         [
           "npm",
