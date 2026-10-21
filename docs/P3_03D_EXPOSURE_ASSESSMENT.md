@@ -1,7 +1,8 @@
 # P3-03D — Node build-toolchain remediation
 
-Status: source patch and packaging-only analysis prepared; changed-environment
-execution, acceptance changes and publication are not authorized. Tracking: issue
+Status: owner authorized exact-exposure synthetic validation on 21 October 2026.
+The preparation sections below describe the original checkpoint. See the actual
+validation evidence appended below; acceptance changes and publication remain gated. Tracking: issue
 [#41](https://github.com/Abdalla-Wasaa/Production-Grade-County-Government-AI-Assistant/issues/41),
 following issue #39. Baseline main/merged PR #40 is
 `770f7be542ff33610ade77dfca1da43caae14734`.
@@ -138,3 +139,72 @@ the identified fixable findings, but actual build/runtime validation, final scan
 exact-exposure acceptance and required human review are outstanding. Preserve all
 seven hosted contexts, their app binding and branch protection. No push/PR until
 publication conditions are satisfied. No production, real data or public Ollama.
+
+## Authorized actual validation — 21 October 2026
+
+Owner runtime grant: commit `bb1f88d4896d3f579fd21a441629190db7d19d4d`, unchanged
+exposure `015755bffa0f038986d719624979b317cb5e5527dceed76447fd207d09747ab1`.
+No implementation correction was needed. The disposable bootstrap verified both
+the approved local archive and the normal HTTPS download. A deliberately invalid
+checksum was rejected before extraction/replacement; installed npm bytes remained
+unchanged. Node 24.22.0/npm 11.21.1 confirmed in both host prefix and actual builder
+(UID 1000). The final runtime remains UID/GID 101:101. No changed application or
+build execution occurred before that explicit owner grant.
+
+Actual BuildKit dependencies and final runtime builds passed. Local Docker's default
+plugin path was a broken Docker Desktop symlink; an isolated Docker configuration
+selecting the already-installed Buildx/Compose binaries resolved it, without source
+or CI changes. No security fallback was used.
+
+`npm ci`, complete dependency-tree verification, npm audit (zero advisories), ESLint,
+Prettier, TypeScript, 88 unit/component tests and production build passed. Browser
+run: Chromium 29/29, Firefox 28/29, WebKit 29/29. The Firefox 1440px case timed out
+on page loading under concurrent host load; its unchanged one-worker rerun passed
+in 4.9 seconds using the original 30-second timeout. All 87 distinct cases passed
+across initial/rerun evidence, including axe assertions. The initial failed JUnit
+report is retained; it is not represented as a clean full-suite report. Its normal
+report checker correctly fails, while the unit and focused-rerun reports pass.
+Three new static test groups plus nine existing CI-policy tests pass. Bootstrap
+removal/no-op mutations remain rejected. Secret scanning found no leaks.
+
+[Actual scan evidence](security/p3-03d/actual-validation.json) records the image IDs,
+raw report hashes, inventories and all retained builder HIGH/CRITICAL rows. The
+actual dependencies image has **56 HIGH/1 CRITICAL, zero fixable HIGH/CRITICAL**,
+exactly the preliminary finding multiset. Its 496-package inventory includes the
+locked project dependencies, unlike the preparation-only base/npm composition.
+The actual final web image has **zero HIGH/CRITICAL** and its existing 21-package
+inventory hash is unchanged. Raw scan/build/test evidence is retained outside Git.
+The first web scan encountered a Trivy cache lock while another scan ran; the
+subsequent scan succeeded. Missing evidence was never treated as a clean scan.
+
+The normal runtime-image scanner also scanned the disposable Compose images:
+backend **44 HIGH/0 CRITICAL**, database **71 HIGH/3 CRITICAL**, web **0/0**. Every
+runtime finding row and complete package inventory equals its approved reference;
+no available fixes or matches in the freshly retrieved CISA catalogue 2026.10.20.
+The normal policy result still fails because the changed exposure has no accepted
+risk decision. It does not fail for missing scan evidence or inventory differences.
+All seven workflow contracts validate. No thresholds, findings or controls changed.
+
+`.github/security-baseline.json` and `.github/security-inventory.json` therefore
+need **no changes**. A separate five-file decision is proposed for exact-exposure
+acceptance/publication, with previous approval bytes preserved. Builder residuals
+are separately disclosed: 56 HIGH/1 CRITICAL in addition to deployed-runtime
+115 HIGH/3 CRITICAL (171 HIGH/4 CRITICAL image occurrences if summed, including
+duplicated CVEs). Do not imply that builder findings disappeared or are already
+covered by the previous runtime-only approval. The builder CRITICAL is the same
+zlib CVE; fix/KEV/exposure invalidation rules and daily human review remain required.
+
+Full disposable Compose acceptance passed: 79 PostgreSQL integration tests; real
+Nginx bilingual navigation and auth browser tests; all nine authentication routes,
+cookie/CSRF/refresh replay/revocation; least-privilege/read-only/isolation checks;
+database outage recovery; graceful shutdown/proxy DNS recovery; persistent migrated
+volume and credential/session state after down/up; secret-canary checks and owned
+resource cleanup. The image IDs in completed acceptance match the images scanned.
+No acceptance record, historical record or expiry has changed.
+
+Raw validation evidence and an exact conditional five-file publication proposal are
+retained at `/root/.local/share/county-ai/handoffs/2026-10-21/p3-03d/`.
+The proposal uses a visibly pending confirmation timestamp; only actual owner
+confirmation can fill it. It does not assert today's human CRITICAL review.
+Technical remediation is ready for hosted CI, pending exact-exposure acceptance,
+required human review and publication approval. No PR has been pushed or opened.
