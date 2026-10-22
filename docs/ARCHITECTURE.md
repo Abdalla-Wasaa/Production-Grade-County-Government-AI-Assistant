@@ -363,3 +363,166 @@ remains the automated default. No public generation endpoint, Compose networking
 change or provider call during startup/health checks. See the
 [local adapter guide](OLLAMA_LOCAL_DEVELOPMENT.md); runtime/security acceptance is
 separate and does not inherit P3-01 approval.
+
+## WhatsApp-first target amendment — 22 October 2026
+
+[ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md) records the owner's
+planning direction. WhatsApp is the primary proposed citizen channel; React remains
+an alternative citizen channel and supports future privileged operator workflows.
+Existing implemented React/auth/history APIs are preserved. The diagrams and
+synchronous turn lifecycle above remain historical/target context; the following
+channel design extends future transport processing without changing Phase2 APIs.
+No WhatsApp, framework, MCP or RAG runtime is implemented by this amendment.
+
+```mermaid
+flowchart LR
+    W[WhatsApp citizen] -. future Meta Cloud API .-> H[Verified webhook adapter]
+    B[React citizen client] --> A[Existing FastAPI auth and persistence]
+    H --> I[Durable channel inbox]
+    I --> C[Shared conversation and authorization services]
+    A --> C
+    O[React operator client] -. separately authorized .-> P[Privileged workflow boundary]
+    C --> Q[Bounded orchestration port]
+    Q --> L[LangChain adapter]
+    L --> M[Existing AIProvider]
+    L --> R[Application RetrievalService]
+    R --> D[(PostgreSQL and pgvector)]
+    P --> S[Approved ingestion job]
+    S --> X[Sandboxed LlamaIndex transformations]
+    X --> D
+    L -. approved tools only .-> T[Application tool policy]
+    T -. future MCP adapter .-> U[Approved read-only server]
+    C --> E[Durable outbound outbox]
+    E -. future delivery adapter .-> W
+```
+
+### Channel-neutral message and identity model
+
+Proposed envelope: schema_version, internal message/event UUID, channel enum(web or
+whatsapp), direction, business/county scope, channel_account ID, pseudonymous sender
+identity reference, canonical principal/user and owned conversation references,
+external message/event ID, correlation/causation IDs, idempotency key, language en/sw,
+observed/received timestamps, content reference and permitted type. Content remains
+bounded/private in domain storage, not telemetry or routing headers. Provider IDs
+are namespaced by channel/business endpoint; a sender-supplied owner/county/user ID
+is never trusted. Public document classification does not make chat messages public.
+
+Web adapter derives user from verified JWT and existing request/CSRF rules. WhatsApp
+adapter derives channel identity from verified Meta event and configured business
+mapping. A telephone/WhatsApp identifier is personal data, not proof of a government
+identity, web login or operator role. Default development remains invite-only and
+synthetic. Unrecognized identities get only an approved minimal onboarding/privacy
+response after separate channel authorization; no automatic citizen account or
+history access is approved here. Future onboarding needs a reviewed identity policy.
+
+Account links require an authenticated web session plus independently proven channel
+possession, short-lived single-use challenge, expiry/attempt limits, notification,
+revocation/unlink and audit. Never auto-link by matching phone/email/name, expose
+existing histories to a new channel, or infer continuity after number reassignment.
+Use separate private conversations by channel by default; explicit cross-channel
+continuation requires ownership checks and consent. Disabled/deleted accounts and
+unlinked identities cannot dispatch queued or outbound content. Roles cannot be
+promoted by message text, framework metadata or model/tool output.
+
+### Durable asynchronous transport and delivery
+
+Proposed inbox states: received -> verified -> deduplicated/persisted -> queued ->
+processing -> completed, rejected or failed. Signature rejection precedes persistence
+of content. Authenticated malformed/unsupported content receives a bounded safe
+outcome with no arbitrary attachment download, OCR or model dispatch. Handler sends
+a success acknowledgment only after durable receipt; transient storage failure
+returns a retryable response, not false acceptance. No inference in webhook handling.
+
+A database uniqueness key binds channel/business endpoint/external message ID;
+status events use provider message ID/status/event timestamp or canonical digest.
+Transport signatures do not prove freshness. Durable deduplication plus bounded
+replay horizon, timestamp plausibility and state-aware processing prevent repeated
+side effects; valid vendor retries must still receive idempotent acknowledgment.
+Provider-retry retention is set from reviewed current documentation, not guessed.
+A correlation UUID tracks one interaction through inbound, retrieval, generation
+attempt and delivery. External identifiers are not authorization credentials.
+
+Proposed outbound states: queued -> sending -> accepted_by_provider -> delivered ->
+read; failed, cancelled, expired and unknown_outcome are explicit outcomes. Retain
+status events; late/out-of-order duplicates cannot regress read to sent. A provider
+acceptance is not delivery or model-quality success. Use leases, conditional updates,
+per-conversation sequencing, bounded retries/backoff/Retry-After and dead-letter
+review. Never hold a DB transaction during provider/network waits. An ambiguous
+send after timeout requires reconciliation; no blind retry that could duplicate a
+message or charge. Business idempotency alone cannot guarantee exactly-once delivery.
+
+A proposed worker process shares the monolith artifact; PostgreSQL inbox/outbox is
+the initial durable coordination design. In-process background tasks alone cannot
+meet crash/restart guarantees. Broker/worker infrastructure is separately reviewed.
+Queue depth/concurrency/age, token/rate/spend budgets and per-sender/business/global
+limits are server-enforced. Cancel pending sends on consent withdrawal, link removal,
+account disable/deletion, revoked evidence or failed authorization at dispatch.
+
+### Meta Cloud API boundary — not enabled
+
+Separate GET challenge and POST event handling. GET verifies subscribe mode and
+configured verification token using safe comparison before echoing hub.challenge;
+challenge verification is not POST authentication. POST validates X-Hub-Signature-256
+HMAC-SHA256 over the exact raw bytes with the Meta app secret, constant-time comparison,
+body/timeout limits, expected object/business/phone account mapping and approved
+payload version. Verify before JSON normalization or processing. Never rely on IP
+allowlists alone, browser sessions or the challenge token as event authenticity.
+
+A future public TLS webhook needs an explicitly approved edge, request limits,
+incident monitoring and vendor account/privacy review; no tunnel or public ingress
+is authorized now. Tokens/app secrets/verify tokens stay in backend-only secret
+storage with rotation/revocation; no React bundle or logs. Restrict Graph API egress
+and token scopes; separate webhook app secret from outbound API credentials.
+
+Track last authentic user interaction and recheck the service window at send time.
+Free-form replies are limited to the current permitted window (currently24hours);
+outside it use only separately approved eligible templates or do not send. Template
+category/language/version/approval/opt-in and current account limits must be validated,
+not chosen by the model. No marketing or template approval follows from this plan.
+Provide a reviewed, available human escalation route with hours/ownership and
+minimal data sharing; don't invent contacts or promise immediate human service.
+
+### Framework and tool ownership
+
+LangChain adapter responsibilities: compose versioned prompts, language and evidence;
+coordinate AIProvider invocation, application RetrievalService, structured-response
+validation, bounded tools and content-free local timing. Domain DTOs convert at the
+adapter edge and convert back to existing normalized contracts. Application owns
+policy, memory, budgets, deadlines and durable attempts. Disable implicit SDK/chain
+retries, model fallbacks, remote tracing and unbounded agents; one application retry
+budget accounts for all layers. Fake tests compare mapped behavior against the direct
+provider baseline, including async cancellation/resource cleanup.
+
+LlamaIndex adapter responsibilities: approved loaders inside the sandbox, extraction,
+metadata preservation, normalization/chunk transformations and controlled index build
+or update. Application controls immutable IDs, provenance, publication, embeddings,
+corpus membership and deletion. Disable network/cloud parsing, implicit default LLM/
+embedding selection and caches containing uncontrolled copies. Emit canonical chunks;
+application repositories write vectors. A framework docstore is not a second source
+of truth. Any cache is derived, namespaced by immutable recipe/version and purgeable.
+
+MCP adapter sits behind the existing proposed Phase5 tool policy. Registry entries
+pin approved server identity/endpoint/transport, versioned tool schemas, owner/data
+scope, credential reference, risk class and capability set. Discovery/annotations
+are untrusted; tool names/descriptions cannot self-authorize. Revalidate tool schema
+on change; no dynamic server URLs from user/model text, arbitrary stdio commands or
+credential passthrough. Per-tool actor/scope authorization, size/rate/deadline/retry
+caps, safe results and content-free audit are mandatory. Remote OAuth/resource
+audiences and redirect/SSRF rules need a reviewed protocol/version decision.
+
+First proposed tool: synthetic service-directory lookup returning fixture ID,
+language and approved fictional office hours/contact labels, read-only with no
+network. No fees, eligibility decisions or records. State-changing tools remain
+forbidden by default; future work needs explicit scope approval, fresh server-side
+authorization and human approval bound to exact action/arguments/expiry, not a generic
+model yes/no. Returned tool/document instructions cannot change system policy.
+
+Official references checked22October2026: [Meta webhook SDK reference](https://whatsapp.github.io/WhatsApp-Nodejs-SDK/api-reference/webhooks/start/)
+(older reference; reverify current Graph API details before implementation),
+[Meta messaging policy](https://business.whatsapp.com/policy),
+[LangChain overview](https://docs.langchain.com/oss/python/langchain/overview),
+[LlamaIndex ingestion reference](https://developers.llamaindex.ai/python/framework-api-reference/ingestion/),
+[MCP security guidance](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices).
+Some current Meta developer pages returned429 and business terms required login;
+exact API version, permitted-use/AI terms and production eligibility remain explicit
+pre-implementation decisions. No unsupported compatibility or policy approval claimed.

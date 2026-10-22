@@ -120,3 +120,37 @@ Node.js 24 LTS; React/Vite/TypeScript/Tailwind CSS; PostgreSQL 17; SQLAlchemy 2.
 Alembic; Pytest/Ruff; Vitest/React Testing Library/ESLint; Docker/Compose and GitHub
 Actions. Exact package compatibility is checked before installation/locking and
 verified by relevant tests. Public-pilot review is not satisfied by synthetic tests.
+
+## Owner-approved WhatsApp-first planning amendment — 22 October 2026
+
+[ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md) extends the target
+channels: WhatsApp is primary for citizens; React remains an alternative citizen
+channel and a future operator/admin workflow client. Original FR/NFR IDs and release
+gates above remain traceable and mandatory. No existing feature is deprecated.
+The current React/auth/history implementation remains supported; WhatsApp is not
+implemented, public onboarding is not approved, and no phone identity replaces a
+verified user or operator authority. Existing invite-only development stays intact.
+
+Proposed additional channel criteria for subsequent contract approval:
+
+- CH-01: shared domain ownership/content/language semantics across adapters; pass
+  cross-channel isolation and no phone/email auto-link tests before any linked access.
+- CH-02: verify webhook challenge and raw-body signatures, business scope, durable
+  deduplication, status replay/order, unsupported content and bounded ingress; never
+  acknowledge non-durable work as accepted. Mock Meta in CI.
+- CH-03: durable inbox/outbox, explicit unknown-send outcome, bounded retry/leases,
+  account/consent/window rechecks, recovery and deletion/hold tests; no exactly-once
+  external-delivery claim or unbounded agent worker.
+- CH-04: reviewed privacy notices, language choice, permitted messaging templates,
+  opt-out and human escalation; authenticate link/unlink and retain minimal proof.
+- CH-05: proposed operator UI has separately approved privileged auth/server APIs;
+  citizen/staff/admin JWTs do not grant history browsing or source publication.
+- CH-06: framework adapters preserve AIProvider and source/retrieval contracts;
+  no implicit remote telemetry, framework memory or bypass of budgets/authorization.
+
+These are proposed design/test requirements, not authorized endpoints or runtime.
+NFR-03 latency, NFR-05/06 bilingual quality/sensitive claims, Phase4 retrieval gates,
+#39 independent review and #44 deferred generation all remain unresolved where
+previously unmet. Read-only MCP is proposed under the existing Phase5 tools gate;
+state-changing tools need separate approval and exact human confirmation. No live
+WhatsApp, real data, RAG ingestion, model download or production approval follows.

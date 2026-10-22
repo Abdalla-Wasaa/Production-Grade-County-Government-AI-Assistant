@@ -279,3 +279,39 @@ requests are not falsely completed. Actual verification is an operator obligatio
 All new code is source-prepared only until the separate exposure/runtime checkpoint.
 No new exception acceptance, real-data/legal approval or public deployment follows
 from approval of these engineering contracts.
+
+## Proposed channel contracts — not implemented
+
+[ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md) proposes WhatsApp-first
+transport without changing the existing auth or persistence-only message endpoints.
+No public webhook, linking API, privileged UI API, generation route or MCP HTTP route
+is approved for implementation by this documentation. Exact URL/schema/status and
+Graph/MCP versions require a separate reviewed contract; paths below are responsibilities,
+not newly available endpoints. Existing web clients remain compatible.
+
+| Boundary | Proposed request/response and security semantics |
+| --- | --- |
+| Webhook challenge GET | subscribe mode, hub.verify_token and hub.challenge; reject bad mode/token without echo; token is not event authentication |
+| Webhook POST | Raw bounded bytes plus X-Hub-Signature-256; verify HMAC using app secret before parsing; validate configured business/channel mapping, message/status shape and version; acknowledge after durable inbox insert |
+| Channel envelope | Internal UUID, channel/business scope, verified identity ref, conversation/owner ref, external event/message ID, correlation/causation and idempotency IDs, direction/type/content reference, en/sw and timestamps |
+| Worker dispatch | Trusted principal/consent/scope, owned conversation, lease and attempt identity; recheck auth/source/window/budgets before work; bounded async completion, no provider call under a transaction |
+| Outbound intent/status | Conversation-owned content ref, destination identity bound by server, reply/template decision, attempt/provider IDs and state; arbitrary recipient/URL/template rejected |
+| Account link/unlink | Authenticated web principal plus independent channel-possession challenge; CSRF, single-use expiry/rate limits and audit; no phone/email auto-merge |
+| Operator workflows | Separate privileged API contract and operator auth needed; React does not expose host CLI, secrets or unrestricted histories |
+| Retriever/framework/tool ports | Typed domain input/output only; no LangChain/LlamaIndex/MCP object, raw exception or upstream credential leaks |
+
+Distinguish unauthentic payloads (reject), authentic unsupported types (safe terminal
+outcome), duplicates (idempotent acknowledgment) and transient durable-store failure
+(retryable failure). Propose200 acknowledgment after validated durable receipt, with
+400 malformed/unsupported schema,401/403 authenticity/scope rejection,413 oversize,
+429 ingress cap and503 temporary storage outage; final vendor-compatible responses
+must be verified before contract approval. Do not mask failed persistence with200.
+Unknown delivery outcome is not an invitation to repeat a side effect automatically.
+
+No schema field grants an operator capability or ownership. Server derives channel,
+county/business, corpus, principal and destination; enforce ingress/body/content and
+shared rate caps. Preserve unchanged JWT/cookie/Origin/CSRF for browser endpoints.
+Webhook authentication is HMAC and durable deduplication, not browser CSRF. Binding
+webhook payloads to application users still needs explicit identity/onboarding policy.
+All error bodies remain bounded/fixed, without phone/message/token/provider details.
+See [channel design](ARCHITECTURE.md#whatsapp-first-target-amendment--22-october-2026).

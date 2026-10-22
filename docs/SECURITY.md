@@ -612,3 +612,45 @@ CRITICAL reviews, daily scans, all invalidation rules, seven app-bound checks,
 strict protected PRs and least privilege. No future-exposure/runtime authorization,
 live inference, new models, public Ollama, real data, production or automatic future
 renewal is granted. Issue #39 and P3-04 readiness remain unresolved independently.
+
+## WhatsApp and framework threat delta — planning only
+
+[ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md) approves target
+architecture planning, not any new deployed attack surface. Existing exact exposure,
+security decision, historical approvals, seven checks and branch protection remain
+unchanged. This section adds threats/requirements, not a risk acceptance.
+
+| New or amplified threat | Required future controls | Deterministic evidence before exposure |
+| --- | --- | --- |
+| Public webhook spoofing/DoS | TLS/approved edge, body/rate/concurrency limits, raw-body HMAC, expected business mapping, challenge-token separation | Forged/mutated/missing signatures, wrong account, oversized/slow payloads; no public tunnel in CI |
+| Valid event replay/duplicate delivery | Durable scoped event uniqueness, trusted receipt times, state-aware retry/dedup retention | Repeated/reordered events, crash between insert/ack, delivery replay and quota tests |
+| Phone takeover/reassignment or mistaken linking | Channel identity is not citizen identity; verified two-sided expiring links, no auto-merge, unlink/revocation and destination recheck | Cross-user linking/race/recycled-number tests, no old history delivery |
+| Personal message/vendor data | Minimize identifiers/payloads, private storage/key separation, approved notices/legal basis/locations/transfers, no prompt/body logs | Retention/hold/purge/restore tests across inbox/outbox/caches, redaction canaries |
+| Outbound leakage or template abuse | Server-owned recipient binding, current account/link/consent/window checks at send, approved templates and escalation | Wrong recipient, opt-out/disable after queue, expired window and unknown-send tests |
+| Document poisoning/indirect injection | Source approval, sandbox/scan, immutable provenance, SQL eligibility, retrieved text remains untrusted | Malicious source text, forged metadata/citations, revocation during retrieval/generation |
+| Framework privilege/data escape | No domain SDK objects, implicit models/tools/network/telemetry or duplicate retry budgets; minimal reviewed pins | Dependency/license/full-image scans, mocked invocation, cancellation and no-network/no-content tests |
+| MCP confused deputy/SSRF/tool abuse | Approved pinned server/tool registry, audience-bound least-privilege credentials, argument/result schemas and per-tool actor authorization | Untrusted discovery/schema change, wrong audience, arbitrary URLs/commands, timeout and oversized results |
+| Cost amplification/backlog | Shared sender/business/global limits, queue admission, model/token/spend caps and bounded retries | Concurrent replay/quota, queue recovery, ambiguous completion and cost-accounting tests |
+| Privileged React workflow misuse | Separately designed operator auth/MFA and granular server capabilities, no ordinary JWT-admin bypass | Denied publishing/hold/account actions, CSRF and audit/minimal-access tests |
+
+No framework or model output can approve account links, sources, tools, destination
+changes or legal consent. Read-only MCP defaults remain; state changes require new
+scope approval, server authorization and short-lived human approval bound to the
+exact action/arguments. Prevent token passthrough and arbitrary remote MCP endpoints;
+select transport/protocol and credential model in later reviewed contracts.
+
+Meta processes channel metadata/content independently of the local model. Local
+Ollama therefore does not make WhatsApp processing local-only. Before any trial,
+review Kenyan privacy/DPIA/rights/retention and transfer obligations, permitted data,
+controller/processor roles, Meta terms/account eligibility, county branding/authority,
+escalation owner and current template/window/pricing requirements. Public documents
+may still contain personal details; none may be ingested through this plan.
+No sensitive IDs, payment credentials or confidential material in demo messages.
+
+Current expiry remains30October2026 23:59EAT; actual21October CRITICAL review is
+historical and22October remains unconfirmed. No new human review is recorded. Runtime
+findings115HIGH/3CRITICAL and builder56HIGH/1CRITICAL remain tracked historical counts;
+no fresh scan or new-risk acceptance is claimed by this documentation amendment.
+Framework packages/images/DB/channel/schema changes require new inventory/exposure
+assessment and required runtime/security approvals. No public webhook, credentials,
+Meta/MCP connection, inference, ingestion, renewal, real data or production permitted.

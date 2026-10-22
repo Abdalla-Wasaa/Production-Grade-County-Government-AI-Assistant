@@ -199,3 +199,33 @@ embedding-space, retrieval/evidence and lifecycle contracts with deterministic
 fixtures and a role matrix, before selecting parser/vector packages or migrating.
 No P3-04, RAG integration, public services, real citizen/government documents or
 production are authorized by this plan.
+
+## WhatsApp-first planning reconciliation — 22 October 2026
+
+The owner authorizes [ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md)
+and its [impact/workstream assessment](WHATSAPP_FIRST_IMPACT_ASSESSMENT.md) for
+planning only. This supplements the approved workstreams above, not their runtime
+permissions or acceptance gates. Existing issues46–52 are reused; no duplicate issues.
+
+| Tracking | Proposed adapter-aware addition |
+| --- | --- |
+| #46 | Retain framework-neutral typed RAG contracts; preserve unexecuted prepared source branch pending exact testing grant; don't add SDKs or channel runtime to it |
+| #47 | Review LlamaIndex as sandboxed ingestion transformations; application owns approval/version/revocation |
+| #48 | Embedding port and pgvector remain canonical; no framework-default model/vector-store configuration |
+| #49 | SQL-filtered RetrievalService remains authoritative; expose a bounded retriever mapping for LangChain |
+| #50 | LangChain composition invokes AIProvider and typed evidence/tools, with one deadline/retry/budget policy |
+| #51 | Add offline adapter/channel/injection/telemetry-isolation tests while retaining bilingual retrieval and independent semantic gates |
+| #52 | Acceptance matrix distinguishes retrieval, channel transport, model quality and enabled live features; #39/#44 remain blockers |
+
+Channel-neutral envelope/linking/inbox/outbox/usage and user-facing generation stay
+under #44 contract review; independent quality and performance stay in #39. WhatsApp
+and React operator implementation tasks need a later bounded breakdown/owner grant.
+MCP is a proposal under Phase5's existing read-only tool gate; no Phase4 tool-runtime
+scope creep. First proposed MCP fixture is a synthetic read-only service directory.
+
+Implementation order: finish separately authorized #46 contracts; review #44 shared
+channel identity/durable messaging contracts with synthetic fixtures; then separately
+review minimal framework packages and #47/#48 source/vector work; add retrieval and
+fake-only orchestration mappings before any live channel/tool/generation integration.
+No framework installation, migration, source ingestion, embedding download, live
+Meta/MCP/model request or public endpoint is authorized by this planning amendment.
