@@ -220,3 +220,29 @@ contract and security decisions precede each implementation/runtime boundary.
 Retrieval can be tested independently with approved synthetic fixtures; live
 conversation generation remains blocked by #39/#44 and separate authorization.
 Security expiry remains30October2026 23:59EAT with daily actual CRITICAL reviews.
+
+## WhatsApp-first architecture direction — planning amendment
+
+Owner decision22October2026: WhatsApp primary citizen channel, React alternative
+citizen channel plus proposed operator UI; FastAPI modular monolith retained.
+[ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md) and the
+[impact assessment](WHATSAPP_FIRST_IMPACT_ASSESSMENT.md) describe the target and
+incremental compatibility plan. LangChain orchestration, LlamaIndex ingestion and
+MCP tools are proposed adapters, not installed dependencies or implemented features.
+PostgreSQL/pgvector, AIProvider, source approval, privacy and all original acceptance
+requirements remain authoritative. No component is deprecated by this direction.
+
+Reuse Phase4 issues46–52 with the adapter-aware additions in
+[Phase4 plan](PHASE_4_PLAN.md). Shared channel identity/linking, asynchronous
+inbox/outbox, generation/quotas and operator workflow contracts require separate
+review under #44; no auto-registration or account linking is approved. MCP remains
+behind the existing Phase5 tools gate. #39 independent bilingual/latency acceptance
+and #44 deferred MVP remain OPEN; framework adoption is not evidence they passed.
+
+This authorizes a documentation PR and normal seven-check CI only. Existing P4-01
+source is preserved separately and still awaits exact-source testing approval.
+No Phase4 implementation, public WhatsApp webhook, model download/inference, Meta/
+MCP connection, real documents/data or production. Expiry remains30October2026
+23:59EAT; new exposure/dependency/runtime decisions and actual daily CRITICAL
+reviews remain mandatory. See the impact assessment for measurable proposed tests,
+compatibility, security, latency and budget decisions before any implementation.

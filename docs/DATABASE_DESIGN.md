@@ -286,3 +286,36 @@ audits. Separate maintenance credentials require that key but no JWT/CSRF secret
 Do not rotate it or restore a backup around the guards; follow the reviewed migration
 and deletion-ledger replay procedure in [the runbook](PRIVACY_LIFECYCLE.md).
 Downgrade is allowed only when no retained privacy controls/evidence still require it.
+
+## Proposed multi-channel schema delta — no migration
+
+[ADR0006](DECISIONS/0006-whatsapp-first-framework-adapters.md) proposes additive
+schema design; existing users, owned conversations/messages, sessions and privacy
+controls remain authoritative. No DDL or table is introduced by this document.
+
+| Proposed entity | Constraints and lifecycle |
+| --- | --- |
+| channel_accounts | County/business/provider endpoint mapping; operator-approved configuration, no client-controlled tenant routing |
+| channel_identities | Unique channel-account/provider-subject keyed digest for lookup; encrypted minimal destination reference separately; canonical owner binding requires verified provisioning/link |
+| account_links | Unique active permitted link, both-side verification, challenge digest/expiry/attempt limit, audit/unlink; no plaintext tokens or phone-based implicit merge |
+| inbound_events | Unique channel-account/external event or canonical dedup digest, received/provider time, correlation, verification status, content ref, bounded lease/retry state |
+| outbound_intents/attempts | Unique domain intent, destination/owner/channel binding, consent/window/template version, lease, provider ID/unknown outcome; no claim of exactly-once transport |
+| delivery_events | Unique provider-message/status/event identity; append-only outcomes projected without regressing terminal read/delivery state |
+| consent/escalation records | Versioned notice, opt-in/out scope/time, audited operator handoff/minimal content access; no model-created legal consent |
+
+Phone/provider identifiers are personal data even if pseudonymized. Store only
+what is needed, encrypt routing destinations and restrict key use; hashes alone
+are not anonymity. Do not place raw webhook payloads indefinitely in a second
+archive. Retention of raw events, dedup digests, delivery data and consent evidence
+needs explicit privacy approval and review; extend the existing30-day inactivity/
+90-day maximum conversation contract only by a reviewed decision, never silently.
+Source documents remain separate from personal channel records and embeddings.
+
+Privacy deletion/holds must cover channel content refs, inbox/outbox, retries,
+framework caches, links and derived artifacts without destroying required held or
+minimal approved audit evidence. On deletion/disable/unlink, prevent dispatch before
+physical purge; replay deletion/revocation after restore. A transient retry must not
+resurrect a deleted conversation or deliver to a recycled number. Account linking
+and cross-channel continuity require concurrency/ownership constraints and denial
+tests. Future migrations must review role grants, index/uniqueness, lease handling,
+rollback/recovery and retention targets before execution.

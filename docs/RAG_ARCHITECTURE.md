@@ -169,3 +169,32 @@ certification. Sources reviewed for planning on21October2026:
 [ODPC public-sector guidance](https://www.odpc.go.ke/wp-content/uploads/2025/11/ODPC-%E2%80%93-Guidance-Note-FOR-PUBLIC-SECTOR.pdf),
 [ODPC laws and regulations](https://www.odpc.go.ke/data-protection-laws-kenya/).
 No real government/citizen data is authorized by this planning PR.
+
+## Proposed LlamaIndex and LangChain adapters
+
+The [WhatsApp-first ADR](DECISIONS/0006-whatsapp-first-framework-adapters.md) keeps
+all source lifecycle, pgvector, filtering, citation, purge and evaluation requirements
+above. Channels do not change corpus eligibility or make chat data public knowledge.
+No RAG implementation or framework installation is authorized here.
+
+LlamaIndex handles approved loading/parsing/metadata/transformations/chunk preparation
+and controlled index construction within the proposed ingestion sandbox. It emits
+canonical application records with exact source/version/page/span/checksum. Domain
+services approve publication, activate releases and own vector writes/deletion.
+No cloud parser, implicit default embedding/model call, second authoritative docstore
+or standalone LlamaIndex retrieval/query engine is approved. Framework caches must
+be immutable-recipe keyed and participate in revocation/purge/restore controls.
+
+LangChain receives a retriever shim backed by the application RetrievalService.
+The shim derives trusted scope/release/space, applies SQL eligibility and maps bounded
+canonical evidence into framework context; it maps results back before API/domain
+use. Framework metadata or model-chosen filters cannot widen scope. Citation IDs
+are validated against selected current versions after completion, including queued
+WhatsApp sends; a source revoked while waiting must not be sent from a stale cache.
+
+Only application EmbeddingProvider owns embedding invocation configuration; LlamaIndex
+may request it through an adapter after separate model/runtime approval. Existing
+AIProvider remains the generation boundary. Fake vectors/framework mocks test mapping
+and isolation, not semantic recall. Per-language Recall@5>=0.85 on>=50 relevant cases,
+independent groundedness/citation review and all existing RAG_EVALUATION.md gates
+remain unchanged. Neither channel prioritization nor frameworks resolves #39/#44.
